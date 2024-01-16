@@ -1,6 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import "./styles/cars-showroom.css";
-import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { Car } from "../../lib/carsShowroom/Car";
 
@@ -83,7 +83,7 @@ export default function CarsComponent() {
                                     </p>
                                 </div>
                                 <div className="car-img-container">
-                                    <Image alt={car.make} className="car-img" width={465} height={100} key={index} src={car.img} />
+                                    <img alt={car.make} className="car-img" key={index} src={car.img} />
                                 </div>
                                 <div className="showroom-buttons">
                                     <a href="#">Enquiry</a>
