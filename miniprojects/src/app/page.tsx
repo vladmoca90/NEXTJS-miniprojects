@@ -1,4 +1,5 @@
 "use client";
+import "./styles/cars-showroom.css";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { Car } from "../../lib/carsShowroom/Car";
