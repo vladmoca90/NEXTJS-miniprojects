@@ -48,8 +48,15 @@ body {
 }
 
 .car-container {
-    margin: 10px;
-    max-width: 385px;
+    margin: 5px;
+    max-width: 365px;
+}
+
+@media all and (min-width: 992px) {
+    .car-container {
+        margin: 10px;
+        max-width: 385px;
+    }
 }
 
 .car-header {
@@ -59,11 +66,17 @@ body {
 
 .car-title {
     color: #fff;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 600;
     height: 55px;
     letter-spacing: 1px;
     line-height: 25px;
+}
+
+@media all and (min-width: 992px) {
+    .car-title {
+        font-size: 1.25rem;
+    }
 }
 
 .car-price,
@@ -97,7 +110,13 @@ body {
 
 .showroom-buttons {
     justify-content: space-between;
-    padding: 10px;
+    padding: 10px 0;
+}
+
+@media all and (min-width: 768px) {
+    .showroom-buttons {
+        padding: 10px;
+    }
 }
 
 .showroom-buttons>a {
@@ -111,7 +130,13 @@ body {
     text-decoration: none;
     text-transform: uppercase;
     transition: all .5s linear;
-    width: 47%;
+    width: 45%;
+}
+
+@media all and (min-width: 992px) {
+    .showroom-buttons>a {
+        width: 47%;
+    }
 }
 
 .showroom-buttons>a:hover {
