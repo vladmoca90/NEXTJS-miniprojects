@@ -49,11 +49,11 @@ body {
 
 .car-container {
     margin: 10px;
-    max-width: 465px;
+    max-width: 385px;
 }
 
 .car-header {
-    padding: 5px 0 0;
+    padding-top: 5px;
     text-align: center;
 }
 
@@ -61,9 +61,9 @@ body {
     color: #fff;
     font-size: 1.25rem;
     font-weight: 600;
-    height: 45px;
+    height: 55px;
     letter-spacing: 1px;
-    margin: 0 5px 10px;
+    line-height: 25px;
 }
 
 .car-price,
@@ -93,7 +93,6 @@ body {
     border-bottom: 1px solid #971700;
     display: block;
     margin: 0 auto;
-    max-width: 465px;
 }
 
 .showroom-buttons {
