@@ -1,9 +1,10 @@
 "use client";
+import "./styles/food-list.css";
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { Food } from "../../lib/foodList/Food";
 
-export default function FoodListComponent() {
+export default function FoodList() {
     let foodsUrl = "http://localhost:3000/api/food-list";
 
     const [foods, setFoods] = useState<Food[]>([]);
@@ -44,7 +45,7 @@ export default function FoodListComponent() {
 
     //A function that returns the highest price of an item
     const getMostExpensiveItem = useCallback(() => {
-        let expensive = foods[0].price;
+        let expensive = 0;
 
         for (let i in foods) {
             if (foods[i].price > expensive) {
@@ -57,7 +58,7 @@ export default function FoodListComponent() {
 
     //A function that returns the smallest price of an item
     const getCheapestItem = useCallback(() => {
-        let cheapest = foods[0].price;
+        let cheapest = 0;
 
         for (let i in foods) {
             if (foods[i].price < cheapest) {
@@ -121,7 +122,7 @@ export default function FoodListComponent() {
                                 return (
                                     <tr key={index}>
                                         <td className="food-image">
-                                            <Image alt={food.name} className="product-img" width={100} height={100} src={"/foodList/" + food.img} />
+                                            <Image alt={food.name} className="product-img" width={100} height={100} src={"/images/foodList/" + food.img} />
                                         </td>
                                         <td className="food-name">{food.name}</td>
                                         <td className="food-price">{food.price}</td>
