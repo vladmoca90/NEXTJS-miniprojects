@@ -12,7 +12,7 @@ export default function CarsComponent() {
     const getCars = useCallback(async () => {
         const res = await fetch(carsUrl);
 
-        if(!res.ok) {
+        if (!res.ok) {
             throw new Error("Failed to fetch data");
         }
 
@@ -44,32 +44,34 @@ export default function CarsComponent() {
     return (
         <section className="box">
             <div className="showroom-search">
-                <select id="carMake" title="carMake">
-                    <option value="make">-- Any Make --</option>
-                    {
-                        removeDuplicatedMakes().map((car, index) => {
-                            return (
-                                <option value={car} key={index}>{car}</option>
-                            );
-                        })
-                    }
-                </select>
-                <select id="carModel" title="carModel" disabled>
-                    <option value="model">-- Any Model --</option>
-                    {
-                        cars.map((car, index) => {
-                            return (
-                                <option value={car.model} key={index}>{car.model}</option>
-                            );
-                        })
-                    }
-                </select>
-                <select id="carPrice" title="carPrice">
-                    <option value="price">-- Any Price --</option>
-                    <option value="low">&pound;0 - &pound;4999</option>
-                    <option value="medium">&pound;5000 - &pound;9999</option>
-                    <option value="high">&pound;10000 - &pound;14999</option>
-                </select>
+                <form>
+                    <select id="carMake" title="carMake">
+                        <option value="make">-- Any Make --</option>
+                        {
+                            removeDuplicatedMakes().map((car, index) => {
+                                return (
+                                    <option value={car} key={index}>{car}</option>
+                                );
+                            })
+                        }
+                    </select>
+                    <select id="carModel" title="carModel" disabled>
+                        <option value="model">-- Any Model --</option>
+                        {
+                            cars.map((car, index) => {
+                                return (
+                                    <option value={car.model} key={index}>{car.model}</option>
+                                );
+                            })
+                        }
+                    </select>
+                    <select id="carPrice" title="carPrice">
+                        <option value="price">-- Any Price --</option>
+                        <option value="low">&pound;0 - &pound;4999</option>
+                        <option value="medium">&pound;5000 - &pound;9999</option>
+                        <option value="high">&pound;10000 - &pound;14999</option>
+                    </select>
+                </form>
             </div>
             <div className="showroom-container">
                 {

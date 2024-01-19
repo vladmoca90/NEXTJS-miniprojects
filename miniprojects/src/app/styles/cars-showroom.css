@@ -11,18 +11,18 @@ body {
     width: 100%;
 }
 
-.showroom-search,
+.showroom-search>form,
 .car-container {
     background-color: #848484;
 }
 
-.showroom-search,
+.showroom-search>form,
 .showroom-buttons,
 .showroom-container {
     display: flex;
 }
 
-.showroom-search {
+.showroom-search>form {
     justify-content: space-between;
     margin: 30px auto;
     max-width: 720px;
