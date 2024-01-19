@@ -1,7 +1,7 @@
 "use client";
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
-import { Food } from "../../../lib/foodList/Food";
+import { Food } from "../../lib/foodList/Food";
 
 export default function FoodListComponent() {
     let foodsUrl = "http://localhost:3000/api/food-list";
@@ -24,7 +24,7 @@ export default function FoodListComponent() {
     const calculateTotalPrice = useCallback(() => {
         let sum = 0;
 
-        for (let i in foods) {
+        for (let i = 0; i < foods.length; i++) {
             sum += (foods[i].price) * (foods[i].quantity);
         }
 
@@ -35,7 +35,7 @@ export default function FoodListComponent() {
     const calculateAveragePrice = useCallback(() => {
         let average = 0;
 
-        for (let i in foods) {
+        for (let i = 0; i < foods.length; i++) {
             average += (foods[i].price * foods[i].quantity) / (foods.length);
         }
 
@@ -46,7 +46,7 @@ export default function FoodListComponent() {
     const getMostExpensiveItem = useCallback(() => {
         let expensive = foods[0].price;
 
-        for (let i in foods) {
+        for (let i = 0; i < foods.length; i++) {
             if (foods[i].price > expensive) {
                 expensive = foods[i].price;
             }
@@ -59,7 +59,7 @@ export default function FoodListComponent() {
     const getCheapestItem = useCallback(() => {
         let cheapest = foods[0].price;
 
-        for (let i in foods) {
+        for (let i = 0; i < foods.length; i++) {
             if (foods[i].price < cheapest) {
                 cheapest = foods[i].price;
             }
