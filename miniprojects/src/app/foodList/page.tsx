@@ -1,17 +1,31 @@
 "use client";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
-import { allFoods } from "./api/food-list/data";
+import { Food } from "../../../lib/foodList/Food";
 
 export default function FoodListComponent() {
-    const [foods] = useState(allFoods);
+    let foodsUrl = "http://localhost:3000/api/food-list";
+
+    const [foods, setFoods] = useState<Food[]>([]);
+
+    const getFoods = useCallback(async () => {
+        const res = await fetch(foodsUrl);
+
+        if (!res.ok) {
+            throw new Error("Failed to fetch data");
+        }
+
+        const data = await res.json();
+
+        setFoods(data.body);
+    }, [foodsUrl]);
 
     //A function that calculates the total price
     const calculateTotalPrice = useCallback(() => {
         let sum = 0;
 
         for (let i in foods) {
-            sum += (allFoods[i].price) * (allFoods[i].quantity);
+            sum += (foods[i].price) * (foods[i].quantity);
         }
 
         return sum;
@@ -22,7 +36,7 @@ export default function FoodListComponent() {
         let average = 0;
 
         for (let i in foods) {
-            average += (allFoods[i].price * allFoods[i].quantity) / (foods.length);
+            average += (foods[i].price * foods[i].quantity) / (foods.length);
         }
 
         return average;
@@ -30,11 +44,11 @@ export default function FoodListComponent() {
 
     //A function that returns the highest price of an item
     const getMostExpensiveItem = useCallback(() => {
-        let expensive = allFoods[0].price;
+        let expensive = foods[0].price;
 
         for (let i in foods) {
-            if (allFoods[i].price > expensive) {
-                expensive = allFoods[i].price;
+            if (foods[i].price > expensive) {
+                expensive = foods[i].price;
             }
         }
 
@@ -43,11 +57,11 @@ export default function FoodListComponent() {
 
     //A function that returns the smallest price of an item
     const getCheapestItem = useCallback(() => {
-        let cheapest = allFoods[0].price;
+        let cheapest = foods[0].price;
 
         for (let i in foods) {
-            if (allFoods[i].price < cheapest) {
-                cheapest = allFoods[i].price;
+            if (foods[i].price < cheapest) {
+                cheapest = foods[i].price;
             }
         }
 
@@ -82,6 +96,10 @@ export default function FoodListComponent() {
 
         return maxUnit;
     }, [foods]);
+
+    useEffect(() => {
+        getFoods();
+    }, [getFoods]);
 
     return (
         <main className="main">
