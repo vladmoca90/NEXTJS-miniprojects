@@ -34,7 +34,7 @@ body {
 #carPrice {
     font-size: .8rem;
     font-weight: 700;
-    height: 30px;
+    height: auto;
     max-width: 350px;
 }
 

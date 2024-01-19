@@ -45,7 +45,7 @@ export default function CarsComponent() {
         <section className="box">
             <div className="showroom-search">
                 <form>
-                    <select id="carMake" title="carMake">
+                    <select id="carMake" title="carMake" className="peer p-2 outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="make">-- Any Make --</option>
                         {
                             removeDuplicatedMakes().map((car, index) => {
@@ -55,7 +55,7 @@ export default function CarsComponent() {
                             })
                         }
                     </select>
-                    <select id="carModel" title="carModel" disabled>
+                    <select id="carModel" title="carModel" disabled className="peer p-2 outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="model">-- Any Model --</option>
                         {
                             cars.map((car, index) => {
@@ -65,7 +65,7 @@ export default function CarsComponent() {
                             })
                         }
                     </select>
-                    <select id="carPrice" title="carPrice">
+                    <select id="carPrice" title="carPrice" className="peer p-2 outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="price">-- Any Price --</option>
                         <option value="low">&pound;0 - &pound;4999</option>
                         <option value="medium">&pound;5000 - &pound;9999</option>
