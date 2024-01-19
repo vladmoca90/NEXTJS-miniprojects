@@ -32,10 +32,10 @@ body {
 #carMake,
 #carModel,
 #carPrice {
-    font-size: .8rem;
+    font-size: .85rem;
     font-weight: 700;
     height: auto;
-    max-width: 350px;
+    width: 200px;
 }
 
 .showroom-buttons,
