@@ -21,7 +21,7 @@ export default function FoodList() {
         setFoods(data.body);
     }, [foodsUrl]);
 
-    //A function that calculates the total price
+    // A function that calculates the total price
     const calculateTotalPrice = useCallback(() => {
         let sum = 0;
 
@@ -32,7 +32,7 @@ export default function FoodList() {
         return sum;
     }, [foods]);
 
-    //A function that calculates the average price of all items combined
+    // A function that calculates the average price of all items combined
     const calculateAveragePrice = useCallback(() => {
         let average = 0;
 
@@ -43,7 +43,7 @@ export default function FoodList() {
         return average;
     }, [foods]);
 
-    //A function that returns the highest price of an item
+    // A function that returns the highest price of an item
     const getMostExpensiveItem = useCallback(() => {
         let expensive = 0;
 
@@ -56,9 +56,11 @@ export default function FoodList() {
         return expensive;
     }, [foods]);
 
-    //A function that returns the smallest price of an item
+    // A function that returns the smallest price of an item
     const getCheapestItem = useCallback(() => {
-        let cheapest = 0;
+        const mostExpensive = getMostExpensiveItem();
+
+        let cheapest = mostExpensive;
 
         for (let i in foods) {
             if (foods[i].price < cheapest) {
@@ -67,9 +69,9 @@ export default function FoodList() {
         }
 
         return cheapest;
-    }, [foods]);
+    }, [foods, getMostExpensiveItem]);
 
-    //A function the returns the most common unit of measurement
+    // A function the returns the most common unit of measurement
     const getMostCommonUnit = useCallback(() => {
         let unitCount: { [unit: string]: number } = {};
         let maxUnit: string | undefined;
