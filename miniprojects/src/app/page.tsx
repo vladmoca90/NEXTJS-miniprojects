@@ -111,30 +111,30 @@ export default function FoodList() {
                     <div className="overflow-auto sm:-mx-6 lg:-mx-8">
                         <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                             <div className="overflow-hidden">
-                                <table className="min-w-full text-center text-sm font-light">
+                                <table className="min-w-full border text-center text-sm font-light">
                                     <thead className="border-b font-medium dark:border-neutral-500">
                                         <tr>
-                                            <th scope="col" className="px-6 py-4">Picture</th>
-                                            <th scope="col" className="px-6 py-4">Name</th>
-                                            <th scope="col" className="px-6 py-4">Price (&pound;)</th>
-                                            <th scope="col" className="px-6 py-4">Unit</th>
-                                            <th scope="col" className="px-6 py-4">Quantity</th>
-                                            <th scope="col" className="px-6 py-4">Total price (&pound;)</th>
+                                            <th scope="col" className="border-r px-6 py-4">Picture</th>
+                                            <th scope="col" className="border-r px-6 py-4">Name</th>
+                                            <th scope="col" className="border-r px-6 py-4">Price (&pound;)</th>
+                                            <th scope="col" className="border-r px-6 py-4">Unit</th>
+                                            <th scope="col" className="border-r px-6 py-4">Quantity</th>
+                                            <th scope="col" className="border-r px-6 py-4">Total price (&pound;)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {
                                             foods.map((food, index) => {
                                                 return (
-                                                    <tr key={index} className="whitespace-nowrap px-6 py-4">
-                                                        <td className="food-image whitespace-nowrap px-6 py-4">
+                                                    <tr key={index} className="border-r border-b dark:border-neutral-500 whitespace-nowrap px-6 py-4">
+                                                        <td className="food-image border-r border-r whitespace-nowrap px-6 py-4">
                                                             <Image alt={food.name} className="product-img" width={100} height={100} src={"/images/foodList/" + food.img} />
                                                         </td>
-                                                        <td className="food-name whitespace-nowrap px-6 py-4">{food.name}</td>
-                                                        <td className="food-price whitespace-nowrap px-6 py-4">{food.price}</td>
-                                                        <td className="food-unit whitespace-nowrap px-6 py-4">{food.unit}</td>
-                                                        <td className="food-quantity whitespace-nowrap px-6 py-4">{food.quantity}</td>
-                                                        <td className="food-total-price whitespace-nowrap px-6 py-4">{(food.price * food.quantity).toFixed(2)}</td>
+                                                        <td className="food-name border-r border-r whitespace-nowrap px-6 py-4">{food.name}</td>
+                                                        <td className="food-price border-r border-r whitespace-nowrap px-6 py-4">{food.price}</td>
+                                                        <td className="food-unit border-r border-r whitespace-nowrap px-6 py-4">{food.unit}</td>
+                                                        <td className="food-quantity border-r whitespace-nowrap px-6 py-4">{food.quantity}</td>
+                                                        <td className="food-total-price border-r whitespace-nowrap px-6 py-4">{(food.price * food.quantity).toFixed(2)}</td>
                                                     </tr>
                                                 );
                                             })
@@ -147,25 +147,25 @@ export default function FoodList() {
                 </div>
             </div>
             <div className="container-calculus">
-                <table className="min-w-full text-left text-sm font-light">
+                <table className="min-w-full border text-center text-sm font-light">
                     <thead className="border-b font-medium dark:border-neutral-500">
                         <tr>
-                            <th scope="col" className="px-6 py-4">Total amount to pay (&pound;)</th>
-                            <th scope="col" className="px-6 py-4">Total number of items</th>
-                            <th scope="col" className="px-6 py-4">Average price of items (&pound;)</th>
-                            <th scope="col" className="px-6 py-4">Cheapest item (&pound;)</th>
-                            <th scope="col" className="px-6 py-4">Most expensive item (&pound;)</th>
-                            <th scope="col" className="px-6 py-4">Most common unit</th>
+                            <th scope="col" className="border-r px-6 py-4">Total amount to pay (&pound;)</th>
+                            <th scope="col" className="border-r px-6 py-4">Total number of items</th>
+                            <th scope="col" className="border-r px-6 py-4">Average price of items (&pound;)</th>
+                            <th scope="col" className="border-r px-6 py-4">Cheapest item (&pound;)</th>
+                            <th scope="col" className="border-r px-6 py-4">Most expensive item (&pound;)</th>
+                            <th scope="col" className="border-r px-6 py-4">Most common unit</th>
                         </tr>
                     </thead>
                     <tbody className="table-content table-content-calculus">
-                        <tr className="whitespace-nowrap px-6 py-4">
-                            <td className="whitespace-nowrap px-6 py-4">&pound;{calculateTotalPrice().toFixed(2)}</td>
-                            <td className="whitespace-nowrap px-6 py-4">{foods.length}</td>
-                            <td className="whitespace-nowrap px-6 py-4">&pound;{calculateAveragePrice().toFixed(2)}</td>
-                            <td className="whitespace-nowrap px-6 py-4">&pound;{getCheapestItem()}</td>
-                            <td className="whitespace-nowrap px-6 py-4">&pound;{getMostExpensiveItem()}</td>
-                            <td className="whitespace-nowrap px-6 py-4">{getMostCommonUnit()}</td>
+                        <tr className="border-b dark:border-neutral-500">
+                            <td className="border-r whitespace-nowrap px-6 py-4">&pound;{calculateTotalPrice().toFixed(2)}</td>
+                            <td className="border-r whitespace-nowrap px-6 py-4">{foods.length}</td>
+                            <td className="border-r whitespace-nowrap px-6 py-4">&pound;{calculateAveragePrice().toFixed(2)}</td>
+                            <td className="border-r whitespace-nowrap px-6 py-4">&pound;{getCheapestItem()}</td>
+                            <td className="border-r whitespace-nowrap px-6 py-4">&pound;{getMostExpensiveItem()}</td>
+                            <td className="border-r whitespace-nowrap px-6 py-4">{getMostCommonUnit()}</td>
                         </tr>
                     </tbody>
                 </table>
