@@ -18,7 +18,7 @@ body {
 
 .showroom-search>form,
 .showroom-buttons,
-.showroom-container {
+#showroom {
     display: flex;
 }
 
@@ -39,11 +39,11 @@ body {
 }
 
 .showroom-buttons,
-.showroom-container {
+#showroom {
     flex-wrap: wrap;
 }
 
-.showroom-container {
+#showroom {
     justify-content: center;
 }
 
