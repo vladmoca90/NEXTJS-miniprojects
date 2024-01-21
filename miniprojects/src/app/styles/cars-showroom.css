@@ -32,7 +32,7 @@ body {
 #carMake,
 #carModel,
 #carPrice {
-    font-size: .85rem;
+    font-size: .85em;
     font-weight: 700;
     height: auto;
     width: 200px;
@@ -66,7 +66,7 @@ body {
 
 .car-title {
     color: #fff;
-    font-size: 1.15rem;
+    font-size: 1.15em;
     font-weight: 600;
     height: 55px;
     letter-spacing: 1px;
@@ -75,7 +75,7 @@ body {
 
 @media all and (min-width: 992px) {
     .car-title {
-        font-size: 1.25rem;
+        font-size: 1.25em;
     }
 }
 
@@ -86,7 +86,7 @@ body {
 
 .car-price {
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.5em;
     font-weight: 700;
     letter-spacing: 1px;
     line-height: 23px;
@@ -96,7 +96,7 @@ body {
 
 .car-monthly-price {
     display: inline-block;
-    font-size: .75rem;
+    font-size: .75em;
     font-weight: 600;
     padding: 0;
     width: 100%;
@@ -121,7 +121,7 @@ body {
 
 .showroom-buttons>a {
     color: #fff;
-    font-size: .85rem;
+    font-size: .85em;
     font-weight: 600;
     letter-spacing: 1px;
     margin: 5px;

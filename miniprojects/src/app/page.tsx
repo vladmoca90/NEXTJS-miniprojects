@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Car } from "../../lib/carsShowroom/Car";
 import Link from "next/link";
 
-export default function CarsComponent() {
+export default function CarsShowroom() {
     let carsUrl = "http://localhost:3000/api/cars-showroom";
 
     const [cars, setCars] = useState<Car[]>([]);
