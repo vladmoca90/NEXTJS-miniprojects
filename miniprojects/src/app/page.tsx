@@ -92,7 +92,12 @@ export default function CarsShowroom() {
                                     <Link href="#">Enquiry</Link>
                                     <Link href="#">Share</Link>
                                     <Link href="#">Brochure</Link>
-                                    <Link href="#">Full details</Link>
+                                    <Link href={{
+                                            pathname: "/vehicle-details-" + car.make,
+                                            query: {
+                                                "name": car.model
+                                            },
+                                        }}>Full details</Link>
                                 </div>
                             </div>
                         );
