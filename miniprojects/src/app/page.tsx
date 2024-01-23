@@ -4,14 +4,11 @@ import "./styles/wines.css";
 import { useCallback, useEffect, useState } from "react";
 import { WinesFilterComponent } from "./WinesFilterComponent";
 import { Wine } from "../../lib/wines/Wine";
-import { WineCategory } from "../../lib/wines/WineCategory";
 
 export default function WinesSell() {
     let winesUrl = "http://localhost:3000/api/wines";
 
-    const [originalWines] = useState<Wine[]>([]);
     const [wines, setWines] = useState<Wine[]>([]);
-    const [categories] = useState<WineCategory[]>(Array.from(new Set(wines.map((wine) => wine.category))));
 
     const getWines = useCallback(async () => {
         const res = await fetch(winesUrl);
@@ -24,15 +21,6 @@ export default function WinesSell() {
 
         setWines(data.body);
     }, [winesUrl]);
-
-    const whenWineIsSelected = useCallback((category: WineCategory | undefined) => {
-        if (category === undefined) {
-            setWines(originalWines);
-        } else {
-            const filteredWines = originalWines.filter(w => w.category === category);
-            setWines(filteredWines);
-        }
-    }, [originalWines]);
 
     useEffect(() => {
         getWines();
