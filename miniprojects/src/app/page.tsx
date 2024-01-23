@@ -40,7 +40,7 @@ export default function WinesSell() {
 
     return (
         <section className="box">
-            <WinesFilterComponent categories={categories} onWineSelected={whenWineIsSelected} />
+            <WinesFilterComponent />
             <div className="products-container">
                 {
                     wines.map((wine, index) => {
