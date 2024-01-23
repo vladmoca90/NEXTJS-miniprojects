@@ -8,12 +8,12 @@ export type WinesFilterProps = {
 }
 
 //A function that filters the dropdown and leaves only the selected wine on the page
-export default function WinesFilterComponent(props: WinesFilterProps) {
+export const WinesFilterComponent = (props: WinesFilterProps) => {
 
     //This function is triggered when the select changes
     const selectChange = useCallback(((event: React.ChangeEvent<HTMLSelectElement>) => {
         const value = event.target.value;
-        
+
         if (value === "All products") {
             props.onWineSelected(undefined);
         } else {
@@ -34,4 +34,4 @@ export default function WinesFilterComponent(props: WinesFilterProps) {
             </select>
         </div>
     );
-};
+}
