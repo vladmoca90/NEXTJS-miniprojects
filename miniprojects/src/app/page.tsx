@@ -2,7 +2,7 @@
 import Image from "next/image";
 import "./styles/wines.css";
 import { useCallback, useEffect, useState } from "react";
-import { WinesFilterComponent } from "./wines/WinesFilterComponent";
+import { WinesFilterComponent } from "./WinesFilterComponent";
 import { Wine } from "../../lib/wines/Wine";
 import { WineCategory } from "../../lib/wines/WineCategory";
 
