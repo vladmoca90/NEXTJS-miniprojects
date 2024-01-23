@@ -50,7 +50,7 @@ export default function WinesSell() {
                                     <p className="product-title">{wine.name}</p>
                                 </div>
                                 <div className="product-description__bottom">
-                                    <Image alt={wine.name} className="product-img" width={200} height={100} key={index} src={"/wineImages/" + wine.img} />
+                                    <Image alt={wine.name} className="product-img" width={200} height={100} key={index} src={wine.img} />
                                 </div>
                             </div>
                         );
