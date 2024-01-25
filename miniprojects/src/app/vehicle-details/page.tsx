@@ -4,11 +4,11 @@ import { Car } from "../../../lib/carsShowroom/Car";
 
 export default function VehicleDetails({ params }: {
     params: {
-        "make": string
+        "model": string
     }
 }) {
 
-    let carsUrl = "http://localhost:3000/api/cars-showroom?carMake=" + params.make;
+    let carsUrl = "http://localhost:3000/api/cars-showroom?carModel=" + params.model;
 
     const [carDetails, setCarDetails] = useState<Car[]>();
 
@@ -34,21 +34,21 @@ export default function VehicleDetails({ params }: {
     return (
         <table>
             <thead>
-                <th>Vehicle details of {params.model} {params.model}</th>
+                <th>Vehicle details of {params.model}</th>
             </thead>
             <tbody>
+                {/* <tr>
+                    <td>{carDetails.car.make}</td>
+                </tr> */}
                 <tr>
                     <td>{params.model}</td>
                 </tr>
-                <tr>
-                    <td>{params.make}</td>
-                </tr>
-                <tr>
+                {/* <tr>
                     <td>{car.price}</td>
                 </tr>
                 <tr>
                     <td>{carDetails.car}</td>
-                </tr>
+                </tr> */}
             </tbody>
         </table>
     );
