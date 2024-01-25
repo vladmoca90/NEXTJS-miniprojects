@@ -1,17 +1,17 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
-import "./styles/cars-showroom.css";
-import { useCallback, useEffect, useState } from "react";
-import { Car } from "../../lib/carsShowroom/Car";
+import "./styles/food-list.css";
+import { useState, useCallback, useEffect } from "react";
+import Image from "next/image";
+import { Food } from "../../lib/foodList/Food";
 import Link from "next/link";
 
-export default function CarsShowroom() {
-    let carsUrl = "http://localhost:3000/api/cars-showroom";
+export default function FoodList() {
+    let foodsUrl = "http://localhost:3000/api/food-list";
 
-    const [cars, setCars] = useState<Car[]>([]);
+    const [foods, setFoods] = useState<Food[]>([]);
 
-    const getCars = useCallback(async () => {
-        const res = await fetch(carsUrl);
+    const getFoods = useCallback(async () => {
+        const res = await fetch(foodsUrl);
 
         if (!res.ok) {
             throw new Error("Failed to fetch data");
@@ -19,96 +19,164 @@ export default function CarsShowroom() {
 
         const data = await res.json();
 
-        setCars(data.body);
-    }, [carsUrl]);
+        setFoods(data.body);
+    }, [foodsUrl]);
 
-    //A function that removes the duplicates from the array and display each value once in the dropdown
-    const removeDuplicatedMakes = useCallback(() => {
-        let carsDictionary: { [make: string[number]]: any } = {};
+    //A function that calculates the total price
+    const calculateTotalPrice = useCallback(() => {
+        let sum = 0;
 
-        for (let i = 0; i < cars.length; i++) {
-            if (carsDictionary[cars[i].make]) {
-                continue;
-            }
-            else {
-                carsDictionary[cars[i].make] = cars;
+        for (let i in foods) {
+            sum += (foods[i].price) * (foods[i].quantity);
+        }
+
+        return sum;
+    }, [foods]);
+
+    //A function that calculates the average price of all items combined
+    const calculateAveragePrice = useCallback(() => {
+        let average = 0;
+
+        for (let i in foods) {
+            average += (foods[i].price * foods[i].quantity) / (foods.length);
+        }
+
+        return average;
+    }, [foods]);
+
+    //A function that returns the highest price of an item
+    const getMostExpensiveItem = useCallback(() => {
+        let expensive = 0;
+
+        for (let i in foods) {
+            if (foods[i].price > expensive) {
+                expensive = foods[i].price;
             }
         }
 
-        return Object.keys(carsDictionary);
-    }, [cars]);
+        return expensive;
+    }, [foods]);
+
+    // A function that returns the smallest price of an item
+    const getCheapestItem = useCallback(() => {
+        const mostExpensive = getMostExpensiveItem();
+
+        let cheapest = mostExpensive;
+
+        for (let i in foods) {
+            if (foods[i].price < cheapest) {
+                cheapest = foods[i].price;
+            }
+        }
+
+        return cheapest;
+    }, [foods, getMostExpensiveItem]);
+
+    // A function the returns the most common unit of measurement
+    const getMostCommonUnit = useCallback(() => {
+        let unitCount: { [unit: string]: number } = {};
+        let maxUnit: string | undefined;
+        let maxCount: number | undefined;
+
+        for (let food of foods) {
+            if (unitCount[food.unit]) {
+                unitCount[food.unit] += 1;
+            } else {
+                unitCount[food.unit] = 1;
+            }
+        }
+
+        for (const [unit, count] of Object.entries(unitCount)) {
+            if (!maxCount) {
+                maxCount = count;
+                maxUnit = unit;
+            } else {
+                if (count > maxCount) {
+                    maxCount = count;
+                    maxUnit = unit;
+                }
+            }
+        }
+
+        return maxUnit;
+    }, [foods]);
 
     useEffect(() => {
-        getCars();
-    }, [getCars]);
+        getFoods();
+    }, [getFoods]);
 
     return (
-        <div className="box">
-            <div className="showroom-search">
-                <form>
-                    <select id="carMake" title="carMake" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
-                        <option value="make">-- Any Make --</option>
-                        {
-                            removeDuplicatedMakes().map((car, index) => {
-                                return (
-                                    <option value={car} key={index}>{car}</option>
-                                );
-                            })
-                        }
-                    </select>
-                    <select id="carModel" title="carModel" disabled className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
-                        <option value="model">-- Any Model --</option>
-                        {
-                            cars.map((car, index) => {
-                                return (
-                                    <option value={car.model} key={index}>{car.model}</option>
-                                );
-                            })
-                        }
-                    </select>
-                    <select id="carPrice" title="carPrice" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
-                        <option value="price">-- Any Price --</option>
-                        {
-                            cars.map((car, index) => {
-                                return (
-                                    <option value={car.price} key={index}>&pound;{car.price}</option>
-                                );
-                            })
-                        }
-                    </select>
-                    <button className="search-btn">Search</button>
-                </form>
+        <><div className="main">
+            <div className="container-table">
+                <div className="flex flex-col">
+                    <div className="overflow-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                            <div className="overflow-hidden">
+                                <table className="min-w-full border text-center text-sm font-medium">
+                                    <thead className="border-b font-medium dark:border-neutral-500">
+                                        <tr>
+                                            <th scope="col" className="border-r px-6 py-4">Picture</th>
+                                            <th scope="col" className="border-r px-6 py-4">Name</th>
+                                            <th scope="col" className="border-r px-6 py-4">Price (&pound;)</th>
+                                            <th scope="col" className="border-r px-6 py-4">Unit</th>
+                                            <th scope="col" className="border-r px-6 py-4">Quantity</th>
+                                            <th scope="col" className="border-r px-6 py-4">Total price (&pound;)</th>
+                                            <th scope="col" className="border-r px-6 py-4">Check food details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {foods.map((food, index) => {
+                                            return (
+                                                <tr key={index} className="border-r border-b dark:border-neutral-500 whitespace-nowrap px-6 py-4">
+                                                    <td className="food-image border-r border-r whitespace-nowrap px-6 py-4">
+                                                        <Image alt={food.name} className="product-img" width={100} height={100} src={"/images/foodList/" + food.img} />
+                                                    </td>
+                                                    <td className="food-name border-r border-r whitespace-nowrap px-6 py-4">{food.name}</td>
+                                                    <td className="food-price border-r border-r whitespace-nowrap px-6 py-4">{food.price}</td>
+                                                    <td className="food-unit border-r border-r whitespace-nowrap px-6 py-4">{food.unit}</td>
+                                                    <td className="food-quantity border-r whitespace-nowrap px-6 py-4">{food.quantity}</td>
+                                                    <td className="food-total-price border-r whitespace-nowrap px-6 py-4">{(food.price * food.quantity).toFixed(2)}</td>
+                                                    <td className="food-total-price border-r whitespace-nowrap px-6 py-4">
+                                                        <Link href={pathname} />: "/food-details",
+                                                        query: {foodDetails}: food.name,
+                                                        }
+                                                        }>Check details</Link>
+                                                </td>);
+                                        })}
+                                    </tr>
+                                    );
+                                    })
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="showroom">
-                {
-                    cars.map((car, index) => {
-                        return (
-                            <div className="car-container" key={index}>
-                                <div className="car-header">
-                                    <h3 className="car-title">{car.make} <span>{car.model}</span></h3>
-                                    <p className="car-price">&pound;{car.price}
-                                        <span className="car-monthly-price">from &pound;{(car.price / 12).toFixed(0)}/monthly</span>
-                                    </p>
-                                </div>
-                                <div className="car-img-container">
-                                    <img alt={car.make} className="car-img" key={index} src={car.img} />
-                                </div>
-                                <div className="showroom-buttons">
-                                    <Link href="#">Enquiry</Link>
-                                    <Link href="#">Share</Link>
-                                    <Link href="#">Brochure</Link>
-                                    <Link href={{
-                                        pathname: "/vehicle-details",
-                                        query: {
-                                            "carModel": car.model,
-                                        },
-                                    }}>Full details</Link>
-                                </div>
-                            </div>
-                        );
-                    })
-                }
-            </div>
-        </div>
+        </div><div className="container-calculus">
+                <table className="min-w-full border text-center text-sm font-medium">
+                    <thead className="border-b font-medium dark:border-neutral-500">
+                        <tr>
+                            <th scope="col" className="border-r px-6 py-4">Total amount to pay (&pound;)</th>
+                            <th scope="col" className="border-r px-6 py-4">Total number of items</th>
+                            <th scope="col" className="border-r px-6 py-4">Average price of items (&pound;)</th>
+                            <th scope="col" className="border-r px-6 py-4">Cheapest item (&pound;)</th>
+                            <th scope="col" className="border-r px-6 py-4">Most expensive item (&pound;)</th>
+                            <th scope="col" className="border-r px-6 py-4">Most common unit</th>
+                        </tr>
+                    </thead>
+                    <tbody className="table-content table-content-calculus">
+                        <tr className="border-b dark:border-neutral-500">
+                            <td className="border-r whitespace-nowrap px-6 py-4">&pound;{calculateTotalPrice().toFixed(2)}</td>
+                            <td className="border-r whitespace-nowrap px-6 py-4">{foods.length}</td>
+                            <td className="border-r whitespace-nowrap px-6 py-4">&pound;{calculateAveragePrice().toFixed(2)}</td>
+                            <td className="border-r whitespace-nowrap px-6 py-4">&pound;{getCheapestItem()}</td>
+                            <td className="border-r whitespace-nowrap px-6 py-4">&pound;{getMostExpensiveItem()}</td>
+                            <td className="border-r whitespace-nowrap px-6 py-4">{getMostCommonUnit()}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div></>
+        </main>
     );
 }
