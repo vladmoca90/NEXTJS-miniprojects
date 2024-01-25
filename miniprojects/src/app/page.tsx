@@ -100,7 +100,7 @@ export default function CarsShowroom() {
                                     <Link href={{
                                         pathname: "/vehicle-details",
                                         query: {
-                                            "model": car.model,
+                                            "carModel": car.model,
                                         },
                                     }}>Full details</Link>
                                 </div>

@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 import { allCars } from "../../../../lib/carsShowroom/allCars";
 
 export async function GET(request: NextRequest) {
-    const carModel = request.nextUrl.searchParams.get("model");
+    const carModel = request.nextUrl.searchParams.get("carModel");
 
     if (carModel === null) {
         return NextResponse.json(
