@@ -2,15 +2,16 @@
 import { useCallback, useEffect, useState } from "react";
 import { Car } from "../../../lib/carsShowroom/Car";
 
-let carsUrl = "http://localhost:3000/api/cars-showroom";
-
 export default function VehicleDetails({ params }: {
     params: {
         "model": string,
         "make": string
     }
 }) {
-    const [carDetails, setCarDetails] = useState<Car[]>([] as any);
+
+    let carsUrl = "http://localhost:3000/api/cars-showroom" + params.model + params.make;
+
+    const [carDetails, setCarDetails] = useState<Car[]>();
 
     const getCarDetails = useCallback(async () => {
         const res = await fetch(carsUrl);
@@ -25,7 +26,7 @@ export default function VehicleDetails({ params }: {
         const data = await res.json();
 
         setCarDetails(data.body);
-    }, []);
+    }, [carsUrl]);
 
     useEffect(() => {
         getCarDetails();
@@ -47,7 +48,7 @@ export default function VehicleDetails({ params }: {
                     <td>{car.price}</td>
                 </tr>
                 <tr>
-                    <td>{carDetails.cars.p}</td>
+                    <td>{carDetails.car}</td>
                 </tr>
             </tbody>
         </table>
