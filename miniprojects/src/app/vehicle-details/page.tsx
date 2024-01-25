@@ -43,16 +43,16 @@ export default function VehicleDetails({ params }: {
             </thead>
             <tbody>
                 <tr>
-                    <td>{carDetails.carDetails.make}</td>
+                    <td>{params.model}</td>
                 </tr>
                 <tr>
                     <td>{params.model}</td>
                 </tr>
                 <tr>
-                    <td>{carDetails.car.price}</td>
+                    <td>{params.model}</td>
                 </tr>
                 <tr>
-                    <td>{carDetails.car.imag}</td>
+                    <td>{params.model}</td>
                 </tr>
             </tbody>
         </table>
