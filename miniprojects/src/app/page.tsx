@@ -76,6 +76,7 @@ export default function CarsShowroom() {
                             })
                         }
                     </select>
+                    <button className="search-btn">Search</button>
                 </form>
             </div>
             <div id="showroom">
@@ -97,7 +98,7 @@ export default function CarsShowroom() {
                                     <Link href="#">Share</Link>
                                     <Link href="#">Brochure</Link>
                                     <Link href={{
-                                        pathname: "/vehicle-details-" + car.make,
+                                        pathname: "/vehicle-details-" + car.make + car.model,
                                         query: {
                                             "name": car.model
                                         },
