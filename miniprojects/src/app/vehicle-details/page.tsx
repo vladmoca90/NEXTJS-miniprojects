@@ -4,12 +4,11 @@ import { Car } from "../../../lib/carsShowroom/Car";
 
 export default function VehicleDetails({ params }: {
     params: {
-        "model": string,
         "make": string
     }
 }) {
 
-    let carsUrl = "http://localhost:3000/api/cars-showroom" + params.model + params.make;
+    let carsUrl = "http://localhost:3000/api/cars-showroom?carMake=" + params.make;
 
     const [carDetails, setCarDetails] = useState<Car[]>();
 
@@ -25,7 +24,7 @@ export default function VehicleDetails({ params }: {
 
         const data = await res.json();
 
-        setCarDetails(data.body);
+        setCarDetails(data.car);
     }, [carsUrl]);
 
     useEffect(() => {
