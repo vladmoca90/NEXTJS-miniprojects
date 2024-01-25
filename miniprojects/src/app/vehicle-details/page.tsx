@@ -13,7 +13,12 @@ export default function VehicleDetails({ params }: {
     const [carDetails, setCarDetails] = useState<Car[]>();
 
     const getCarDetails = useCallback(async () => {
-        const res = await fetch(carsUrl);
+        const res = await fetch(carsUrl, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
 
         if (!res.ok) {
             console.log("The details are NOT valid!");
@@ -37,18 +42,18 @@ export default function VehicleDetails({ params }: {
                 <th>Vehicle details of {params.model}</th>
             </thead>
             <tbody>
-                {/* <tr>
-                    <td>{carDetails.car.make}</td>
-                </tr> */}
+                <tr>
+                    <td>{carDetails.carDetails.make}</td>
+                </tr>
                 <tr>
                     <td>{params.model}</td>
                 </tr>
-                {/* <tr>
-                    <td>{car.price}</td>
+                <tr>
+                    <td>{carDetails.car.price}</td>
                 </tr>
                 <tr>
-                    <td>{carDetails.car}</td>
-                </tr> */}
+                    <td>{carDetails.car.imag}</td>
+                </tr>
             </tbody>
         </table>
     );
