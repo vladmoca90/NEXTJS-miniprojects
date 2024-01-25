@@ -8,12 +8,12 @@ export default function VehicleDetails({ params }: {
     }
 }) {
 
-    let carsUrl = "http://localhost:3000/api/get-car-model?carModel=" + params.model;
+    let modelUrl = "http://localhost:3000/api/get-car-model?model=" + params.model;
 
-    const [carDetails, setCarDetails] = useState<Car[]>();
+    const [carDetails, setCarDetails] = useState<Car>([] as any);
 
     const getCarDetails = useCallback(async () => {
-        const res = await fetch(carsUrl, {
+        const res = await fetch(modelUrl, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export default function VehicleDetails({ params }: {
         const data = await res.json();
 
         setCarDetails(data.car);
-    }, [carsUrl]);
+    }, [modelUrl]);
 
     useEffect(() => {
         getCarDetails();
@@ -43,16 +43,16 @@ export default function VehicleDetails({ params }: {
             </thead>
             <tbody>
                 <tr>
-                    <td>{params.model}</td>
+                    <td>{carDetails.img}</td>
+                </tr>
+                <tr>
+                    <td>{carDetails.make}</td>
                 </tr>
                 <tr>
                     <td>{params.model}</td>
                 </tr>
                 <tr>
-                    <td>{params.model}</td>
-                </tr>
-                <tr>
-                    <td>{params.model}</td>
+                    <td>{carDetails.price}</td>
                 </tr>
             </tbody>
         </table>
