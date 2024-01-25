@@ -2,6 +2,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { Car } from "../../../lib/carsShowroom/Car";
 
+// BE CAREFUL TO KEEP THE SAME NAMES EVERYWHERE!
+
 export default function VehicleDetails({ searchParams }: {
     searchParams: {
         "carModel": string
