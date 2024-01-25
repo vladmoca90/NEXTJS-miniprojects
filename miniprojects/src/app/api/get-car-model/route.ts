@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.json(
             {},
             {
-                status: 404
+                status: 400
             }
         );
     }
@@ -22,16 +22,13 @@ export async function GET(request: NextRequest) {
         return NextResponse.json(
             {},
             {
-                status: 400
+                status: 404
             }
         );
     } else {
         return NextResponse.json(
             {
-                body: allCars,
-                path: request.nextUrl.pathname,
-                query: request.nextUrl.search,
-                cookies: request.cookies.getAll(),
+                car
             },
             {
                 status: 200

@@ -8,7 +8,7 @@ export default function VehicleDetails({ params }: {
     }
 }) {
 
-    let carsUrl = "http://localhost:3000/api/cars-showroom?carModel=" + params.model;
+    let carsUrl = "http://localhost:3000/api/get-car-model?carModel=" + params.model;
 
     const [carDetails, setCarDetails] = useState<Car[]>();
 
