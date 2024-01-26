@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
         );
     } else {
         return NextResponse.json(
-            { 
+            {
                 wine
             },
             {
