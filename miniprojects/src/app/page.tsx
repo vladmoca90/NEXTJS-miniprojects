@@ -41,7 +41,7 @@ export default function WinesSell() {
                                 <div className="product-description__bottom">
                                     <Image alt={wine.name} className="product-img" width={200} height={100} key={index} src={wine.img} />
                                 </div>
-                                <div>
+                                <div className="wine-link">
                                     <Link href={{
                                         pathname: "/wine-details",
                                         query: {
