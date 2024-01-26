@@ -4,6 +4,7 @@ import "./styles/wines.css";
 import { useCallback, useEffect, useState } from "react";
 import { WinesFilterComponent } from "./wines/WinesFilterComponent";
 import { Wine } from "../../lib/wines/Wine";
+import Link from "next/link";
 
 export default function WinesSell() {
     let winesUrl = "http://localhost:3000/api/wines";
@@ -39,6 +40,14 @@ export default function WinesSell() {
                                 </div>
                                 <div className="product-description__bottom">
                                     <Image alt={wine.name} className="product-img" width={200} height={100} key={index} src={wine.img} />
+                                </div>
+                                <div>
+                                    <Link href={{
+                                        pathname: "/wine-details",
+                                        query: {
+                                            "wineName": wine.name,
+                                        }
+                                    }}>Check details</Link>
                                 </div>
                             </div>
                         );
