@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600;700&display=swap");
 
 body {
     background-color: #fffbec;
@@ -10,10 +10,15 @@ body {
     padding: 20px 0;
 }
 
+.wine-details {
+    margin: 0 auto 20px;
+    min-width: 280px;
+}
+
 #productsList {
     border: 1px solid #c1c1c1;
     display: block;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: "Fira Sans", sans-serif;
     font-size: 15px;
     margin: 30px auto 45px;
     padding: 7px 0 7px 7px;
@@ -45,7 +50,7 @@ body {
     letter-spacing: 0;
     margin: 0 10px 20px;
     min-width: 280px;
-    padding: 15px 0 10px;
+    padding: 15px 0 20px;
 }
 
 .product-description__top {
@@ -54,10 +59,8 @@ body {
 
 .product .product-title {
     color: #d38606;
-    font-family: 'Cantarell', sans-serif;
     font-size: 16px;
     font-weight: 600;
-    letter-spacing: 1px;
     text-transform: uppercase;
 }
 
@@ -68,19 +71,23 @@ body {
 }
 
 .wine-link {
-    background: #cb2000;
-    color: #fff;
     cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
     margin: 10px auto 0;
-    padding: 4px 0;
     text-align: center;
     text-transform: uppercase;
-    transition: linear .5s all;
-    width: 150px;
 }
 
-.wine-link:hover {
+.wine-link a {
+    background: #cb2000;
+    color: #fff;
+    display: inline;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px 18px;
+    transition: linear .5s all;
+    width: auto;
+}
+
+.wine-link>a:hover {
     background: #851400;
 }
