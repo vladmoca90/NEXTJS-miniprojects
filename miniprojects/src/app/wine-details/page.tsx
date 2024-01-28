@@ -9,11 +9,11 @@ export default function WineDetails({ searchParams }: {
         "wineName": string,
     }
 }) {
-    let wineNameUrl = "http://localhost:3000/api/get-wine" + searchParams.wineName;
+    let wineNameUrl = "http://localhost:3000/api/get-wine?wineName=" + searchParams.wineName;
 
-    const [wine, setWineName] = useState<Wine>([] as any);
+    const [wineDetails, setWineDetails] = useState<Wine>([] as any);
 
-    const getWineName = useCallback(async () => {
+    const getWineDetails = useCallback(async () => {
         const res = await fetch(wineNameUrl, {
             method: "GET",
             headers: {
@@ -30,12 +30,12 @@ export default function WineDetails({ searchParams }: {
 
         const data = await res.json();
 
-        setWineName(data.wine);
+        setWineDetails(data.wine);
     }, [wineNameUrl]);
 
     useEffect(() => {
-        getWineName();
-    }, [getWineName]);
+        getWineDetails();
+    }, [getWineDetails]);
 
     return (
         <section className="box wine-details">
@@ -45,7 +45,7 @@ export default function WineDetails({ searchParams }: {
                         <p className="product-title">{searchParams.wineName}</p>
                     </div>
                     <div className="product-description__bottom">
-                        <Image alt={searchParams.wineName} className="product-img" width={200} height={100} src={wine.img} />
+                        <Image alt={searchParams.wineName} className="product-img" width={200} height={100} src={wineDetails.img} />
                     </div>
                 </div>
             </div>

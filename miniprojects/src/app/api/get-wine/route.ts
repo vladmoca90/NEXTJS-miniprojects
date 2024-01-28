@@ -36,3 +36,5 @@ export async function GET(request: NextRequest) {
         );
     }
 }
+
+// http://localhost:3000/api/get-wine

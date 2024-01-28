@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600;700&display=swap");
 
 body {
-    background-color: #fffbec;
+    background-color: #fff;
 }
 
 .box {
@@ -34,6 +34,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: left;
+}
+
+.wine-details .products-container {
+    justify-content: center;
 }
 
 @media screen and (min-width: 768px) {
