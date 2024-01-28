@@ -28,11 +28,18 @@ export default function WinesSell() {
 
     return (
         <section className="box">
-             <div>
-            <select id="productsList" title="wines">
-                <option value="All products">All products</option>
-            </select>
-        </div>
+            <div>
+                <select id="productsList" title="wines">
+                    <option value="All products">All products</option>
+                    {
+                        wines.map((wine, index) => {
+                            return (
+                                <option key={index} value={wine.name}>{wine.name}</option>
+                            );
+                        })
+                    }
+                </select>
+            </div>
             <div className="products-container">
                 {
                     wines.map((wine, index) => {

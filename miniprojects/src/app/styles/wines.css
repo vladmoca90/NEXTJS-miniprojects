@@ -16,7 +16,7 @@ body {
     font-family: 'Fira Sans', sans-serif;
     font-size: 15px;
     margin: 30px auto 45px;
-    padding: 8px 0 8px 8px;
+    padding: 7px 0 7px 7px;
     width: 200px;
 }
 
@@ -77,5 +77,10 @@ body {
     padding: 5px 0;
     text-align: center;
     text-transform: uppercase;
+    transition: linear .5s all;
     width: 150px;
+}
+
+.wine-link:hover {
+    background: #851400;
 }
