@@ -2,7 +2,6 @@
 import Image from "next/image";
 import "./styles/wines.css";
 import { useCallback, useEffect, useState } from "react";
-import { WinesFilterComponent } from "./wines/WinesFilterComponent";
 import { Wine } from "../../lib/wines/Wine";
 import Link from "next/link";
 
@@ -29,7 +28,11 @@ export default function WinesSell() {
 
     return (
         <section className="box">
-            <WinesFilterComponent />
+             <div>
+            <select id="productsList" title="wines">
+                <option value="All products">All products</option>
+            </select>
+        </div>
             <div className="products-container">
                 {
                     wines.map((wine, index) => {
