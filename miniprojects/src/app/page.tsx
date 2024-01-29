@@ -39,12 +39,13 @@ export default function CarsShowroom() {
         return Object.keys(carsDictionary);
     }, [cars]);
 
-    const selectMake = useCallback(async () => {
-        const models = cars.filter((car) => car.make === car.model)!;
+    const selectMake = useCallback(async (event: { target: { value: string; } }) => {
+        const carMake = event.target.value;
+        const models = cars.filter((car) => carMake === car.make)!;
 
-        console.log(models);
-        setSelectedCarMake(selectedMake);
-    }, [cars, selectedMake]);
+        console.log(carMake, models);
+        setSelectedCarMake(carMake);
+    }, [cars]);
 
     useEffect(() => {
         getCars();
