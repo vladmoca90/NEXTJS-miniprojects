@@ -42,6 +42,10 @@ export default function CarsShowroom() {
         getCars();
     }, [getCars]);
 
+    const selectMakeForModel = useCallback(() => {
+
+    }, []);
+
     return (
         <div className="box">
             <div className="showroom-search">
@@ -51,7 +55,7 @@ export default function CarsShowroom() {
                         {
                             removeDuplicatedMakes().map((car, index) => {
                                 return (
-                                    <option value={car} key={index}>{car}</option>
+                                    <option value={car} key={index} onChange={selectMakeForModel}>{car}</option>
                                 );
                             })
                         }

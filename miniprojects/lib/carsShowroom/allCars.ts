@@ -11,7 +11,7 @@ export const allCars: Car[] = [
     {
         img: "/images/carsShowroom/audi.jpg",
         make: "Audi",
-        model: "Q5 2.0T FSI Quattro S Line Special Ed 5dr S Tronic",
+        model: "Q5 2.0T FSI Quattro",
         price: 9999,
         year: 2011,
     },
