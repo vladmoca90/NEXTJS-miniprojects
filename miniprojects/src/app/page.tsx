@@ -39,17 +39,16 @@ export default function CarsShowroom() {
         return Object.keys(carsDictionary);
     }, [cars]);
 
+    const selectMake = useCallback(async () => {
+        const models = cars.filter((car) => car.make === car.model)!;
+
+        console.log(models);
+        setSelectedCarMake(selectedMake);
+    }, [cars, selectedMake]);
+
     useEffect(() => {
         getCars();
     }, [getCars]);
-
-    const selectMake = useCallback(async (event: { target: { value: string; } }) => {
-        const make = event.target.value;
-        const models = cars.filter((car) => make === car.model)!;
-
-        console.log(models);
-        setSelectedCarMake(make);
-    }, [cars]);
 
     return (
         <div className="box">
@@ -61,7 +60,7 @@ export default function CarsShowroom() {
                         {
                             removeDuplicatedMakes().map((car, index) => {
                                 return (
-                                    <option value={car} key={index}>{car}</option>
+                                    <option value={selectedMake} key={index}>{car}</option>
                                 );
                             })
                         }
