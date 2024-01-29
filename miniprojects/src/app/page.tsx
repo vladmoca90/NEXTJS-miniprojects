@@ -45,15 +45,11 @@ export default function CarsShowroom() {
 
     const selectMake = useCallback(async (event: { target: { value: string; } }) => {
         const make = event.target.value;
-        const model = cars.filter((car) => car.make === make);
+        const models = cars.filter((car) => make === car.make)!;
 
-        console.log(make, model);
+        console.log(models);
         setSelectedCarMake(make);
     }, [cars]);
-
-    const selectModel = useCallback(() => {
-
-    }, []);
 
     return (
         <div className="box">
@@ -72,7 +68,7 @@ export default function CarsShowroom() {
                     </select>
                     <select id="carModel" title="carModel" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="model">-- Any Model --</option>
-                        <option value="">{}</option>
+                        <option value={selectedMake}>{selectedMake}</option>
                     </select>
                     <select id="carPrice" title="carPrice" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="price">-- Any Price --</option>
