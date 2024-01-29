@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import "./styles/cars-showroom.css";
-import { useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { Car } from "../../lib/carsShowroom/Car";
 import Link from "next/link";
 
@@ -9,6 +9,7 @@ export default function CarsShowroom() {
     let carsUrl = "http://localhost:3000/api/cars-showroom";
 
     const [cars, setCars] = useState<Car[]>([]);
+    const [make, setCarMake] = useState("");
 
     const getCars = useCallback(async () => {
         const res = await fetch(carsUrl);
@@ -42,25 +43,26 @@ export default function CarsShowroom() {
         getCars();
     }, [getCars]);
 
-    const selectMakeForModel = useCallback(() => {
-
+    const selectedCarMake = useCallback(async (event: { target: { value: any; }; }) => {
+        console.log(event.target.value);
     }, []);
 
     return (
         <div className="box">
             <div className="showroom-search">
                 <form>
-                    <select id="carMake" title="carMake" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+                    <select id="carMake" title="carMake" onChange={selectedCarMake}
+                        className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="make">-- Any Make --</option>
                         {
                             removeDuplicatedMakes().map((car, index) => {
                                 return (
-                                    <option value={car} key={index} onChange={selectMakeForModel}>{car}</option>
+                                    <option value={car} key={index}>{car}</option>
                                 );
                             })
                         }
                     </select>
-                    <select id="carModel" title="carModel" disabled className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+                    <select id="carModel" title="carModel" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="model">-- Any Model --</option>
                         {
                             cars.map((car, index) => {
