@@ -47,6 +47,9 @@ export default function WineDetails({ searchParams }: {
                     <div className="product-description__bottom">
                         <Image alt={searchParams.wineName} className="product-img" width={200} height={100} src={wineDetails.img} />
                     </div>
+                    <div className="product-description__text">
+                        <p>{wineDetails.text}</p>
+                    </div>
                 </div>
             </div>
         </section>

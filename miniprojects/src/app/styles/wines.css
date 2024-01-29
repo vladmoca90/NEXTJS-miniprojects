@@ -53,8 +53,8 @@ body {
     font-weight: bold;
     letter-spacing: 0;
     margin: 0 10px 20px;
-    min-width: 280px;
-    padding: 15px 0 20px;
+    padding: 15px 0;
+    width: 290px;
 }
 
 .product-description__top {
@@ -94,4 +94,10 @@ body {
 
 .wine-link>a:hover {
     background: #851400;
+}
+
+.product-description__text {
+    font-size: 13px;
+    font-weight: 400;
+    padding: 8px 15px 0;
 }
