@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import "./styles/cars-showroom.css";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Car } from "../../lib/carsShowroom/Car";
 import Link from "next/link";
 
@@ -38,18 +38,19 @@ export default function CarsShowroom() {
 
         return Object.keys(carsDictionary);
     }, [cars]);
-
-    const selectMake = useCallback(async (event: { target: { value: string; } }) => {
-        const carMake = event.target.value;
-        const models = cars.filter((car) => carMake === car.make)!;
-
-        console.log(carMake, models);
-        setSelectedCarMake(carMake);
-    }, [cars]);
-
+    
     useEffect(() => {
         getCars();
     }, [getCars]);
+
+    const selectMake = useCallback(async (event: { target: { value: string; } }) => {
+        const make = event.target.value;
+        const models = cars.filter((car) => make === car.make)!;
+
+        setSelectedCarMake(make);
+
+        console.log(models);
+    }, [cars]);
 
     return (
         <div className="box">
