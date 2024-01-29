@@ -43,7 +43,7 @@ export default function CarsShowroom() {
         getCars();
     }, [getCars]);
 
-    const getCarMake = useCallback(async (event: { target: { value: string;} }) => {
+    const getCarMake = useCallback(async (event: { target: { value: string; } }) => {
         const value = event.target.value;
 
         console.log(event.target.value);
