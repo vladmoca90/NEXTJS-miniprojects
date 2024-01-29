@@ -45,9 +45,9 @@ export default function CarsShowroom() {
 
     const selectMake = useCallback(async (event: { target: { value: string; } }) => {
         const carMake = event.target.value;
-        const carModels = cars.filter((car) => car.model === carMake)!;
+        const carModels = cars.filter((car) => car.model === car.model)!;
 
-        setSelectedCarMake(carMake);
+        setSelectedCarMake(carModels);
 
         console.log(carMake, carModels);
     }, [cars]);
