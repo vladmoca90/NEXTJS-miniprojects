@@ -10,6 +10,7 @@ export default function CarsShowroom() {
 
     const [cars, setCars] = useState<Car[]>([]);
     const [selectedMake, setSelectedCarMake] = useState("");
+    const [selectedModel, setSelectedModel] = useState("");
 
     const getCars = useCallback(async () => {
         const res = await fetch(carsUrl);
@@ -38,19 +39,20 @@ export default function CarsShowroom() {
 
         return Object.keys(carsDictionary);
     }, [cars]);
-    
+
     useEffect(() => {
         getCars();
     }, [getCars]);
 
     const selectMake = useCallback(async (event: { target: { value: string; } }) => {
         const carMake = event.target.value;
-        const carModels = cars.filter((car) => car.model === car.model)!;
+        
+        // const carModels = cars.filter((car, index) => carMake === car.model)!;
 
-        setSelectedCarMake(carModels);
+        // setSelectedCarMake(carModels);
 
-        console.log(carMake, carModels);
-    }, [cars]);
+        // console.log(carMake, carModels);
+    }, []);
 
     return (
         <div className="box">
