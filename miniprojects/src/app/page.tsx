@@ -9,7 +9,7 @@ export default function CarsShowroom() {
     let carsUrl = "http://localhost:3000/api/cars-showroom";
 
     const [cars, setCars] = useState<Car[]>([]);
-    const [make, setCarMake] = useState("");
+    const [selectedCarMake, setSelectedCarMake] = useState("");
 
     const getCars = useCallback(async () => {
         const res = await fetch(carsUrl);
@@ -43,15 +43,18 @@ export default function CarsShowroom() {
         getCars();
     }, [getCars]);
 
-    const selectedCarMake = useCallback(async (event: { target: { value: string; }; }) => {
+    const getCarMake = useCallback(async (event: { target: { value: string;} }) => {
+        const value = event.target.value;
+
         console.log(event.target.value);
+        setSelectedCarMake(value);
     }, []);
 
     return (
         <div className="box">
             <div className="showroom-search">
                 <form>
-                    <select id="carMake" title="carMake" onChange={selectedCarMake}
+                    <select id="carMake" title="carMake" onChange={getCarMake}
                         className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="make">-- Any Make --</option>
                         {
@@ -64,7 +67,7 @@ export default function CarsShowroom() {
                     </select>
                     <select id="carModel" title="carModel" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="model">-- Any Model --</option>
-                        <option value="">{}</option>
+                        <option value="">{selectedCarMake}</option>
                     </select>
                     <select id="carPrice" title="carPrice" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="price">-- Any Price --</option>
