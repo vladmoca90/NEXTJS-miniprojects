@@ -45,11 +45,11 @@ export default function CarsShowroom() {
 
     const selectMake = useCallback(async (event: { target: { value: string; } }) => {
         const make = event.target.value;
-        const models = cars.filter((car) => make === car.make)!;
+        const model = cars.filter((car) => make === car.make)!;
 
         setSelectedCarMake(make);
 
-        console.log(models);
+        console.log(make, model);
     }, [cars]);
 
     return (
@@ -62,7 +62,7 @@ export default function CarsShowroom() {
                         {
                             removeDuplicatedMakes().map((car, index) => {
                                 return (
-                                    <option value={selectedMake} key={index}>{car}</option>
+                                    <option value={car} key={index}>{car}</option>
                                 );
                             })
                         }
