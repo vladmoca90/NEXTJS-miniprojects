@@ -9,8 +9,7 @@ export default function CarsShowroom() {
     let carsUrl = "http://localhost:3000/api/cars-showroom";
 
     const [cars, setCars] = useState<Car[]>([]);
-    const [selectedMake, setSelectedCarMake] = useState("");
-    const [selectedModel, setSelectedCarModel] = useState<Car[]>([]);
+    const [modelsFromMake, setModelsFromMake] = useState<Car[]>([]);
 
     const getCars = useCallback(async () => {
         const res = await fetch(carsUrl);
@@ -49,7 +48,7 @@ export default function CarsShowroom() {
         const carModels = cars.filter((car) => value === car.make);
 
         console.log(carModels);
-        setSelectedCarModel(carModels);
+        setModelsFromMake(carModels);
     }, [cars]);
 
     return (
@@ -69,7 +68,13 @@ export default function CarsShowroom() {
                     </select>
                     <select id="carModel" title="carModel" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="model">-- Any Model --</option>
-                        <option value={selectedMake}>{selectedMake}</option>
+                        {
+                            modelsFromMake.map((car, index) => {
+                                return (
+                                    <option value={car.model} key={index}>{car.model}</option>
+                                );
+                            })
+                        }
                     </select>
                     <select id="carPrice" title="carPrice" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="price">-- Any Price --</option>
