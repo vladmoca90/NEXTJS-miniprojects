@@ -10,7 +10,6 @@ export default function CarsShowroom() {
 
     const [cars, setCars] = useState<Car[]>([]);
     const [selectedMake, setSelectedCarMake] = useState("");
-    const [selectedModel, setSelectedModel] = useState("");
 
     const getCars = useCallback(async () => {
         const res = await fetch(carsUrl);
@@ -46,10 +45,10 @@ export default function CarsShowroom() {
 
     const selectMake = useCallback(async (event: { target: { value: string; } }) => {
         const carMake = event.target.value;
-        
-        const carModels = cars.filter((car) => carMake === car.model)!;
 
-        setSelectedCarMake(carModels);
+        const carModels = cars.filter((car) => carMake === car.model);
+
+        setSelectedCarMake(carMake);
 
         console.log(carMake, carModels);
     }, [cars]);
