@@ -1,15 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import "./styles/cars-showroom.css";
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { Car } from "../../lib/carsShowroom/Car";
-import Link from "next/link";
 
 export default function CarsShowroom() {
     let carsUrl = "http://localhost:3000/api/cars-showroom";
 
     const [cars, setCars] = useState<Car[]>([]);
     const [selectedMake, setSelectedCarMake] = useState("");
+    const [selectedModel, setSelectedModels] = useState([]);
 
     const getCars = useCallback(async () => {
         const res = await fetch(carsUrl);
@@ -43,15 +44,17 @@ export default function CarsShowroom() {
         getCars();
     }, [getCars]);
 
-    const selectMake = useCallback(async (event: { target: { value: string; } }) => {
-        const carMake = event.target.value;
+    const getModelsForMakes = useCallback(async (event: { target: { value: string | []; } }) => {
+        return [];
+    }, []);
 
-        const carModels = cars.filter((car) => carMake === car.model);
+    const selectMake = useCallback(async (event: { target: { value: string | undefined; } }) => {
+        const value = event.target.value;
+        const carModels = getModelsForMakes(value);
 
-        setSelectedCarMake(carMake);
-
-        console.log(carMake, carModels);
-    }, [cars]);
+        setSelectedCarMake(value);
+        setSelectedModels(await carModels);
+    }, [getModelsForMakes]);
 
     return (
         <div className="box">
