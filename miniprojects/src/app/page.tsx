@@ -43,11 +43,12 @@ export default function CarsShowroom() {
         getCars();
     }, [getCars]);
 
-    const selectMake = useCallback((event: ChangeEvent<HTMLSelectElement>) => {
+    const selectMake = useCallback(async (event: { target: { value: string; } }) => {
         const value = event.target.value;
-        const carModels = cars.filter((car) => value === car.model);
+        const carModels = cars.find((car) => value === car.make);
 
-        setSelectedCarMake(carModels);
+        console.log(carModels);
+        setSelectedCarMake(value);
     }, [cars]);
 
     return (
@@ -67,13 +68,7 @@ export default function CarsShowroom() {
                     </select>
                     <select id="carModel" title="carModel" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="model">-- Any Model --</option>
-                        {
-                            cars.map((car, index) => {
-                                return (
-                                    <option value={car.model} key={index}>{car.model}</option>
-                                );
-                            })
-                        }
+                        <option value={selectedMake}>{selectedMake}</option>
                     </select>
                     <select id="carPrice" title="carPrice" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="price">-- Any Price --</option>
