@@ -44,17 +44,17 @@ export default function CarsShowroom() {
         getCars();
     }, [getCars]);
 
-    // const getModelsForMakes = useCallback(() => {
-    //     return cars.find((car) => car.model === value);
-    // }, [cars]);
-
     const selectMake = useCallback((event: ChangeEvent<HTMLSelectElement>) => {
         const value = event.target.value;
-        const carModels = cars.find((car) => car.model === value)!;
+        const carModels = cars.filter((car) => value === car.make ? car.model : [])!;
 
-        setSelectedCarMake(value);
-        //setSelectedModels(carModels);
+        setSelectedModels(carModels);
+        console.log(carModels);
     }, [cars]);
+
+    const getModelsforMake = useCallback((event: ChangeEvent<HTMLSelectElement>) => {
+
+    }, []);
 
     return (
         <div className="box">
@@ -73,7 +73,13 @@ export default function CarsShowroom() {
                     </select>
                     <select id="carModel" title="carModel" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="model">-- Any Model --</option>
-                        <option value={selectedModel}>{selectedModel}</option>
+                        {
+                            cars.map((car, index) => {
+                                return (
+                                    <option value={car.model} key={index}>{car.model}</option>
+                                );
+                            })
+                        }
                     </select>
                     <select id="carPrice" title="carPrice" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="price">-- Any Price --</option>
