@@ -2,7 +2,7 @@
 "use client";
 import "./styles/cars-showroom.css";
 import Link from "next/link";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, SetStateAction, useCallback, useEffect, useState } from "react";
 import { Car } from "../../lib/carsShowroom/Car";
 
 export default function CarsShowroom() {
@@ -46,10 +46,17 @@ export default function CarsShowroom() {
 
     const selectMake = useCallback((event: ChangeEvent<HTMLSelectElement>) => {
         const value = event.target.value;
-        const carModels = cars.filter((car) => value === car.make ? car.model : [])!;
+        const carModels: string[] = [];
 
-        setSelectedModels(carModels);
-        console.log(carModels);
+        for (let i = 0; i < cars.length; i++) {
+            if(value === cars[i].make) {
+                return carModels.push(cars[i].model);
+            } else {
+                return [];
+            }
+        }
+
+        return carModels;
     }, [cars]);
 
     return (
