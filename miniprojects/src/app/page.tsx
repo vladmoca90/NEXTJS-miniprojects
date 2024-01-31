@@ -10,7 +10,7 @@ export default function CarsShowroom() {
 
     const [cars, setCars] = useState<Car[]>([]);
     const [selectedMake, setSelectedCarMake] = useState("");
-    const [selectedModel, setSelectedModels] = useState([]);
+    const [selectedModel, setSelectedModels] = useState<Car[]>([]);
 
     const getCars = useCallback(async () => {
         const res = await fetch(carsUrl);
