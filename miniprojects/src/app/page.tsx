@@ -52,10 +52,6 @@ export default function CarsShowroom() {
         console.log(carModels);
     }, [cars]);
 
-    const getModelsforMake = useCallback((event: ChangeEvent<HTMLSelectElement>) => {
-
-    }, []);
-
     return (
         <div className="box">
             <div className="showroom-search">
