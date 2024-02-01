@@ -66,7 +66,7 @@ export default function FormNames() {
                 <div className="md:w-1/3"></div>
                 <div className="md:w-2/3">
                     <Link href={{
-                        pathname: "/personal-details",
+                        pathname: "/person-details",
                         query: {
                             name: nameText.trim(),
                             password: passwordText.trim(),
