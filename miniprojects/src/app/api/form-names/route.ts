@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { allNames } from "../../../../lib/formNames/allNames";
+import { allPersons } from "../../../../lib/formNames/allPersons";
 
 export async function GET(request: NextRequest) {
     return NextResponse.json(
         {
-            body: allNames,
+            body: allPersons,
             path: request.nextUrl.pathname,
             query: request.nextUrl.search,
             cookies: request.cookies.getAll(),
