@@ -1,7 +1,26 @@
 "use client";
-import "./../app/styles/form-submission.css";
+import { useCallback } from "react";
+import "./../app/styles/form-names.css";
 
-export default function FormSubmission() {
+export default function FormNames() {
+    let personDetailsUrl = "";
+
+    const sendInformation = useCallback(async () => {
+        const res = await fetch (personDetailsUrl, {
+            method: "POST",
+            body: JSON.stringify({
+                // "name": nameText,
+                // "password": passwordText
+            })
+        })
+
+        if(!res.ok) {
+            throw new Error("The data cannot be fetched");  
+        }
+
+        const data = res.json();
+    }, [personDetailsUrl]);
+
     return (
         <form className="w-full max-w-sm form-container">
             <div className="md:flex md:items-center mb-6">
