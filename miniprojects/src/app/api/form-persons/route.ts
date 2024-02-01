@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { allPersons } from "../../../../lib/formNames/allPersons";
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
     return NextResponse.json(
         {
             body: allPersons,
