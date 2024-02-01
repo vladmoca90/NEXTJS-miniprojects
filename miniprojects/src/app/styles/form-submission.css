@@ -1,0 +1,31 @@
+body {
+    background: #fff;
+}
+
+.form-container {
+    border: 1px solid #ccc;
+    display: block;
+    margin: 5em auto 0;
+    padding: 1.5em 1em 1.25em 0;
+}
+
+.form-container label {
+    font-weight: 500;
+}
+
+.form-container label,
+.form-container input,
+.form-container button {
+    font-size: .9em;
+}
+
+.form-container button {
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.form-container .form-checkbox {
+    align-items: center;
+    display: flex;
+}
