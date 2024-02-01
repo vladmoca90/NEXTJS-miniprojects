@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 import "./../app/styles/form-names.css";
 
-export default function FormNames() {
-    let personDetailsUrl = "http://localhost:3000/api/form-names";
+export default function FormPerson() {
+    let personsUrl = "http://localhost:3000/api/form-persons";
 
     const [nameText, setNameText] = useState("");
     const [passwordText, setPasswordText] = useState("");
@@ -17,25 +17,15 @@ export default function FormNames() {
         setPasswordText(e.target.value);
     }, []);
 
-    const getNameDetails = useCallback(async () => {
-        const res = await fetch(personDetailsUrl, {
+    const submitPerson = useCallback(async () => {
+        await fetch(personsUrl, {
             method: "POST",
             body: JSON.stringify({
                 "name": nameText,
                 "password": passwordText
             })
         })
-
-        if (!res.ok) {
-            throw new Error("The data cannot be fetched");
-        }
-
-        const data = res.json();
-    }, [nameText, passwordText, personDetailsUrl]);
-
-    useEffect(() => {
-        getNameDetails();
-    }, []);
+    }, [nameText, passwordText, personsUrl]);
 
     return (
         <form className="w-full max-w-sm form-container">
@@ -65,7 +55,7 @@ export default function FormNames() {
             <div className="md:flex md:items-center">
                 <div className="md:w-1/3"></div>
                 <div className="md:w-2/3">
-                    <Link href={{
+                    <Link onClick={submitPerson} href={{
                         pathname: "/person-details",
                         query: {
                             name: nameText.trim(),
