@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { allPersons } from "../../../../lib/formNames/allPersons";
+import { allPersons } from "../../../../lib/formPersons/allPersons";
 
 export async function POST(request: NextRequest) {
     return NextResponse.json(

@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { ChangeEvent, useCallback, useState } from "react";
-import "./../app/styles/form-names.css";
+import "./../app/styles/form-persons.css";
 
 export default function FormPerson() {
     let personsUrl = "http://localhost:3000/api/form-persons";
