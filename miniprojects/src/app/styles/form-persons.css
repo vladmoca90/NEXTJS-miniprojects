@@ -3,7 +3,7 @@ body {
 }
 
 .disabled {
-    opacity: .66;
+    opacity: .5;
     pointer-events: none;
 }
 
