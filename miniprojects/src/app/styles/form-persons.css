@@ -2,6 +2,20 @@ body {
     background: #fff;
 }
 
+.disabled {
+    opacity: .66;
+    pointer-events: none;
+}
+
+.btn.btn-submit {
+    background: #4F46E5;
+    border-radius: 6px;
+    color: #eef2ff;
+    cursor: pointer;
+    font-weight: 600;
+    padding: .5em 1em;
+}
+
 .form-container {
     border: 1px solid #ccc;
     display: block;
