@@ -13,7 +13,9 @@ body {
     color: #eef2ff;
     cursor: pointer;
     font-weight: 600;
+    letter-spacing: 1px;
     padding: .5em 1.2em;
+    text-transform: uppercase;
 }
 
 .form-container {
@@ -31,12 +33,6 @@ body {
 .form-container input,
 .form-container button {
     font-size: .9em;
-}
-
-.form-container button {
-    font-weight: 400;
-    letter-spacing: 1px;
-    text-transform: uppercase;
 }
 
 .form-container .form-checkbox {
