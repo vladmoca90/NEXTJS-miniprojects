@@ -27,6 +27,14 @@ export default function FormPerson() {
         })
     }, [nameText, passwordText, personsUrl]);
 
+    const bookingBtnActive = useCallback(() => {
+        if (nameText.length == 0 || passwordText.length == 0) {
+            return `btn btn-booking disabled`;
+        } else {
+            return `btn btn-booking`;
+        }
+    }, [nameText, passwordText]);
+
     return (
             <form className="w-full max-w-sm form-container">
                 <div className="md:flex md:items-center mb-6">
@@ -53,7 +61,7 @@ export default function FormPerson() {
                     </label>
                 </div>
                 <div className="md:flex md:items-center">
-                    <div className="md:w-1/3"></div>
+                    <div className="md:w-1/2"></div>
                     <div className="md:w-2/3">
                         <Link onClick={submitPerson} href={{
                             pathname: "/person-details",
@@ -61,7 +69,7 @@ export default function FormPerson() {
                                 name: nameText.trim(),
                                 password: passwordText.trim(),
                             }
-                        }} className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">Submit</Link>
+                        }} className={bookingBtnActive()} type="button">Submit</Link>
                     </div>
                 </div>
             </form>
