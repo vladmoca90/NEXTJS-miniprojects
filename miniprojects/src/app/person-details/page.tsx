@@ -1,10 +1,10 @@
-"use-client";
+"use client";
 import { useCallback, useEffect, useState } from "react";
 import { Person } from "../../../lib/formPersons/Person";
 
-let personsUrl = "http://localhost:3000/api/form-persons";
+const personsUrl = "http://localhost:3000/api/persons";
 
-export default async function PersonDetails({ params }: {
+export default function PersonDetails({ params }: {
     params: {
         name: string,
         password: string,
@@ -13,7 +13,7 @@ export default async function PersonDetails({ params }: {
     const [personDetails, setPersonDetails] = useState<Person>();
 
     const getPersonDetails = useCallback(async () => {
-        const res= await fetch(personsUrl, {
+        const res = await fetch(personsUrl, {
             method: "POST",
             body: JSON.stringify({
                 "name": params.name,
@@ -51,7 +51,7 @@ export default async function PersonDetails({ params }: {
                 <tbody>
                     <tr>
                         <td>{params.name}</td>
-                        <td>{allPersons.age}</td>
+                        <td>{personDetails.personDetails.age}</td>
                         <td>{personDetails.personDetails.nationality}</td>
                         <td>{personDetails.personDetails.profession}</td>
                         <td>{personDetails.personDetails.weight}</td>

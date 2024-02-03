@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
     const data = await request.json();
 
     const personRepository = new PersonRepository();
-
+    
     const personDetails = personRepository.getPerson(data.name, data.password);
 
     if (personDetails === null) {
@@ -30,4 +30,4 @@ export async function POST(request: NextRequest) {
     }
 }
 
-// http://localhost:3000/api/form-persons
+// http://localhost:3000/api/persons

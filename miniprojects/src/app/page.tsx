@@ -4,7 +4,7 @@ import { ChangeEvent, useCallback, useState } from "react";
 import "./../app/styles/form-persons.css";
 
 export default function FormPerson() {
-    let personsUrl = "http://localhost:3000/api/form-persons";
+    const personsUrl = "http://localhost:3000/api/persons";
 
     const [nameText, setNameText] = useState("");
     const [passwordText, setPasswordText] = useState("");
