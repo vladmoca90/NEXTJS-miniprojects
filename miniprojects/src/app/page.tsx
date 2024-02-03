@@ -66,8 +66,8 @@ export default function FormPerson() {
                     <Link href={{
                         pathname: "/person-details",
                         query: {
-                            name: nameText.trim(),
-                            password: passwordText.trim(),
+                            "name": nameText.trim(),
+                            "password": passwordText.trim(),
                         }
                     }} className={bookingBtnActive()} onClick={submitDetails} type="button">Submit</Link>
                 </div>

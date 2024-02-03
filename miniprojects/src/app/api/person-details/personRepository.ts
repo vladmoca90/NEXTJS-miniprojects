@@ -1,5 +1,5 @@
-import { allPersons } from "../../../../lib/formPersons/allPersons";
-import { Person } from "../../../../lib/formPersons/Person";
+import { allPersons } from "../../../../lib/personDetails/allPersons";
+import { Person } from "../../../../lib/personDetails/Person";
 
 export class PersonRepository {
     getPerson(name: string, password: string): Person | null {
