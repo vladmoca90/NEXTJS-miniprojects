@@ -2,22 +2,6 @@ body {
     background: #fff;
 }
 
-.disabled {
-    opacity: .5;
-    pointer-events: none;
-}
-
-.btn.btn-submit {
-    background: #4F46E5;
-    border-radius: 6px;
-    color: #eef2ff;
-    cursor: pointer;
-    font-weight: 600;
-    letter-spacing: 1px;
-    padding: .5em 1.2em;
-    text-transform: uppercase;
-}
-
 .form-container {
     border: 1px solid #ccc;
     display: block;
@@ -38,4 +22,20 @@ body {
 .form-container .form-checkbox {
     align-items: center;
     display: flex;
+}
+
+.disabled {
+    opacity: .5;
+    pointer-events: none;
+}
+
+.btn.btn-submit {
+    background: #4F46E5;
+    border-radius: 6px;
+    color: #eef2ff;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: .5em 1.2em;
+    text-transform: uppercase;
 }
