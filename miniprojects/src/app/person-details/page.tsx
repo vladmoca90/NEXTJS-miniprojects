@@ -1,5 +1,5 @@
 "use-client";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Person } from "../../../lib/formPersons/Person";
 
 export default async function PersonDetails({ params }: {
@@ -10,9 +10,9 @@ export default async function PersonDetails({ params }: {
 }) {
     let personsUrl = "http://localhost:3000/api/form-persons";
 
-    const [person, setPersonDetails] = useState<Person[]>();
+    const [personDetails, setPersonDetails] = useState<Person[]>([] as any);
 
-    const submit = useCallback(async () => {
+    const getPersonDetails = useCallback(async () => {
         const res= await fetch(personsUrl, {
             method: "POST",
             body: JSON.stringify({
@@ -27,12 +27,16 @@ export default async function PersonDetails({ params }: {
 
         const data = await res.json();
 
-        setPersonDetails(data.person);
+        setPersonDetails(data.body);
     }, [params.name, params.password, personsUrl]);
+
+    useEffect(() => {
+        getPersonDetails();
+    }, [getPersonDetails]);
 
     return (
         <div id="profile">
-            <table>
+            <table className="table-fixed">
                 <thead>
                     <th>Name</th>
                     <th>Age</th>
@@ -43,12 +47,12 @@ export default async function PersonDetails({ params }: {
                 </thead>
                 <tbody>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{params.name}</td>
+                        <td>{personDetails.personDetails.age}</td>
+                        <td>{personDetails.personDetails.nationality}</td>
+                        <td>{personDetails.personDetails.profession}</td>
+                        <td>{personDetails.personDetails.weight}</td>
+                        <td>{params.password}</td>
                     </tr>
                 </tbody>
             </table>
