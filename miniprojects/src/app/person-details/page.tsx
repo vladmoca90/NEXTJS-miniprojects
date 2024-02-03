@@ -1,4 +1,5 @@
 "use client";
+import "./../../app/styles/person-details.css";
 import { useCallback, useEffect, useState } from "react";
 import { Person } from "../../../lib/personDetails/person";
 
@@ -10,7 +11,7 @@ export default function PersonDetails({ searchParams }: {
         password: string,
     }
 }) {
-    const [personDetails, setPersonDetails] = useState<Person>();
+    const [personDetails, setPersonDetails] = useState<Person>([] as any);
 
     const getPersonDetails = useCallback(async () => {
         const res = await fetch(personsUrl, {
@@ -41,24 +42,24 @@ export default function PersonDetails({ searchParams }: {
     }, [getPersonDetails]);
 
     return (
-        <div id="profile">
-            <table className="table-fixed">
-                <thead>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Nationality</th>
-                    <th>Profession</th>
-                    <th>Weight</th>
-                    <th>Password</th>
+        <div id="person" className="relative overflow-x-auto">
+            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <th scope="col" className="px-6 py-3">Name</th>
+                    <th scope="col" className="px-6 py-3">Age</th>
+                    <th scope="col" className="px-6 py-3">Nationality</th>
+                    <th scope="col" className="px-6 py-3">Profession</th>
+                    <th scope="col" className="px-6 py-3">Weight</th>
+                    <th scope="col" className="px-6 py-3">Password</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{searchParams.name}</td>
-                        <td>{personDetails.personDetails.age}</td>
-                        <td>{personDetails.personDetails.nationality}</td>
-                        <td>{personDetails.personDetails.profession}</td>
-                        <td>{personDetails.personDetails.weight}</td>
-                        <td>{searchParams.password}</td>
+                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td className="px-6 py-4">{searchParams.name}</td>
+                        <td className="px-6 py-4">{personDetails.age}</td>
+                        <td className="px-6 py-4">{personDetails.nationality}</td>
+                        <td className="px-6 py-4">{personDetails.profession}</td>
+                        <td className="px-6 py-4">{personDetails.weight}</td>
+                        <td className="px-6 py-4">{searchParams.password}</td>
                     </tr>
                 </tbody>
             </table>

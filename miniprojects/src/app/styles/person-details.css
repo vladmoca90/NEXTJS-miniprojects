@@ -2,6 +2,20 @@ body {
     background: #fff;
 }
 
+#person {
+    border: 1px solid #eee;
+    margin: 5em auto;
+    max-width: 1080px;
+}
+
+#person thead {
+    background: #ebebeb;
+}
+
+#person th, #person td {
+    text-align: center;
+}
+
 .form-container {
     border: 1px solid #ccc;
     display: block;
