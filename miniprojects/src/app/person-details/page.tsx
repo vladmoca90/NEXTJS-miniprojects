@@ -15,10 +15,13 @@ export default function PersonDetails({ params }: {
     const getPersonDetails = useCallback(async () => {
         const res = await fetch(personsUrl, {
             method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify({
                 "name": params.name,
                 "password": params.password
-            })
+            }),
         });
 
         if (!res.ok) {
