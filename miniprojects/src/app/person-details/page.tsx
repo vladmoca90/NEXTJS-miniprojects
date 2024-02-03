@@ -10,7 +10,7 @@ export default async function PersonDetails({ params }: {
 }) {
     let personsUrl = "http://localhost:3000/api/form-persons";
 
-    const [personDetails, setPersonDetails] = useState<Person[]>([] as any);
+    const [personDetails, setPersonDetails] = useState<Person>();
 
     const getPersonDetails = useCallback(async () => {
         const res= await fetch(personsUrl, {
