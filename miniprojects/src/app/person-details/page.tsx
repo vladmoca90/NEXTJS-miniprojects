@@ -21,8 +21,11 @@ export default async function PersonDetails({ params }: {
             })
         });
 
-        if(!res.ok) {
-            throw new Error("Failed to fetch the data");
+        if (!res.ok) {
+            console.log("The details are NOT valid!");
+            return;
+        } else {
+            console.log("The details are valid!");
         }
 
         const data = await res.json();
@@ -48,7 +51,7 @@ export default async function PersonDetails({ params }: {
                 <tbody>
                     <tr>
                         <td>{params.name}</td>
-                        <td>{personDetails.personDetails.age}</td>
+                        <td>{personDetails.person.age}</td>
                         <td>{personDetails.personDetails.nationality}</td>
                         <td>{personDetails.personDetails.profession}</td>
                         <td>{personDetails.personDetails.weight}</td>
