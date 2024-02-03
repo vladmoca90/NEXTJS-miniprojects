@@ -1,6 +1,8 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { Person } from "../../../lib/personDetails/Person";
+import { Person } from "../../../lib/personDetails/person";
+
+const personsUrl = "http://localhost:3000/api/person-details";
 
 export default function PersonDetails({ params }: {
     params: {
@@ -8,8 +10,6 @@ export default function PersonDetails({ params }: {
         password: string,
     }
 }) {
-    let personsUrl = "http://localhost:3000/api/person-details";
-
     const [personDetails, setPersonDetails] = useState<Person>();
 
     const getPersonDetails = useCallback(async () => {
@@ -22,7 +22,7 @@ export default function PersonDetails({ params }: {
                 "name": params.name,
                 "password": params.password
             }),
-        });
+        })
 
         if (!res.ok) {
             console.log("The details are NOT valid!");
@@ -34,7 +34,7 @@ export default function PersonDetails({ params }: {
         const data = await res.json();
 
         setPersonDetails(data.body);
-    }, [params.name, params.password, personsUrl]);
+    }, [params.name, params.password]);
 
     useEffect(() => {
         getPersonDetails();
@@ -54,14 +54,10 @@ export default function PersonDetails({ params }: {
                 <tbody>
                     <tr>
                         <td>{params.name}</td>
-                        {/* <td>{personDetails.personDetails.age}</td>
+                        <td>{personDetails.personDetails.age}</td>
                         <td>{personDetails.personDetails.nationality}</td>
                         <td>{personDetails.personDetails.profession}</td>
-                        <td>{personDetails.personDetails.weight}</td> */}
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{personDetails.personDetails.weight}</td>
                         <td>{params.password}</td>
                     </tr>
                 </tbody>
