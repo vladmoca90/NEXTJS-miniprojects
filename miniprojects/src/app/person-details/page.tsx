@@ -4,8 +4,8 @@ import { Person } from "../../../lib/personDetails/person";
 
 const personsUrl = "http://localhost:3000/api/person-details";
 
-export default function PersonDetails({ params }: {
-    params: {
+export default function PersonDetails({ searchParams }: {
+    searchParams: {
         name: string,
         password: string,
     }
@@ -19,8 +19,8 @@ export default function PersonDetails({ params }: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                "name": params.name,
-                "password": params.password
+                "name": searchParams.name,
+                "password": searchParams.password
             }),
         })
 
@@ -34,7 +34,7 @@ export default function PersonDetails({ params }: {
         const data = await res.json();
 
         setPersonDetails(data.body);
-    }, [params.name, params.password]);
+    }, [searchParams.name, searchParams.password]);
 
     useEffect(() => {
         getPersonDetails();
@@ -53,12 +53,12 @@ export default function PersonDetails({ params }: {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{params.name}</td>
+                        <td>{searchParams.name}</td>
                         <td>{personDetails.personDetails.age}</td>
                         <td>{personDetails.personDetails.nationality}</td>
                         <td>{personDetails.personDetails.profession}</td>
                         <td>{personDetails.personDetails.weight}</td>
-                        <td>{params.password}</td>
+                        <td>{searchParams.password}</td>
                     </tr>
                 </tbody>
             </table>
