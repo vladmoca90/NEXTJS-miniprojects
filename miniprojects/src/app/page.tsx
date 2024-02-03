@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
 import { ChangeEvent, useCallback, useState } from "react";
-import "./../app/styles/form-persons.css";
+import "./../app/styles/person-details.css";
 
 export default function FormPerson() {
-    let personsUrl = "http://localhost:3000/api/persons";
+    let personsUrl = "http://localhost:3000/api/person-details";
 
     const [nameText, setNameText] = useState("");
     const [passwordText, setPasswordText] = useState("");
@@ -17,16 +17,6 @@ export default function FormPerson() {
         setPasswordText(e.target.value);
     }, []);
 
-    const submitPerson = useCallback(async () => {
-        await fetch(personsUrl, {
-            method: "POST",
-            body: JSON.stringify({
-                "name": nameText,
-                "password": passwordText
-            })
-        })
-    }, [nameText, passwordText, personsUrl]);
-
     const bookingBtnActive = useCallback(() => {
         if (nameText.length == 0 || passwordText.length == 0) {
             return `btn btn-submit disabled`;
@@ -34,6 +24,16 @@ export default function FormPerson() {
             return `btn btn-submit`;
         }
     }, [nameText, passwordText]);
+
+    const submitDetails = useCallback(async () => {
+        await fetch(personsUrl, {
+            method: "POST",
+            body: JSON.stringify({
+                "name": nameText,
+                "password": passwordText
+            })
+        })
+    }, [personsUrl, nameText, passwordText]);
 
     return (
         <form className="w-full max-w-sm form-container">
@@ -63,13 +63,13 @@ export default function FormPerson() {
             <div className="md:flex md:items-center">
                 <div className="md:w-1/2"></div>
                 <div className="md:w-2/3">
-                    <Link onClick={submitPerson} href={{
+                    <Link href={{
                         pathname: "/person-details",
                         query: {
                             name: nameText.trim(),
                             password: passwordText.trim(),
                         }
-                    }} className={bookingBtnActive()} type="button">Submit</Link>
+                    }} className={bookingBtnActive()} onClick={submitDetails} type="button">Submit</Link>
                 </div>
             </div>
         </form>

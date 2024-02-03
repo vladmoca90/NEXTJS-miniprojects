@@ -8,7 +8,7 @@ export default function PersonDetails({ params }: {
         password: string,
     }
 }) {
-    let personsUrl = "http://localhost:3000/api/persons";
+    let personsUrl = "http://localhost:3000/api/person-details";
 
     const [personDetails, setPersonDetails] = useState<Person>();
 
