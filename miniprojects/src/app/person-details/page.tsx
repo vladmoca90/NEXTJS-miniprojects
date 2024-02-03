@@ -2,14 +2,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { Person } from "../../../lib/formPersons/Person";
 
+let personsUrl = "http://localhost:3000/api/form-persons";
+
 export default async function PersonDetails({ params }: {
     params: {
         name: string,
         password: string,
     }
 }) {
-    let personsUrl = "http://localhost:3000/api/form-persons";
-
     const [personDetails, setPersonDetails] = useState<Person>();
 
     const getPersonDetails = useCallback(async () => {
@@ -31,7 +31,7 @@ export default async function PersonDetails({ params }: {
         const data = await res.json();
 
         setPersonDetails(data.body);
-    }, [params.name, params.password, personsUrl]);
+    }, [params.name, params.password]);
 
     useEffect(() => {
         getPersonDetails();
@@ -51,7 +51,7 @@ export default async function PersonDetails({ params }: {
                 <tbody>
                     <tr>
                         <td>{params.name}</td>
-                        <td>{personDetails.person.age}</td>
+                        <td>{allPersons.age}</td>
                         <td>{personDetails.personDetails.nationality}</td>
                         <td>{personDetails.personDetails.profession}</td>
                         <td>{personDetails.personDetails.weight}</td>
