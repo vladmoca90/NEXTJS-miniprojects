@@ -1,5 +1,5 @@
 "use client";
-import "./../styles/appointment-details.css";
+import "./styles/appointment-details.css";
 
 export default function AppointmentForm() {
     let appointmentsUrl = "";

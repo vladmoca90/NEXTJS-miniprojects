@@ -1,0 +1,10 @@
+body {
+    background: #fff;
+}
+
+#appointments {
+    border: 1px solid #ccc;
+    margin: 5rem auto 0;
+    padding: 1.25rem 0;
+    width: 525px;
+}
