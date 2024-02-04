@@ -7,8 +7,22 @@ body {
     max-width: 400px;
 }
 
+#sendText label {
+    font-size: 16px;
+}
+
 #sendText #message {
+    margin: 1.5rem 0;
     min-height: 100px;
+}
+
+.messageBtn {
+    background: #cb2000;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: .6rem 1.2rem;
 }
 
 #yourText {
