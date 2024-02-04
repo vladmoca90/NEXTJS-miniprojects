@@ -1,0 +1,11 @@
+body {
+    background: #fff;
+}
+
+#sendText {
+    margin: 5rem auto 0;
+}
+
+#sendText #message {
+    min-height: 100px;
+}
