@@ -3,12 +3,12 @@ import "./../styles/send-message.css";
 
 export default function MessageDetails({}: {
     searchParams: {
-        messageText: string
+        message: string
     }
 }) {
     return (
         <div id="sentMessage">
-            <p></p>
+            <p>{message}</p>
         </div>
     );
 }
