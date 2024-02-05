@@ -2,7 +2,7 @@
 import "./styles/appointment-details.css";
 
 export default function AppointmentForm() {
-    let appointmentsUrl = "";
+    let appointmentsUrl = "http://localhost:3000/api/appointment";
 
     return (
         <div id="appointments">
