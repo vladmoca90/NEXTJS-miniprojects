@@ -1,14 +1,14 @@
 "use client";
 import "./../styles/send-message.css";
 
-export default function MessageDetails({}: {
+export default function MessageDetails({ searchParams }: {
     searchParams: {
-        message: string
+        messageText: string
     }
 }) {
     return (
         <div id="sentMessage">
-            <p>{message}</p>
+            <p>{searchParams.messageText}</p>
         </div>
     );
 }
