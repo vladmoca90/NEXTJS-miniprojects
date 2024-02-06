@@ -31,10 +31,12 @@ body {
     pointer-events: none;
 }
 
+.email-validation,
 .password-match {
     display: none;
 }
 
+.email-validation.email-alert,
 .password-match.password-alert {
     color: #cb2000;
     display: inline-block;
