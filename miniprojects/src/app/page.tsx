@@ -62,20 +62,22 @@ export default function AppointmentForm() {
 
     // Validation functions for the form functionality.
     const getPassMatch = useCallback(() => {
-        if(getPassText !== getPassConfirmText) {
+        if (passText !== passConfirmText) {
             return `password-match password-alert`;
         } else {
             return `password-match`;
         }
-    }, [getPassConfirmText, getPassText]);
+    }, [passConfirmText, passText]);
 
     const getEmailValidation = useCallback(() => {
-        if(emailText.indexOf("@") === -1) {
+        if (emailText.indexOf("@") === -1) {
             return `email-validation email-alert`;
+        } else if (emailText.length === 0) {
+            return `email-validation`;
         } else {
-            return `email-validaiton`;
+            return `email-validation`;
         }
-    },[emailText]);
+    }, [emailText]);
 
     const appointmentBtnActive = useCallback(() => {
         if (forenameText.length === 0 || surnameText.length === 0 || passText.length === 0 || passConfirmText.length === 0 || emailText.length === 0 || phoneText.length === 0 || workplaceText.length === 0) {
@@ -101,8 +103,8 @@ export default function AppointmentForm() {
                 <div className="relative z-0 w-full mb-5 group">
                     <input onChange={getEmailText} value={emailText} type="email" name="floating_email" id="floating_email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                     <label htmlFor="floating_email" className="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+                    <span className={getEmailValidation()}>The email is not valid!</span>
                 </div>
-                <span className={getEmailValidation()}>The email is not valid!</span>
                 <div className="relative z-0 w-full mb-5 group">
                     <input onChange={getPassText} value={passText} type="password" name="floating_password" id="floating_password" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                     <label htmlFor="floating_password" className="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
@@ -110,8 +112,8 @@ export default function AppointmentForm() {
                 <div className="relative z-0 w-full mb-5 group">
                     <input onChange={getPassConfirmText} value={passConfirmText} type="password" name="repeat_password" id="floating_repeat_password" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                     <label htmlFor="floating_repeat_password" className="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm password</label>
+                    <span className={getPassMatch()}>The password does not match!</span>
                 </div>
-                <span className={getPassMatch()}>The password does not match!</span>
                 <div className="grid md:grid-cols-2 md:gap-6">
                     <div className="relative z-0 w-full mb-5 group">
                         <input onChange={getPhoneText} value={phoneText} type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
