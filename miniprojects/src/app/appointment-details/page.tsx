@@ -18,7 +18,7 @@ export default function AppointmentDetails({ searchParams }: {
     const [appDetails, setAppDetails] = useState<Appointment>([] as any);
 
     const getAppDetails = useCallback(async () => {
-        await fetch(appointmentsUrl, {
+        const res = await fetch(appointmentsUrl, {
             method: "POST",
             body: JSON.stringify({
                 "firstName": searchParams.firstName,
@@ -29,6 +29,17 @@ export default function AppointmentDetails({ searchParams }: {
                 "workplace": searchParams.workplace,
             })
         });
+
+        if (!res.ok) {
+            console.log("The details are NOT valid!");
+            return;
+        } else {
+            console.log("The details are valid!");
+        }
+
+        const data = await res.json();
+
+        setAppDetails(data.body);
     }, [appointmentsUrl, searchParams.email, searchParams.firstName, searchParams.lastName, searchParams.password, searchParams.phone, searchParams.workplace]);
 
     useEffect(() => {
