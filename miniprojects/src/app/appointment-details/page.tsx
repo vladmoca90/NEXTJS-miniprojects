@@ -9,9 +9,6 @@ export default function AppointmentDetails({ searchParams }: {
     searchParams: {
         "firstName": string,
         "lastName": string,
-        "email": string,
-        "phone": string,
-        "workplace": string,
     }
 }) {
     const [appDetails, setAppDetails] = useState<Appointment>([] as any);
@@ -25,9 +22,6 @@ export default function AppointmentDetails({ searchParams }: {
             body: JSON.stringify({
                 "firstName": searchParams.firstName,
                 "lastName": searchParams.lastName,
-                "email": searchParams.email,
-                "phone": searchParams.phone,
-                "workplace": searchParams.workplace,
             })
         });
 
@@ -41,7 +35,7 @@ export default function AppointmentDetails({ searchParams }: {
         const data = await res.json();
 
         setAppDetails(data.body);
-    }, [searchParams.email, searchParams.firstName, searchParams.lastName, searchParams.phone, searchParams.workplace]);
+    }, [searchParams.firstName, searchParams.lastName]);
 
     useEffect(() => {
         getAppDetails();
