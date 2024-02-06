@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
-import { allAppointments } from "../../../../lib/appointment/allAppointments";
+import { AppointmentRepository } from "./appointmentRepository";
 
 export async function GET(request: NextRequest) {
     const data = await request.json();
 
-    const appointment = allAppointments.find((appointment) => appointment.firstName === data.firstName && appointment.lastName === data.lastName);
+    const appRepository = new AppointmentRepository();
+    const appDetails = appRepository.getAppointment(data.firstName, data.lastName);
 
-    if (appointment === null) {
+    if (appDetails === null) {
         return NextResponse.json({},
             {
                 status: 404
@@ -16,7 +17,7 @@ export async function GET(request: NextRequest) {
     } else {
         return NextResponse.json(
             {
-                body: appointment,
+                body: appDetails,
                 path: request.nextUrl.pathname,
                 query: request.nextUrl.search,
                 cookies: request.cookies.getAll(),
