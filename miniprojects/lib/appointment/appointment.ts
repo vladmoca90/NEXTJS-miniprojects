@@ -1,6 +1,6 @@
 export interface Appointment {
-    firstName: string,
-    lastName: string,
+    forename: string,
+    surname: string,
     email: string,
     password: string,
     phone: string,
