@@ -18,7 +18,7 @@ export default function FormPerson() {
     }, []);
 
     const bookingBtnActive = useCallback(() => {
-        if (nameText.length == 0 || passwordText.length == 0) {
+        if (nameText.length === 0 || passwordText.length === 0) {
             return `btn btn-submit disabled`;
         } else {
             return `btn btn-submit`;
