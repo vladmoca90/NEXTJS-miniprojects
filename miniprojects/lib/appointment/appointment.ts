@@ -3,5 +3,5 @@ export interface Appointment {
     lastName: string,
     password: string,
     phone: string,
-    company: string,
+    workplace: string,
 }

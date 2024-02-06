@@ -6,20 +6,20 @@ export const allAppointments: Appointment[] = [
         lastName: "Smith",
         password: "7ZxKL209634236",
         phone: "07658904765",
-        company: "Waitrose and Partners",
+        workplace: "Waitrose and Partners",
     },
     {
         firstName: "Petros",
         lastName: "Soldatelli-Rissi",
         password: "7ZxKL209634236",
         phone: "07223457777",
-        company: "Amazon Ltd",
+        workplace: "Amazon Ltd",
     },
     {
         firstName: "Jonathan",
         lastName: "Briggs",
         password: "7ZxKL209634236",
         phone: "07437098901",
-        company: "Google",
+        workplace: "Google",
     },
 ]

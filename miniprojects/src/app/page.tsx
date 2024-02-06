@@ -11,7 +11,7 @@ export default function AppointmentForm() {
     const [emailText, setEmailText] = useState("");
     const [passwordText, setPasswordText] = useState("");
     const [phoneText, setPhoneText] = useState("");
-    const [companyText, setCompanyText] = useState("");
+    const [workplaceText, setWorkplaceText] = useState("");
 
     const getFirstNameText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
         setFirstNameText(e.target.value);
@@ -33,8 +33,8 @@ export default function AppointmentForm() {
         setPhoneText(e.target.value);
     }, []);
 
-    const getCompanyText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
-        setCompanyText(e.target.value);
+    const getWorkplaceText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
+        setWorkplaceText(e.target.value);
     }, []);
 
     const submitAppointment = useCallback(async () => {
@@ -49,10 +49,10 @@ export default function AppointmentForm() {
                 "email": emailText,
                 "password": passwordText,
                 "phone": phoneText,
-                "company": companyText,
+                "workplace": workplaceText,
             })
         });
-    }, [appointmentsUrl, companyText, emailText, firstNameText, lastNameText, passwordText, phoneText]);
+    }, [appointmentsUrl, workplaceText, emailText, firstNameText, lastNameText, passwordText, phoneText]);
 
     return (
         <div id="appointments">
@@ -95,8 +95,8 @@ export default function AppointmentForm() {
                         <label htmlFor="floating_phone" className="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number</label>
                     </div>
                     <div className="relative z-0 w-full mb-5 group">
-                        <input onChange={getCompanyText} value={companyText} type="text" name="floating_company" id="floating_company" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                        <label htmlFor="floating_company" className="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Company</label>
+                        <input onChange={getWorkplaceText} value={workplaceText} type="text" name="floating_company" id="floating_company" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label htmlFor="floating_company" className="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Workplace</label>
                     </div>
                 </div>
                 {/* <div className="relative z-0 w-full mb-5 group">
@@ -112,7 +112,7 @@ export default function AppointmentForm() {
                         "email": emailText,
                         "password": passwordText,
                         "phone": phoneText,
-                        "company": companyText,
+                        "company": workplaceText,
                     }
                 }} onClick={submitAppointment} type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</Link>
             </form>
