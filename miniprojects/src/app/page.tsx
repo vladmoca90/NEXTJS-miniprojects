@@ -9,10 +9,28 @@ export default function AppointmentForm() {
     const [forenameText, setForenameText] = useState("");
     const [surnameText, setSurnameText] = useState("");
     const [emailText, setEmailText] = useState("");
-    const [passwordText, setPasswordText] = useState("");
+    const [passText, setPassText] = useState("");
     const [passConfirmText, setPassConfirmText] = useState("");
     const [phoneText, setPhoneText] = useState("");
     const [workplaceText, setWorkplaceText] = useState("");
+
+    const submitAppointment = useCallback(async () => {
+        await fetch(appointmentsUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "forename": forenameText,
+                "surname": surnameText,
+                "email": emailText,
+                "password": passText,
+                "passConfirm": passConfirmText,
+                "phone": phoneText,
+                "workplace": workplaceText,
+            })
+        });
+    }, [appointmentsUrl, workplaceText, emailText, forenameText, surnameText, passText, passConfirmText, phoneText]);
 
     const getForenameText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
         setForenameText(e.target.value);
@@ -26,8 +44,8 @@ export default function AppointmentForm() {
         setEmailText(e.target.value);
     }, []);
 
-    const getPasswordText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
-        setPasswordText(e.target.value);
+    const getPassText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
+        setPassText(e.target.value);
     }, []);
 
     const getPassConfirmText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,23 +60,21 @@ export default function AppointmentForm() {
         setWorkplaceText(e.target.value);
     }, []);
 
-    const submitAppointment = useCallback(async () => {
-        await fetch(appointmentsUrl, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                "forename": forenameText,
-                "surname": surnameText,
-                "email": emailText,
-                "password": passwordText,
-                "passRewrite": passConfirmText,
-                "phone": phoneText,
-                "workplace": workplaceText,
-            })
-        });
-    }, [appointmentsUrl, workplaceText, emailText, forenameText, surnameText, passwordText, passConfirmText, phoneText]);
+    const getPassMatch = useCallback(() => {
+        if(getPassText !== getPassConfirmText) {
+            return `password-match password-alert`;
+        } else {
+            return `password-match`;
+        }
+    }, [getPassConfirmText, getPassText]);
+
+    const appointmentBtnActive = useCallback(() => {
+        if (forenameText.length === 0 || surnameText.length === 0 || passText.length === 0 || passConfirmText.length === 0 || emailText.length === 0 || phoneText.length === 0 || workplaceText.length === 0) {
+            return `btn btn-submit disabled`;
+        } else {
+            return `btn btn-submit`;
+        }
+    }, [emailText.length, forenameText.length, passConfirmText.length, passText.length, phoneText.length, surnameText.length, workplaceText.length]);
 
     return (
         <div id="appointments">
@@ -78,13 +94,14 @@ export default function AppointmentForm() {
                     <label htmlFor="floating_email" className="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
                 </div>
                 <div className="relative z-0 w-full mb-5 group">
-                    <input onChange={getPasswordText} value={passwordText} type="password" name="floating_password" id="floating_password" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <input onChange={getPassText} value={passText} type="password" name="floating_password" id="floating_password" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                     <label htmlFor="floating_password" className="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
                 </div>
                 <div className="relative z-0 w-full mb-5 group">
                     <input onChange={getPassConfirmText} value={passConfirmText} type="password" name="repeat_password" id="floating_repeat_password" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                     <label htmlFor="floating_repeat_password" className="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm password</label>
                 </div>
+                <span className={getPassMatch()}>The password does not match!</span>
                 <div className="grid md:grid-cols-2 md:gap-6">
                     <div className="relative z-0 w-full mb-5 group">
                         <input onChange={getPhoneText} value={phoneText} type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
@@ -101,7 +118,7 @@ export default function AppointmentForm() {
                         "forename": forenameText,
                         "surname": surnameText,
                     }
-                }} onClick={submitAppointment} type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</Link>
+                }} className={appointmentBtnActive()} onClick={submitAppointment} type="button">Submit</Link>
             </form>
         </div>
     );

@@ -18,3 +18,27 @@ body {
 #appointmentTable tr>td {
     text-align: center;
 }
+
+.btn.btn-submit {
+    background: #1c4bb4;
+    border-radius: 9px;
+    color: #fff;
+    padding: .5em 1em;
+}
+
+.disabled {
+    opacity: .5;
+    pointer-events: none;
+}
+
+.password-match {
+    display: none;
+}
+
+.password-match.password-alert {
+    color: #cb2000;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+    margin: .5em 0;
+}
