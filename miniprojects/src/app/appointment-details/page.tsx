@@ -1,14 +1,14 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
 import "./../styles/appointment-details.css";
+import { useCallback, useEffect, useState } from "react";
 import { Appointment } from "../../../lib/appointment/Appointment";
 
 const appointmentsUrl = "http://localhost:3000/api/appointment";
 
 export default function AppointmentDetails({ searchParams }: {
     searchParams: {
-        "firstName": string,
-        "lastName": string,
+        firstName: string,
+        lastName: string,
     }
 }) {
     const [appDetails, setAppDetails] = useState<Appointment>([] as any);
@@ -54,8 +54,8 @@ export default function AppointmentDetails({ searchParams }: {
             </thead>
             <tbody>
                 <tr>
-                    <td>{appDetails.firstName}</td>
-                    <td>{appDetails.lastName}</td>
+                    <td>{searchParams.firstName}</td>
+                    <td>{searchParams.lastName}</td>
                     <td>{appDetails.email}</td>
                     <td>{appDetails.phone}</td>
                     <td>{appDetails.workplace}</td>
