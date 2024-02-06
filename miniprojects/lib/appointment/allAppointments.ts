@@ -1,4 +1,4 @@
-import { Appointment } from "./appointment";
+import { Appointment } from "./Appointment";
 
 export const allAppointments: Appointment[] = [
     {
