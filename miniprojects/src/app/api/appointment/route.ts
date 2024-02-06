@@ -1,13 +1,22 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
-import { AppointmentRepository } from "./appointmentRepository";
+import { Appointment } from "../../../../lib/appointment/Appointment";
+import { allAppointments } from "../../../../lib/appointment/allAppointments";
 
 export async function POST(request: NextRequest) {
     const data = await request.json();
 
-    const appRepository = new AppointmentRepository();
+    const getAppointment = (firstName: string, lastName: string): Appointment | null => {
+        const appointment = allAppointments.find((appointment) => appointment.firstName === firstName && appointment.lastName === lastName);
 
-    const appDetails = appRepository.getAppointment(data.firstName, data.lastName);
+        if (!appointment) {
+            return null;
+        } else {
+            return appointment;
+        }
+    }
+
+    const appDetails = getAppointment(data.firstName, data.lastName);
 
     if (appDetails === null) {
         return NextResponse.json({},
