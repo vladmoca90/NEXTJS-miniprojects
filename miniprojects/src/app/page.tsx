@@ -10,6 +10,7 @@ export default function AppointmentForm() {
     const [lastNameText, setLastNameText] = useState("");
     const [emailText, setEmailText] = useState("");
     const [passwordText, setPasswordText] = useState("");
+    const [passConfirmText, setPassConfirmText] = useState("");
     const [phoneText, setPhoneText] = useState("");
     const [workplaceText, setWorkplaceText] = useState("");
 
@@ -27,6 +28,10 @@ export default function AppointmentForm() {
 
     const getPasswordText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
         setPasswordText(e.target.value);
+    }, []);
+
+    const getPassConfirmText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
+        setPassConfirmText(e.target.value);
     }, []);
 
     const getPhoneText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
@@ -48,11 +53,12 @@ export default function AppointmentForm() {
                 "lastName": lastNameText,
                 "email": emailText,
                 "password": passwordText,
+                "passRewrite": passConfirmText,
                 "phone": phoneText,
                 "workplace": workplaceText,
             })
         });
-    }, [appointmentsUrl, workplaceText, emailText, firstNameText, lastNameText, passwordText, phoneText]);
+    }, [appointmentsUrl, workplaceText, emailText, firstNameText, lastNameText, passwordText, passConfirmText, phoneText]);
 
     return (
         <div id="appointments">
@@ -76,7 +82,7 @@ export default function AppointmentForm() {
                     <label htmlFor="floating_password" className="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
                 </div>
                 <div className="relative z-0 w-full mb-5 group">
-                    <input onChange={getPasswordText} value={passwordText} type="password" name="repeat_password" id="floating_repeat_password" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <input onChange={getPassConfirmText} value={passConfirmText} type="password" name="repeat_password" id="floating_repeat_password" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                     <label htmlFor="floating_repeat_password" className="peer-focus:font-medium absolute text-sm  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm password</label>
                 </div>
                 <div className="grid md:grid-cols-2 md:gap-6">
@@ -110,7 +116,6 @@ export default function AppointmentForm() {
                         "firstName": firstNameText,
                         "lastName": lastNameText,
                         "email": emailText,
-                        "password": passwordText,
                         "phone": phoneText,
                         "workplace": workplaceText,
                     }

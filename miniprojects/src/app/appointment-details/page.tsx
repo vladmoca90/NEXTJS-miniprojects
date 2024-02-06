@@ -3,28 +3,29 @@ import { useCallback, useEffect, useState } from "react";
 import "./../styles/appointment-details.css";
 import { Appointment } from "../../../lib/appointment/Appointment";
 
+const appointmentsUrl = "http://localhost:3000/api/appointment";
+
 export default function AppointmentDetails({ searchParams }: {
     searchParams: {
         "firstName": string,
         "lastName": string,
         "email": string,
-        "password": string,
         "phone": string,
         "workplace": string,
     }
 }) {
-    let appointmentsUrl = "http://localhost:3000/api/appointment";
-
     const [appDetails, setAppDetails] = useState<Appointment>([] as any);
 
     const getAppDetails = useCallback(async () => {
         const res = await fetch(appointmentsUrl, {
             method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify({
                 "firstName": searchParams.firstName,
                 "lastName": searchParams.lastName,
                 "email": searchParams.email,
-                "password": searchParams.password,
                 "phone": searchParams.phone,
                 "workplace": searchParams.workplace,
             })
@@ -40,7 +41,7 @@ export default function AppointmentDetails({ searchParams }: {
         const data = await res.json();
 
         setAppDetails(data.body);
-    }, [appointmentsUrl, searchParams.email, searchParams.firstName, searchParams.lastName, searchParams.password, searchParams.phone, searchParams.workplace]);
+    }, [searchParams.email, searchParams.firstName, searchParams.lastName, searchParams.phone, searchParams.workplace]);
 
     useEffect(() => {
         getAppDetails();
@@ -53,7 +54,6 @@ export default function AppointmentDetails({ searchParams }: {
                     <th>First name</th>
                     <th>Last name</th>
                     <th>Email</th>
-                    <th>Password</th>
                     <th>Phone</th>
                     <th>Workplace</th>
                 </tr>
@@ -63,7 +63,6 @@ export default function AppointmentDetails({ searchParams }: {
                     <td>{appDetails.firstName}</td>
                     <td>{appDetails.lastName}</td>
                     <td>{appDetails.email}</td>
-                    <td>{appDetails.password}</td>
                     <td>{appDetails.phone}</td>
                     <td>{appDetails.workplace}</td>
                 </tr>
