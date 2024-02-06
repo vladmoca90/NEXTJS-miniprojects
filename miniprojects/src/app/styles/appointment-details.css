@@ -8,3 +8,13 @@ body {
     padding: 1.25rem 0;
     width: 525px;
 }
+
+#appointmentTable {
+    margin: 3rem auto 0;
+    max-width: 992px;
+}
+
+#appointmentTable thead>th,
+#appointmentTable tr>td {
+    text-align: center;
+}
