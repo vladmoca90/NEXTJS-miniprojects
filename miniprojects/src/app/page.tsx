@@ -30,7 +30,10 @@ export default function AppointmentForm() {
                 "workplace": workplaceText,
             })
         });
-    }, [appointmentsUrl, workplaceText, emailText, forenameText, surnameText, passText, passConfirmText, phoneText]);
+
+        getPassMatch();
+        getEmailValidation();
+    }, [appointmentsUrl, forenameText, surnameText, emailText, passText, passConfirmText, phoneText, workplaceText, getPassMatch, getEmailValidation]);
 
     const getForenameText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
         setForenameText(e.target.value);
