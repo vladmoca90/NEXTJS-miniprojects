@@ -1,18 +1,15 @@
 "use client";
 import "./styles/appointment-details.css";
-import { ChangeEvent, useCallback, useState } from "react";
 import Link from "next/link";
+import { ChangeEvent, useCallback, useState } from "react";
+import { emailValid, passValid } from "./appointment-details/validation";
 
 export default function AppointmentForm() {
     let appointmentsUrl = "http://localhost:3000/api/appointment";
 
-    const emailReg = useCallback(async () => {
-        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    }, []);
-
     const [forenameText, setForenameText] = useState("");
     const [surnameText, setSurnameText] = useState("");
-    const [emailText, setEmailText] = useState("" as any);
+    const [emailText, setEmailText] = useState("");
     const [passText, setPassText] = useState("");
     const [passConfirmText, setPassConfirmText] = useState("");
     const [phoneText, setPhoneText] = useState("");
@@ -58,24 +55,23 @@ export default function AppointmentForm() {
     const getEmailValidation = useCallback(() => {
         if (emailText.length === 0) {
             return `email-validation`;
-        } else if (emailText.match(emailReg)) {
+        } else if (emailText.match(emailValid)) {
             return `email-validation  email-alert`;
         } else {
             return `email-validation`;
         }
-    }, [emailReg, emailText]);
+    }, [emailText]);
 
     const appointmentBtnActive = useCallback(() => {
-        if (forenameText.length === 0 || surnameText.length === 0 || passText.length === 0 || 
-            passText !== passConfirmText || passConfirmText.length === 0 || emailText.length === 0 || 
-            emailText.match(emailReg) || phoneText.length === 0 || workplaceText.length === 0) {
+        if (forenameText.length === 0 || surnameText.length === 0 || passText.length === 0 ||
+            passText !== passConfirmText || passText.match(passValid) || passConfirmText.length === 0 || emailText.length === 0 ||
+            emailText.match(emailValid) || phoneText.length === 0 || workplaceText.length === 0) {
             return `btn btn-submit disabled`;
         } else {
             return `btn btn-submit`;
         }
 
-    }, [emailReg, emailText, forenameText.length, passConfirmText, passText, 
-        phoneText.length, surnameText.length, workplaceText.length]);
+    }, [emailText, forenameText.length, passConfirmText, passText, phoneText.length, surnameText.length, workplaceText.length]);
 
     const submitAppointment = useCallback(async () => {
         await fetch(appointmentsUrl, {
