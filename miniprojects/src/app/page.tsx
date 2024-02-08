@@ -14,27 +14,6 @@ export default function AppointmentForm() {
     const [phoneText, setPhoneText] = useState("");
     const [workplaceText, setWorkplaceText] = useState("");
 
-    const submitAppointment = useCallback(async () => {
-        await fetch(appointmentsUrl, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                "forename": forenameText,
-                "surname": surnameText,
-                "email": emailText,
-                "password": passText,
-                "passConfirm": passConfirmText,
-                "phone": phoneText,
-                "workplace": workplaceText,
-            })
-        });
-
-        getPassMatch();
-        getEmailValidation();
-    }, [appointmentsUrl, forenameText, surnameText, emailText, passText, passConfirmText, phoneText, workplaceText, getPassMatch, getEmailValidation]);
-
     const getForenameText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
         setForenameText(e.target.value);
     }, []);
@@ -89,6 +68,27 @@ export default function AppointmentForm() {
             return `btn btn-submit`;
         }
     }, [emailText.length, forenameText.length, passConfirmText.length, passText.length, phoneText.length, surnameText.length, workplaceText.length]);
+
+    const submitAppointment = useCallback(async () => {
+        await fetch(appointmentsUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "forename": forenameText,
+                "surname": surnameText,
+                "email": emailText,
+                "password": passText,
+                "passConfirm": passConfirmText,
+                "phone": phoneText,
+                "workplace": workplaceText,
+            })
+        });
+
+        getPassMatch();
+        getEmailValidation();
+    }, [appointmentsUrl, forenameText, surnameText, emailText, passText, passConfirmText, phoneText, workplaceText, getPassMatch, getEmailValidation]);
 
     return (
         <div id="appointments">
