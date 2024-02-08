@@ -1,6 +1,6 @@
 "use client";
-import { ChangeEvent, useCallback, useState } from "react";
 import "./styles/appointment-details.css";
+import { ChangeEvent, useCallback, useState } from "react";
 import Link from "next/link";
 
 export default function AppointmentForm() {
@@ -52,10 +52,10 @@ export default function AppointmentForm() {
     }, [passConfirmText, passText]);
 
     const getEmailValidation = useCallback(() => {
-        if (emailText.indexOf("@") === -1) {
-            return `email-validation email-alert`;
-        } else if (emailText.length === 0) {
+        if (emailText.length === 0) {
             return `email-validation`;
+        } else if (emailText.indexOf("@") === -1) {
+            return `email-validation  email-alert`;
         } else {
             return `email-validation`;
         }
@@ -67,6 +67,7 @@ export default function AppointmentForm() {
         } else {
             return `btn btn-submit`;
         }
+
     }, [emailText.length, forenameText.length, passConfirmText.length, passText.length, phoneText.length, surnameText.length, workplaceText.length]);
 
     const submitAppointment = useCallback(async () => {
@@ -85,10 +86,7 @@ export default function AppointmentForm() {
                 "workplace": workplaceText,
             })
         });
-
-        getPassMatch();
-        getEmailValidation();
-    }, [appointmentsUrl, forenameText, surnameText, emailText, passText, passConfirmText, phoneText, workplaceText, getPassMatch, getEmailValidation]);
+    }, [appointmentsUrl, forenameText, surnameText, emailText, passText, passConfirmText, phoneText, workplaceText]);
 
     return (
         <div id="appointments">
