@@ -5,7 +5,6 @@ import Link from "next/link";
 
 export default function AppointmentForm() {
     let appointmentsUrl = "http://localhost:3000/api/appointment";
-    let emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     const [forenameText, setForenameText] = useState("");
     const [surnameText, setSurnameText] = useState("");
@@ -25,6 +24,10 @@ export default function AppointmentForm() {
 
     const getEmailText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
         setEmailText(e.target.value);
+    }, []);
+
+    const emailReg = useCallback(async () => {
+        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     }, []);
 
     const getPassText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
