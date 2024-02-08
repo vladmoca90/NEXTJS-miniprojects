@@ -5,6 +5,7 @@ import Link from "next/link";
 
 export default function AppointmentForm() {
     let appointmentsUrl = "http://localhost:3000/api/appointment";
+    let emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     const [forenameText, setForenameText] = useState("");
     const [surnameText, setSurnameText] = useState("");
@@ -54,23 +55,24 @@ export default function AppointmentForm() {
     const getEmailValidation = useCallback(() => {
         if (emailText.length === 0) {
             return `email-validation`;
-        } else if (emailText.indexOf("@") === -1) {
+        } else if (emailText.match(emailReg)) {
             return `email-validation  email-alert`;
         } else {
             return `email-validation`;
         }
-    }, [emailText]);
+    }, [emailReg, emailText]);
 
     const appointmentBtnActive = useCallback(() => {
         if (forenameText.length === 0 || surnameText.length === 0 || passText.length === 0 || 
             passText !== passConfirmText || passConfirmText.length === 0 || emailText.length === 0 || 
-            emailText.indexOf("@") === -1 || phoneText.length === 0 || workplaceText.length === 0) {
+            emailText.match(emailReg) || phoneText.length === 0 || workplaceText.length === 0) {
             return `btn btn-submit disabled`;
         } else {
             return `btn btn-submit`;
         }
 
-    }, [emailText.length, forenameText.length, passConfirmText.length, passText.length, phoneText.length, surnameText.length, workplaceText.length]);
+    }, [emailReg, emailText, forenameText.length, passConfirmText, passText, 
+        phoneText.length, surnameText.length, workplaceText.length]);
 
     const submitAppointment = useCallback(async () => {
         await fetch(appointmentsUrl, {
