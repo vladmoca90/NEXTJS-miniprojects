@@ -63,9 +63,9 @@ export default function AppointmentForm() {
     }, [emailText]);
 
     const appointmentBtnActive = useCallback(() => {
-        if (forenameText.length === 0 || surnameText.length === 0 || passText.length === 0 ||
-            passText !== passConfirmText || passText.match(passValid) || passConfirmText.length === 0 || emailText.length === 0 ||
-            emailText.match(emailValid) || phoneText.length === 0 || workplaceText.length === 0) {
+        if (forenameText.length === 0 || surnameText.length === 0 || passText.length === 0 || passText !== passConfirmText
+            || passText.match(passValid) || passConfirmText.length === 0 || emailText.length === 0 || emailText.match(emailValid)
+            || phoneText.length === 0 || workplaceText.length === 0) {
             return `btn btn-submit disabled`;
         } else {
             return `btn btn-submit`;
