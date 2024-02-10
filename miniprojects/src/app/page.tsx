@@ -55,7 +55,7 @@ export default function AppointmentForm() {
     const getEmailValidation = useCallback(() => {
         if (emailText.length === 0) {
             return `email-validation`;
-        } else if (emailText.match(emailValid)) {
+        } else if (emailText.indexOf("@") === -1) {
             return `email-validation  email-alert`;
         } else {
             return `email-validation`;
@@ -64,7 +64,7 @@ export default function AppointmentForm() {
 
     const appointmentBtnActive = useCallback(() => {
         if (forenameText.length === 0 || surnameText.length === 0 || passText.length === 0 || passText !== passConfirmText
-            || passText.match(passValid) || passConfirmText.length === 0 || emailText.length === 0 || emailText.match(emailValid)
+            || passText.match(passValid) || passConfirmText.length === 0 || emailText.length === 0 || emailText.indexOf("@") === -1
             || phoneText.length === 0 || workplaceText.length === 0) {
             return `btn btn-submit disabled`;
         } else {
