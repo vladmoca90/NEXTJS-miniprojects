@@ -9,6 +9,16 @@ body {
     width: 525px;
 }
 
+#appointments input {
+    background: #edf3ff;
+}
+
+#appointments label {
+    display: inline-block;
+    font-size: .9rem;
+    margin-bottom: .25rem;
+}
+
 #appointmentTable {
     margin: 3rem auto 0;
     max-width: 992px;
