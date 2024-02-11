@@ -6,7 +6,7 @@ body {
     border: 1px solid #ccc;
     margin: 5rem auto 0;
     padding: 1.25rem 0;
-    width: 525px;
+    width: 500px;
 }
 
 #appointments input {
@@ -33,7 +33,9 @@ body {
     background: #1c4bb4;
     border-radius: 9px;
     color: #fff;
-    padding: .5em 1em;
+    display: inline-block;
+    margin: 0 auto;
+    padding: .5rem 1.5rem;
 }
 
 .disabled {
@@ -52,5 +54,5 @@ body {
     display: inline-block;
     font-size: 15px;
     font-weight: 500;
-    margin: .5em 0;
+    margin: .5rem 0;
 }
