@@ -14,12 +14,7 @@ export default function WineDetails({ searchParams }: {
     const [wineDetails, setWineDetails] = useState<Wine>([] as any);
 
     const getWineDetails = useCallback(async () => {
-        const res = await fetch(wineNameUrl, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
+        const res = await fetch(wineNameUrl);
 
         if (!res.ok) {
             console.log("The details are NOT valid!");

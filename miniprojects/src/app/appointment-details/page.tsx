@@ -16,9 +16,6 @@ export default function AppointmentDetails({ searchParams }: {
     const getAppDetails = useCallback(async () => {
         const res = await fetch(appointmentsUrl, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
             body: JSON.stringify({
                 "forename": searchParams.forename,
                 "surname": searchParams.surname,

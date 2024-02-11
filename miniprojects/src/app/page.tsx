@@ -76,9 +76,6 @@ export default function AppointmentForm() {
     const submitAppointment = useCallback(async () => {
         await fetch(appointmentsUrl, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
             body: JSON.stringify({
                 "forename": forenameText,
                 "surname": surnameText,

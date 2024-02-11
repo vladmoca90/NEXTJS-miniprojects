@@ -16,9 +16,6 @@ export default function PersonDetails({ searchParams }: {
     const getPersonDetails = useCallback(async () => {
         const res = await fetch(personsUrl, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
             body: JSON.stringify({
                 "name": searchParams.name,
                 "password": searchParams.password

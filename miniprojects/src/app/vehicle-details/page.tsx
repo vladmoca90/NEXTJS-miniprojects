@@ -14,12 +14,7 @@ export default function VehicleDetails({ searchParams }: {
     const [carDetails, setCarDetails] = useState<Car>([] as any);
 
     const getCarDetails = useCallback(async () => {
-        const res = await fetch(modelsUrl, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
+        const res = await fetch(modelsUrl);
 
         if (!res.ok) {
             console.log("The details are NOT valid!");
