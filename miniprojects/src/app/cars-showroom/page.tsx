@@ -23,7 +23,6 @@ export default function CarsShowroom() {
         setCars(data.body);
     }, [carsUrl]);
 
-    //A function that removes the duplicates from the array and display each value once in the dropdown
     const removeDuplicatedMakes = useCallback(() => {
         let carsDictionary: { [make: string[number]]: any } = {};
 
@@ -47,7 +46,6 @@ export default function CarsShowroom() {
         const value = event.target.value;
         const carModels = cars.filter((car) => value === car.make);
 
-        console.log(carModels);
         setModelsFromMake(carModels);
     }, [cars]);
 
