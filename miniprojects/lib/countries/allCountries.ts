@@ -1,6 +1,6 @@
-import { Nationality } from "./Nationality";
+import { Country } from "./Country";
 
-export const allNationalities: Nationality[] = [
+export const allCountries: Country[] = [
     { name: "Afghanistan", code: "AF" },
     { name: "land Islands", code: "AX" },
     { name: "Albania", code: "AL" },

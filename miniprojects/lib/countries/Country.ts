@@ -1,4 +1,4 @@
-export interface Nationality {
+export interface Country {
     name: string;
     code: string;
 }
