@@ -6,8 +6,10 @@ import { allAppointments } from "../../../../lib/appointment/allAppointments";
 export async function POST(request: NextRequest) {
     const data = await request.json();
 
-    const retrieveAppointment = (forename: string, surname: string): Appointment | null => {
-        const appointment = allAppointments.find((appointment) => appointment.forename === forename && appointment.surname === surname);
+    const retrieveAppointment = (forename: string, surname: string, password: string, email: string, phone: string, workplace: string): Appointment | null => {
+        const appointment = allAppointments.find((appointment) => appointment.forename === forename && appointment.surname === surname
+            && appointment.password === password && appointment.email === email
+            && appointment.phone === phone && appointment.workplace === workplace);
 
         if (!appointment) {
             return null;
@@ -16,7 +18,7 @@ export async function POST(request: NextRequest) {
         }
     }
 
-    const appDetails = retrieveAppointment(data.forename, data.surname);
+    const appDetails = retrieveAppointment(data.forename, data.surname, data.password, data.email, data.phone, data.workplace);
 
     if (appDetails === null) {
         return NextResponse.json({},
