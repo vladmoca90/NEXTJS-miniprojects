@@ -10,16 +10,6 @@ export default function FormPerson() {
     const [nameText, setNameText] = useState("");
     const [passwordText, setPasswordText] = useState("");
 
-    const submitDetails = useCallback(async () => {
-        await fetch(personsUrl, {
-            method: "POST",
-            body: JSON.stringify({
-                "name": nameText,
-                "password": passwordText
-            })
-        })
-    }, [personsUrl, nameText, passwordText]);
-
     const getNameText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
         setNameText(e.target.value);
     }, []);
@@ -43,6 +33,16 @@ export default function FormPerson() {
             return `btn btn-submit`;
         }
     }, [nameText, passwordText]);
+
+    const submitPerson = useCallback(async () => {
+        await fetch(personsUrl, {
+            method: "POST",
+            body: JSON.stringify({
+                "name": nameText,
+                "password": passwordText
+            })
+        })
+    }, [personsUrl, nameText, passwordText]);
 
     return (
         <form className="w-full max-w-sm form-container">
@@ -76,9 +76,8 @@ export default function FormPerson() {
                         pathname: "/person-details",
                         query: {
                             "name": nameText,
-                            "password": passwordText.trim(),
                         }
-                    }} className={bookingBtnActive()} onClick={submitDetails} type="button">Submit</Link>
+                    }} className={bookingBtnActive()} onClick={submitPerson} type="button">Submit</Link>
                 </div>
             </div>
         </form>

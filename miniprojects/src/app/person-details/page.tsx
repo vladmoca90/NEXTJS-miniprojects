@@ -8,7 +8,6 @@ const personsUrl = "http://localhost:3000/api/person-details";
 export default function PersonDetails({ searchParams }: {
     searchParams: {
         name: string,
-        password: string,
     }
 }) {
     const [personDetails, setPersonDetails] = useState<Person>([] as any);
@@ -18,7 +17,6 @@ export default function PersonDetails({ searchParams }: {
             method: "POST",
             body: JSON.stringify({
                 "name": searchParams.name,
-                "password": searchParams.password
             }),
         })
 
@@ -32,7 +30,7 @@ export default function PersonDetails({ searchParams }: {
         const data = await res.json();
 
         setPersonDetails(data.body);
-    }, [searchParams.name, searchParams.password]);
+    }, [searchParams.name]);
 
     useEffect(() => {
         getPersonDetails();
@@ -47,7 +45,6 @@ export default function PersonDetails({ searchParams }: {
                     <th scope="col" className="px-6 py-3">Nationality</th>
                     <th scope="col" className="px-6 py-3">Profession</th>
                     <th scope="col" className="px-6 py-3">Weight (in kg)</th>
-                    <th scope="col" className="px-6 py-3">Password</th>
                 </thead>
                 <tbody>
                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -56,7 +53,6 @@ export default function PersonDetails({ searchParams }: {
                         <td className="px-6 py-4">{personDetails.nationality}</td>
                         <td className="px-6 py-4">{personDetails.profession}</td>
                         <td className="px-6 py-4">{personDetails.weight}kg</td>
-                        <td className="px-6 py-4">{searchParams.password}</td>
                     </tr>
                 </tbody>
             </table>
