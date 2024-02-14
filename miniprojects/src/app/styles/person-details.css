@@ -29,7 +29,8 @@ body {
 
 .form-container label,
 .form-container input,
-.form-container button {
+.form-container button,
+.password-match.password-alert {
     font-size: .9em;
 }
 
@@ -39,8 +40,19 @@ body {
 }
 
 .disabled {
-    opacity: .5;
+    opacity: .4;
     pointer-events: none;
+}
+
+.password-match {
+    display: none;
+}
+
+.password-match.password-alert {
+    color: #cb2000;
+    display: inline-block;
+    font-weight: 500;
+    margin: .5rem 0;
 }
 
 .btn-container {

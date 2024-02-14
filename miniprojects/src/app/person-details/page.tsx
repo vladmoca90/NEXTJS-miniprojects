@@ -46,7 +46,7 @@ export default function PersonDetails({ searchParams }: {
                     <th scope="col" className="px-6 py-3">Age</th>
                     <th scope="col" className="px-6 py-3">Nationality</th>
                     <th scope="col" className="px-6 py-3">Profession</th>
-                    <th scope="col" className="px-6 py-3">Weight</th>
+                    <th scope="col" className="px-6 py-3">Weight (in kg)</th>
                     <th scope="col" className="px-6 py-3">Password</th>
                 </thead>
                 <tbody>
@@ -55,7 +55,7 @@ export default function PersonDetails({ searchParams }: {
                         <td className="px-6 py-4">{personDetails.age}</td>
                         <td className="px-6 py-4">{personDetails.nationality}</td>
                         <td className="px-6 py-4">{personDetails.profession}</td>
-                        <td className="px-6 py-4">{personDetails.weight}</td>
+                        <td className="px-6 py-4">{personDetails.weight}kg</td>
                         <td className="px-6 py-4">{searchParams.password}</td>
                     </tr>
                 </tbody>
