@@ -1,6 +1,6 @@
 "use client";
-import Image from "next/image";
 import "./../styles/wines.css";
+import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { Wine } from "../../../lib/wines/Wine";
 
@@ -33,7 +33,7 @@ export default function WineDetails({ searchParams }: {
     }, [getWineDetails]);
 
     return (
-        <section className="box wine-details">
+        <section className="wine-details">
             <div className="products-container">
                 <div className="product">
                     <div className="product-description__top">
