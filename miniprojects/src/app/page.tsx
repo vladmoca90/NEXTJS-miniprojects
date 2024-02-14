@@ -2,7 +2,7 @@
 import "./../app/styles/person-details.css";
 import Link from "next/link";
 import { ChangeEvent, useCallback, useState } from "react";
-import { emailValid, passValid } from "./person-details/validation";
+import { nameValid, passValid } from "./person-details/validation";
 
 export default function FormPerson() {
     let personsUrl = "http://localhost:3000/api/person-details";
@@ -18,15 +18,16 @@ export default function FormPerson() {
         setPasswordText(e.target.value);
     }, []);
 
-    const getPassCheck = useCallback(() => {
-        if (passwordText.length === 0 && passwordText.match(passValid)) {
+    const getPersonCheck = useCallback(() => {
+        if (passwordText.length === 0 && passwordText.match(passValid) 
+            && nameText.length === 0 && nameText.match(nameValid)) {
             return `password-match password-alert`;
         } else {
             return `password-match`;
         }
-    }, [passwordText]);
+    }, [nameText, passwordText]);
 
-    const bookingBtnActive = useCallback(() => {
+    const personBtnState = useCallback(() => {
         if (nameText.length === 0 || passwordText.length === 0) {
             return `btn btn-submit disabled`;
         } else {
@@ -39,7 +40,7 @@ export default function FormPerson() {
             method: "POST",
             body: JSON.stringify({
                 "name": nameText,
-                "password": passwordText
+                "password": passwordText,
             })
         })
     }, [personsUrl, nameText, passwordText]);
@@ -51,7 +52,8 @@ export default function FormPerson() {
                     <label className="block text-gray-500 font-bold md:text-center mb-1 md:mb-0 pr-4">Full Name</label>
                 </div>
                 <div className="md:w-2/3">
-                    <input onChange={getNameText} value={nameText} className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" placeholder="Jane Doe" />
+                    <input onChange={getNameText} value={nameText} className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" placeholder="Your name" />
+                    <span className={getPersonCheck()}>The password is not valid</span>
                 </div>
             </div>
             <div className="md:flex md:items-center mb-6">
@@ -60,7 +62,7 @@ export default function FormPerson() {
                 </div>
                 <div className="md:w-2/3">
                     <input onChange={getPasswordText} value={passwordText} className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-password" type="password" placeholder="******************" />
-                    <span className={getPassCheck()}>The password is not valid</span>
+                    <span className={getPersonCheck()}>The password is not valid</span>
                 </div>
             </div>
             <div className="md:flex md:items-left mb-7">
@@ -77,7 +79,7 @@ export default function FormPerson() {
                         query: {
                             "name": nameText,
                         }
-                    }} className={bookingBtnActive()} onClick={submitPerson} type="button">Submit</Link>
+                    }} className={personBtnState()} onClick={submitPerson} type="button">Submit</Link>
                 </div>
             </div>
         </form>
