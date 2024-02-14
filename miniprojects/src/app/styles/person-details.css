@@ -43,6 +43,11 @@ body {
     pointer-events: none;
 }
 
+.btn-container {
+    text-align: center;
+    width: 100%;
+}
+
 .btn.btn-submit {
     background: #4F46E5;
     border-radius: 6px;

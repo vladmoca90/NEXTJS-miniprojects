@@ -1,138 +1,76 @@
 "use client";
-import "./styles/appointment-details.css";
 import Link from "next/link";
 import { ChangeEvent, useCallback, useState } from "react";
-import { emailValid, passValid } from "./appointment-details/validation";
+import "./../app/styles/person-details.css";
 
-export default function AppointmentForm() {
-    let appointmentsUrl = "http://localhost:3000/api/appointment";
+export default function FormPerson() {
+    let personsUrl = "http://localhost:3000/api/person-details";
 
-    const [forenameText, setForenameText] = useState("");
-    const [surnameText, setSurnameText] = useState("");
-    const [emailText, setEmailText] = useState("");
-    const [passText, setPassText] = useState("");
-    const [passConfirmText, setPassConfirmText] = useState("");
-    const [phoneText, setPhoneText] = useState("");
-    const [workplaceText, setWorkplaceText] = useState("");
+    const [nameText, setNameText] = useState("");
+    const [passwordText, setPasswordText] = useState("");
 
-    const getForenameText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
-        setForenameText(e.target.value);
+    const getNameText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
+        setNameText(e.target.value);
     }, []);
 
-    const getSurnameText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
-        setSurnameText(e.target.value);
+    const getPasswordText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
+        setPasswordText(e.target.value);
     }, []);
 
-    const getEmailText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
-        setEmailText(e.target.value);
-    }, []);
-
-    const getPassText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
-        setPassText(e.target.value);
-    }, []);
-
-    const getPassConfirmText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
-        setPassConfirmText(e.target.value);
-    }, []);
-
-    const getPhoneText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
-        setPhoneText(e.target.value);
-    }, []);
-
-    const getWorkplaceText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
-        setWorkplaceText(e.target.value);
-    }, []);
-
-    // Validation functions for the form functionality.
-    const getPassMatch = useCallback(() => {
-        if (passText !== passConfirmText) {
-            return `password-match password-alert`;
-        } else {
-            return `password-match`;
-        }
-    }, [passConfirmText, passText]);
-
-    const getEmailValidation = useCallback(() => {
-        if (emailText.length === 0 || emailText.match(emailValid)) {
-            return `email-validation`;
-        } else if (emailText.indexOf("@") === -1) {
-            return `email-validation  email-alert`;
-        } else {
-            return `email-validation`;
-        }
-    }, [emailText]);
-
-    const appointmentBtnActive = useCallback(() => {
-        if (forenameText.length === 0 || surnameText.length === 0 || passText.length === 0 || passText !== passConfirmText
-            || passText.match(passValid) || passConfirmText.length === 0 || emailText.length === 0 || emailText.match(emailValid)
-            || emailText.indexOf("@") === -1 || phoneText.length === 0 || workplaceText.length === 0) {
+    const bookingBtnActive = useCallback(() => {
+        if (nameText.length === 0 || passwordText.length === 0) {
             return `btn btn-submit disabled`;
         } else {
             return `btn btn-submit`;
         }
+    }, [nameText, passwordText]);
 
-    }, [emailText, forenameText.length, passConfirmText, passText, phoneText.length, surnameText.length, workplaceText.length]);
-
-    const submitAppointment = useCallback(async () => {
-        await fetch(appointmentsUrl, {
+    const submitDetails = useCallback(async () => {
+        await fetch(personsUrl, {
             method: "POST",
             body: JSON.stringify({
-                "forename": forenameText,
-                "surname": surnameText,
-                "email": emailText,
-                "password": passText,
-                "passConfirm": passConfirmText,
-                "phone": phoneText,
-                "workplace": workplaceText,
+                "name": nameText,
+                "password": passwordText
             })
-        });
-    }, [appointmentsUrl, forenameText, surnameText, emailText, passText, passConfirmText, phoneText, workplaceText]);
+        })
+    }, [personsUrl, nameText, passwordText]);
 
     return (
-        <div id="appointments">
-            <form className="max-w-md mx-auto">
-                <div className="grid md:grid-cols-2 md:gap-6">
-                    <div className="relative z-0 w-full mb-5 group">
-                        <label htmlFor="floating_first_name" className="peer-focus:font-medium peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First name</label>
-                        <input onChange={getForenameText} value={forenameText} type="text" name="floating_first_name" id="floating_first_name" className="block p-2.5 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 appearance-none dark:text-gray dark:border-gray-300 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                    </div>
-                    <div className="relative z-0 w-full mb-5 group">
-                        <label htmlFor="floating_last_name" className="peer-focus:font-medium peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last name</label>
-                        <input onChange={getSurnameText} value={surnameText} type="text" name="floating_last_name" id="floating_last_name" className="block p-2.5 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 appearance-none dark:text-gray dark:border-gray-300 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                    </div>
+        <form className="w-full max-w-sm form-container">
+            <div className="md:flex md:items-center mb-6">
+                <div className="md:w-1/3">
+                    <label className="block text-gray-500 font-bold md:text-center mb-1 md:mb-0 pr-4">Full Name</label>
                 </div>
-                <div className="relative z-0 w-full mb-5 group">
-                    <label htmlFor="floating_email" className="peer-focus:font-medium peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
-                    <input onChange={getEmailText} value={emailText} type="email" name="floating_email" id="floating_email" className="block p-2.5 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 appearance-none dark:text-gray dark:border-gray-300 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                    <span className={getEmailValidation()}>The email is not valid!</span>
+                <div className="md:w-2/3">
+                    <input onChange={getNameText} value={nameText} className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" placeholder="Jane Doe" />
                 </div>
-                <div className="relative z-0 w-full mb-5 group">
-                    <label htmlFor="floating_password" className="peer-focus:font-medium peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
-                    <input onChange={getPassText} value={passText} type="password" name="floating_password" id="floating_password" className="block p-2.5 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 appearance-none dark:text-gray dark:border-gray-300 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+            </div>
+            <div className="md:flex md:items-center mb-6">
+                <div className="md:w-1/3">
+                    <label className="block text-gray-500 font-bold md:text-center mb-1 md:mb-0 pr-4">Password</label>
                 </div>
-                <div className="relative z-0 w-full mb-5 group">
-                    <label htmlFor="floating_repeat_password" className="peer-focus:font-medium peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm password</label>
-                    <input onChange={getPassConfirmText} value={passConfirmText} type="password" name="repeat_password" id="floating_repeat_password" className="block p-2.5 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 appearance-none dark:text-gray dark:border-gray-300 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                    <span className={getPassMatch()}>The password does not match!</span>
+                <div className="md:w-2/3">
+                    <input onChange={getPasswordText} value={passwordText} className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-password" type="password" placeholder="******************" />
                 </div>
-                <div className="grid md:grid-cols-2 md:gap-6">
-                    <div className="relative z-0 w-full mb-5 group">
-                        <label htmlFor="floating_phone" className="peer-focus:font-medium peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number</label>
-                        <input onChange={getPhoneText} value={phoneText} type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone" className="block p-2.5 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 appearance-none dark:text-gray dark:border-gray-300 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                    </div>
-                    <div className="relative z-0 w-full mb-5 group">
-                        <label htmlFor="floating_company" className="peer-focus:font-medium peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Workplace</label>
-                        <input onChange={getWorkplaceText} value={workplaceText} type="text" name="floating_company" id="floating_company" className="block p-2.5 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 appearance-none dark:text-gray dark:border-gray-300 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                    </div>
+            </div>
+            <div className="md:flex md:items-left mb-7">
+                <div className="md:w-1/4"></div>
+                <label className="md:w-2/3 block text-gray-500 font-bold form-checkbox">
+                    <input className="mr-2 leading-tight" type="checkbox" />
+                    <span className="text-sm">Confirm terms and conditions!</span>
+                </label>
+            </div>
+            <div className="md:flex md:items-center">
+                <div className="btn-container">
+                    <Link href={{
+                        pathname: "/person-details",
+                        query: {
+                            "name": nameText,
+                            "password": passwordText.trim(),
+                        }
+                    }} className={bookingBtnActive()} onClick={submitDetails} type="button">Submit</Link>
                 </div>
-                <Link href={{
-                    pathname: "/appointment-details",
-                    query: {
-                        "forename": forenameText,
-                        "surname": surnameText,
-                    }
-                }} className={appointmentBtnActive()} onClick={submitAppointment} type="button">Submit</Link>
-            </form>
-        </div>
+            </div>
+        </form>
     );
 }
