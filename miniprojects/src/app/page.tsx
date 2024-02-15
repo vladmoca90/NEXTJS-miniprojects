@@ -19,16 +19,15 @@ export default function FormPerson() {
     }, []);
 
     const getPersonCheck = useCallback(() => {
-        if (passwordText.length === 0 && passwordText.match(passValid) 
-            && nameText.length === 0 && nameText.match(nameValid)) {
+        if (passwordText.length === 0 || passwordText.match(passValid)) {
             return `password-match password-alert`;
         } else {
             return `password-match`;
         }
-    }, [nameText, passwordText]);
+    }, [passwordText]);
 
     const personBtnState = useCallback(() => {
-        if (nameText.length === 0 || passwordText.length === 0) {
+        if (passwordText.length === 0 || passwordText.match(passValid) || nameText.length === 0 || nameText.match(nameValid)) {
             return `btn btn-submit disabled`;
         } else {
             return `btn btn-submit`;
