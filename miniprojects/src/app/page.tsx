@@ -23,19 +23,23 @@ export default function FormPerson() {
         setIsChecked(!isChecked);
     }, [isChecked]);
 
-    const getPasswordCheck= useCallback(() => {
+    const getPasswordCheck = useCallback(() => {
         if (passwordText.length === 0 || passwordText.match(passValid)) {
             return `validation-match`;
-        } else {
+        } else if (passwordText.length === 0) {
             return 'validation-match validation-alert';
+        } else {
+            return 'validation-match';
         }
     }, [passwordText]);
 
-    const getIfChecked= useCallback(() => {
+    const getIfChecked = useCallback(() => {
         if (isChecked) {
             return `validation-match`;
-        } else {
+        } else if (!isChecked) {
             return 'validation-match validation-alert';
+        } else {
+            return 'validation-match';
         }
     }, [isChecked]);
 
