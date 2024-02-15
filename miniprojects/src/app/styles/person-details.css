@@ -37,6 +37,7 @@ body {
 .form-container .form-checkbox {
     align-items: center;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .disabled {
