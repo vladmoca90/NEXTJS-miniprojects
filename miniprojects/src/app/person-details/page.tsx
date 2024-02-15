@@ -8,6 +8,7 @@ const personsUrl = "http://localhost:3000/api/person-details";
 export default function PersonDetails({ searchParams }: {
     searchParams: {
         name: string,
+        password: string,
     }
 }) {
     const [personDetails, setPersonDetails] = useState<Person>([] as any);
@@ -17,6 +18,7 @@ export default function PersonDetails({ searchParams }: {
             method: "POST",
             body: JSON.stringify({
                 "name": searchParams.name,
+                "password": searchParams.password,
             }),
         })
 
@@ -30,7 +32,7 @@ export default function PersonDetails({ searchParams }: {
         const data = await res.json();
 
         setPersonDetails(data.body);
-    }, [searchParams.name]);
+    }, [searchParams.name, searchParams.password]);
 
     useEffect(() => {
         getPersonDetails();

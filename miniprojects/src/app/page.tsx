@@ -2,7 +2,7 @@
 import "./../app/styles/person-details.css";
 import Link from "next/link";
 import { ChangeEvent, useCallback, useState } from "react";
-import { nameValid, passValid } from "./person-details/validation";
+import { passValid } from "./person-details/validation";
 
 export default function FormPerson() {
     let personsUrl = "http://localhost:3000/api/person-details";
@@ -24,17 +24,17 @@ export default function FormPerson() {
     }, [isChecked]);
 
     const getPersonCheck = useCallback(() => {
-        if (nameText.length === 0 || passwordText.length === 0) {
+        if (nameText.length === 0 || passwordText.length === 0 || passwordText.match(passValid)) {
             return `validation-match`;
-        } else if (passwordText.match(passValid) || !isChecked) {
+        } else if (!isChecked) {
             return 'validation-match validation-alert';
         } else {
             return `validation-match`;
         }
-    }, [isChecked, nameText.length, passwordText]);
+    }, [isChecked, nameText, passwordText]);
 
     const personBtnState = useCallback(() => {
-        if (passwordText.length === 0 || passwordText.match(passValid) || nameText.length === 0 || nameText.match(nameValid) || !isChecked) {
+        if (nameText.length === 0 || passwordText.length === 0 || passwordText.match(passValid) || !isChecked) {
             return `btn btn-submit disabled`;
         } else {
             return `btn btn-submit`;
