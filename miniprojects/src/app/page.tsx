@@ -24,10 +24,12 @@ export default function FormPerson() {
     }, [isChecked]);
 
     const getPersonCheck = useCallback(() => {
-        if (nameText.length === 0 || passwordText.match(passValid) || !isChecked) {
-            return `password-match password-alert`;
+        if (nameText.length === 0 || passwordText.length === 0) {
+            return `validation-match`;
+        } else if (passwordText.match(passValid) || !isChecked) {
+            return 'validation-match validation-alert';
         } else {
-            return `password-match`;
+            return `validation-match`;
         }
     }, [isChecked, nameText.length, passwordText]);
 

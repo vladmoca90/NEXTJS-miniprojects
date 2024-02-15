@@ -30,7 +30,7 @@ body {
 .form-container label,
 .form-container input,
 .form-container button,
-.password-match.password-alert {
+.validation-match.validation-alert {
     font-size: .9em;
 }
 
@@ -45,11 +45,11 @@ body {
     pointer-events: none;
 }
 
-.password-match {
+.validation-match {
     display: none;
 }
 
-.password-match.password-alert {
+.validation-match.validation-alert {
     color: #cb2000;
     display: inline-block;
     font-weight: 500;
