@@ -77,13 +77,13 @@ export default function AppointmentForm() {
         await fetch(appointmentsUrl, {
             method: "POST",
             body: JSON.stringify({
-                "forename": forenameText,
-                "surname": surnameText,
-                "email": emailText,
-                "password": passText,
-                "passConfirm": passConfirmText,
-                "phone": phoneText,
-                "workplace": workplaceText,
+                "forename": forenameText.trim(),
+                "surname": surnameText.trim(),
+                "email": emailText.trim(),
+                "password": passText.trim(),
+                "passConfirm": passConfirmText.trim(),
+                "phone": phoneText.trim(),
+                "workplace": workplaceText.trim(),
             })
         });
     }, [appointmentsUrl, forenameText, surnameText, emailText, passText, passConfirmText, phoneText, workplaceText]);
@@ -128,8 +128,8 @@ export default function AppointmentForm() {
                 <Link href={{
                     pathname: "/appointment-details",
                     query: {
-                        "forename": forenameText,
-                        "surname": surnameText,
+                        "forename": forenameText.trim(),
+                        "surname": surnameText.trim(),
                     }
                 }} className={appointmentBtnActive()} onClick={submitAppointment} type="button">Submit</Link>
             </form>

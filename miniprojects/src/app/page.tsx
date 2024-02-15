@@ -45,8 +45,8 @@ export default function FormPerson() {
         await fetch(personsUrl, {
             method: "POST",
             body: JSON.stringify({
-                "name": nameText,
-                "password": passwordText,
+                "name": nameText.trim(),
+                "password": passwordText.trim(),
             })
         })
     }, [personsUrl, nameText, passwordText]);
@@ -84,7 +84,7 @@ export default function FormPerson() {
                     <Link href={{
                         pathname: "/person-details",
                         query: {
-                            "name": nameText,
+                            "name": nameText.trim(),
                         }
                     }} className={personBtnState()} onClick={submitPerson} type="button">Submit</Link>
                 </div>
