@@ -6,8 +6,9 @@ import { Person } from "../../../../lib/personDetails/person";
 export async function POST(request: NextRequest) {
     const data = await request.json();
 
-    const retrievePerson = (name: string, password: string): Person | null => {
-        const person = allPersons.find((person) => person.name === name && person.password === password);
+    const retrievePerson = (name: string, password: string, nationality: string, profession: string, weight: number): Person | null => {
+        const person = allPersons.find((person) => person.name === name && person.password === password &&
+            person.nationality === nationality && person.profession === profession && person.weight === weight);
 
         if (!person) {
             return null;
@@ -15,8 +16,8 @@ export async function POST(request: NextRequest) {
             return person;
         }
     }
-    
-    const personDetails = retrievePerson(data.name, data.password);
+
+    const personDetails = retrievePerson(data.name, data.password, data.nationality, data.profession, data.weight);
 
     if (personDetails === null) {
         return NextResponse.json({},
