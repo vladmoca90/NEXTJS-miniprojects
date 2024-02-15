@@ -2,7 +2,7 @@
 import "./styles/appointment-details.css";
 import Link from "next/link";
 import { ChangeEvent, useCallback, useState } from "react";
-import { emailValid, passValid } from "../appointment-details/validation";
+import { emailValid, passValid } from "./appointment-details/validation";
 
 export default function AppointmentForm() {
     let appointmentsUrl = "http://localhost:3000/api/appointment";
