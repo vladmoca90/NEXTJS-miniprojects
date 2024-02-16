@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 
-export default function Banner() {
+export default async function Banner() {
     const cookieStore = cookies().get("Banner");
 
     if (cookieStore?.value === "true") {
@@ -13,10 +13,7 @@ export default function Banner() {
                         <div role="alert" className="relative block w-full text-base font-regular px-4 py-4 rounded-lg bg-red-500 text-white flex">
                             <div className=" mr-12">
                                 <p className="font-bold text-black">
-                                    🌟 Black Friday Sale
-                                    <span className="text-white">
-                                        - Up to 50% off on fashion items!
-                                    </span>
+                                    🌟 Black Friday Sale <span className="text-white"> - Up to 50% off on fashion items!</span>
                                     <span title="" className="inline-flex items-center justify-center text-sm font-bold text-yellow-300 transition-all ml-4 duration-200 rounded-md hover:text-gray-700" role="button">
                                         Get Now <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                             <path d="M5 12h14"></path>
