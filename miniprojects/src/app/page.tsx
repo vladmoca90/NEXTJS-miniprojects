@@ -2,7 +2,17 @@
 import { cookies } from "next/headers";
 import Link from "next/link";
 
-export default async function MessageBanner() {
+export default function MessageBanner() {
+    const cookieStore = cookies();
+
+    cookieStore.set({
+        httpOnly: true,
+        name: "name",
+        path: "/",
+        secure: true,
+        value: "VladCookie",
+    });
+
     return (
         <div className="flex min-h-screen items-center justify-center">
             <div>
@@ -16,9 +26,9 @@ export default async function MessageBanner() {
                                 </span>
                                 <span title="" className="inline-flex items-center justify-center text-sm font-bold text-yellow-300 transition-all ml-4 duration-200 rounded-md hover:text-gray-700" role="button">
                                     Get Now <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                                <path d="M5 12h14"></path>
-                                                <path d="M12 5l7 7-7 7"></path>
-                                            </svg>
+                                        <path d="M5 12h14"></path>
+                                        <path d="M12 5l7 7-7 7"></path>
+                                    </svg>
                                 </span>
                             </p>
                         </div>
