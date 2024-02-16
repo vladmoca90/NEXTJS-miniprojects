@@ -1,18 +1,7 @@
 "use server";
-import { cookies } from "next/headers";
 import Link from "next/link";
 
-export default function MessageBanner() {
-    const cookieStore = cookies();
-
-    cookieStore.set({
-        httpOnly: true,
-        name: "name",
-        path: "/",
-        secure: true,
-        value: "VladCookie",
-    });
-
+export default function Banner() {
     return (
         <div className="flex min-h-screen items-center justify-center">
             <div>
