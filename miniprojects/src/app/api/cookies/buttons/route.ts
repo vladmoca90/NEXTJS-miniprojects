@@ -1,18 +1,22 @@
-// import { NextRequest, NextResponse } from "next/server";
-// import { cookies } from "next/headers";
+"use server";
+import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
 
-// export async function GET(request: NextRequest) {
-//     cookies().set("name", "BladMocanu", {
-//         expires: 48 * 60 * 60,
-//     });
+export async function GET(request: NextRequest) {
+    const btnCookie = cookies().set("name", "VladMocanu", {
+        maxAge: 48 * 60 * 60,
+    });
 
-//     return NextResponse.json(
-//         {
-//             success: true,
-//             cookies: request.cookies.getAll(),
-//         },
-//         {
-//             status: 200,
-//         }
-//     );
-// }
+    const btnCookieVal = cookies().get("name")?.value;
+
+    return NextResponse.json(
+        {
+            btnCookie,
+            btnCookieVal,
+            cookies: request.cookies.getAll(),
+        },
+        {
+            status: 200,
+        }
+    );
+}
