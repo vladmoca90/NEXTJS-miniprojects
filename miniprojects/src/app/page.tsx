@@ -3,7 +3,7 @@ import "./styles/cookieButtons.css";
 import { useCallback, useEffect, useState } from "react";
 
 export default function ButtonMain() {
-    const btnCookieUrl = "http://localhost:3000/api/cookies/buttons/login";
+    const btnCookieUrl = "http://localhost:3000/api/cookies/buttons/add";
 
     const [isLogin, setIsLogin] = useState(false);
 
