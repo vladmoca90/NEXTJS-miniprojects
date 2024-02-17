@@ -170,6 +170,7 @@ export default function FoodList() {
                         </tbody>
                     </table>
                 </div>
+            </div>
         </main>
     );
 }
