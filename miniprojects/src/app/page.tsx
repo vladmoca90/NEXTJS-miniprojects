@@ -1,27 +1,41 @@
 "use client";
-import "./styles/cookieButtons.css";
+import Cookie from "js-cookie"
 import { useCallback } from "react";
 
-export default function ButtonMain() {
-    const btnAddCookieUrl = "http://localhost:3000/api/cookies/buttons/add";
-    const deletedCookieUrl = "http://localhost:3000/api/cookies/buttons/remove";
+export default function CookieForm() {
+    const formUrl = "http://localhost:3000/api/cookies/form";
 
-    const getAddCookie = useCallback(async () => {
-        await fetch(btnAddCookieUrl);
-    }, []);
-
-    const getDeleteCookie = useCallback(async () => {
-        await fetch(deletedCookieUrl);
+    const getFormCookie = useCallback(async () => {
+        await fetch(formUrl);
     }, []);
 
     return (
-        <div id="buttonContent" className="inline-flex">
-            <button type="button" onClick={getAddCookie} className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-8 py-3 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
-                Add
-            </button>
-            <button type="button" onClick={getDeleteCookie} className="focus:outline-none border border-gray-300 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-8 py-3 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                Remove
-            </button>
-        </div>
+        <main className="flex mt-5 flex-col items-center justify-center">
+            <h1 className="my-5 text-center text-2xl font-bold">
+                Getting and Setting Cookies in Next.js
+            </h1>
+            <div>
+                <h2 className="m-5 text-center text-3xl font-semibold">Set Cookie</h2>
+                <form action={getFormCookie}>
+                    <input type="email" className="bg-transparent px-2 py-2 block my-2 border-2 border-slate-800 rounded-md" placeholder="email" name="email" />
+                    <input type="password" className="bg-transparent px-2 py-2 block my-2 border-2 border-slate-800 rounded-md" placeholder="password" name="password" />
+                    <button className="bg-blue-600 rounded-md px-6 py-2 w-full text-white">Login</button>
+                </form>
+            </div>
+            <div className="mt-5">
+                <div className="mt-5">
+                    <h2 className="mt-5 text-center text-3xl font-semibold">{" "} Cookie Value</h2>
+                    {
+                        Cookie.get("name") && (
+                            <p className="mt-2 text-xl">
+                                {Cookie.get("name") +
+                                    ": " +
+                                    Cookie?.get("name")}
+                            </p>
+                        )
+                    }
+                </div>
+            </div>
+        </main>
     );
 }
