@@ -4,7 +4,7 @@ export default function Home() {
     const handleLogin = async () => {
         "use server";
 
-        cookies().set("name-token", "Vlad Token", {
+        cookies().set("name", "Vlad Token", {
             maxAge: 48 * 60 * 60,
             secure: process.env.NODE_ENV === "production",
             httpOnly: true,
@@ -27,11 +27,11 @@ export default function Home() {
             <div className="mt-5">
                 <h2 className="mt-10 text-center text-3xl font-semibold">{" "} Cookie Value</h2>
 
-                {cookies().get("name-token")?.name && (
+                {cookies().get("name")?.name && (
                     <p className="mt-5 text-xl">
-                        {cookies().get("name-token")?.name +
+                        {cookies().get("name")?.name +
                             ": " +
-                            cookies()?.get("name-token")?.value}
+                            cookies()?.get("name")?.value}
                     </p>
                 )}
             </div>

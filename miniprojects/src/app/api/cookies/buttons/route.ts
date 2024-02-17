@@ -1,20 +1,15 @@
-// import { NextResponse, NextRequest } from "next/server";
+// import { NextRequest, NextResponse } from "next/server";
 // import { cookies } from "next/headers";
 
 // export async function GET(request: NextRequest) {
-//     const oneDay = 24 * 60 * 60 * 1000;
-
-//     cookies().set("name", "Vlad", {
-//         expires: Date.now() - oneDay,
+//     cookies().set("name", "BladMocanu", {
+//         expires: 48 * 60 * 60,
 //     });
-
-//     const cookieVal = cookies().get("name")?.value;
 
 //     return NextResponse.json(
 //         {
-//             cookieVal,
-//             cookies: request.cookies.getAll(),
 //             success: true,
+//             cookies: request.cookies.getAll(),
 //         },
 //         {
 //             status: 200,
