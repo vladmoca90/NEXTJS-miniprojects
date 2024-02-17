@@ -39,10 +39,6 @@ export default function CarsShowroom() {
         return Object.keys(carsDictionary);
     }, [cars]);
 
-    useEffect(() => {
-        getCars();
-    }, [getCars]);
-
     const selectMake = useCallback(async (event: { target: { value: string; } }) => {
         const value = event.target.value;
         const carModels = cars.filter((car) => value === car.make);
@@ -50,12 +46,16 @@ export default function CarsShowroom() {
         setModelsFromMake(carModels);
     }, [cars]);
 
-    const selectPrice = useCallback(async (event: { target: { value: string; } }) => {
-        const priceValue = event.target.value;
-        const price = cars.filter((car) => priceValue === car.price);
+    const selectPrice = useCallback(async (event: { target: { value: number; } }) => {
+        const value = event.target.value;
+        const carPrices = cars.filter((car) => value === car.price);
 
-        setCarPrice(price);
+        setCarPrice(carPrices);
     }, [cars]);
+
+    useEffect(() => {
+        getCars();
+    }, [getCars]);
 
     return (
         <div className="box">
@@ -72,7 +72,7 @@ export default function CarsShowroom() {
                             })
                         }
                     </select>
-                    <select id="carModel" title="carModel" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+                    <select id="carModel" title="carModel" onChange={selectPrice} className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="model">-- Any Model --</option>
                         {
                             modelsFromMake.map((car, index) => {
@@ -85,7 +85,7 @@ export default function CarsShowroom() {
                     <select id="carPrice" title="carPrice" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="price">-- Any Price --</option>
                         {
-                            cars.map((car, index) => {
+                            carPrice.map((car, index) => {
                                 return (
                                     <option value={car.price} key={index}>&pound;{car.price}</option>
                                 );
