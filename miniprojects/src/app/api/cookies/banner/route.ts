@@ -24,4 +24,4 @@ export async function GET(request: NextRequest) {
     return response;
 }
 
-// http://localhost:3000/api/appointment
+// http://localhost:3000/api/cookies/banner
