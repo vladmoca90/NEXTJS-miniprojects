@@ -2,7 +2,7 @@
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
     const btnCookie = cookies().set("name", "VladMocanu", {
         httpOnly: true,
         maxAge: 48 * 60 * 60,
