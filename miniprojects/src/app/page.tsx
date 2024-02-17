@@ -1,11 +1,13 @@
 "use client";
 import Link from "next/link";
+import { cookies } from "next/headers";
 import { useCallback, useState } from "react";
 
 export default function Banner() {
     const [isOpened, setIsOpened] = useState(false);
 
     const closeBanner = useCallback(() => {
+
         setIsOpened(!isOpened);
     }, [isOpened]);
 
