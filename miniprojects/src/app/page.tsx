@@ -1,129 +1,41 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
-import "./styles/cars-showroom.css";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
-import { Car } from "../../lib/carsShowroom/Car";
+import { useCallback, useState } from "react";
 
-export default function CarsShowroom() {
-    let carsUrl = "http://localhost:3000/api/cars-showroom";
+export default function Banner() {
+    const [isOpened, setIsOpened] = useState(false);
 
-    const [cars, setCars] = useState<Car[]>([]);
-    const [modelsFromMake, setModelsFromMake] = useState<Car[]>([]);
-    const [priceFromModels, setPriceFromModels] = useState<Car[]>([]);
-
-    const getCars = useCallback(async () => {
-        const res = await fetch(carsUrl);
-
-        if (!res.ok) {
-            throw new Error("Failed to fetch data");
-        }
-
-        const data = await res.json();
-
-        setCars(data.body);
-    }, [carsUrl]);
-
-    const removeDuplicatedMakes = useCallback(() => {
-        let carsDictionary: { [make: string[number]]: any } = {};
-
-        for (let i = 0; i < cars.length; i++) {
-            if (carsDictionary[cars[i].make]) {
-                continue;
-            }
-            else {
-                carsDictionary[cars[i].make] = cars;
-            }
-        }
-
-        return Object.keys(carsDictionary);
-    }, [cars]);
-
-    useEffect(() => {
-        getCars();
-    }, [getCars]);
-
-    const selectMake = useCallback(async (event: { target: { value: string; } }) => {
-        const value = event.target.value;
-        const carModels = cars.filter((car) => value === car.make);
-
-        setModelsFromMake(carModels);
-    }, [cars]);
-
-    const selectPrice = useCallback(async (event: { target: { value: number; } }) => {
-        const value = event.target.value;
-        const carPrices = cars.filter((car) => value === car.price);
-
-        setPriceFromModels(carPrices);
-    }, [cars]);
+    const closeBanner = useCallback(() => {
+        setIsOpened(!isOpened);
+    }, [isOpened]);
 
     return (
-        <div className="box">
-            <div className="showroom-search">
-                <form>
-                    <select id="carMake" title="carMake" onChange={selectMake}
-                        className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
-                        <option value="make">-- Any Make --</option>
-                        {
-                            removeDuplicatedMakes().map((car, index) => {
-                                return (
-                                    <option value={car} key={index}>{car}</option>
-                                );
-                            })
-                        }
-                    </select>
-                    <select id="carModel" title="carModel" onChange={selectPrice} className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
-                        <option value="model">-- Any Model --</option>
-                        {
-                            modelsFromMake.map((car, index) => {
-                                return (
-                                    <option value={car.model} key={index}>{car.model}</option>
-                                );
-                            })
-                        }
-                    </select>
-                    <select id="carPrice" title="carPrice" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
-                        <option value="price">-- Any Price --</option>
-                        {
-                            priceFromModels.map((car, index) => {
-                                return (
-                                    <option value={car.price} key={index}>&pound;{car.price}</option>
-                                );
-                            })
-                        }
-                    </select>
-                    <button className="search-btn">Search</button>
-                </form>
-            </div>
-            <div id="showroom">
-                {
-                    cars.map((car, index) => {
-                        return (
-                            <div className="car-container" key={index}>
-                                <div className="car-header">
-                                    <h3 className="car-title">{car.make} <span>{car.model}</span></h3>
-                                    <p className="car-price">&pound;{car.price}
-                                        <span className="car-monthly-price">from &pound;{(car.price / 12).toFixed(0)}/monthly</span>
-                                    </p>
-                                </div>
-                                <div className="car-img-container">
-                                    <img alt={car.make} className="car-img" key={index} src={car.img} />
-                                </div>
-                                <div className="showroom-buttons">
-                                    <Link href="#">Enquiry</Link>
-                                    <Link href="#">Share</Link>
-                                    <Link href="#">Brochure</Link>
-                                    <Link href={{
-                                        pathname: "/vehicle-details",
-                                        query: {
-                                            "carModel": car.model,
-                                        },
-                                    }}>Full details</Link>
-                                </div>
+        <div className="flex min-h-screen items-center justify-center">
+            <div>
+                <div className="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
+                    {!isOpened && (
+                        <div role="alert" className="relative block w-full text-base font-regular px-4 py-4 rounded-lg bg-red-500 text-white flex">
+                            <div className=" mr-12">
+                                <p className="font-bold text-black">
+                                    🌟 Black Friday Sale <span className="text-white"> - Up to 50% off on fashion items!</span>
+                                    <span title="" className="inline-flex items-center justify-center text-sm font-bold text-yellow-300 transition-all ml-4 duration-200 rounded-md hover:text-gray-700" role="button">
+                                        Get Now <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5l7 7-7 7"></path>
+                                        </svg>
+                                    </span>
+                                </p>
                             </div>
-                        );
-                    })
-                }
+                            <Link href="" onClick={closeBanner} className="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-8 max-w-[32px] h-8 max-h-[32px] rounded-lg text-xs text-white hover:bg-white/10 active:bg-white/30 !absolute top-3 right-3" type="button">
+                                <span className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-6 w-6" strokeWidth="2">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
+                                </span>
+                            </Link>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );
