@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
 
 export async function GET(request: NextRequest) {
     const bannerCookie = request.cookies.get("bannerCookie");
@@ -16,5 +15,13 @@ export async function GET(request: NextRequest) {
 
     response.cookies.set("bannerCookie", "true");
 
+    // response.cookies.set("viewedWelcomeMessage", "true", { // additional cookie options
+    //     httpOnly: true,
+    //     maxAge: 60 * 10,
+    //     secure: true,
+    // });
+
     return response;
 }
+
+// http://localhost:3000/api/appointment
