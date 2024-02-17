@@ -1,10 +1,9 @@
 "use client";
-import { cookies } from "next/headers";
 import "./styles/cookieButtons.css";
 import { useCallback, useEffect, useState } from "react";
 
 export default function ButtonMain() {
-    const btnCookieUrl = "http://localhost:3000/api/cookies/buttons";
+    const btnCookieUrl = "http://localhost:3000/api/cookies/buttons/login";
 
     const [isLogin, setIsLogin] = useState(false);
 

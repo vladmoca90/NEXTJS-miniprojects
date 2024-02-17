@@ -1,10 +1,13 @@
 "use server";
-import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
     const btnCookie = cookies().set("name", "VladMocanu", {
-        maxAge: 48 * 60 * 60,
+        httpOnly: true,
+        secure: process.env.NODE_ENV !== "development",
+        expires: new Date(0),
+        path: "/",
     });
 
     const btnCookieVal = cookies().get("name")?.value;
@@ -14,6 +17,7 @@ export async function GET(request: NextRequest) {
             btnCookie,
             btnCookieVal,
             cookies: request.cookies.getAll(),
+            success: true,
         },
         {
             status: 200,
