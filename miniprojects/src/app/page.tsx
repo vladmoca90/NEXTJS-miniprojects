@@ -4,7 +4,7 @@ import { useCallback } from "react";
 
 export default function ButtonMain() {
     const btnAddCookieUrl = "http://localhost:3000/api/cookies/buttons/add";
-    const deletedCookieUrl = "http://localhost:3000/api/cookies/buttons/add";
+    const deletedCookieUrl = "http://localhost:3000/api/cookies/buttons/remove";
 
     const getAddCookie = useCallback(async () => {
         await fetch(btnAddCookieUrl);
