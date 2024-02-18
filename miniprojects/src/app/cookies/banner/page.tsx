@@ -10,7 +10,7 @@ export default function Banner() {
     const getBanner = useCallback(async () => {
         const res = await fetch(bannerUrl);
 
-        if(res === null) {
+        if(!res.ok) {
             setIsOpened(isOpened);
         } else {
             setIsOpened(!isOpened);
