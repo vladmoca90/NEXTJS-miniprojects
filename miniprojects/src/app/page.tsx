@@ -1,26 +1,42 @@
 "use client";
-import { useCallback } from "react";
+import Link from "next/link";
+import { useCallback, useState } from "react";
 
-export default function CookieForm() {
-    const formUrl = "http://localhost:3000/api/cookies/form";
+export default function Banner() {
+    const [isOpened, setIsOpened] = useState(false);
 
-    const getFormCookie = useCallback(async () => {
-        await fetch(formUrl);
-    }, []);
+    const closeBanner = useCallback(() => {
+        setIsOpened(!isOpened);
+    }, [isOpened]);
 
     return (
-        <main className="flex mt-5 flex-col items-center justify-center">
-            <h1 className="my-5 text-center text-2xl font-bold">
-                Getting and Setting Cookies in Next.js
-            </h1>
+        <div className="flex min-h-screen items-center justify-center">
             <div>
-                <h2 className="m-5 text-center text-3xl font-semibold">Set Cookie</h2>
-                <form action={getFormCookie}>
-                    <input type="email" className="bg-transparent px-2 py-2 block my-2 border-2 border-slate-800 rounded-md" placeholder="email" name="email" />
-                    <input type="password" className="bg-transparent px-2 py-2 block my-2 border-2 border-slate-800 rounded-md" placeholder="password" name="password" />
-                    <button className="bg-blue-600 rounded-md px-6 py-2 w-full text-white">Login</button>
-                </form>
+                <div className="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
+                    {!isOpened && (
+                        <div role="alert" className="relative block w-full text-base font-regular px-4 py-4 rounded-lg bg-red-500 text-white flex">
+                            <div className=" mr-12">
+                                <p className="font-bold text-black">
+                                    🌟 Black Friday Sale <span className="text-white"> - Up to 50% off on fashion items!</span>
+                                    <span title="" className="inline-flex items-center justify-center text-sm font-bold text-yellow-300 transition-all ml-4 duration-200 rounded-md hover:text-gray-700" role="button">
+                                        Get Now <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5l7 7-7 7"></path>
+                                        </svg>
+                                    </span>
+                                </p>
+                            </div>
+                            <Link href="" onClick={closeBanner} className="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-8 max-w-[32px] h-8 max-h-[32px] rounded-lg text-xs text-white hover:bg-white/10 active:bg-white/30 !absolute top-3 right-3" type="button">
+                                <span className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-6 w-6" strokeWidth="2">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
+                                </span>
+                            </Link>
+                        </div>
+                    )}
+                </div>
             </div>
-        </main>
+        </div>
     );
 }
