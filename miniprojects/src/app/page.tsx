@@ -34,7 +34,7 @@ export default function FormPerson() {
     }, [passwordText]);
 
     const getIfChecked = useCallback(() => {
-        if (isChecked) {
+        if (!isChecked) {
             return `validation-match`;
         } else if (!isChecked) {
             return 'validation-match validation-alert';
