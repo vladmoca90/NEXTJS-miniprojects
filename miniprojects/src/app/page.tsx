@@ -21,21 +21,6 @@ export default function CookieForm() {
                     <button className="bg-blue-600 rounded-md px-6 py-2 w-full text-white">Login</button>
                 </form>
             </div>
-            <div className="mt-5">
-                <div className="mt-5">
-                    <h2 className="mt-5 text-center text-3xl font-semibold">{" "} Cookie Value</h2>
-                    {/* {
-                        Cookies.get("user-pref") && (
-                            <div className="flex items-center justify-center flex-col gap-3">
-                                <p className="mt-5 text-xl">
-                                    {"user-pref" + ": " + Cookies?.get("user-pref")}
-                                </p>
-                                <button className="bg-blue-600 rounded-md px-6 py-2 w-fit mx-auto text-white">Remove cookie</button>
-                            </div>
-                        )
-                    } */}
-                </div>
-            </div>
         </main>
     );
 }
