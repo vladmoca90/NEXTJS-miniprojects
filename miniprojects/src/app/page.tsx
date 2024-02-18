@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function Banner() {
     const bannerUrl = "http://localhost:3000/api/cookies/banner";
@@ -14,6 +14,10 @@ export default function Banner() {
     const closeBanner = useCallback(() => {
         setIsOpened(!isOpened);
     }, [isOpened]);
+
+    useEffect(() => {
+        getBanner();
+    }, [getBanner]);
 
     return (
         <div className="flex min-h-screen items-center justify-center">

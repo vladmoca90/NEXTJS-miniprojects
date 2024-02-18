@@ -1,8 +1,8 @@
 "use client";
 import "./styles/appointment-details.css";
 import Link from "next/link";
-import { ChangeEvent, useCallback, useState } from "react";
 import { emailValid, passValid } from "./appointment-details/validation";
+import { ChangeEvent, useCallback, useState } from "react";
 
 export default function AppointmentForm() {
     let appointmentsUrl = "http://localhost:3000/api/appointment";

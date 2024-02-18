@@ -1,9 +1,9 @@
 "use client";
-import Image from "next/image";
 import "./styles/wines.css";
-import { useCallback, useEffect, useState } from "react";
-import { Wine } from "../../lib/wines/Wine";
+import Image from "next/image";
 import Link from "next/link";
+import { Wine } from "../../lib/wines/Wine";
+import { useCallback, useEffect, useState } from "react";
 
 export default function WinesSell() {
     let winesUrl = "http://localhost:3000/api/wines";

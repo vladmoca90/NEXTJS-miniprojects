@@ -1,8 +1,8 @@
 "use client";
 import "./../styles/wines.css";
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
 import { Wine } from "../../../lib/wines/Wine";
+import { useCallback, useEffect, useState } from "react";
 
 export default function WineDetails({ searchParams }: {
     searchParams: {

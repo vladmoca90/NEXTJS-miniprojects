@@ -2,8 +2,8 @@
 "use client";
 import "./styles/cars-showroom.css";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
 import { Car } from "../../lib/carsShowroom/Car";
+import { useCallback, useEffect, useState } from "react";
 
 export default function CarsShowroom() {
     let carsUrl = "http://localhost:3000/api/cars-showroom";
@@ -72,7 +72,7 @@ export default function CarsShowroom() {
                             })
                         }
                     </select>
-                    <select id="carModel" title="carModel" onChange={selectPrice} 
+                    <select id="carModel" title="carModel" onChange={selectPrice}
                         className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="model">-- Any Model --</option>
                         {

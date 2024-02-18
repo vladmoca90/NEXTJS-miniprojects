@@ -1,7 +1,7 @@
 "use client";
-import { useCallback, useState } from "react";
 import "./styles/send-message.css";
 import Link from "next/link";
+import { useCallback, useState } from "react";
 
 export default function SendMessage() {
     const [message, setMessage] = useState("");

@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { Car } from "../../../lib/carsShowroom/Car";
+import { useCallback, useEffect, useState } from "react";
 
 export default function VehicleDetails({ searchParams }: {
     searchParams: {

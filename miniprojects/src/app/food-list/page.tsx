@@ -3,7 +3,6 @@ import "./styles/food-list.css";
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { Food } from "../../lib/foodList/Food";
-import Link from "next/link";
 
 export default function FoodList() {
     let foodsUrl = "http://localhost:3000/api/food-list";
