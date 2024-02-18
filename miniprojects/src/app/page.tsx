@@ -5,23 +5,21 @@ import { useCallback, useEffect, useState } from "react";
 export default function Banner() {
     const bannerUrl = "http://localhost:3000/api/cookies/banner";
 
-    const [isOpened, setIsOpened] = useState(false);
+    const [isOpened, setIsOpened] = useState(true);
 
     const getBanner = useCallback(async () => {
-        await fetch(bannerUrl);
-    }, [bannerUrl]);
+        const res = await fetch(bannerUrl);
+
+        if(!res) {
+            setIsOpened(isOpened);
+        } else {
+            setIsOpened(!isOpened);
+        }
+    }, [isOpened]);
 
     useEffect(() => {
         setIsOpened(true);
     }, []);
-
-    // const closeBanner = useCallback(() => {
-    //     setIsOpened(!isOpened);
-    // }, [isOpened]);
-
-    if(!isOpened) {
-        return null;
-    }
 
     return (
         <div className="flex min-h-screen items-center justify-center">
