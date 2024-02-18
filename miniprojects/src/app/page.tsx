@@ -5,20 +5,20 @@ import { useCallback, useEffect, useState } from "react";
 export default function Banner() {
     const bannerUrl = "http://localhost:3000/api/cookies/banner";
 
-    const [isOpened, setIsOpened] = useState(true);
+    const [isOpened, setIsOpened] = useState(false);
 
     const getBanner = useCallback(async () => {
         const res = await fetch(bannerUrl);
 
         if(!res) {
-            setIsOpened(isOpened);
+            setIsOpened(!isOpened);
         } else {
             setIsOpened(!isOpened);
         }
     }, [isOpened]);
 
     useEffect(() => {
-        setIsOpened(true);
+        setIsOpened(false);
     }, []);
 
     return (
@@ -26,7 +26,7 @@ export default function Banner() {
             <div>
                 <div className="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
                     {
-                        isOpened && (
+                        !isOpened && (
                             <div role="alert" className="relative block w-full text-base font-regular px-4 py-4 rounded-lg bg-red-500 text-white flex">
                                 <div className=" mr-12">
                                     <p className="font-bold text-black">
