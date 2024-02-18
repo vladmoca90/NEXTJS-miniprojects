@@ -8,7 +8,6 @@ export default function Home() {
         const password = String(formData.get("password"));
 
         // perform database operations
-
         // get the auth token
 
         cookies().set("auth-token", "some-auth-token-by-server-comp", {

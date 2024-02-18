@@ -7,6 +7,10 @@ export default function Banner() {
 
     const [isOpened, setIsOpened] = useState(false);
 
+    useEffect(() => {
+        setIsOpened(true);
+    }, []);
+
     const getBanner = useCallback(async () => {
         await fetch(bannerUrl);
     }, [bannerUrl]);
@@ -14,10 +18,6 @@ export default function Banner() {
     const closeBanner = useCallback(() => {
         setIsOpened(!isOpened);
     }, [isOpened]);
-
-    useEffect(() => {
-        getBanner();
-    }, [getBanner]);
 
     return (
         <div className="flex min-h-screen items-center justify-center">
