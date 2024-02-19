@@ -6,7 +6,7 @@ export const allCountries: Country[] = [
         code: "AF"
     },
     {
-        name: "land Islands",
+        name: "Aland Islands",
         code: "AX"
     },
     {

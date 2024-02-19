@@ -25,25 +25,34 @@ export default function CountriesList() {
     }, [getCountries]);
 
     return (
-        <div className="countries-table">
-            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <th scope="col">Country name</th>
-                    <th scope="col">Country code</th>
-                </thead>
-                <tbody>
-                    {
-                        countries.map((country, index) => {
-                            return (
-                                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={index}>
-                                    <td>{country.name}</td>
-                                    <td>{country.code}</td>
-                                </tr>
-                            );
-                        })
-                    }
-                </tbody>
-            </table>
+        <div>
+            <div className="countries-statistics">
+                <div>Total number of countries is: {countries.length}</div>
+                <div>Total number of countries is: {countries.length}</div>
+                <div>Total number of countries is: {countries.length}</div>
+            </div>
+            <div className="countries-table">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col">Country name</th>
+                            <th scope="col">Country code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            countries.map((country, index) => {
+                                return (
+                                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={index}>
+                                        <td>{country.name}</td>
+                                        <td>{country.code}</td>
+                                    </tr>
+                                );
+                            })
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

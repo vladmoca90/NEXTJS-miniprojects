@@ -2,24 +2,43 @@ body {
     background: #fff;
 }
 
+.countries-statistics {
+    font-size: .75rem;
+}
+
+.countries-statistics>div {
+    margin: 0;
+    padding: .35rem;
+}
+
+.countries-statistics,
 .countries-table {
-    border: 1px solid #E5E7EB;
-    margin: 5rem auto 0;
+    margin: 2rem auto 0;
     max-width: 525px;
 }
 
-.countries-table table thead>th {
+.countries-statistics,
+.countries-table table {
+    border: 1px solid #E5E7EB;
+}
+
+.countries-table table thead tr>th {
     border-bottom: 1px solid #E5E7EB;
     font-size: .9rem;
     width: 60%;
 }
 
-.countries-table table thead>th,
+.countries-statistics>div,
+.countries-table table thead tr>th,
 .countries-table table tr>td {
     color: #333;
-    padding: .85rem 0;
     text-align: center;
     text-transform: uppercase;
+}
+
+.countries-table table thead tr>th,
+.countries-table table tr>td {
+    padding: .85rem;
 }
 
 .countries-table table tr>td {
