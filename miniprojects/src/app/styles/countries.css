@@ -1,0 +1,22 @@
+body {
+    background: #fff;
+}
+
+.countries-table {
+    border: 1px solid #E5E7EB;
+    margin: 5rem auto 0;
+    max-width: 480px;
+}
+
+.countries-table table thead>th {
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.countries-table table thead>th,
+.countries-table table tr>td {
+    color: #333;
+    font-size: .85rem;
+    padding: .85rem 0;
+    text-align: center;
+    text-transform: uppercase;
+}
