@@ -3,13 +3,7 @@ import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
-    const removeCookie = cookies().set("name", "VladMocanu", {
-        httpOnly: true,
-        secure: process.env.NODE_ENV !== "development",
-        expires: new Date("2025-01-15"),
-        sameSite: "strict",
-        path: "/",
-    });
+    const removeCookie = cookies().delete("name");
 
     return NextResponse.json(
         {
