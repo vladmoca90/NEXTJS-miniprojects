@@ -2,22 +2,11 @@ body {
     background: #fff;
 }
 
-.countries-statistics {
-    font-size: .75rem;
-}
-
-.countries-statistics>div {
-    margin: 0;
-    padding: .35rem;
-}
-
-.countries-statistics,
 .countries-table {
     margin: 2rem auto 0;
     max-width: 525px;
 }
 
-.countries-statistics,
 .countries-table table {
     border: 1px solid #E5E7EB;
 }
@@ -28,7 +17,6 @@ body {
     width: 60%;
 }
 
-.countries-statistics>div,
 .countries-table table thead tr>th,
 .countries-table table tr>td {
     color: #333;
