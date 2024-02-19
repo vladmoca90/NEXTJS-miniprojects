@@ -1,5 +1,5 @@
 "use client";
-import "./styles/cookieButtons.css";
+import "./styles/cookie-buttons.css";
 import { useCallback } from "react";
 
 export default function ButtonMain() {
