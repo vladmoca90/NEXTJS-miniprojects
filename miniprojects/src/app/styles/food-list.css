@@ -4,6 +4,12 @@ body {
   background: #fff;
 }
 
+
+.container-table tr>th,
+.container-table tr>td {
+  color: #333;
+}
+
 .container-table, .container-calculus {
   font-family: "Roboto", sans-serif;
   max-width: 1200px;
@@ -13,4 +19,14 @@ body {
 img {
   display: block;
   margin: 0 auto;
+}
+
+.food-details {
+  background: #cb2000;
+  color: #fff;
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: .6rem .75rem;
+  text-transform: uppercase;
 }
