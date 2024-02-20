@@ -1,64 +1,122 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
-import "./styles/countries.css";
-import { Country } from "../../lib/countries/Country";
-import { useCallback, useEffect, useState } from "react";
+import "./styles/vehicles-showroom.css";
 import Link from "next/link";
+import { Car } from "../../lib/vehiclesShowroom/Car";
+import { useCallback, useEffect, useState } from "react";
 
-export default function CountriesList() {
-    let countriesUrl = "http://localhost:3000/api/countries";
+export default function CarsShowroom() {
+    let carsUrl = "http://localhost:3000/api/vehicles-showroom";
 
-    const [countries, setCountries] = useState<Country[]>([]);
+    const [cars, setCars] = useState<Car[]>([]);
+    const [modelsFromMake, setModelsFromMake] = useState<Car[]>([]);
 
-    const getCountries = useCallback(async () => {
-        const res = await fetch(countriesUrl);
+    const getCars = useCallback(async () => {
+        const res = await fetch(carsUrl);
 
         if (!res.ok) {
-            throw new Error("The data could not be fetched!");
+            throw new Error("Failed to fetch data");
         }
 
         const data = await res.json();
 
-        setCountries(data.body);
-    }, [countriesUrl]);
+        setCars(data.body);
+    }, [carsUrl]);
+
+    const removeDuplicatedMakes = useCallback(() => {
+        let carsDictionary: { [make: string[number]]: any } = {};
+
+        for (let i = 0; i < cars.length; i++) {
+            if (carsDictionary[cars[i].make]) {
+                continue;
+            }
+            else {
+                carsDictionary[cars[i].make] = cars;
+            }
+        }
+
+        return Object.keys(carsDictionary);
+    }, [cars]);
 
     useEffect(() => {
-        getCountries();
-    }, [getCountries]);
+        getCars();
+    }, [getCars]);
+
+    const selectMake = useCallback(async (event: { target: { value: string; } }) => {
+        const value = event.target.value;
+        const carModels = cars.filter((car) => value === car.make);
+
+        setModelsFromMake(carModels);
+    }, [cars]);
 
     return (
-        <div>
-            <div className="countries-search">
-                <label className="countries-search-title">Search countries:</label>
-                <input className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
-            </div>
-            <div className="countries-table">
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col">Country name</th>
-                            <th scope="col">Country code</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+        <div className="box">
+            <div className="showroom-search">
+                <form>
+                    <select id="carMake" title="carMake" onChange={selectMake}
+                        className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+                        <option value="make">-- Any Make --</option>
                         {
-                            countries.map((country, index) => {
+                            removeDuplicatedMakes().map((car, index) => {
                                 return (
-                                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={index}>
-                                        <td>
-                                            <Link href={{
-                                                pathname: "/country-name",
-                                                query: {
-                                                    "countryName": country.name
-                                                },
-                                            }}>{country.name}</Link>
-                                        </td>
-                                        <td>{country.code}</td>
-                                    </tr>
+                                    <option value={car} key={index}>{car}</option>
                                 );
                             })
                         }
-                    </tbody>
-                </table>
+                    </select>
+                    <select id="carModel" title="carModel"
+                        className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+                        <option value="model">-- Any Model --</option>
+                        {
+                            modelsFromMake.map((car, index) => {
+                                return (
+                                    <option value={car.model} key={index}>{car.model}</option>
+                                );
+                            })
+                        }
+                    </select>
+                    <select id="carPrice" title="carPrice" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+                        <option value="price">-- Any Price --</option>
+                        {
+                            cars.map((car, index) => {
+                                return (
+                                    <option value={car.price} key={index}>&pound;{car.price}</option>
+                                );
+                            })
+                        }
+                    </select>
+                    <button className="search-btn">Search</button>
+                </form>
+            </div>
+            <div id="showroom">
+                {
+                    cars.map((car, index) => {
+                        return (
+                            <div className="car-container" key={index}>
+                                <div className="car-header">
+                                    <h3 className="car-title">{car.make} <span>{car.model}</span></h3>
+                                    <p className="car-price">&pound;{car.price}
+                                        <span className="car-monthly-price">from &pound;{(car.price / 12).toFixed(0)}/monthly</span>
+                                    </p>
+                                </div>
+                                <div className="car-img-container">
+                                    <img alt={car.make} className="car-img" key={index} src={car.img} />
+                                </div>
+                                <div className="showroom-buttons">
+                                    <Link href="#">Enquiry</Link>
+                                    <Link href="#">Share</Link>
+                                    <Link href="#">Brochure</Link>
+                                    <Link href={{
+                                        pathname: "/vehicle-details",
+                                        query: {
+                                            "carModel": car.model,
+                                        },
+                                    }}>Full details</Link>
+                                </div>
+                            </div>
+                        );
+                    })
+                }
             </div>
         </div>
     );

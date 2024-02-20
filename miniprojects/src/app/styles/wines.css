@@ -11,7 +11,7 @@ body {
 }
 
 .wine-details {
-    margin: 0 auto 20px;
+    margin: 2rem auto 0;
 }
 
 #productsList {
@@ -96,9 +96,9 @@ body {
 }
 
 .product-description__text {
-    color: #333;
-    font-size: .88em;
+    color: #404040;
+    font-size: .8em;
     font-weight: 400;
-    line-height: 1.35em;
-    padding: 8px 15px 0;
+    line-height: 1.7em;
+    padding: 12px 15px 0;
 }
