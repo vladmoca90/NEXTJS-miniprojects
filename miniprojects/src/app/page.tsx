@@ -48,7 +48,7 @@ export default function CountriesList() {
                                             <Link href={{
                                                 pathname: "/country-name",
                                                 query: {
-                                                    "countryName": country.name
+                                                    "countryName": country.name,
                                                 },
                                             }}>{country.name}</Link>
                                         </td>

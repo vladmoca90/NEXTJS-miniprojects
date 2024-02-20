@@ -1,14 +1,53 @@
 "use client";
-import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { Country } from "../../../lib/countries/Country";
 
 export default function CountryName({ searchParams }: {
-    searchParamms: {
+    searchParams: {
         "countryName": string,
     }
 }) {
-    let countriesUrl = "http://localhost:3000/api/countries?countryName" + searchParams.countryName;
+    let countriesDetailsUrl = "http://localhost:3000/api/get-country-name?countryName=" + searchParams.countryName;
 
     const [countryDetails, setCountryDetails] = useState<Country>([] as any);
+
+    const getCountry = useCallback(async() => {
+        const res = await fetch(countriesDetailsUrl);
+
+        if (!res.ok) {
+            console.log("The details are NOT valid!");
+            return;
+        } else {
+            console.log("The details are valid!");
+        }
+
+        const data = await res.json();
+
+        setCountryDetails(data.country);
+    }, [countriesDetailsUrl]);
+
+    useEffect(() => {
+        getCountry();
+    }, [getCountry]);
+
+    return (
+        <div>
+            <div className="countries-table">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col">Country name</th>
+                            <th scope="col">Country code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <td>{countryDetails.name}</td>
+                            <td>{countryDetails.code}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
 }
