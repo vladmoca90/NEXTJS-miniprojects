@@ -8,7 +8,7 @@ export default function CountryName({ searchParams }: {
         "countryName": string,
     }
 }) {
-    let countriesUrl = "http://localhost:3000/api/countries" + searchParams.countryName;
+    let countriesUrl = "http://localhost:3000/api/countries?countryName" + searchParams.countryName;
 
-    const [countryDetails, setCountryDetails] = useState<Country[]>([] as any);
+    const [countryDetails, setCountryDetails] = useState<Country>([] as any);
 }
