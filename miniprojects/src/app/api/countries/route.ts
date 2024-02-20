@@ -1,5 +1,4 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { allCountries } from "../../../../lib/countries/allCountries";
 
 export async function GET(request: NextRequest) {
