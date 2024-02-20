@@ -48,7 +48,6 @@ export default function FoodListDetails({ searchParams }: {
                                             <th scope="col" className="border-r px-6 py-4">Unit</th>
                                             <th scope="col" className="border-r px-6 py-4">Quantity</th>
                                             <th scope="col" className="border-r px-6 py-4">Total price (&pound;)</th>
-                                            <th scope="col" className="border-r px-6 py-4">Check food details</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -60,7 +59,7 @@ export default function FoodListDetails({ searchParams }: {
                                             <td className="food-price border-r border-r whitespace-nowrap px-6 py-4">{foodDetails.price}</td>
                                             <td className="food-unit border-r border-r whitespace-nowrap px-6 py-4">{foodDetails.unit}</td>
                                             <td className="food-quantity border-r whitespace-nowrap px-6 py-4">{foodDetails.quantity}</td>
-                                            <td className="food-total-price border-r whitespace-nowrap px-6 py-4">{(foodDetails.price * foodDetails.quantity).toFixed(2)}</td>);
+                                            <td className="food-total-price border-r whitespace-nowrap px-6 py-4">{(foodDetails.price * foodDetails.quantity).toFixed(2)}</td>
                                         </tr>
                                     </tbody>
                                 </table>
