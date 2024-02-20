@@ -2,6 +2,7 @@
 import "./styles/countries.css";
 import { Country } from "../../lib/countries/Country";
 import { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function CountriesList() {
     let countriesUrl = "http://localhost:3000/api/countries";
@@ -43,7 +44,14 @@ export default function CountriesList() {
                             countries.map((country, index) => {
                                 return (
                                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={index}>
-                                        <td>{country.name}</td>
+                                        <td>
+                                            <Link href={{
+                                                pathname: "/country-name",
+                                                query: {
+                                                    "countryName": country.name
+                                                },
+                                            }}>{country.name}</Link>
+                                        </td>
                                         <td>{country.code}</td>
                                     </tr>
                                 );
