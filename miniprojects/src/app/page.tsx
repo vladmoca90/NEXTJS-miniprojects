@@ -1,27 +1,57 @@
 "use client";
-import "./styles/cookie-buttons.css";
-import { useCallback } from "react";
+import "./styles/countries.css";
+import { Country } from "../../lib/countries/Country";
+import { useCallback, useEffect, useState } from "react";
 
-export default function ButtonMain() {
-    const btnAddCookieUrl = "http://localhost:3000/api/cookies/buttons/add";
-    const deletedCookieUrl = "http://localhost:3000/api/cookies/buttons/remove";
+export default function CountriesList() {
+    let countriesUrl = "http://localhost:3000/api/countries";
 
-    const getAddCookie = useCallback(async () => {
-        await fetch(btnAddCookieUrl);
-    }, []);
+    const [countries, setCountries] = useState<Country[]>([]);
 
-    const getDeleteCookie = useCallback(async () => {
-        await fetch(deletedCookieUrl);
-    }, []);
+    const getCountries = useCallback(async () => {
+        const res = await fetch(countriesUrl);
+
+        if (!res.ok) {
+            throw new Error("The data could not be fetched!");
+        }
+
+        const data = await res.json();
+
+        setCountries(data.body);
+    }, [countriesUrl]);
+
+    useEffect(() => {
+        getCountries();
+    }, [getCountries]);
 
     return (
-        <div id="buttonContent" className="inline-flex">
-            <button type="button" onClick={getAddCookie} className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-8 py-3 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
-                Add
-            </button>
-            <button type="button" onClick={getDeleteCookie} className="focus:outline-none border border-gray-300 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-8 py-3 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                Remove
-            </button>
+        <div>
+            <div className="countries-search">
+                <label className="countries-search-title">Search countries:</label>
+                <input className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
+            </div>
+            <div className="countries-table">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col">Country name</th>
+                            <th scope="col">Country code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            countries.map((country, index) => {
+                                return (
+                                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={index}>
+                                        <td>{country.name}</td>
+                                        <td>{country.code}</td>
+                                    </tr>
+                                );
+                            })
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

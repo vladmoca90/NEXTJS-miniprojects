@@ -214,7 +214,7 @@ export const allCountries: Country[] = [
         code: "CR"
     },
     {
-        name: "Cote D\"Ivoire",
+        name: "Cote D'Ivoire",
         code: "CI"
     },
     {
@@ -462,7 +462,7 @@ export const allCountries: Country[] = [
         code: "KI"
     },
     {
-        name: "Korea, Democratic People\"S Republic of",
+        name: "Korea, Democratic People's Republic of",
         code: "KP"
     },
     {
@@ -478,7 +478,7 @@ export const allCountries: Country[] = [
         code: "KG"
     },
     {
-        name: "Lao People\"S Democratic Republic",
+        name: "Lao People's Democratic Republic",
         code: "LA"
     },
     {
@@ -518,7 +518,7 @@ export const allCountries: Country[] = [
         code: "MO"
     },
     {
-        name: "Macedonia, The Former Yugoslav Republic of",
+        name: "Macedonia",
         code: "MK"
     },
     {
@@ -674,7 +674,7 @@ export const allCountries: Country[] = [
         code: "PW"
     },
     {
-        name: "Palestinian Territory, Occupied",
+        name: "Palestinian Territory",
         code: "PS"
     },
     {
