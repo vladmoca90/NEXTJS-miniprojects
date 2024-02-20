@@ -45,3 +45,10 @@ body {
     font-size: .8rem;
     width: 40%;
 }
+
+.countries-table table tr>td a {
+    color: #cb2000;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: underline;
+}
