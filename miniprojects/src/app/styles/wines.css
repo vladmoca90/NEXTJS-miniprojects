@@ -16,6 +16,7 @@ body {
 
 #productsList {
     border: 1px solid #c1c1c1;
+    color: #333;
     display: block;
     font-family: "Fira Sans", sans-serif;
     font-size: 15px;
@@ -26,6 +27,7 @@ body {
 
 #productsList option {
     border-radius: 0;
+    color: #333;
 }
 
 .products-container {
