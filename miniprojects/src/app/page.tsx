@@ -9,7 +9,7 @@ export default function WinesSell() {
     let winesUrl = "http://localhost:3000/api/wines";
 
     const [wines, setWines] = useState<Wine[]>([]);
-    const [selectedWine, setSelectedWine] = useState<Wine[]>([]);
+    const [selectedWine, setSelectedWine] = useState(wines);
 
     const getWines = useCallback(async () => {
         const res = await fetch(winesUrl);
@@ -23,10 +23,10 @@ export default function WinesSell() {
         setWines(data.body);
     }, [winesUrl]);
 
-    const getSelectedWine = useCallback(async (e: { target: { value: string } }) => {
+    const getSelectedWine = useCallback(async (e: { target: { value: string | undefined }}) => {
         const value = e.target.value;
 
-        if(value === "All products") {
+        if (value === "All products") {
             setSelectedWine(wines);
         } else {
             const searchWine = wines.filter((wine) => { return value === wine.name; });
