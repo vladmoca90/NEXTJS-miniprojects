@@ -130,9 +130,7 @@ export default function FoodList() {
                                                 return (
                                                     <tr key={index} className="border-r border-b dark:border-neutral-500 whitespace-nowrap px-6 py-4">
                                                         <td className="food-image border-r border-r whitespace-nowrap px-6 py-4">
-
                                                             <Image alt={food.name} className="product-img" width={80} height={80} src={"/images/foodList/" + food.img} />
-
                                                         </td>
                                                         <td className="food-name border-r border-r whitespace-nowrap px-6 py-4">{food.name}</td>
                                                         <td className="food-price border-r border-r whitespace-nowrap px-6 py-4">{food.price}</td>
