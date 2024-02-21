@@ -25,11 +25,13 @@ export default function WinesSell() {
 
     const getSelectedWine = useCallback(async (e: { target: { value: string } }) => {
         const value = e.target.value;
-        const searchWine = wines.filter((wine) => { return value === wine.name; });
 
-        console.log(searchWine);
-
-        setSelectedWine(searchWine);
+        if(value === "All products") {
+            setSelectedWine(wines);
+        } else {
+            const searchWine = wines.filter((wine) => { return value === wine.name; });
+            setSelectedWine(searchWine);
+        }
     }, [wines]);
 
     useEffect(() => {
