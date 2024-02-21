@@ -6,8 +6,8 @@ import { useCallback, useState } from "react";
 export default function SendMessage() {
     const [message, setMessage] = useState("");
 
-    const getMessage = useCallback(async (event: { target: { value: string; } }) => {
-        setMessage(event.target.value);
+    const getMessage = useCallback(async (e: { target: { value: string; } }) => {
+        setMessage(e.target.value);
     }, []);
 
     return (
