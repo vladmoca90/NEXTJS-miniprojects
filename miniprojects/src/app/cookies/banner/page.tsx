@@ -15,7 +15,7 @@ export default function Banner() {
         } else {
             setIsOpened(!isOpened);
         }
-    }, [isOpened]);
+    }, [isOpened]); // Cookie appears in browser by default, then added on click if it is deleted through Dev Tools.
 
     return (
         <div className="flex min-h-screen items-center justify-center">
