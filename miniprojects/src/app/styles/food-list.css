@@ -10,7 +10,8 @@ body {
   color: #333;
 }
 
-.container-table, .container-calculus {
+.container-table,
+.container-calculus {
   font-family: "Roboto", sans-serif;
   max-width: 1200px;
   margin: 2em auto;
@@ -23,10 +24,16 @@ img {
 
 .food-details {
   background: #cb2000;
+  border-radius: 8px;
   color: #fff;
-  font-size: .85rem;
+  font-size: .8rem;
   font-weight: 600;
-  letter-spacing: 1px;
-  padding: .6rem .75rem;
+  padding: .45rem .75rem;
   text-transform: uppercase;
+  transition: linear .5s all;
+}
+
+.food-details:hover {
+  background: #333;
+  color: #fff;
 }

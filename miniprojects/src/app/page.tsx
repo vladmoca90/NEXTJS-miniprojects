@@ -131,7 +131,7 @@ export default function FoodList() {
                                                     <tr key={index} className="border-r border-b dark:border-neutral-500 whitespace-nowrap px-6 py-4">
                                                         <td className="food-image border-r border-r whitespace-nowrap px-6 py-4">
 
-                                                            <Image alt={food.name} className="product-img" width={100} height={100} src={"/images/foodList/" + food.img} />
+                                                            <Image alt={food.name} className="product-img" width={80} height={80} src={"/images/foodList/" + food.img} />
 
                                                         </td>
                                                         <td className="food-name border-r border-r whitespace-nowrap px-6 py-4">{food.name}</td>
@@ -141,10 +141,11 @@ export default function FoodList() {
                                                         <td className="food-total-price border-r whitespace-nowrap px-6 py-4">{(food.price * food.quantity).toFixed(2)}</td>
                                                         <td className="food-total-price border-r whitespace-nowrap px-6 py-4">
                                                             <Link className="food-details" href={{
-                                                                pathname: "/food-name", 
-                                                                query: { 
+                                                                pathname: "/food-name",
+                                                                query: {
                                                                     "foodName": food.name
-                                                                }}}>Check details</Link>
+                                                                }
+                                                            }}>Check details</Link>
                                                         </td>
                                                     </tr>
                                                 );
