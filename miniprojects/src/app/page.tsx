@@ -1,13 +1,14 @@
 "use client";
 import "./styles/countries.css";
-import { Country } from "../../lib/countries/Country";
-import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
+import { Country } from "../../lib/countries/Country";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 export default function CountriesList() {
     let countriesUrl = "http://localhost:3000/api/countries";
 
     const [countries, setCountries] = useState<Country[]>([]);
+    const [selectedCountry, setSelectedCountry] = useState<Country[]>([]);
 
     const getCountries = useCallback(async () => {
         const res = await fetch(countriesUrl);
@@ -21,6 +22,20 @@ export default function CountriesList() {
         setCountries(data.body);
     }, [countriesUrl]);
 
+    const getSelectedCountry = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+
+        if (value === null) {
+            setSelectedCountry(countries);
+        } else {
+            const searchCountry = countries.filter((country) => {
+                return value === country.name
+            });
+
+            setSelectedCountry(searchCountry);
+        }
+    }, [countries]);
+
     useEffect(() => {
         getCountries();
     }, [getCountries]);
@@ -29,7 +44,7 @@ export default function CountriesList() {
         <div>
             <div className="countries-search">
                 <label className="countries-search-title">Search countries:</label>
-                <input className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
+                <input onChange={getSelectedCountry} className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
             </div>
             <div className="countries-table">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
