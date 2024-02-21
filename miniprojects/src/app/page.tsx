@@ -29,6 +29,8 @@ export default function WinesSell() {
             return value === wine.name;
         });
 
+        console.log(searchWine);
+
         setSelectedWine(searchWine);
     }, [wines]);
 
