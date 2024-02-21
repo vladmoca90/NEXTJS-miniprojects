@@ -9,6 +9,7 @@ export default function WinesSell() {
     let winesUrl = "http://localhost:3000/api/wines";
 
     const [wines, setWines] = useState<Wine[]>([]);
+    const [selectedWine, setSelectedWine] = useState<Wine[]>([]);
 
     const getWines = useCallback(async () => {
         const res = await fetch(winesUrl);
@@ -22,6 +23,15 @@ export default function WinesSell() {
         setWines(data.body);
     }, [winesUrl]);
 
+    const getSelectedWine = useCallback(async (e: { target: { value: string } }) => {
+        const value = e.target.value;
+        const searchWine = wines.filter((wine) => {
+            return value === wine.name;
+        });
+
+        setSelectedWine(searchWine);
+    }, [wines]);
+
     useEffect(() => {
         getWines();
     }, [getWines]);
@@ -29,7 +39,7 @@ export default function WinesSell() {
     return (
         <section className="box">
             <div>
-                <select id="productsList" title="wines">
+                <select id="productsList" title="wines" onChange={getSelectedWine}>
                     <option value="All products">All products</option>
                     {
                         wines.map((wine, index) => {
