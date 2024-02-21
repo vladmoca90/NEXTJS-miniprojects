@@ -52,7 +52,7 @@ export default function WinesSell() {
             </div>
             <div className="products-container">
                 {
-                    wines.map((wine, index) => {
+                    selectedWine.map((wine, index) => {
                         return (
                             <div className="product" key={index}>
                                 <div className="product-description__top">
