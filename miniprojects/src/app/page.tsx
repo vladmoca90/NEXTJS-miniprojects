@@ -23,11 +23,30 @@ export default function CountriesList() {
     }, [countriesUrl]);
 
     const getSelectedCountry = useCallback(async (e: { target: { value: string } }) => {
-        const value = e.target.value.trim();
-        const searchCountry: Country | any = countries.filter((country) => { return value === country.name; });
+        const value = e.target.value;
 
-        setSearchCountry(searchCountry);
-    }, [countries]);
+        setSearchCountry(value);
+
+        if (value.length > 2) {
+            const res = await fetch(countriesUrl, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (!res.ok) {
+                throw new Error("Failed to fetch data");
+            }
+
+            const data = await res.json();
+
+            setSearchCountry(data.country);
+        } else {
+            setSearchCountry("");
+        }
+
+    }, [countriesUrl]);
 
     useEffect(() => {
         getCountries();
