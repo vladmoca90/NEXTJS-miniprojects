@@ -5,6 +5,7 @@ body {
 .countries-search {
     max-width: 285px;
     margin: 0 auto 2rem;
+    position: relative;
 }
 
 .countries-search-bar {
@@ -51,4 +52,16 @@ body {
     cursor: pointer;
     font-weight: 600;
     text-decoration: underline;
+}
+
+#searchCountries {
+    position: absolute;
+    z-index: 100;
+}
+
+#searchCountries li {
+    border: 1px solid #E5E7EB;
+    color: #cb2000;
+    font-size: 1rem;
+    padding: .5em .25em;
 }

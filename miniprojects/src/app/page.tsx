@@ -2,14 +2,15 @@
 import "./styles/countries.css";
 import Link from "next/link";
 import { Country } from "../../lib/countries/Country";
-import { countryNameOrCode } from "../../lib/countries/countryNameOrCode";
+import { CountryNameOrCode } from "../../lib/countries/countryNameOrCode";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 export default function CountriesList() {
     let countriesUrl = "http://localhost:3000/api/countries";
 
     const [countries, setCountries] = useState<Country[]>([]);
-    const [results, setResults] = useState<countryNameOrCode>([]);
+    const [countryNameOrCode, setCountryNameOrCode] = useState("");
+    const [results, setResults] = useState<CountryNameOrCode[]>([]);
 
     const getCountries = useCallback(async () => {
         const res = await fetch(countriesUrl);
@@ -26,16 +27,18 @@ export default function CountriesList() {
     const getSelectedCountry = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
 
-        if(value.length > 2) {
+        setCountryNameOrCode(value);
+
+        if (value.length > 2) {
             const res = await fetch(countriesUrl);
 
             if (!res.ok) {
                 throw new Error("The data could not be fetched!");
             }
-    
+
             const data = await res.json();
-    
-            setResults(data.body);
+
+            setResults(data.result);
         } else {
             return setResults([]);
         }
@@ -51,13 +54,19 @@ export default function CountriesList() {
                 <label className="countries-search-title">Search countries:</label>
                 <input onChange={getSelectedCountry} className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
                 <ul id="searchCountries">
-                        {
-                            results.map((result, index) => {
-                                return (
-                                    <li key={index}>{result.name}</li>
-                                );
-                            });
+                    {
+                      results.map((result, index) => {
+                        if(result.type === "Name") {
+                            return (
+                                <li key={index}>{result.name}</li>
+                            );
+                        } else {
+                            return (
+                                <li key={index}>{result.code}</li>
+                            );
                         }
+                      })
+                    }
                 </ul>
             </div>
             <div className="countries-table">

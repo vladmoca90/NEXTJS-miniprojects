@@ -1,4 +1,5 @@
-export interface countryNameOrCode {
-    name: string,
-    code: string,
+export interface CountryNameOrCode {
+    name: string;
+    code: string;
+    type: "Name" | "Code";
 }
