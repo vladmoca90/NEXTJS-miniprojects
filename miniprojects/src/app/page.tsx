@@ -8,7 +8,7 @@ export default function CountriesList() {
     let countriesUrl = "http://localhost:3000/api/countries";
 
     const [countries, setCountries] = useState<Country[]>([]);
-    const [searchCountry, setSearchCountry] = useState<Country[]>([]);
+    const [searchCountry, setSearchCountry] = useState("");
 
     const getCountries = useCallback(async () => {
         const res = await fetch(countriesUrl);
@@ -23,18 +23,10 @@ export default function CountriesList() {
     }, [countriesUrl]);
 
     const getSelectedCountry = useCallback(async (e: { target: { value: string } }) => {
-        const value = e.target.value;
+        const value = e.target.value.trim();
+        const searchCountry: Country | any = countries.filter((country) => { return value === country.name; });
 
-        if (value.length === 0) {
-            setSearchCountry(countries);
-        } else {
-            const findCountry = countries.filter((country) => {
-                return value === country.name;
-            });
-            setSearchCountry(findCountry);
-        }
-
-        console.log(value);
+        setSearchCountry(searchCountry);
     }, [countries]);
 
     useEffect(() => {
@@ -45,7 +37,7 @@ export default function CountriesList() {
         <div>
             <div className="countries-search">
                 <label className="countries-search-title">Search countries:</label>
-                <input onChange={getSelectedCountry} className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
+                <input onChange={getSelectedCountry} value={searchCountry} className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
             </div>
             <div className="countries-table">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -57,7 +49,7 @@ export default function CountriesList() {
                     </thead>
                     <tbody>
                         {
-                            searchCountry.map((country, index) => {
+                            countries.map((country, index) => {
                                 return (
                                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={index}>
                                         <td>
