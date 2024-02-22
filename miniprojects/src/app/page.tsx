@@ -24,25 +24,9 @@ export default function CountriesList() {
         setCountries(data.body);
     }, [countriesUrl]);
 
-    const getSelectedCountry = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
+    const getSelectedCountry = useCallback(() => {
 
-        setCountryNameOrCode(value);
-
-        if (value.length > 2) {
-            const res = await fetch(countriesUrl);
-
-            if (!res.ok) {
-                throw new Error("The data could not be fetched!");
-            }
-
-            const data = await res.json();
-
-            setResults(data.result);
-        } else {
-            return setResults([]);
-        }
-    }, [countriesUrl]);
+    }, []);
 
     useEffect(() => {
         getCountries();
@@ -53,21 +37,6 @@ export default function CountriesList() {
             <div className="countries-search">
                 <label className="countries-search-title">Search countries:</label>
                 <input onChange={getSelectedCountry} className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
-                <ul id="searchCountries">
-                    {
-                      results.map((result, index) => {
-                        if(result.type === "Name") {
-                            return (
-                                <li key={index}>{result.name}</li>
-                            );
-                        } else {
-                            return (
-                                <li key={index}>{result.code}</li>
-                            );
-                        }
-                      })
-                    }
-                </ul>
             </div>
             <div className="countries-table">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
