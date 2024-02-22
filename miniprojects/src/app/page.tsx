@@ -25,11 +25,11 @@ export default function CountriesList() {
     const getSelectedCountry = useCallback(async (e: { target: { value: string } }) => {
         const value = e.target.value;
 
-        if (value.trim().length === 0) {
+        if (value.length === 0) {
             setSearchCountry(countries);
         } else {
             const findCountry = countries.filter((country) => {
-                return value === country.name.toLocaleLowerCase();
+                return value === country.name;
             });
             setSearchCountry(findCountry);
         }
