@@ -2,13 +2,14 @@
 import "./styles/countries.css";
 import Link from "next/link";
 import { Country } from "../../lib/countries/Country";
+import { countryNameOrCode } from "../../lib/countries/countryNameOrCode";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 export default function CountriesList() {
     let countriesUrl = "http://localhost:3000/api/countries";
 
     const [countries, setCountries] = useState<Country[]>([]);
-    const [results, setResults] = useState<Country[]>([]);
+    const [results, setResults] = useState<countryNameOrCode>([]);
 
     const getCountries = useCallback(async () => {
         const res = await fetch(countriesUrl);
@@ -50,7 +51,13 @@ export default function CountriesList() {
                 <label className="countries-search-title">Search countries:</label>
                 <input onChange={getSelectedCountry} className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
                 <ul id="searchCountries">
-                    <li></li>
+                        {
+                            results.map((result, index) => {
+                                return (
+                                    <li key={index}>{result.name}</li>
+                                );
+                            });
+                        }
                 </ul>
             </div>
             <div className="countries-table">
