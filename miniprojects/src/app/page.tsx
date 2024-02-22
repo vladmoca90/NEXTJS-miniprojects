@@ -1,103 +1,83 @@
 "use client";
-import "./styles/countries.css";
+import "./styles/wines.css";
+import Image from "next/image";
 import Link from "next/link";
-import { Country } from "../../lib/countries/Country";
-import { CountryNameOrCode } from "../../lib/countries/countryNameOrCode";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { Wine } from "../../lib/wines/Wine";
+import { useCallback, useEffect, useState } from "react";
 
-export default function CountriesList() {
-    let countriesUrl = "http://localhost:3000/api/countries";
+export default function WinesSell() {
+    let winesUrl = "http://localhost:3000/api/wines";
 
-    const [countries, setCountries] = useState<Country[]>([]);
-    const [countryNameOrCode, setCountryNameOrCode] = useState("");
-    const [results, setResults] = useState<CountryNameOrCode[]>([]);
+    const [wines, setWines] = useState<Wine[]>([]);
+    const [selectedWine, setSelectedWine] = useState<Wine[]>([]);
 
-    const getCountries = useCallback(async () => {
-        const res = await fetch(countriesUrl);
+    const getWines = useCallback(async () => {
+        const res = await fetch(winesUrl);
 
         if (!res.ok) {
-            throw new Error("The data could not be fetched!");
+            throw new Error("Failed to fetch data");
         }
 
         const data = await res.json();
 
-        setCountries(data.body);
-    }, [countriesUrl]);
+        setWines(data.body);
+    }, [winesUrl]);
 
-    const getSelectedCountry = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
+    const getSelectedWine = useCallback(async (e: { target: { value: string } }) => {
         const value = e.target.value;
 
-        setCountryNameOrCode(value);
-
-        if (value.length > 2) {
-            const res = await fetch(countriesUrl);
-
-            if (!res.ok) {
-                throw new Error("The data could not be fetched!");
-            }
-
-            const data = await res.json();
-
-            setResults(data.result);
+        if (value === "All products") {
+            setSelectedWine(wines);
         } else {
-            return setResults([]);
+            const searchWine = wines.filter((wine) => {
+                return value === wine.name;
+            });
+            setSelectedWine(searchWine);
         }
-    }, [countriesUrl]);
+    }, [wines]);
 
     useEffect(() => {
-        getCountries();
-    }, [getCountries]);
+        getWines();
+    }, [getWines]);
 
     return (
-        <div>
-            <div className="countries-search">
-                <label className="countries-search-title">Search countries:</label>
-                <input onChange={getSelectedCountry} className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
-                <ul id="searchCountries">
+        <section className="box">
+            <div>
+                <select id="productsList" title="wines" onChange={getSelectedWine}>
+                    <option value="All products">All products</option>
                     {
-                      results.map((result, index) => {
-                        if(result.type === "Name") {
+                        wines.map((wine, index) => {
                             return (
-                                <li key={index}>{result.name}</li>
+                                <option key={index} value={wine.name}>{wine.name}</option>
                             );
-                        } else {
-                            return (
-                                <li key={index}>{result.code}</li>
-                            );
-                        }
-                      })
+                        })
                     }
-                </ul>
+                </select>
             </div>
-            <div className="countries-table">
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col">Country name</th>
-                            <th scope="col">Country code</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            countries.map((country, index) => {
-                                return (
-                                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={index}>
-                                        <td>
-                                            <Link href={{
-                                                pathname: "/country-name",
-                                                query: {
-                                                    "countryName": country.name,
-                                                },
-                                            }}>{country.name}</Link>
-                                        </td>
-                                        <td>{country.code}</td>
-                                    </tr>
-                                );
-                            })
-                        }
-                    </tbody>
-                </table>
+            <div className="products-container">
+                {
+                    selectedWine.map((wine, index) => {
+                        return (
+                            <div className="product" key={index}>
+                                <div className="product-description__top">
+                                    <p className="product-title">{wine.name}</p>
+                                </div>
+                                <div className="product-description__bottom">
+                                    <Image alt={wine.name} className="product-img" width={200} height={100} key={index} src={wine.img} />
+                                </div>
+                                <div className="wine-link">
+                                    <Link href={{
+                                        pathname: "/wine-details",
+                                        query: {
+                                            "wineName": wine.name,
+                                        }
+                                    }}>Check details</Link>
+                                </div>
+                            </div>
+                        );
+                    })
+                }
             </div>
-        </div>
+        </section>
     );
 }
