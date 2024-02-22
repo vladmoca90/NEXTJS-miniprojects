@@ -2,15 +2,13 @@
 import "./styles/countries.css";
 import Link from "next/link";
 import { Country } from "../../lib/countries/Country";
-import { CountryNameOrCode } from "../../lib/countries/countryNameOrCode";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function CountriesList() {
     let countriesUrl = "http://localhost:3000/api/countries";
 
     const [countries, setCountries] = useState<Country[]>([]);
-    const [countryNameOrCode, setCountryNameOrCode] = useState("");
-    const [results, setResults] = useState<CountryNameOrCode[]>([]);
+    const [searchCountry, setSearchCountry] = useState<Country[]>([]);
 
     const getCountries = useCallback(async () => {
         const res = await fetch(countriesUrl);
@@ -24,9 +22,14 @@ export default function CountriesList() {
         setCountries(data.body);
     }, [countriesUrl]);
 
-    const getSelectedCountry = useCallback(() => {
+    const getSelectedCountry = useCallback(async (e: { target: { value: string } }) => {
+        const value = e.target.value;
+        const searchCountry = countries.filter((country) => {
+            return value === country.name;
+        });
 
-    }, []);
+        setSearchCountry(searchCountry);
+    }, [countries]);
 
     useEffect(() => {
         getCountries();
