@@ -8,7 +8,7 @@ export default function CountriesList() {
     let countriesUrl = "http://localhost:3000/api/countries";
 
     const [countries, setCountries] = useState<Country[]>([]);
-    const [results, setResults] = useState<Country[]>([]);
+    const [results, setResults] = useState("");
 
     const getCountries = useCallback(async () => {
         const res = await fetch(countriesUrl);
@@ -25,13 +25,14 @@ export default function CountriesList() {
     const getSelectedCountry = useCallback(async (e: { target: { value: string }}) => {
         const value = e.target.value;
 
-        if (value.length === 0) {
-            setResults(countries);
+        if (value.trim().length === 0) {
+            setResults(value);
         } else {
             const findCountry = countries.filter((country) => {
-                return value === country.name;
+                return country.name;
             });
-            setResults(findCountry);
+
+            setResults(value);
         }
 
         console.log(value);
@@ -57,7 +58,7 @@ export default function CountriesList() {
                     </thead>
                     <tbody>
                         {
-                            results.map((result, index) => {
+                            countries.map((result, index) => {
                                 return (
                                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={index}>
                                         <td>
