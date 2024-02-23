@@ -22,9 +22,20 @@ export default function CountriesList() {
         setCountries(data.body);
     }, [countriesUrl]);
 
-    const getSelectedCountry = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
+    const getSelectedCountry = useCallback(async (e: { target: { value: string }}) => {
         const value = e.target.value;
-    }, []);
+
+        if (value.length === 0) {
+            setResults(countries);
+        } else {
+            const findCountry = countries.filter((country) => {
+                return value === country.name;
+            });
+            setResults(findCountry);
+        }
+
+        console.log(value);
+    }, [countries]);
 
     useEffect(() => {
         getCountries();
@@ -46,18 +57,18 @@ export default function CountriesList() {
                     </thead>
                     <tbody>
                         {
-                            countries.map((country, index) => {
+                            results.map((result, index) => {
                                 return (
                                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={index}>
                                         <td>
                                             <Link href={{
                                                 pathname: "/country-name",
                                                 query: {
-                                                    "countryName": country.name,
+                                                    "countryName": result.name,
                                                 },
-                                            }}>{country.name}</Link>
+                                            }}>{result.name}</Link>
                                         </td>
-                                        <td>{country.code}</td>
+                                        <td>{result.code}</td>
                                     </tr>
                                 );
                             })
