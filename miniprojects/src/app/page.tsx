@@ -8,7 +8,7 @@ export default function CountriesList() {
     let countriesUrl = "http://localhost:3000/api/countries";
 
     const [countries, setCountries] = useState<Country[]>([]);
-    const [results, setResults] = useState("");
+    const [results, setResults] = useState<Country[]>([]);
 
     const getCountries = useCallback(async () => {
         const res = await fetch(countriesUrl);
@@ -22,17 +22,19 @@ export default function CountriesList() {
         setCountries(data.body);
     }, [countriesUrl]);
 
-    const getSelectedCountry = useCallback(async (e: { target: { value: string }}) => {
+    const getSelectedCountry = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
 
-        if (value.trim().length === 0) {
-            setResults(value);
+        if (value.length === 0) {
+            setResults(countries);
         } else {
             const findCountry = countries.filter((country) => {
-                return country.name;
+                return value === country.name.toLowerCase() ||
+                    value === country.name.toUpperCase() ||
+                    value === country.name;
             });
 
-            setResults(value);
+            setResults(findCountry);
         }
 
         console.log(value);
@@ -58,7 +60,7 @@ export default function CountriesList() {
                     </thead>
                     <tbody>
                         {
-                            countries.map((result, index) => {
+                            results.map((result, index) => {
                                 return (
                                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={index}>
                                         <td>
