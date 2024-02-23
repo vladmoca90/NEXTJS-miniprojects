@@ -52,10 +52,7 @@ export default function CarsShowroom() {
 
     const getPriceForModel = useCallback(async (e: { target: { value: string; } }) => {
         const value = e.target.value;
-        const priceModels = cars.filter((car) => value === car.price);
-
-        console.log(value);
-        console.log(priceModels);
+        const priceModels = cars.filter((car) => value === car.model);
 
         setPricesForModels(priceModels);
     }, [cars]);

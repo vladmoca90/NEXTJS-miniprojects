@@ -15,4 +15,4 @@ export async function GET(request: NextRequest) {
     );
 }
 
-// http://localhost:3000/api/cars-showroom
+// http://localhost:3000/api/vehicles-showroom
