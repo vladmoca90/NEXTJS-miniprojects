@@ -26,7 +26,7 @@ export default function WinesSell() {
     const getSelectedWine = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
 
-        if (value === "All products") {
+        if (value === "All products" || "") {
             const searchWine = wines.filter((wine) => {
                 return wine;
             });

@@ -107,6 +107,10 @@ export default function FoodList() {
 
     return (
         <main className="main">
+            <div id="foodSearch">
+                <label className="food-search-title">Search food:</label>
+                <input className="food-search-bar" title="search" name="search" type="text" placeholder="Search food..." />
+            </div>
             <div className="container-table">
                 <div className="flex flex-col">
                     <div className="overflow-auto sm:-mx-6 lg:-mx-8">
