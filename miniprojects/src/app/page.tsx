@@ -3,13 +3,14 @@
 import "./styles/vehicles-showroom.css";
 import Link from "next/link";
 import { Car } from "../../lib/vehiclesShowroom/Car";
-import { useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 export default function CarsShowroom() {
     let carsUrl = "http://localhost:3000/api/vehicles-showroom";
 
     const [cars, setCars] = useState<Car[]>([]);
     const [modelsFromMake, setModelsFromMake] = useState<Car[]>([]);
+    const [pricesForModels, setPricesForModels] = useState<Car[]>([]);
 
     const getCars = useCallback(async () => {
         const res = await fetch(carsUrl);
@@ -49,6 +50,13 @@ export default function CarsShowroom() {
         setModelsFromMake(carModels);
     }, [cars]);
 
+    const getPriceForModel = useCallback(async (e: { target: { value: string; } }) => {
+        const value = e.target.value;
+        const priceModels = cars.filter((car) => value === car.price);
+
+        setPricesForModels(priceModels);
+    }, [cars]);
+
     return (
         <div className="box">
             <div className="showroom-search">
@@ -64,7 +72,7 @@ export default function CarsShowroom() {
                             })
                         }
                     </select>
-                    <select id="carModel" title="carModel"
+                    <select id="carModel" title="carModel" onChange={getPriceForModel}
                         className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="model">-- Any Model --</option>
                         {
@@ -78,7 +86,7 @@ export default function CarsShowroom() {
                     <select id="carPrice" title="carPrice" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="price">-- Any Price --</option>
                         {
-                            cars.map((car, index) => {
+                            pricesForModels.map((car, index) => {
                                 return (
                                     <option value={car.price} key={index}>&pound;{car.price}</option>
                                 );

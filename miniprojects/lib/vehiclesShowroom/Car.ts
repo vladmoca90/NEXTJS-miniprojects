@@ -2,6 +2,6 @@ export interface Car {
     img: string;
     make: string;
     model: string;
-    price: number;
+    price: string;
     year: number;
 }
