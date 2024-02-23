@@ -2,15 +2,13 @@
 import "./styles/countries.css";
 import Link from "next/link";
 import { Country } from "../../lib/countries/Country";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function CountriesList() {
     let countriesUrl = "http://localhost:3000/api/countries";
 
     const [countries, setCountries] = useState<Country[]>([]);
-
     const [query, setQuery] = useState("");
-    const [results, setResults] = useState<Country[]>([]);
 
     const getCountries = useCallback(async () => {
         const res = await fetch(countriesUrl);
@@ -26,10 +24,16 @@ export default function CountriesList() {
 
     const getSelectedCountry = useCallback(async (e: { target: { value: string; } }) => {
         const value = e.target.value;
-
         setQuery(value);
     }, []);
-    
+
+    const searchCountries = useCallback(() => {
+        return countries.filter(
+            country => country.name.toLowerCase().includes(query) ||
+                country.code.toLowerCase().includes(query)
+        );
+    }, [countries, query]);
+
     useEffect(() => {
         getCountries();
     }, [getCountries]);
@@ -50,7 +54,7 @@ export default function CountriesList() {
                     </thead>
                     <tbody>
                         {
-                            countries.filter(country => country.name.toLowerCase().includes(query)).map((country, index) => {
+                            searchCountries().map((country, index) => {
                                 return (
                                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={index}>
                                         <td>
