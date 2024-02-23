@@ -8,7 +8,7 @@ export default function CountriesList() {
     let countriesUrl = "http://localhost:3000/api/countries";
 
     const [countries, setCountries] = useState<Country[]>([]);
-    const [searchCountries, setSearchCountries] = useState("");
+    const [results, setResults] = useState<Country[]>([]);
 
     const getCountries = useCallback(async () => {
         const res = await fetch(countriesUrl);
@@ -22,16 +22,8 @@ export default function CountriesList() {
         setCountries(data.body);
     }, [countriesUrl]);
 
-    const getSelectedCountry = useCallback(async (e: { target: { value: string} }) => {
+    const getSelectedCountry = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
-
-        if(value.length === 0) {
-            setSearchCountries(value);
-            console.log(value);
-        } else {
-
-        }
-
     }, []);
 
     useEffect(() => {
