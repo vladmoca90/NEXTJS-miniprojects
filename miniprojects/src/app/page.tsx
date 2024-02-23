@@ -2,13 +2,13 @@
 import "./styles/countries.css";
 import Link from "next/link";
 import { Country } from "../../lib/countries/Country";
-import { useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 export default function CountriesList() {
     let countriesUrl = "http://localhost:3000/api/countries";
 
     const [countries, setCountries] = useState<Country[]>([]);
-    const [searchCountry, setSearchCountry] = useState("");
+    const [searchCountries, setSearchCountries] = useState("");
 
     const getCountries = useCallback(async () => {
         const res = await fetch(countriesUrl);
@@ -22,31 +22,22 @@ export default function CountriesList() {
         setCountries(data.body);
     }, [countriesUrl]);
 
-    const getSelectedCountry = useCallback(async (e: { target: { value: string } }) => {
+    const getSelectedCountry = useCallback(async (e: { target: { value: any} }) => {
         const value = e.target.value;
 
-        setSearchCountry(value);
+        setSearchCountries(value);
 
-        if (value.length > 2) {
-            const res = await fetch(countriesUrl, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+        if (value.length === 0) {
+            setSearchCountries("");
+        } else {
+            const search = countries.filter((country) => {
+                return value === country.name
             });
 
-            if (!res.ok) {
-                throw new Error("Failed to fetch data");
-            }
-
-            const data = await res.json();
-
-            setSearchCountry(data.country);
-        } else {
-            setSearchCountry("");
+            setSearchCountries(search);
         }
 
-    }, [countriesUrl]);
+    }, [countries]);
 
     useEffect(() => {
         getCountries();
@@ -56,7 +47,7 @@ export default function CountriesList() {
         <div>
             <div className="countries-search">
                 <label className="countries-search-title">Search countries:</label>
-                <input onChange={getSelectedCountry} value={searchCountry} className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
+                <input onChange={getSelectedCountry} value={searchCountries} className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
             </div>
             <div className="countries-table">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
