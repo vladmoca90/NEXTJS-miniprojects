@@ -3,7 +3,7 @@
 import "./styles/vehicles-showroom.css";
 import Link from "next/link";
 import { Car } from "../../lib/vehiclesShowroom/Car";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function CarsShowroom() {
     let carsUrl = "http://localhost:3000/api/vehicles-showroom";
@@ -53,6 +53,9 @@ export default function CarsShowroom() {
     const getPriceForModel = useCallback(async (e: { target: { value: string; } }) => {
         const value = e.target.value;
         const priceModels = cars.filter((car) => value === car.price);
+
+        console.log(value);
+        console.log(priceModels);
 
         setPricesForModels(priceModels);
     }, [cars]);
@@ -104,7 +107,7 @@ export default function CarsShowroom() {
                                 <div className="car-header">
                                     <h3 className="car-title">{car.make} <span>{car.model}</span></h3>
                                     <p className="car-price">&pound;{car.price}
-                                        <span className="car-monthly-price">from &pound;{(car.price / 12).toFixed(0)}/monthly</span>
+                                        <span className="car-monthly-price">from &pound;{(parseInt(car.price) / 12).toFixed(0)}/monthly</span>
                                     </p>
                                 </div>
                                 <div className="car-img-container">
