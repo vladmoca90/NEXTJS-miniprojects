@@ -8,6 +8,8 @@ export default function CountriesList() {
     let countriesUrl = "http://localhost:3000/api/countries";
 
     const [countries, setCountries] = useState<Country[]>([]);
+
+    const [query, setQuery] = useState("");
     const [results, setResults] = useState<Country[]>([]);
 
     const getCountries = useCallback(async () => {
@@ -22,24 +24,12 @@ export default function CountriesList() {
         setCountries(data.body);
     }, [countriesUrl]);
 
-    const getSelectedCountry = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
+    const getSelectedCountry = useCallback(async (e: { target: { value: string; } }) => {
         const value = e.target.value;
 
-        if (value.length === 0) {
-            setResults(countries);
-        } else {
-            const findCountry = countries.filter((country) => {
-                return value === country.name.toLowerCase() ||
-                    value === country.name.toUpperCase() ||
-                    value === country.name;
-            });
-
-            setResults(findCountry);
-        }
-
-        console.log(value);
-    }, [countries]);
-
+        setQuery(value);
+    }, []);
+    
     useEffect(() => {
         getCountries();
     }, [getCountries]);
@@ -48,7 +38,7 @@ export default function CountriesList() {
         <div>
             <div className="countries-search">
                 <label className="countries-search-title">Search countries:</label>
-                <input onChange={getSelectedCountry} className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
+                <input onChange={getSelectedCountry} value={query} className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
             </div>
             <div className="countries-table">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -60,18 +50,18 @@ export default function CountriesList() {
                     </thead>
                     <tbody>
                         {
-                            results.map((result, index) => {
+                            countries.filter(country => country.name.toLowerCase().includes(query)).map((country, index) => {
                                 return (
                                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={index}>
                                         <td>
                                             <Link href={{
                                                 pathname: "/country-name",
                                                 query: {
-                                                    "countryName": result.name,
+                                                    "countryName": country.name,
                                                 },
-                                            }}>{result.name}</Link>
+                                            }}>{country.name}</Link>
                                         </td>
-                                        <td>{result.code}</td>
+                                        <td>{country.code}</td>
                                     </tr>
                                 );
                             })
