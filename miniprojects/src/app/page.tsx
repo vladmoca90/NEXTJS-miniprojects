@@ -9,7 +9,7 @@ export default function WinesSell() {
     let winesUrl = "http://localhost:3000/api/wines";
 
     const [wines, setWines] = useState<Wine[]>([]);
-    const [selectedWine, setSelectedWine] = useState<Wine[]>([]);
+    const [results, setResults] = useState<Wine[]>([]);
 
     const getWines = useCallback(async () => {
         const res = await fetch(winesUrl);
@@ -32,14 +32,14 @@ export default function WinesSell() {
             });
 
             console.log(searchWine);
-            setSelectedWine(searchWine);
+            setResults(searchWine);
         } else {
             const searchWine = wines.filter((wine) => {
                 return value === wine.name;
             });
 
             console.log(searchWine);
-            setSelectedWine(searchWine);
+            setResults(searchWine);
         }
     }, [wines]);
 
@@ -63,20 +63,20 @@ export default function WinesSell() {
             </div>
             <div className="products-container">
                 {
-                    selectedWine.map((wine, index) => {
+                    results.map((result, index) => {
                         return (
                             <div className="product" key={index}>
                                 <div className="product-description__top">
-                                    <p className="product-title">{wine.name}</p>
+                                    <p className="product-title">{result.name}</p>
                                 </div>
                                 <div className="product-description__bottom">
-                                    <Image alt={wine.name} className="product-img" width={200} height={100} key={index} src={wine.img} />
+                                    <Image alt={result.name} className="product-img" width={200} height={100} key={index} src={result.img} />
                                 </div>
                                 <div className="wine-link">
                                     <Link href={{
                                         pathname: "/wine-details",
                                         query: {
-                                            "wineName": wine.name,
+                                            "wineName": result.name,
                                         }
                                     }}>Check details</Link>
                                 </div>
