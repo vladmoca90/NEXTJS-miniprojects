@@ -1,19 +1,18 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
-import "./styles/vehicles-showroom.css";
+import "./styles/wines.css";
+import Image from "next/image";
 import Link from "next/link";
-import { Car } from "../../lib/vehiclesShowroom/Car";
+import { Wine } from "../../lib/wines/Wine";
 import { useCallback, useEffect, useState } from "react";
 
-export default function CarsShowroom() {
-    let carsUrl = "http://localhost:3000/api/vehicles-showroom";
+export default function WinesSell() {
+    let winesUrl = "http://localhost:3000/api/wines";
 
-    const [cars, setCars] = useState<Car[]>([]);
-    const [modelsFromMake, setModelsFromMake] = useState<Car[]>([]);
-    const [pricesForModels, setPricesForModels] = useState<Car[]>([]);
+    const [wines, setWines] = useState<Wine[]>([]);
+    const [selectedWine, setSelectedWine] = useState<Wine[]>([]);
 
-    const getCars = useCallback(async () => {
-        const res = await fetch(carsUrl);
+    const getWines = useCallback(async () => {
+        const res = await fetch(winesUrl);
 
         if (!res.ok) {
             throw new Error("Failed to fetch data");
@@ -21,111 +20,64 @@ export default function CarsShowroom() {
 
         const data = await res.json();
 
-        setCars(data.body);
-    }, [carsUrl]);
+        setWines(data.body);
+    }, [winesUrl]);
 
-    const removeDuplicatedMakes = useCallback(() => {
-        let carsDictionary: { [make: string[number]]: any } = {};
+    const getSelectedWine = useCallback(async (e: { target: { value: string } }) => {
+        const value = e.target.value;
 
-        for (let i = 0; i < cars.length; i++) {
-            if (carsDictionary[cars[i].make]) {
-                continue;
-            }
-            else {
-                carsDictionary[cars[i].make] = cars;
-            }
+        if (value === "All products") {
+            setSelectedWine(wines);
+        } else {
+            const searchWine = wines.filter((wine) => {
+                return value === wine.name;
+            });
+            setSelectedWine(searchWine);
         }
-
-        return Object.keys(carsDictionary);
-    }, [cars]);
+    }, [wines]);
 
     useEffect(() => {
-        getCars();
-    }, [getCars]);
-
-    const selectMake = useCallback(async (e: { target: { value: string; } }) => {
-        const value = e.target.value;
-        const carModels = cars.filter((car) => value === car.make);
-
-        setModelsFromMake(carModels);
-    }, [cars]);
-
-    const getPriceForModel = useCallback(async (e: { target: { value: string; } }) => {
-        const value = e.target.value;
-        const priceModels = cars.filter((car) => value === car.model);
-
-        setPricesForModels(priceModels);
-    }, [cars]);
+        getWines();
+    }, [getWines]);
 
     return (
-        <div className="box">
-            <div className="showroom-search">
-                <form>
-                    <select id="carMake" title="carMake" onChange={selectMake}
-                        className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
-                        <option value="make">-- Any Make --</option>
-                        {
-                            removeDuplicatedMakes().map((car, index) => {
-                                return (
-                                    <option value={car} key={index}>{car}</option>
-                                );
-                            })
-                        }
-                    </select>
-                    <select id="carModel" title="carModel" onChange={getPriceForModel}
-                        className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
-                        <option value="model">-- Any Model --</option>
-                        {
-                            modelsFromMake.map((car, index) => {
-                                return (
-                                    <option value={car.model} key={index}>{car.model}</option>
-                                );
-                            })
-                        }
-                    </select>
-                    <select id="carPrice" title="carPrice" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
-                        <option value="price">-- Any Price --</option>
-                        {
-                            pricesForModels.map((car, index) => {
-                                return (
-                                    <option value={car.price} key={index}>&pound;{car.price}</option>
-                                );
-                            })
-                        }
-                    </select>
-                    <button className="search-btn">Search</button>
-                </form>
+        <section className="box">
+            <div>
+                <select id="productsList" title="wines" onChange={getSelectedWine}>
+                    <option value="All products">All products</option>
+                    {
+                        wines.map((wine, index) => {
+                            return (
+                                <option key={index} value={wine.name}>{wine.name}</option>
+                            );
+                        })
+                    }
+                </select>
             </div>
-            <div id="showroom">
+            <div className="products-container">
                 {
-                    cars.map((car, index) => {
+                    wines.map((wine, index) => {
                         return (
-                            <div className="car-container" key={index}>
-                                <div className="car-header">
-                                    <h3 className="car-title">{car.make} <span>{car.model}</span></h3>
-                                    <p className="car-price">&pound;{car.price}
-                                        <span className="car-monthly-price">from &pound;{(parseInt(car.price) / 12).toFixed(0)}/monthly</span>
-                                    </p>
+                            <div className="product" key={index}>
+                                <div className="product-description__top">
+                                    <p className="product-title">{wine.name}</p>
                                 </div>
-                                <div className="car-img-container">
-                                    <img alt={car.make} className="car-img" key={index} src={car.img} />
+                                <div className="product-description__bottom">
+                                    <Image alt={wine.name} className="product-img" width={200} height={100} key={index} src={wine.img} />
                                 </div>
-                                <div className="showroom-buttons">
-                                    <Link href="#">Enquiry</Link>
-                                    <Link href="#">Share</Link>
-                                    <Link href="#">Brochure</Link>
+                                <div className="wine-link">
                                     <Link href={{
-                                        pathname: "/vehicle-details",
+                                        pathname: "/wine-details",
                                         query: {
-                                            "carModel": car.model,
-                                        },
-                                    }}>Full details</Link>
+                                            "wineName": wine.name,
+                                        }
+                                    }}>Check details</Link>
                                 </div>
                             </div>
                         );
                     })
                 }
             </div>
-        </div>
+        </section>
     );
 }
