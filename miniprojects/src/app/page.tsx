@@ -22,19 +22,16 @@ export default function CountriesList() {
         setCountries(data.body);
     }, [countriesUrl]);
 
-    const getSelectedCountry = useCallback(async (e: { target: { value: any} }) => {
+    const getSelectedCountry = useCallback(async (e: { target: { value: string} }) => {
         const value = e.target.value;
 
-        setSearchCountries(value);
-
-        if (value.length === 0) {
-            setSearchCountries("");
+        if (value.trim().length === 0) {
+            setSearchCountries(value);
         } else {
-            const search = countries.filter((country) => {
-                return value === country.name
+            const findCountry = countries.filter((country) => {
+                return value === country.name.toLocaleLowerCase();
             });
-
-            setSearchCountries(search);
+            setSearchCountries(findCountry.toString());
         }
 
     }, [countries]);
