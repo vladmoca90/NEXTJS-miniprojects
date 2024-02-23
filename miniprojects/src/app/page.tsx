@@ -23,15 +23,22 @@ export default function WinesSell() {
         setWines(data.body);
     }, [winesUrl]);
 
-    const getSelectedWine = useCallback(async (e: { target: { value: string } }) => {
+    const getSelectedWine = useCallback(async (e: { target: { value: Wine | any } }) => {
         const value = e.target.value;
 
         if (value === "All products") {
-            setSelectedWine(wines);
+            const searchWine = wines.filter((wine) => {
+                return wine;
+            });
+
+            console.log(searchWine);
+            setSelectedWine(searchWine);
         } else {
             const searchWine = wines.filter((wine) => {
                 return value === wine.name;
             });
+
+            console.log(searchWine);
             setSelectedWine(searchWine);
         }
     }, [wines]);
