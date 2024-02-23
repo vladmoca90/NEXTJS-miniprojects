@@ -9,7 +9,8 @@ export default function WinesSell() {
     let winesUrl = "http://localhost:3000/api/wines";
 
     const [wines, setWines] = useState<Wine[]>([]);
-    const [results, setResults] = useState<Wine[]>([]);
+    const [query, setQuery] = useState("");
+
 
     const getWines = useCallback(async () => {
         const res = await fetch(winesUrl);
@@ -25,19 +26,12 @@ export default function WinesSell() {
 
     const getSelectedWine = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
+        setQuery(value);
+    }, []);
 
-        if (value === "All products" || "") {
-            const searchWine = wines.filter(wine => wine.name);
-
-            console.log(searchWine);
-            setResults(searchWine);
-        } else {
-            const searchWine = wines.filter(wine => value === wine.name);
-
-            console.log(searchWine);
-            setResults(searchWine);
-        }
-    }, [wines]);
+    const filterWines = useCallback(() => {
+        return wines.filter(wine => wine.name.includes(query));
+    }, [query, wines]);
 
     useEffect(() => {
         getWines();
@@ -59,20 +53,20 @@ export default function WinesSell() {
             </div>
             <div className="products-container">
                 {
-                    results.map((result, index) => {
+                    filterWines().map((wine, index) => {
                         return (
                             <div className="product" key={index}>
                                 <div className="product-description__top">
-                                    <p className="product-title">{result.name}</p>
+                                    <p className="product-title">{wine.name}</p>
                                 </div>
                                 <div className="product-description__bottom">
-                                    <Image alt={result.name} className="product-img" width={200} height={100} key={index} src={result.img} />
+                                    <Image alt={wine.name} className="product-img" width={200} height={100} key={index} src={wine.img} />
                                 </div>
                                 <div className="wine-link">
                                     <Link href={{
                                         pathname: "/wine-details",
                                         query: {
-                                            "wineName": result.name,
+                                            "wineName": wine.name,
                                         }
                                     }}>Check details</Link>
                                 </div>

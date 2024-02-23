@@ -30,7 +30,7 @@ export default function CountriesList() {
     const searchCountries = useCallback(() => {
         return countries.filter(
             country => country.name.toLowerCase().includes(query) || country.name.toUpperCase().includes(query) ||
-                country.code.toLowerCase().includes(query) || country.code.toUpperCase().includes(query)
+            country.code.toLowerCase().includes(query) || country.code.toUpperCase().includes(query)
         );
     }, [countries, query]);
 
