@@ -25,16 +25,14 @@ export default function CountriesList() {
     const getSelectedCountry = useCallback(async (e: { target: { value: string} }) => {
         const value = e.target.value;
 
-        if (value.trim().length === 0) {
+        if(value.length === 0) {
             setSearchCountries(value);
+            console.log(value);
         } else {
-            const findCountry = countries.filter((country) => {
-                return value === country.name.toLocaleLowerCase();
-            });
-            setSearchCountries(findCountry.toString());
+
         }
 
-    }, [countries]);
+    }, []);
 
     useEffect(() => {
         getCountries();
@@ -44,7 +42,7 @@ export default function CountriesList() {
         <div>
             <div className="countries-search">
                 <label className="countries-search-title">Search countries:</label>
-                <input onChange={getSelectedCountry} value={searchCountries} className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
+                <input onChange={getSelectedCountry} className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
             </div>
             <div className="countries-table">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
