@@ -30,7 +30,11 @@ export default function WinesSell() {
     }, []);
 
     const filterWines = useCallback(() => {
-        return wines.filter(wine => wine.name.includes(query));
+        if (query === "All products" || query.length === 0) {
+            return wines;
+        } else {
+            return wines.filter(wine => wine.name.includes(query));
+        }
     }, [query, wines]);
 
     useEffect(() => {
