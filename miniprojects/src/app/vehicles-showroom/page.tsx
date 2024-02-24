@@ -11,12 +11,15 @@ export default function CarsShowroom() {
     const [cars, setCars] = useState<Car[]>([]);
     const [modelsFromMake, setModelsFromMake] = useState<Car[]>([]);
     const [pricesForModels, setPricesForModels] = useState<Car[]>([]);
+    const [query, setQuery] = useState("");
 
     const getCars = useCallback(async () => {
         const res = await fetch(carsUrl);
 
         if (!res.ok) {
-            throw new Error("Failed to fetch data");
+            throw new Error("The data is not valid!");
+        } else {
+            console.log("The data is valid!");
         }
 
         const data = await res.json();
@@ -56,6 +59,15 @@ export default function CarsShowroom() {
 
         setPricesForModels(priceModels);
     }, [cars]);
+
+    const vehicleValue = useCallback(async (e: { target: { value: string; } }) => {
+        const value = e.target.value;
+        setQuery(value);
+    }, []);
+
+    const filterMakes = useCallback(() => {
+        return cars.filter((car) => { car.make.includes(query) });
+    }, [cars, query]);
 
     return (
         <div className="box">
