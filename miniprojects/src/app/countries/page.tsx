@@ -14,7 +14,9 @@ export default function CountriesList() {
         const res = await fetch(countriesUrl);
 
         if (!res.ok) {
-            throw new Error("The data could not be fetched!");
+            throw new Error("The data is not valid!");
+        } else {
+            console.log("Data is valid!")
         }
 
         const data = await res.json();
@@ -29,8 +31,10 @@ export default function CountriesList() {
 
     const searchCountries = useCallback(() => {
         return countries.filter(
-            country => country.name.toLowerCase().includes(query) || country.name.toUpperCase().includes(query) ||
-            country.code.toLowerCase().includes(query) || country.code.toUpperCase().includes(query)
+            country => country.name.toLowerCase().includes(query) || 
+                       country.name.toUpperCase().includes(query) ||
+                       country.code.toLowerCase().includes(query) || 
+                       country.code.toUpperCase().includes(query)
         );
     }, [countries, query]);
 
