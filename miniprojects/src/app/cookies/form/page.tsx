@@ -29,7 +29,6 @@ export default function Home() {
             <h1 className="my-5 text-center text-2xl font-bold">
                 Getting and Setting Cookies in Next.js
             </h1>
-
             <div>
                 <h2 className="mt-10 text-center text-3xl font-semibold">Set Cookie</h2>
                 <form action={handleLogin}>
@@ -50,7 +49,6 @@ export default function Home() {
                     </button>
                 </form>
             </div>
-
             <div className="mt-5">
                 <h2 className="mt-10 text-center text-3xl font-semibold">
                     {" "}

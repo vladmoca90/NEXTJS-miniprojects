@@ -3,8 +3,8 @@ import "./styles/cookie-buttons.css";
 import { useCallback } from "react";
 
 export default function ButtonMain() {
-    let btnAddCookieUrl = "http://localhost:3000/api/cookies/buttons/add";
-    let deletedCookieUrl = "http://localhost:3000/api/cookies/buttons/remove";
+    const btnAddCookieUrl = "http://localhost:3000/api/cookies/buttons/add";
+    const deletedCookieUrl = "http://localhost:3000/api/cookies/buttons/remove";
 
     const addCookie = useCallback(async () => {
         await fetch(btnAddCookieUrl);
