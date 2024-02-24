@@ -22,7 +22,7 @@ export default function SendMessage() {
                     },
                 }}>Submit</Link>
             </form>
-            <span id="yourText">{message}</span>
+            <p id="yourText">{message}</p>
         </div>
     );
 }
