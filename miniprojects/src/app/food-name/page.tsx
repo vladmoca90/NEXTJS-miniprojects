@@ -42,24 +42,24 @@ export default function FoodListDetails({ searchParams }: {
                                 <table className="min-w-full border text-center text-sm font-medium">
                                     <thead className="border-b font-medium dark:border-neutral-500">
                                         <tr>
-                                            <th scope="col" className="border-r px-6 py-4">Picture</th>
-                                            <th scope="col" className="border-r px-6 py-4">Name</th>
-                                            <th scope="col" className="border-r px-6 py-4">Price (&pound;)</th>
-                                            <th scope="col" className="border-r px-6 py-4">Unit</th>
-                                            <th scope="col" className="border-r px-6 py-4">Quantity</th>
-                                            <th scope="col" className="border-r px-6 py-4">Total price (&pound;)</th>
+                                            <th scope="col" className="border-r px-3 py-2">Picture</th>
+                                            <th scope="col" className="border-r px-3 py-2">Name</th>
+                                            <th scope="col" className="border-r px-3 py-2">Price (&pound;)</th>
+                                            <th scope="col" className="border-r px-3 py-2">Unit</th>
+                                            <th scope="col" className="border-r px-3 py-2">Quantity</th>
+                                            <th scope="col" className="border-r px-3 py-2">Total price (&pound;)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr className="border-r border-b dark:border-neutral-500 whitespace-nowrap px-6 py-4">
-                                            <td className="food-image border-r border-r whitespace-nowrap px-6 py-4">
+                                        <tr className="border-r border-b dark:border-neutral-500 whitespace-nowrap px-3 py-2">
+                                            <td className="food-image border-r border-r whitespace-nowrap px-3 py-2">
                                                 <Image alt={foodDetails.name} className="product-img" width={100} height={100} src={"/images/foodList/" + foodDetails.img} />
                                             </td>
-                                            <td className="food-name border-r border-r whitespace-nowrap px-6 py-4">{foodDetails.name}</td>
-                                            <td className="food-price border-r border-r whitespace-nowrap px-6 py-4">{foodDetails.price}</td>
-                                            <td className="food-unit border-r border-r whitespace-nowrap px-6 py-4">{foodDetails.unit}</td>
-                                            <td className="food-quantity border-r whitespace-nowrap px-6 py-4">{foodDetails.quantity}</td>
-                                            <td className="food-total-price border-r whitespace-nowrap px-6 py-4">{(foodDetails.price * foodDetails.quantity).toFixed(2)}</td>
+                                            <td className="food-name border-r border-r whitespace-nowrap px-3 py-2">{foodDetails.name}</td>
+                                            <td className="food-price border-r border-r whitespace-nowrap px-3 py-2">{foodDetails.price}</td>
+                                            <td className="food-unit border-r border-r whitespace-nowrap px-3 py-2">{foodDetails.unit}</td>
+                                            <td className="food-quantity border-r whitespace-nowrap px-3 py-2">{foodDetails.quantity}</td>
+                                            <td className="food-total-price border-r whitespace-nowrap px-3 py-2">{(foodDetails.price * foodDetails.quantity).toFixed(2)}</td>
                                         </tr>
                                     </tbody>
                                 </table>

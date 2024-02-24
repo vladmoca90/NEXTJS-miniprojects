@@ -5,23 +5,29 @@ body {
 }
 
 #foodSearch {
-  margin: 1rem auto;
+  margin: 1em auto;
   max-width: 320px;
 }
 
 .food-search {
   max-width: 285px;
-  margin: 0 auto 2rem;
+  margin: 0 auto 2em;
   position: relative;
 }
 
 .food-search-bar {
-  color: #444;
-  font-size: .85rem;
-  padding: .5rem .5rem .35rem;
+  font-size: .9em;
+  margin-top: .3em;
+  padding: .4em .5em;
   width: 100%;
 }
 
+.food-search-title {
+  font-size: 1em;
+}
+
+.food-search-bar,
+.food-search-title,
 .container-table tr>th,
 .container-table tr>td {
   color: #333;
@@ -40,12 +46,12 @@ img {
 }
 
 .food-details {
-  background: #cb2000;
-  border-radius: 8px;
+  background: #a71900;
+  border-radius: 6px;
   color: #fff;
-  font-size: .8rem;
+  font-size: 1em;
   font-weight: 600;
-  padding: .45rem .75rem;
+  padding: .55em .8em;
   text-transform: uppercase;
   transition: linear .5s all;
 }

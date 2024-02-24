@@ -61,7 +61,6 @@ export default function FoodList() {
     // A function that returns the smallest price of an item
     const getCheapestItem = useCallback(() => {
         const mostExpensive = getMostExpensiveItem();
-
         let cheapest = mostExpensive;
 
         for (let i in foods) {
@@ -108,10 +107,12 @@ export default function FoodList() {
     }, []);
 
     const searchedFood = useCallback(() => {
-        return foods.filter(foods => foods.name.toLowerCase().includes(query) || foods.name.toUpperCase().includes(query) ||
-            foods.unit.toLowerCase().includes(query) || foods.unit.toUpperCase().includes(query) ||
-            foods.price.toString().toLowerCase().includes(query) ||
-            foods.quantity.toString().toUpperCase().includes(query));
+        return foods.filter(foods => foods.name.toLowerCase().includes(query) ||
+                                     foods.name.toUpperCase().includes(query) ||
+                                     foods.unit.toLowerCase().includes(query) ||
+                                     foods.unit.toUpperCase().includes(query) ||
+                                     foods.price.toString().toLowerCase().includes(query) ||
+                                     foods.quantity.toString().toUpperCase().includes(query));
     }, [foods, query]);
 
     useEffect(() => {
@@ -147,7 +148,7 @@ export default function FoodList() {
                                                 return (
                                                     <tr key={index} className="border-r border-b dark:border-neutral-500 whitespace-nowrap px-6 py-4">
                                                         <td className="food-image border-r border-r whitespace-nowrap px-6 py-4">
-                                                            <Image alt={food.name} className="product-img" width={80} height={80} src={"/images/foodList/" + food.img} />
+                                                            <Image alt={food.name} className="product-img" width={90} height={90} src={"/images/foodList/" + food.img} />
                                                         </td>
                                                         <td className="food-name border-r border-r whitespace-nowrap px-6 py-4">{food.name}</td>
                                                         <td className="food-price border-r border-r whitespace-nowrap px-6 py-4">{food.price}</td>
