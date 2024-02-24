@@ -3,7 +3,7 @@ import "./../styles/send-message.css";
 
 export default function MessageDetails({ searchParams }: {
     searchParams: {
-        messageText: string
+        "messageText": string
     }
 }) {
     return (

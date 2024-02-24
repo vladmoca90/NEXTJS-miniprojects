@@ -6,11 +6,10 @@ import { Wine } from "../../lib/wines/Wine";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 export default function WinesSell() {
-    let winesUrl = "http://localhost:3000/api/wines";
+    const winesUrl = "http://localhost:3000/api/wines";
 
     const [wines, setWines] = useState<Wine[]>([]);
     const [query, setQuery] = useState("");
-
 
     const getWines = useCallback(async () => {
         const res = await fetch(winesUrl);

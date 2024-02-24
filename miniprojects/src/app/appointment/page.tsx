@@ -5,7 +5,7 @@ import { emailValid, passValid } from "./appointment-details/validation";
 import { ChangeEvent, useCallback, useState } from "react";
 
 export default function AppointmentForm() {
-    let appointmentsUrl = "http://localhost:3000/api/appointment";
+    const appointmentsUrl = "http://localhost:3000/api/appointment";
 
     const [forenameText, setForenameText] = useState("");
     const [surnameText, setSurnameText] = useState("");

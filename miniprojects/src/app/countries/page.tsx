@@ -5,7 +5,7 @@ import { Country } from "../../lib/countries/Country";
 import { useCallback, useEffect, useState } from "react";
 
 export default function CountriesList() {
-    let countriesUrl = "http://localhost:3000/api/countries";
+    const countriesUrl = "http://localhost:3000/api/countries";
 
     const [countries, setCountries] = useState<Country[]>([]);
     const [query, setQuery] = useState("");
@@ -31,10 +31,10 @@ export default function CountriesList() {
 
     const searchCountries = useCallback(() => {
         return countries.filter(
-            country => country.name.toLowerCase().includes(query) || 
-                       country.name.toUpperCase().includes(query) ||
-                       country.code.toLowerCase().includes(query) || 
-                       country.code.toUpperCase().includes(query)
+            country => country.name.toLowerCase().includes(query) ||
+                country.name.toUpperCase().includes(query) ||
+                country.code.toLowerCase().includes(query) ||
+                country.code.toUpperCase().includes(query)
         );
     }, [countries, query]);
 

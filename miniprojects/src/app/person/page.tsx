@@ -5,7 +5,7 @@ import { passValid } from "./person-details/validation";
 import { ChangeEvent, useCallback, useState } from "react";
 
 export default function FormPerson() {
-    let personsUrl = "http://localhost:3000/api/person-details";
+    const personsUrl = "http://localhost:3000/api/person-details";
 
     const [nameText, setNameText] = useState("");
     const [passwordText, setPasswordText] = useState("");
