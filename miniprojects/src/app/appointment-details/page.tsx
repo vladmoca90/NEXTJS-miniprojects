@@ -9,6 +9,9 @@ export default function AppointmentDetails({ searchParams }: {
     searchParams: {
         forename: string,
         surname: string,
+        email: string,
+        phone: string,
+        workplace: string,
     }
 }) {
     const [appDetails, setAppDetails] = useState<Appointment>([] as any);
@@ -19,6 +22,9 @@ export default function AppointmentDetails({ searchParams }: {
             body: JSON.stringify({
                 "forename": searchParams.forename,
                 "surname": searchParams.surname,
+                "email": searchParams.email,
+                "phone": searchParams.phone,
+                "workplace": searchParams.workplace,
             })
         });
 
@@ -32,7 +38,7 @@ export default function AppointmentDetails({ searchParams }: {
         const data = await res.json();
 
         setAppDetails(data.body);
-    }, [searchParams.forename, searchParams.surname]);
+    }, [searchParams.email, searchParams.forename, searchParams.phone, searchParams.surname, searchParams.workplace]);
 
     useEffect(() => {
         getAppDetails();
@@ -52,9 +58,9 @@ export default function AppointmentDetails({ searchParams }: {
                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <td className="px-6 py-4">{searchParams.forename}</td>
                         <td className="px-6 py-4">{searchParams.surname}</td>
-                        <td className="px-6 py-4">{appDetails.email}</td>
-                        <td className="px-6 py-4">{appDetails.phone}</td>
-                        <td className="px-6 py-4">{appDetails.workplace}</td>
+                        <td className="px-6 py-4">{searchParams.email}</td>
+                        <td className="px-6 py-4">{searchParams.phone}</td>
+                        <td className="px-6 py-4">{searchParams.workplace}</td>
                     </tr>
                 </tbody>
             </table>
