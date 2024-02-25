@@ -6,7 +6,7 @@ import { Food } from "../../lib/foodList/Food";
 import { useState, useCallback, useEffect } from "react";
 
 export default function FoodList() {
-    let foodsUrl = "http://localhost:3000/api/food-list";
+    const foodsUrl = "http://localhost:3000/api/food-list";
 
     const [foods, setFoods] = useState<Food[]>([]);
     const [query, setQuery] = useState("");
@@ -15,7 +15,9 @@ export default function FoodList() {
         const res = await fetch(foodsUrl);
 
         if (!res.ok) {
-            throw new Error("Failed to fetch data");
+            throw new Error("Failed to fetch data!");
+        } else {
+            console.log("The data is valid!");
         }
 
         const data = await res.json();
@@ -101,18 +103,19 @@ export default function FoodList() {
         return maxUnit;
     }, [foods]);
 
-    const getSearchedFood = useCallback(async (e: { target: { value: string } }) => {
+    const getFilteredFood = useCallback(async (e: { target: { value: string } }) => {
         const value = e.target.value;
         setQuery(value);
     }, []);
 
-    const searchedFood = useCallback(() => {
-        return foods.filter(foods => foods.name.toLowerCase().includes(query) ||
-                                     foods.name.toUpperCase().includes(query) ||
-                                     foods.unit.toLowerCase().includes(query) ||
-                                     foods.unit.toUpperCase().includes(query) ||
-                                     foods.price.toString().toLowerCase().includes(query) ||
-                                     foods.quantity.toString().toUpperCase().includes(query));
+    const filteredFood = useCallback(() => {
+        return foods.filter(foods => 
+            foods.name.toLowerCase().includes(query) ||
+            foods.name.toUpperCase().includes(query) ||
+            foods.unit.toLowerCase().includes(query) ||
+            foods.unit.toUpperCase().includes(query) ||
+            foods.price.toString().toLowerCase().includes(query) ||
+            foods.quantity.toString().toUpperCase().includes(query));
     }, [foods, query]);
 
     useEffect(() => {
@@ -123,7 +126,7 @@ export default function FoodList() {
         <main className="main">
             <div id="foodSearch">
                 <label className="food-search-title">Search food:</label>
-                <input onChange={getSearchedFood} value={query} className="food-search-bar" title="search" name="search" type="text" placeholder="Search food..." />
+                <input onChange={getFilteredFood} value={query} className="food-search-bar" title="search" name="search" type="text" placeholder="Search food..." />
             </div>
             <div className="container-table">
                 <div className="flex flex-col">
@@ -144,7 +147,7 @@ export default function FoodList() {
                                     </thead>
                                     <tbody>
                                         {
-                                            searchedFood().map((food, index) => {
+                                            filteredFood().map((food, index) => {
                                                 return (
                                                     <tr key={index} className="border-r border-b dark:border-neutral-500 whitespace-nowrap px-6 py-4">
                                                         <td className="food-image border-r border-r whitespace-nowrap px-6 py-4">

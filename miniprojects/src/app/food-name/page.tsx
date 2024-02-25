@@ -53,7 +53,7 @@ export default function FoodListDetails({ searchParams }: {
                                     <tbody>
                                         <tr className="border-r border-b dark:border-neutral-500 whitespace-nowrap px-3 py-2">
                                             <td className="food-image border-r border-r whitespace-nowrap px-3 py-2">
-                                                <Image alt={foodDetails.name} className="product-img" width={100} height={100} src={"/images/foodList/" + foodDetails.img} />
+                                                <Image alt={foodDetails.name} className="product-img" width={90} height={90} src={"/images/foodList/" + foodDetails.img} />
                                             </td>
                                             <td className="food-name border-r border-r whitespace-nowrap px-3 py-2">{foodDetails.name}</td>
                                             <td className="food-price border-r border-r whitespace-nowrap px-3 py-2">{foodDetails.price}</td>

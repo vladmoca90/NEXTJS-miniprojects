@@ -15,15 +15,20 @@ body {
   position: relative;
 }
 
-.food-search-bar {
+.food-search-bar,
+.food-search-title,
+.food-details {
   font-size: .9em;
+}
+
+.food-search-bar {
   margin-top: .3em;
-  padding: .4em .5em;
+  padding: .33em .5em;
   width: 100%;
 }
 
 .food-search-title {
-  font-size: 1em;
+  font-weight: 600;
 }
 
 .food-search-bar,
@@ -49,7 +54,6 @@ img {
   background: #a71900;
   border-radius: 6px;
   color: #fff;
-  font-size: 1em;
   font-weight: 600;
   padding: .55em .8em;
   text-transform: uppercase;
