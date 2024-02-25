@@ -11,7 +11,7 @@ export default function Home() {
         // perform database operations
         // get the auth token
 
-        cookies().set("auth-token", "some-auth-token-by-server-comp", {
+        cookies().set("token", "VladCookie", {
             maxAge: 48 * 60 * 60,
             secure: process.env.NODE_ENV === "production",
             httpOnly: true,
@@ -19,7 +19,7 @@ export default function Home() {
     };
 
     // const fetchUserInfo = async () => {
-    //     const authToken = cookies().get("auth-token")?.value;
+    //     const authToken = cookies().get("token")?.value;
 
     //     //perform further action
     // };
@@ -54,11 +54,11 @@ export default function Home() {
                     {" "}
                     Cookie Value
                 </h2>
-                {cookies().get("auth-token")?.name && (
+                {cookies().get("token")?.name && (
                     <p className="mt-5 text-xl">
-                        {cookies().get("auth-token")?.name +
+                        {cookies().get("token")?.name +
                             ": " +
-                            cookies()?.get("auth-token")?.value}
+                            cookies()?.get("token")?.value}
                     </p>
                 )}
             </div>

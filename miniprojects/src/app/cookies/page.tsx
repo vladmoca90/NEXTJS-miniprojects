@@ -21,7 +21,7 @@ export default function ClientPage() {
     const router = useRouter(); // hook that allows you to programmatically change routes inside Client Components.
 
     const setTestCookie = async () => {
-        Cookies.set("name", "closeBanner", {
+        Cookies.set("name", "clickBtn", {
             expires: 60*60*24*30, // expires in 30 days.
         });
 
@@ -34,11 +34,11 @@ export default function ClientPage() {
 
     return (
         <main className="flex mx-3 flex-col items-center justify-center">
-            <h1 className="my-5 text-center text-2xl font-bold">
+            <h1 className="my-10 text-center text-2xl font-bold">
                 Getting and Setting Cookies in Next.js (Client Component)
             </h1>
             <div>
-                <h2 className="mb-7 mt-10 text-center text-3xl font-semibold">Set Cookie</h2>
+                <h2 className="mb-5 mt-3 text-center text-3xl font-semibold">Set Cookie</h2>
                 <Link href="" onClick={setTestCookie} className="bg-blue-600 rounded-md px-9 py-2 text-white">Set Cookie</Link>
             </div>
         </main>
