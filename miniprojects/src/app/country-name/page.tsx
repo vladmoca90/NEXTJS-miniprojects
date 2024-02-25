@@ -15,10 +15,9 @@ export default function CountryName({ searchParams }: {
         const res = await fetch(countriesDetailsUrl);
 
         if (!res.ok) {
-            console.log("The details are NOT valid!");
-            return;
+            throw new Error("The data is not valid!");
         } else {
-            console.log("The details are valid!");
+            console.log("Data is valid!");
         }
 
         const data = await res.json();
