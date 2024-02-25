@@ -34,7 +34,6 @@ body {
 .countries-table table tr>td {
     color: #333;
     text-align: center;
-    text-transform: uppercase;
 }
 
 .countries-table table thead tr>th,
@@ -48,7 +47,7 @@ body {
 }
 
 .countries-table table tr>td a {
-    color: #cb2000;
+    color: #b31b00;
     cursor: pointer;
     font-weight: 600;
     text-decoration: underline;
