@@ -31,16 +31,18 @@ export default function CountriesList() {
 
     const searchCountries = useCallback(() => {
         return countries.filter(
-            country => country.name.toLowerCase().includes(query) ||
-                       country.name.toUpperCase().includes(query) ||
-                       country.code.toLowerCase().includes(query) ||
-                       country.code.toUpperCase().includes(query)
+            country => country.name[0].toUpperCase().includes(query) ||
+                country.name.toLowerCase().includes(query) ||
+                country.name.toUpperCase().includes(query) ||
+                country.code[0].toUpperCase().includes(query) ||
+                country.code.toLowerCase().includes(query) ||
+                country.code.toUpperCase().includes(query)
         );
     }, [countries, query]);
 
     useEffect(() => {
         getCountries();
-    }, [getCountries]);
+    }, [getCountries, searchCountries]);
 
     return (
         <div>
