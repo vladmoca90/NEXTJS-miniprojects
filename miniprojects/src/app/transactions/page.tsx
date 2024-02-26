@@ -1,4 +1,5 @@
 "use client";
+import "./../styles/transactions.css";
 import { useCallback, useEffect, useState } from "react";
 import { Transaction } from "../../../lib/transactions/Transaction";
 
