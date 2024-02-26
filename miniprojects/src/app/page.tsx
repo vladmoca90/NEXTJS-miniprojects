@@ -1,13 +1,13 @@
 "use client";
-import "./../styles/transactions.css";
+import "./styles/transactions.css";
+import { Transaction } from "./../../lib/transactions/Transaction";
 import { useCallback, useEffect, useState } from "react";
-import { Transaction } from "../../../lib/transactions/Transaction";
 
 export default function Transactions() {
     let transactionsUrl = "https://csb-u0slz.vercel.app/api/transactions";
 
     const [transactions, setTransactions] = useState<Transaction[]>([]);
-    const [getTRansactions, setGetTransactions] = useState<Transaction[]>([]);
+    const [getTransactions, setGetTransactions] = useState<Transaction[]>([]);
 
     const getTransaction = useCallback(async () => {
         const res = await fetch(transactionsUrl);
@@ -19,6 +19,8 @@ export default function Transactions() {
         }
 
         const data = await res.json();
+
+        console.log(data);
 
         setTransactions(data);
     }, [transactionsUrl]);
