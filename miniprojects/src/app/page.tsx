@@ -1,7 +1,7 @@
 "use client";
 import "./styles/transactions.css";
 import { Transaction } from "./../../lib/transactions/Transaction";
-import { useCallback, useEffect, useState } from "react";
+import { MouseEventHandler, useCallback, useEffect, useState } from "react";
 
 export default function Transactions() {
     let transactionsUrl = "https://csb-u0slz.vercel.app/api/transactions";
@@ -25,10 +25,12 @@ export default function Transactions() {
         setTransactions(data);
     }, [transactionsUrl]);
 
-    const getSelectedTransaction = useCallback(() => {
+    const getSelectedTransaction = useCallback(async (event: HTMLButtonElement) => {
         let getValue = transactions.filter((transaction) => {
             return transaction.name;
         });
+
+        console.log(getValue);
 
         setGetTransactions(getValue);
     }, [transactions]);
@@ -62,8 +64,8 @@ export default function Transactions() {
                         return (
                             <div key={index}>
                                 <p>{getTransaction.name}</p>
-                                {/* <p>{getTransaction.date}</p>
-                                <p>{getTransaction.category}</p> */}
+                                <p>{getTransaction.date}</p>
+                                <p>{getTransaction.category}</p>
                             </div>
                         );
                     })
