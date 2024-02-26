@@ -17,7 +17,8 @@ body {
     margin: 1em 0;
 }
 
-.transactions-content {
+.transactions-content, 
+.transactions-results {
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
     border-top: 1px solid #ccc;

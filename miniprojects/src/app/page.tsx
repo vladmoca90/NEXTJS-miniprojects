@@ -26,7 +26,9 @@ export default function Transactions() {
     }, [transactionsUrl]);
 
     const getSelectedTransaction = useCallback(() => {
-        let getValue = transactions.filter((transaction) => transaction.name || transaction.category || transaction.date);
+        let getValue = transactions.filter((transaction) => {
+            return transaction.name;
+        });
 
         setGetTransactions(getValue);
     }, [transactions]);
@@ -42,10 +44,12 @@ export default function Transactions() {
                 transactions.map((transaction, index) => (
                     <div onClick={getSelectedTransaction} className="transactions-content" key={index}>
                         <span className="transaction-date">
-                            {new Date(transaction.date).toLocaleString([], {
-                                hour: "2-digit",
-                                minute: "2-digit",
-                            })}
+                            {
+                                new Date(transaction.date).toLocaleString([], {
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                })
+                            }
                         </span>
                         <span className="transaction-name">{transaction.name}</span>
                         <span>£{Math.abs(transaction.amount)}</span>
@@ -58,8 +62,8 @@ export default function Transactions() {
                         return (
                             <div key={index}>
                                 <p>{getTransaction.name}</p>
-                                <p>{getTransaction.date}</p>
-                                <p>{getTransaction.category}</p>
+                                {/* <p>{getTransaction.date}</p>
+                                <p>{getTransaction.category}</p> */}
                             </div>
                         );
                     })
