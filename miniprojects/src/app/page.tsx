@@ -26,8 +26,10 @@ export default function Transactions() {
     }, [transactionsUrl]);
 
     const getSelectedTransaction = useCallback(() => {
+        let getValue = transactions.filter((transaction) => transaction.name || transaction.category || transaction.date);
 
-    }, []);
+        setGetTransactions(getValue);
+    }, [transactions]);
 
     useEffect(() => {
         getTransaction();
@@ -38,7 +40,7 @@ export default function Transactions() {
             <span>{"SELECTED_CATEGORY"}</span>
             {
                 transactions.map((transaction, index) => (
-                    <div className="transactions-content" onClick={getSelectedTransaction} key={index}>
+                    <div onClick={getSelectedTransaction} className="transactions-content" key={index}>
                         <span className="transaction-date">
                             {new Date(transaction.date).toLocaleString([], {
                                 hour: "2-digit",
@@ -50,6 +52,19 @@ export default function Transactions() {
                     </div>
                 ))
             }
+            <div className="transactions-results">
+                {
+                    getTransactions.map((getTransaction, index) => {
+                        return (
+                            <div key={index}>
+                                <p>{getTransaction.name}</p>
+                                <p>{getTransaction.date}</p>
+                                <p>{getTransaction.category}</p>
+                            </div>
+                        );
+                    })
+                }
+            </div>
         </div>
     );
 }
