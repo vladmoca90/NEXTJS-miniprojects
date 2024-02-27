@@ -27,12 +27,14 @@ export default function Transactions() {
 
     const getSelectedTransaction = useCallback(async () => {
         let getValue: [] | any = transactions.find((transaction) => {
-            return transaction.name;
+            return transaction;
         });
 
-        console.log(getValue);
+        console.log(Object.entries(getValue));
 
-        setGetTransactions(getValue);
+        const oneTransaction: [] | any = Object.entries(getValue);
+
+        setGetTransactions(oneTransaction);
     }, [transactions]);
 
     useEffect(() => {
@@ -59,7 +61,7 @@ export default function Transactions() {
                 ))
             }
             <div className="transactions-results">
-                {/* {
+                {
                     getTransactions.map((getTransaction, index) => {
                         return (
                             <div key={index}>
@@ -69,7 +71,7 @@ export default function Transactions() {
                             </div>
                         );
                     })
-                } */}
+                }
             </div>
         </div>
     );
