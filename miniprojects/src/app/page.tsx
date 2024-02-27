@@ -25,7 +25,7 @@ export default function Transactions() {
         setTransactions(data);
     }, [transactionsUrl]);
 
-    const getSelectedTransaction = useCallback(async (event: HTMLButtonElement) => {
+    const getSelectedTransaction = useCallback(async (event: HTMLDivElement) => {
         let getValue = transactions.filter((transaction) => {
             return transaction.name;
         });
