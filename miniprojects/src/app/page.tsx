@@ -1,7 +1,7 @@
 "use client";
 import "./styles/transactions.css";
 import { Transaction } from "./../../lib/transactions/Transaction";
-import { useCallback, useEffect, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, useCallback, useEffect, useState } from "react";
 
 export default function Transactions() {
     let transactionsUrl = "https://csb-u0slz.vercel.app/api/transactions";
@@ -25,16 +25,15 @@ export default function Transactions() {
         setTransactions(data);
     }, [transactionsUrl]);
 
-    const getSelectedTransaction = useCallback(() => {
-        let getValue: [] | any = transactions.find((transaction) => {
-            return transaction.name || transaction.date || transaction.category;
+    const getSelectedTransactions = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        let getValue: [] | any = transactions.filter((transaction) => {
+            return value === transaction.name || value === transaction.date || transaction.category;
         });
 
         console.log(getValue);
 
-        const oneTransaction: [] | any = getValue;
-
-        setGetTransactions(oneTransaction);
+        setGetTransactions(getValue);
     }, [transactions]);
 
     useEffect(() => {
@@ -46,7 +45,7 @@ export default function Transactions() {
             <span>{"SELECTED_CATEGORY"}</span>
             {
                 transactions.map((transaction, index) => (
-                    <div onClick={getSelectedTransaction} className="transactions-content" key={index}>
+                    <div onClick={getSelectedTransactions} className="transactions-content" key={index}>
                         <span className="transaction-date">
                             {
                                 new Date(transaction.date).toLocaleString([], {
@@ -61,7 +60,7 @@ export default function Transactions() {
                 ))
             }
             <div className="transactions-results">
-                {/* {
+                {
                     getTransactions.map((getTransaction, index) => {
                         return (
                             <div key={index}>
@@ -71,7 +70,7 @@ export default function Transactions() {
                             </div>
                         );
                     })
-                } */}
+                }
             </div>
         </div>
     );
