@@ -26,7 +26,7 @@ export default function Transactions() {
     }, [transactionsUrl]);
 
     const getSelectedTransaction = useCallback(async () => {
-        let getValue: string | any = transactions.find((transaction) => {
+        let getValue: [] | any = transactions.find((transaction) => {
             return transaction.name;
         });
 
@@ -59,7 +59,7 @@ export default function Transactions() {
                 ))
             }
             <div className="transactions-results">
-                {
+                {/* {
                     getTransactions.map((getTransaction, index) => {
                         return (
                             <div key={index}>
@@ -69,7 +69,7 @@ export default function Transactions() {
                             </div>
                         );
                     })
-                }
+                } */}
             </div>
         </div>
     );
