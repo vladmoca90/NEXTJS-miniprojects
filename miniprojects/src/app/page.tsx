@@ -24,14 +24,14 @@ export default function Transactions() {
     }, [transactionsUrl]);
 
     const getSelectedTransactions = useCallback(async (e: React.MouseEvent<HTMLDivElement>) => {
-        const value = e.target.addEventListener.name;
-        let getValue = transactions.filter((transaction) => {
-            return value === transaction.name;
+        const value = transactions[3];
+        let getValue: [] | any = transactions.find((transaction) => {
+            return value === transaction;
         });
 
-        console.log(getValue);
+        console.log([].concat(getValue));
 
-        const selectedTransaction = getValue;
+        const selectedTransaction: Transaction[] = [].concat(getValue);
 
         setGetTransactions(selectedTransaction);
     }, [transactions]);
