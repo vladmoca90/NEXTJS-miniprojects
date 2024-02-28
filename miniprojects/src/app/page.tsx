@@ -30,9 +30,9 @@ export default function Transactions() {
 
         console.log([].concat(getValue));
 
-        const xex: Transaction[] = [].concat(getValue);
+        const selectedTransaction: Transaction[] = [].concat(getValue);
 
-        setGetTransactions(xex);
+        setGetTransactions(selectedTransaction);
     }, [transactions]);
 
     useEffect(() => {
