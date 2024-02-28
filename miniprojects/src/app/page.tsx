@@ -2,6 +2,7 @@
 import "./styles/transactions.css";
 import { Transaction } from "./../../lib/transactions/Transaction";
 import { MouseEventHandler, useCallback, useEffect, useState } from "react";
+import { transition } from "@material-tailwind/react/types/components/carousel";
 
 export default function Transactions() {
     let transactionsUrl = "https://csb-u0slz.vercel.app/api/transactions";
@@ -25,14 +26,16 @@ export default function Transactions() {
         setTransactions(data);
     }, [transactionsUrl]);
 
-    const getSelectedTransactions = useCallback(async (event: MouseEventHandler<HTMLDivElement>) => {
-        let getValue: [] | any = transactions.filter((transaction) => {
-            return transaction.name
+    const getSelectedTransactions = useCallback(async () => {
+        let getValue: [] | any = transactions.find((transaction) => {
+            return transaction.name || transaction.category || transaction.date;
         });
 
-        console.log(getValue);
+        console.log(Object.values(getValue));
 
-        setGetTransactions(getValue);
+        const xex: Transaction[] = Object.values(getValue);
+
+        setGetTransactions(xex);
     }, [transactions]);
 
     useEffect(() => {
