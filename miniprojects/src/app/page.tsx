@@ -23,14 +23,15 @@ export default function Transactions() {
         setTransactions(data.body);
     }, [transactionsUrl]);
 
-    const getSelectedTransactions = useCallback(async () => {
-        let getValue: [] | any = transactions.find((transaction) => {
-            return transaction.name;
+    const getSelectedTransactions = useCallback(async (e: React.MouseEvent<HTMLDivElement>) => {
+        const value = e.target.addEventListener.name;
+        let getValue = transactions.filter((transaction) => {
+            return value === transaction.name;
         });
 
-        console.log([].concat(getValue));
+        console.log(getValue);
 
-        const selectedTransaction: Transaction[] = [].concat(getValue);
+        const selectedTransaction = getValue;
 
         setGetTransactions(selectedTransaction);
     }, [transactions]);
