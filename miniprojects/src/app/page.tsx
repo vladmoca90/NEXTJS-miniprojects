@@ -1,8 +1,7 @@
 "use client";
 import "./styles/transactions.css";
 import { Transaction } from "./../../lib/transactions/Transaction";
-import { MouseEventHandler, useCallback, useEffect, useState } from "react";
-import { transition } from "@material-tailwind/react/types/components/carousel";
+import { useCallback, useEffect, useState } from "react";
 
 export default function Transactions() {
     let transactionsUrl = "https://csb-u0slz.vercel.app/api/transactions";
@@ -21,8 +20,6 @@ export default function Transactions() {
 
         const data = await res.json();
 
-        console.log(data);
-
         setTransactions(data);
     }, [transactionsUrl]);
 
@@ -31,9 +28,9 @@ export default function Transactions() {
             return transaction.name || transaction.category || transaction.date;
         });
 
-        console.log(Object.values(getValue));
+        console.log([].concat(getValue));
 
-        const xex: Transaction[] = Object.values(getValue);
+        const xex: Transaction[] = [].concat(getValue);
 
         setGetTransactions(xex);
     }, [transactions]);
