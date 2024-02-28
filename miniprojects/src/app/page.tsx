@@ -24,8 +24,8 @@ export default function Transactions() {
     }, [transactionsUrl]);
 
     const getSelectedTransactions = useCallback(async () => {
-        let getValue: [] | any = transactions.filter((transaction) => {
-            return transaction.name || transaction.category || transaction.date;
+        let getValue: [] | any = transactions.find((transaction) => {
+            return transaction.name;
         });
 
         console.log([].concat(getValue));
@@ -55,7 +55,7 @@ export default function Transactions() {
                     })
                 }
             </div>
-            <br/>
+            <br />
             {
                 transactions.map((transaction, index) => (
                     <div onClick={getSelectedTransactions} className="transactions-content" key={index}>
