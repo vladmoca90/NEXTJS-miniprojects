@@ -37,19 +37,24 @@ export default function WinesSell() {
         }
     }, [query, wines]);
 
-    const onChecked = useCallback((event: { target: { value: string } }) => {
-        const value = event?.target.value;
+    const onChecked = useCallback((event: { target: { checked: boolean, value: string; } }) => {
+        const check = event.target.checked;        
+        const value = event.target.value;
 
-        setIsChecked(!isChecked);
-    }, [isChecked]);
+        console.log(value);
+        setIsChecked(check);
+    }, []);
 
-    // const filterChecked = useCallback(() => {
-    //     if(isChecked) {
-    //         return wines.filter((wine) => wine.name.includes(query));
-    //     } else {
-    //         return wines;
-    //     }
-    // }, [isChecked, query, wines]);
+    const checkedWines = useCallback((event: { target: { checked: boolean, value: string; } }) => {
+        const check = event.target.checked;        
+        const value = event.target.value;
+
+        if (value === null) {
+            return wines;
+        } else {
+            return wines.filter((wine) => wine.name);
+        }
+    }, [wines]);
 
     useEffect(() => {
         getWines();
@@ -62,7 +67,7 @@ export default function WinesSell() {
                     wines.map((wine, index) => {
                         return (
                             <div className="flex items-center mt-5 ml-5" key={index}>
-                                <input onChange={onChecked} checked={isChecked} id="checkedCheckbox" type="checkbox" value={wine.name} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                <input onChange={onChecked} id="checkedCheckbox" type="checkbox" value={wine.name} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                                 <label htmlFor="checked-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{wine.name}</label>
                             </div>
                         );
