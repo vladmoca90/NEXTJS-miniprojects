@@ -4,7 +4,7 @@ import { Transaction } from "./../../lib/transactions/Transaction";
 import { useCallback, useEffect, useState } from "react";
 
 export default function Transactions() {
-    let transactionsUrl = "https://csb-u0slz.vercel.app/api/transactions";
+    let transactionsUrl = "http://localhost:3000/api/transactions";
 
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [getTransactions, setGetTransactions] = useState<Transaction[]>([]);
@@ -20,11 +20,11 @@ export default function Transactions() {
 
         const data = await res.json();
 
-        setTransactions(data);
+        setTransactions(data.body);
     }, [transactionsUrl]);
 
     const getSelectedTransactions = useCallback(async () => {
-        let getValue: [] | any = transactions.find((transaction) => {
+        let getValue: [] | any = transactions.filter((transaction) => {
             return transaction.name || transaction.category || transaction.date;
         });
 
@@ -42,6 +42,20 @@ export default function Transactions() {
     return (
         <div id="transaction-container">
             <span>{"SELECTED_CATEGORY"}</span>
+            <div className="transactions-results">
+                {
+                    getTransactions.map((getTransaction, index) => {
+                        return (
+                            <div key={index}>
+                                <p>{getTransaction.name}</p>
+                                <p>{getTransaction.date}</p>
+                                <p>{getTransaction.category}</p>
+                            </div>
+                        );
+                    })
+                }
+            </div>
+            <br/>
             {
                 transactions.map((transaction, index) => (
                     <div onClick={getSelectedTransactions} className="transactions-content" key={index}>
@@ -58,19 +72,6 @@ export default function Transactions() {
                     </div>
                 ))
             }
-            <div className="transactions-results">
-                {
-                    getTransactions.map((getTransaction, index) => {
-                        return (
-                            <div key={index}>
-                                <p>{getTransaction.name}</p>
-                                <p>{getTransaction.date}</p>
-                                <p>{getTransaction.category}</p>
-                            </div>
-                        );
-                    })
-                }
-            </div>
         </div>
     );
 }
