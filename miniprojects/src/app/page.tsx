@@ -3,7 +3,7 @@ import "./styles/wines.css";
 import Image from "next/image";
 import Link from "next/link";
 import { Wine } from "../../lib/wines/Wine";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { Changee, useCallback, useEffect, useState } from "react";
 
 export default function WinesSell() {
     const winesUrl = "http://localhost:3000/api/wines";
@@ -24,7 +24,7 @@ export default function WinesSell() {
         setWines(data.body);
     }, [winesUrl]);
 
-    const getSelectedWine = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
+    const getSelectedWine = useCallback(async (e: Changee<HTMLSelectElement>) => {
         const value = e.target.value;
         setQuery(value);
     }, []);
@@ -37,22 +37,20 @@ export default function WinesSell() {
         }
     }, [query, wines]);
 
-    const onChecked = useCallback((event: { target: { checked: boolean, value: string; } }) => {
-        const check = event.target.checked;        
-        const value = event.target.value;
+    const onChecked = useCallback((e: { target: { checked: boolean, value: string; } }) => {
+        const check = e.target.checked;        
+        const value = e.target.value;
 
-        console.log(value);
         setIsChecked(check);
     }, []);
 
-    const checkedWines = useCallback((event: { target: { checked: boolean, value: string; } }) => {
-        const check = event.target.checked;        
-        const value = event.target.value;
+    const checkedWines = useCallback((e: { target: { value: string } }) => {     
+        const value = e.target.value;
 
-        if (value === null) {
+        if (!value || value.length === 0) {
             return wines;
         } else {
-            return wines.filter((wine) => wine.name);
+            return wines.filter(wine => wine.name.includes(value));
         }
     }, [wines]);
 
