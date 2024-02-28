@@ -10,6 +10,7 @@ export default function WinesSell() {
 
     const [wines, setWines] = useState<Wine[]>([]);
     const [query, setQuery] = useState("");
+    const [isChecked, setIsChecked] = useState(false);
 
     const getWines = useCallback(async () => {
         const res = await fetch(winesUrl);
@@ -36,6 +37,14 @@ export default function WinesSell() {
         }
     }, [query, wines]);
 
+    const onChecked = useCallback(() => {
+        if(isChecked === true) {
+
+        } else {
+
+        }
+    }, [isChecked]);
+
     useEffect(() => {
         getWines();
     }, [getWines]);
@@ -47,7 +56,7 @@ export default function WinesSell() {
                     wines.map((wine, index) => {
                         return (
                             <div className="flex items-center mt-5 ml-5" key={index}>
-                                <input id="checkedCheckbox" type="checkbox" value={wine.name} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                <input onChange={onChecked} checked={isChecked} id="checkedCheckbox" type="checkbox" value={wine.name} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                                 <label htmlFor="checked-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{wine.name}</label>
                             </div>
                         );
