@@ -3,7 +3,7 @@ import "./styles/wines.css";
 import Image from "next/image";
 import Link from "next/link";
 import { Wine } from "../../lib/wines/Wine";
-import { Changee, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 export default function WinesSell() {
     const winesUrl = "http://localhost:3000/api/wines";
@@ -26,7 +26,7 @@ export default function WinesSell() {
         setWines(data.body);
     }, [winesUrl]);
 
-    const getSelectedWine = useCallback(async (e: Changee<HTMLSelectElement>) => {
+    const getSelectedWine = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
         setQuery(value);
     }, []);
