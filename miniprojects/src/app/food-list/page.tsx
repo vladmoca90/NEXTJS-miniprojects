@@ -15,9 +15,9 @@ export default function FoodList() {
         const res = await fetch(foodsUrl);
 
         if (!res.ok) {
-            throw new Error("Failed to fetch data!");
+            throw new Error("The details are NOT valid!");
         } else {
-            console.log("The data is valid!");
+            console.log("The details are valid!");
         }
 
         const data = await res.json();
@@ -109,7 +109,7 @@ export default function FoodList() {
     }, []);
 
     const filteredFood = useCallback(() => {
-        return foods.filter(foods => 
+        return foods.filter(foods =>
             foods.name.toLowerCase().includes(query) ||
             foods.name.toUpperCase().includes(query) ||
             foods.unit.toLowerCase().includes(query) ||

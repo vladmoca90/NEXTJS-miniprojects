@@ -17,8 +17,7 @@ export default function FoodListDetails({ searchParams }: {
         const res = await fetch(foodNameUrl);
 
         if (!res.ok) {
-            console.log("The details are NOT valid!");
-            return;
+            throw new Error("The details are NOT valid!");
         } else {
             console.log("The details are valid!");
         }

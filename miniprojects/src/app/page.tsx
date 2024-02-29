@@ -16,7 +16,9 @@ export default function WinesSell() {
         const res = await fetch(winesUrl);
 
         if (!res.ok) {
-            throw new Error("Failed to fetch data");
+            throw new Error("The details are NOT valid!");
+        } else {
+            console.log("The details are valid!");
         }
 
         const data = await res.json();
@@ -38,13 +40,13 @@ export default function WinesSell() {
     }, [query, wines]);
 
     const onChecked = useCallback((e: { target: { checked: boolean, value: string; } }) => {
-        const check = e.target.checked;        
+        const check = e.target.checked;
         const value = e.target.value;
 
         setIsChecked(check);
     }, []);
 
-    const checkedWines = useCallback((e: { target: { value: string } }) => {     
+    const checkedWines = useCallback((e: { target: { value: string } }) => {
         const value = e.target.value;
 
         if (!value || value.length === 0) {

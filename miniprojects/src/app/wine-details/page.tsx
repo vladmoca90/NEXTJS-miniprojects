@@ -17,8 +17,7 @@ export default function WineDetails({ searchParams }: {
         const res = await fetch(wineNameUrl);
 
         if (!res.ok) {
-            console.log("The details are NOT valid!");
-            return;
+            throw new Error("The details are NOT valid!");
         } else {
             console.log("The details are valid!");
         }

@@ -14,9 +14,9 @@ export default function CountriesList() {
         const res = await fetch(countriesUrl);
 
         if (!res.ok) {
-            throw new Error("The data is not valid!");
+            throw new Error("The details are NOT valid!");
         } else {
-            console.log("Data is valid!");
+            console.log("The details are valid!");
         }
 
         const data = await res.json();
