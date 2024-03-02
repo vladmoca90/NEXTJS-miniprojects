@@ -26,18 +26,18 @@ export default function WinesSell() {
         setWines(data.body);
     }, [winesUrl]);
 
-    const getSelectedWine = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
-        const value = e.target.value;
-        setQuery(value);
-    }, []);
+    // const getSelectedWine = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
+    //     const value = e.target.value;
+    //     setQuery(value);
+    // }, []);
 
-    const filterWines = useCallback(() => {
-        if (query === "All products" || query.length === 0) {
-            return wines;
-        } else {
-            return wines.filter(wine => wine.name.includes(query));
-        }
-    }, [query, wines]);
+    // const filterWines = useCallback(() => {
+    //     if (query === "All products" || query.length === 0) {
+    //         return wines;
+    //     } else {
+    //         return wines.filter(wine => wine.name.includes(query));
+    //     }
+    // }, [query, wines]);
 
     const onChecked = useCallback((e: { target: { checked: boolean }}) => {
         const value = e.target.checked;
@@ -70,7 +70,7 @@ export default function WinesSell() {
                     })
                 }
             </div>
-            <div>
+            {/* <div>
                 <select id="productsList" title="wines" onChange={getSelectedWine}>
                     <option value="All products">All products</option>
                     {
@@ -81,7 +81,7 @@ export default function WinesSell() {
                         })
                     }
                 </select>
-            </div>
+            </div> */}
             <div className="products-container">
                 {
                     checkedWines().map((wine, index) => {
