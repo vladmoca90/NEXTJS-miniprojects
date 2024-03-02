@@ -58,7 +58,7 @@ export default function WinesSell() {
 
     return (
         <section className="box">
-            <div className="flex items-center">
+            <div className="wine-checkbox flex items-center">
                 {
                     wines.map((wine, index) => {
                         return (
