@@ -1,13 +1,13 @@
 "use client";
 import "./styles/transactions.css";
 import { Transaction } from "./../../lib/transactions/Transaction";
-import { useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 export default function Transactions() {
     let transactionsUrl = "http://localhost:3000/api/transactions";
 
     const [transactions, setTransactions] = useState<Transaction[]>([]);
-    const [getTransactions, setGetTransactions] = useState<Transaction[]>([]);
+    const [selectedTransactions, setSelectedTransactions] = useState<Transaction[]>([]);
 
     const getTransaction = useCallback(async () => {
         const res = await fetch(transactionsUrl);
@@ -23,18 +23,18 @@ export default function Transactions() {
         setTransactions(data.body);
     }, [transactionsUrl]);
 
-    const getSelectedTransactions = useCallback(async (event: { target: any; }) => {
-        const value = event.target.tagName;
+    const getSelectedTransactions = useCallback(async (e: ChangeEvent<HTMLDivElement>) => {
+        const value = e.currentTarget;
 
-        let getValue: [] | any = transactions.filter((transaction) => {
-            return value === transaction;
+        let getValue: [] | any = transactions.find((transaction) => {
+            return value === transaction.name;
         });
 
         console.log([].concat(getValue));
 
-        const selectedTransaction: Transaction[] = [].concat(getValue);
+        const oneTransaction: Transaction[] = [].concat(getValue);
 
-        setGetTransactions(selectedTransaction);
+        setSelectedTransactions(oneTransaction);
     }, [transactions]);
 
     useEffect(() => {
@@ -46,12 +46,12 @@ export default function Transactions() {
             <span>{"SELECTED_CATEGORY"}</span>
             <div className="transactions-results">
                 {
-                    getTransactions.map((getTransaction, index) => {
+                    selectedTransactions.map((selectedTransaction, index) => {
                         return (
                             <div key={index}>
-                                <p>{getTransaction.name}</p>
-                                <p>{getTransaction.date}</p>
-                                <p>{getTransaction.category}</p>
+                                <p>{selectedTransaction.name}</p>
+                                <p>{selectedTransaction.date}</p>
+                                <p>{selectedTransaction.category}</p>
                             </div>
                         );
                     })
