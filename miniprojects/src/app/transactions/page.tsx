@@ -24,7 +24,7 @@ export default function Transactions() {
     }, [transactionsUrl]);
 
     const getSelectedTransactions = useCallback(async (event: { target: any; }) => {
-        const value = event.target;
+        const value = event.target.tagName;
 
         let getValue: [] | any = transactions.filter((transaction) => {
             return value === transaction;
