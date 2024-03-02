@@ -44,16 +44,13 @@ export default function WinesSell() {
         setIsChecked(value);
     }, []);
 
-    const checkedWines = useCallback((e: { target: { value: string, checked: boolean } }) => {
-        const value = e.target.value;
-        const check = e.target.checked;
-
-        if (check === false) {
+    const checkedWines = useCallback(() => {
+        if (query === "All products" || query.length === 0) {
             return wines;
         } else {
-            return wines.filter(wine => wine.name.includes(value));
+            return wines.filter(wine => wine.name.includes(query));
         }
-    }, [wines]);
+    }, [query, wines]);
 
     useEffect(() => {
         getWines();
