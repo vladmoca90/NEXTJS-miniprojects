@@ -10,7 +10,7 @@ export default function WinesSell() {
 
     const [wines, setWines] = useState<Wine[]>([]);
     const [query, setQuery] = useState("");
-    const [isChecked, setIsChecked] = useState(false);
+    const [isChecked, setIsChecked] = useState("");
 
     const getWines = useCallback(async () => {
         const res = await fetch(winesUrl);
@@ -39,9 +39,10 @@ export default function WinesSell() {
     //     }
     // }, [query, wines]);
 
-    const onChecked = useCallback((e: { target: { checked: boolean }}) => {
-        const value = e.target.checked;
-        setIsChecked(value);
+    const onChecked = useCallback((e: { target: { value: string }}) => {
+        const value = e.target.value;
+        console.log(value);
+        setQuery(value);
     }, []);
 
     const checkedWines = useCallback(() => {
