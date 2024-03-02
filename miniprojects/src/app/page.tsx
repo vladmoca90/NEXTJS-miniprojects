@@ -9,8 +9,8 @@ export default function WinesSell() {
     const winesUrl = "http://localhost:3000/api/wines";
 
     const [wines, setWines] = useState<Wine[]>([]);
-    const [query, setQuery] = useState("");
-    const [isChecked, setIsChecked] = useState("");
+    //const [query, setQuery] = useState("");
+    const [isChecked, setIsChecked] = useState(false);
 
     const getWines = useCallback(async () => {
         const res = await fetch(winesUrl);
@@ -32,26 +32,22 @@ export default function WinesSell() {
     // }, []);
 
     // const filterWines = useCallback(() => {
-    //     if (query === "All products" || query.length === 0) {
+    //     if (query === "All wines" || query.length === 0) {
     //         return wines;
     //     } else {
     //         return wines.filter(wine => wine.name.includes(query));
     //     }
     // }, [query, wines]);
 
-    const onChecked = useCallback((e: { target: { value: string }}) => {
+    const onChecked = useCallback((e: { target: { value: string } }) => {
         const value = e.target.value;
         console.log(value);
-        setQuery(value);
+        setIsChecked(value);
     }, []);
 
     const checkedWines = useCallback(() => {
-        if (!isChecked) {
-            return wines.filter(wine => wine.name.includes(query));
-        } else {
-            return wines;
-        }
-    }, [isChecked, query, wines]);
+        
+    }, []);
 
     useEffect(() => {
         getWines();
@@ -60,11 +56,15 @@ export default function WinesSell() {
     return (
         <section className="box">
             <div className="wine-checkbox flex items-center">
+                <div className="flex items-center mt-5 ml-5">
+                    <input type="checkbox" value="All wines" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                    <label htmlFor="checked-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">All wines</label>
+                </div>
                 {
                     wines.map((wine, index) => {
                         return (
                             <div className="flex items-center mt-5 ml-5" key={index}>
-                                <input onChange={onChecked} id="checkedCheckbox" type="checkbox" value={wine.name} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                <input onChange={onChecked} type="checkbox" value={wine.name} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                                 <label htmlFor="checked-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{wine.name}</label>
                             </div>
                         );
@@ -73,7 +73,7 @@ export default function WinesSell() {
             </div>
             {/* <div>
                 <select id="productsList" title="wines" onChange={getSelectedWine}>
-                    <option value="All products">All products</option>
+                    <option value="All wines">All wines</option>
                     {
                         wines.map((wine, index) => {
                             return (
@@ -85,7 +85,7 @@ export default function WinesSell() {
             </div> */}
             <div className="products-container">
                 {
-                    checkedWines().map((wine, index) => {
+                    wines.map((wine, index) => {
                         return (
                             <div className="product" key={index}>
                                 <div className="product-description__top">
