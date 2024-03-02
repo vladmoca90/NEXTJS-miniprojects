@@ -1,18 +1,16 @@
 "use client";
-import "./styles/wines.css";
-import Image from "next/image";
-import Link from "next/link";
-import { Wine } from "../../lib/wines/Wine";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import "./styles/transactions.css";
+import { Transaction } from "./../../lib/transactions/Transaction";
+import { useCallback, useEffect, useState } from "react";
 
-export default function WinesSell() {
-    const winesUrl = "http://localhost:3000/api/wines";
+export default function Transactions() {
+    let transactionsUrl = "http://localhost:3000/api/transactions";
 
-    const [wines, setWines] = useState<Wine[]>([]);
-    const [query, setQuery] = useState("");
+    const [transactions, setTransactions] = useState<Transaction[]>([]);
+    const [getTransactions, setGetTransactions] = useState<Transaction[]>([]);
 
-    const getWines = useCallback(async () => {
-        const res = await fetch(winesUrl);
+    const getTransaction = useCallback(async () => {
+        const res = await fetch(transactionsUrl);
 
         if (!res.ok) {
             throw new Error("The details are NOT valid!");
@@ -22,64 +20,60 @@ export default function WinesSell() {
 
         const data = await res.json();
 
-        setWines(data.body);
-    }, [winesUrl]);
+        setTransactions(data.body);
+    }, [transactionsUrl]);
 
-    const getSelectedWine = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
-        const value = e.target.value;
-        setQuery(value);
-    }, []);
+    const getSelectedTransactions = useCallback(async (event: { target: any; }) => {
+        const value = event.target.tagName;
 
-    const filterWines = useCallback(() => {
-        if (query === "All wines" || query.length === 0) {
-            return wines;
-        } else {
-            return wines.filter(wine => wine.name.includes(query));
-        }
-    }, [query, wines]);
+        let getValue: [] | any = transactions.filter((transaction) => {
+            return value === transaction;
+        });
+
+        console.log([].concat(getValue));
+
+        const selectedTransaction: Transaction[] = [].concat(getValue);
+
+        setGetTransactions(selectedTransaction);
+    }, [transactions]);
 
     useEffect(() => {
-        getWines();
-    }, [getWines]);
+        getTransaction();
+    }, [getTransaction]);
 
     return (
-        <section className="box">
-            <div>
-                <select id="productsList" title="wines" onChange={getSelectedWine}>
-                    <option value="All wines">All wines</option>
-                    {
-                        wines.map((wine, index) => {
-                            return (
-                                <option key={index} value={wine.name}>{wine.name}</option>
-                            );
-                        })
-                    }
-                </select>
-            </div>
-            <div className="products-container">
+        <div id="transaction-container">
+            <span>{"SELECTED_CATEGORY"}</span>
+            <div className="transactions-results">
                 {
-                    filterWines().map((wine, index) => {
+                    getTransactions.map((getTransaction, index) => {
                         return (
-                            <div className="product" key={index}>
-                                <div className="product-description__top">
-                                    <p className="product-title">{wine.name}</p>
-                                </div>
-                                <div className="product-description__bottom">
-                                    <Image alt={wine.name} className="product-img" width={200} height={100} key={index} src={wine.img} />
-                                </div>
-                                <div className="wine-link">
-                                    <Link href={{
-                                        pathname: "/wine-details",
-                                        query: {
-                                            "wineName": wine.name,
-                                        }
-                                    }}>Check details</Link>
-                                </div>
+                            <div key={index}>
+                                <p>{getTransaction.name}</p>
+                                <p>{getTransaction.date}</p>
+                                <p>{getTransaction.category}</p>
                             </div>
                         );
                     })
                 }
             </div>
-        </section>
+            <br />
+            {
+                transactions.map((transaction, index) => (
+                    <div onClick={getSelectedTransactions} className="transactions-content" key={index}>
+                        <span className="transaction-date">
+                            {
+                                new Date(transaction.date).toLocaleString([], {
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                })
+                            }
+                        </span>
+                        <span className="transaction-name">{transaction.name}</span>
+                        <span>£{Math.abs(transaction.amount)}</span>
+                    </div>
+                ))
+            }
+        </div>
     );
 }
