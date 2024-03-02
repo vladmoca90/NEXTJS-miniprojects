@@ -39,11 +39,11 @@ export default function WinesSell() {
         }
     }, [query, wines]);
 
-    const onChecked = useCallback((e: { target: { checked: boolean, value: string; } }) => {
-        const check = e.target.checked;
-        const value = e.target.value;
+    const onChecked = useCallback((e: { target: { checked: boolean } }) => {
+        const value = e.target.checked;
 
-        setIsChecked(check);
+        console.log(value);
+        setIsChecked(value);
     }, []);
 
     const checkedWines = useCallback((e: { target: { value: string } }) => {
