@@ -41,15 +41,14 @@ export default function WinesSell() {
 
     const onChecked = useCallback((e: { target: { checked: boolean } }) => {
         const value = e.target.checked;
-
-        console.log(value);
         setIsChecked(value);
     }, []);
 
-    const checkedWines = useCallback((e: { target: { value: string } }) => {
+    const checkedWines = useCallback((e: { target: { value: string, checked: boolean } }) => {
         const value = e.target.value;
+        const check = e.target.checked;
 
-        if (!value || value.length === 0) {
+        if (check === false) {
             return wines;
         } else {
             return wines.filter(wine => wine.name.includes(value));
@@ -88,7 +87,7 @@ export default function WinesSell() {
             </div>
             <div className="products-container">
                 {
-                    filterWines().map((wine, index) => {
+                    checkedWines().map((wine, index) => {
                         return (
                             <div className="product" key={index}>
                                 <div className="product-description__top">
