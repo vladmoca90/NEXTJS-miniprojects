@@ -24,7 +24,7 @@ export default function Transactions() {
     }, [transactionsUrl]);
 
     const getSelectedTransactions = useCallback(async (event: MouseEvent<HTMLDivElement>) => {
-        const value = event.currentTarget.innerHTML;
+        const value = event.currentTarget.textContent;
 
         console.log(value);
 
