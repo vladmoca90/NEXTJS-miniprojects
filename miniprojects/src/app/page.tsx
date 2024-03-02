@@ -24,12 +24,12 @@ export default function Transactions() {
     }, [transactionsUrl]);
 
     const getSelectedTransactions = useCallback(async (event: MouseEvent<HTMLDivElement>) => {
-        const value = event.currentTarget.className;
+        const value = event.currentTarget.innerHTML;
 
         console.log(value);
 
         let getValue: [] | any = transactions.filter((transaction) => {
-            return value.toString() === transaction.name;
+            return value === transaction.name;
         });
 
         console.log([].concat(getValue));
