@@ -11,7 +11,7 @@ export default function CarsShowroom() {
     const [cars, setCars] = useState<Car[]>([]);
     const [modelsFromMake, setModelsFromMake] = useState<Car[]>([]);
     const [pricesForModels, setPricesForModels] = useState<Car[]>([]);
-    const [query, setQuery] = useState("");
+    //const [query, setQuery] = useState("");
 
     const getCars = useCallback(async () => {
         const res = await fetch(carsUrl);
@@ -60,14 +60,18 @@ export default function CarsShowroom() {
         setPricesForModels(priceModels);
     }, [cars]);
 
-    const vehicleValue = useCallback(async (e: { target: { value: string; } }) => {
-        const value = e.target.value;
-        setQuery(value);
-    }, []);
+    // const getFilteredCars = useCallback(async (e: { target: { value: string } }) => {
+    //     const value = e.target.value;
+    //     setQuery(value);
+    // }, []);
 
-    const filterMakes = useCallback(() => {
-        return cars.filter((car) => { car.make.includes(query) });
-    }, [cars, query]);
+    // const filteredCars = useCallback(() => {
+    //     return cars.filter(cars =>
+    //         cars.make.toLowerCase().includes(query) ||
+    //         cars.model.toLowerCase().includes(query) ||
+    //         cars.price.toLowerCase().includes(query)
+    //     );
+    // }, [cars, query]);
 
     return (
         <div className="box">
