@@ -3,13 +3,13 @@ import "./styles/wines.css";
 import Image from "next/image";
 import Link from "next/link";
 import { Wine } from "../../lib/wines/Wine";
-import { useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 export default function WinesSell() {
     const winesUrl = "http://localhost:3000/api/wines";
 
     const [wines, setWines] = useState<Wine[]>([]);
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState("");
 
     const getWines = useCallback(async () => {
         const res = await fetch(winesUrl);
@@ -25,6 +25,19 @@ export default function WinesSell() {
         setWines(data.body);
     }, [winesUrl]);
 
+    const onCheck = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.value);
+        setChecked(e.target.value);
+    }, []);
+
+    const checkedWines = useCallback(() => {
+        if(checked.length === 0 || checked === "All wines" || !checked) {
+            return wines;
+        } else {
+            return wines.filter((wine) => wine.name.includes(checked));
+        }
+    }, [checked, wines]);
+
     useEffect(() => {
         getWines();
     }, [getWines]);
@@ -32,15 +45,15 @@ export default function WinesSell() {
     return (
         <section className="box">
             <div className="wines-checkboxes flex items-center">
-                <div className="flex items-center px-3 py-0 border border-gray-300 rounded dark:border-gray-700">
-                    <input id="bordered-checkbox-1" type="checkbox" value="All wines" name="bordered-checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <div className="flex items-center px-4 py-0 border border-gray-300 rounded dark:border-gray-700">
+                    <input onChange={onCheck} id="bordered-checkbox-1" type="checkbox" value="All wines" name="bordered-checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                     <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">All wines</label>
                 </div>
                 {
                     wines.map((wine, index) => {
                         return (
-                            <div className="flex items-center px-3 py-0 border border-gray-300 rounded dark:border-gray-700" key={index}>
-                                <input id="bordered-checkbox-2" type="checkbox" value={wine.name} name="bordered-checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                            <div className="flex items-center px-4 py-0 border border-gray-300 rounded dark:border-gray-700" key={index}>
+                                <input onChange={onCheck} id="bordered-checkbox-2" type="checkbox" value={wine.name} name="bordered-checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                                 <label htmlFor="bordered-checkbox-2" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{wine.name}</label>
                             </div>
                         );
@@ -49,7 +62,7 @@ export default function WinesSell() {
             </div>
             <div className="products-container">
                 {
-                    wines.map((wine, index) => {
+                    checkedWines().map((wine, index) => {
                         return (
                             <div className="product" key={index}>
                                 <div className="product-description__top">
