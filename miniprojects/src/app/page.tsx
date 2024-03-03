@@ -1,7 +1,7 @@
 "use client";
 import "./styles/transactions.css";
 import { Transaction } from "./../../lib/transactions/Transaction";
-import { useCallback, useEffect, useState } from "react";
+import { MouseEvent, useCallback, useEffect, useState } from "react";
 
 export default function Transactions() {
     let transactionsUrl = "http://localhost:3000/api/transactions";
@@ -23,16 +23,20 @@ export default function Transactions() {
         setTransactions(data.body);
     }, [transactionsUrl]);
 
-    const getSelectedTransactions = useCallback(async () => {
-        let getValue: [] | any = transactions.find((transaction) => {
-            return transaction.name || transaction.category || transaction.date;
+    const getSelectedTransactions = useCallback(async (event: MouseEvent<HTMLDivElement>) => {
+        const value = event.currentTarget.innerHTML;
+
+        console.log(value);
+
+        let getValue: [] | any = transactions.filter((transaction) => {
+            return value === transaction.name;
         });
 
         console.log([].concat(getValue));
 
-        const xex: Transaction[] = [].concat(getValue);
+        const selectedTransaction: Transaction[] = [].concat(getValue);
 
-        setGetTransactions(xex);
+        setGetTransactions(selectedTransaction);
     }, [transactions]);
 
     useEffect(() => {
