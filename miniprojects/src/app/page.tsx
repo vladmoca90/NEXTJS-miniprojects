@@ -20,6 +20,7 @@ export default function ShopProducts() {
     }, []);
 
     return (
-        <section className="box"></section>
+        <section className="box">
+        </section>
     );
 }
