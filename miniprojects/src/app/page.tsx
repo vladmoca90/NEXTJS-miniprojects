@@ -23,19 +23,21 @@ export default function Transactions() {
         setTransactions(data.body);
     }, [transactionsUrl]);
 
-    const getSelectedTransactions = useCallback(async (event: { target: any; }) => {
-        const value = event.target.tagName;
-
-        let getValue: [] | any = transactions.filter((transaction) => {
-            return value === transaction;
+    const getSelectedTransactions = useCallback(async () => {
+        let getValue: [] | any = transactions.find((transaction) => {
+            return transaction.name || transaction.category || transaction.date;
         });
 
         console.log([].concat(getValue));
 
-        const selectedTransaction: Transaction[] = [].concat(getValue);
+        const xex: Transaction[] = [].concat(getValue);
 
-        setGetTransactions(selectedTransaction);
+        setGetTransactions(xex);
     }, [transactions]);
+
+    useEffect(() => {
+        getTransaction();
+    }, [getTransaction]);
 
     useEffect(() => {
         getTransaction();
