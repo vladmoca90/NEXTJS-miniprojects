@@ -31,9 +31,9 @@ export const allWines: Wine[] = [
         img: "/images/wines/romania-pinot-noir.jpg",
         text: "Wine is an alcoholic drink made from fermented fruit. Yeast consumes the sugar in the fruits and converts it to ethanol and carbon dioxide, releasing heat in the process. Though wine can be made from a variety of fruit crops such as plum, cherry, pomegranate, blueberry, currant and elderberry.",
     },
-    {
-        name: "Vinho Verde Portugal",
-        img: "/images/wines/portugal-vinho-verde.jpg",
-        text: "Wine is an alcoholic drink made from fermented fruit. Yeast consumes the sugar in the fruits and converts it to ethanol and carbon dioxide, releasing heat in the process. Though wine can be made from a variety of fruit crops such as plum, cherry, pomegranate, blueberry, currant and elderberry.",
-    }
+    // {
+    //     name: "Vinho Verde Portugal",
+    //     img: "/images/wines/portugal-vinho-verde.jpg",
+    //     text: "Wine is an alcoholic drink made from fermented fruit. Yeast consumes the sugar in the fruits and converts it to ethanol and carbon dioxide, releasing heat in the process. Though wine can be made from a variety of fruit crops such as plum, cherry, pomegranate, blueberry, currant and elderberry.",
+    // }
 ];
