@@ -31,23 +31,33 @@ export default function ShopProducts() {
     return (
         <section className="box">
             <div className="shop-search">
-
+                <label className="shop-search-title">Search:</label>
+                <input className="shop-search-bar" title="search" name="search" type="text" placeholder="Search..." />
             </div>
             <div className="shop-list">
                 {
                     shops.map((shop, index) => {
                         return (
                             <div className="shop-card" key={index}>
-                            <div className="shop-image">
-                                <Image src={shop.image} alt={shop.name} />
+                                <Link href={{
+                                    pathname: "/product-name",
+                                    query: {
+                                        "name": shop.name,
+                                    }
+                                }}>
+                                    <div className="shop-image">
+                                        <Image width={295} height={295} src={shop.image} alt={shop.name} />
+                                    </div>
+                                    <div className="shop-details">
+                                        <p className="shop-title">{shop.name}</p>
+                                        <p className="shop-price">£{shop.price}</p>
+                                        <div className="shop-buttons">
+                                            <button>+</button>
+                                            <button>-</button>
+                                        </div>
+                                    </div>
+                                </Link>
                             </div>
-                            <div className="shop-details">
-                                <p className="shop-title">{shop.name}</p>
-                                <div>
-        
-                                </div>
-                            </div>
-                        </div>
                         );
                     })
                 }

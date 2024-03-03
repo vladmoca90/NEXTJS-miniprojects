@@ -1,0 +1,74 @@
+body {
+    background: #e0e0e0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.shop-search {
+    margin: 1em auto;
+    max-width: 320px;
+}
+
+.shop-search-title {
+    color: #333;
+    margin-right: .5em;
+}
+
+.shop-search-bar {
+    padding: .275em;
+}
+
+.shop-list {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 1em auto 0;
+    max-width: 992px;
+}
+
+.shop-card {
+    margin: .75em 0;
+    width: 295px;
+}
+
+.shop-details {
+    background: #fff;
+    min-height: 120px;
+    padding: 1em 0;
+}
+
+.shop-title {
+    color: #333;
+    font-size: 1em;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+}
+
+.shop-price {
+    color: #f85b00;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: .5em auto;
+    text-align: center;
+}
+
+.shop-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.shop-buttons button {
+    background: #f85b00;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+    padding: .3em 0;
+    text-align: center;
+    transition: linear .5s all;
+    width: 27%;
+}
+
+.shop-buttons button:hover {
+    background: #c04600;
+}
