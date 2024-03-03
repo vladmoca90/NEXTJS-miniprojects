@@ -6,12 +6,20 @@ body {
 
 .box {
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 1500px;
     padding: 20px 0;
 }
 
 .wine-details {
     margin: 2rem auto 0;
+}
+
+.wines-checkboxes {
+    margin: 2rem auto;
+}
+
+.wines-checkboxes>div {
+    margin: 0 .3rem;
 }
 
 #productsList {
