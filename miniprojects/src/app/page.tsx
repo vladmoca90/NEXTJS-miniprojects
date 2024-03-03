@@ -25,13 +25,12 @@ export default function Transactions() {
 
     const getSelectedTransactions = useCallback(async (event: MouseEvent<HTMLDivElement>) => {
         const value = event.currentTarget.textContent;
-        // let dict: any | {date: string[number], amount: number[number], name: string[number], category: string[number] } = {};
+        // let dict: any | {date: string[number], name: string[number], category: string[number] } = {};
 
         // const clearValue = value.innerText.replaceAll("\n", "");
 
         // console.log({
-        //  date: clearValue,
-        //amount: clearValue,
+        //     date: clearValue,
         //     name: clearValue,
         //     category: clearValue,
         // });
