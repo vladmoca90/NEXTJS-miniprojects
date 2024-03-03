@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import "./styles/vehicles-showroom.css";
+import "./styles/cars.css";
 import Link from "next/link";
-import { Car } from "../../lib/vehiclesShowroom/Car";
+import { Car } from "../../lib/cars/Car";
 import { useCallback, useEffect, useState } from "react";
 
 export default function CarsShowroom() {
-    let carsUrl = "http://localhost:3000/api/vehicles-showroom";
+    let carsUrl = "http://localhost:3000/api/cars";
 
     const [cars, setCars] = useState<Car[]>([]);
     const [modelsFromMake, setModelsFromMake] = useState<Car[]>([]);

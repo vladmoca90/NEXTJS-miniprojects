@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import { allCars } from "../../../../lib/vehiclesShowroom/allCars";
+import { allCars } from "../../../../lib/cars/allCars";
 
 export async function GET(request: NextRequest) {
     const carModel = request.nextUrl.searchParams.get("carModel");
