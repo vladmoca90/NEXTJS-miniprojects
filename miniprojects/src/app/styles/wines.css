@@ -19,6 +19,7 @@ body {
 }
 
 .wines-checkboxes>div {
+    background: #fff;
     margin: 0 .3rem;
 }
 
