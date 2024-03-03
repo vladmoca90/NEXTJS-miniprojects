@@ -40,7 +40,7 @@ export default function ShopProducts() {
                         return (
                             <div className="shop-card" key={index}>
                                 <Link href={{
-                                    pathname: "/product-name",
+                                    pathname: "/shop-product-name",
                                     query: {
                                         "name": shop.name,
                                     }
