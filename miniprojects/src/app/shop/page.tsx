@@ -11,9 +11,9 @@ export default function ShopProducts() {
         const res = await fetch(shopUrl);
 
         if (!res.ok) {
-            throw new Error("The details are NOT valid!");
+            throw new Error("The data is not valid!");
         } else {
-            console.log("The details are valid!");
+            console.log("The data is valid!");
         }
 
         const data = await res.json();
