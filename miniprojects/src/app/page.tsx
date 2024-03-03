@@ -24,12 +24,22 @@ export default function Transactions() {
     }, [transactionsUrl]);
 
     const getSelectedTransactions = useCallback(async (event: MouseEvent<HTMLDivElement>) => {
-        const value = event.currentTarget;
+        const value = event.currentTarget.textContent;
+        // let dict: any | {date: string[number], amount: number[number], name: string[number], category: string[number] } = {};
+
+        // const clearValue = value.innerText.replaceAll("\n", "");
+
+        // console.log({
+        //  date: clearValue,
+        //amount: clearValue,
+        //     name: clearValue,
+        //     category: clearValue,
+        // });
 
         console.log(value);
 
-        let getValue: [] | any = transactions.filter((transaction) => {
-            return value === transaction;
+        let getValue: [] | any = transactions.find((transaction) => {
+            return transaction;
         });
 
         console.log([].concat(getValue));
@@ -76,7 +86,7 @@ export default function Transactions() {
                             }
                         </span>
                         <span className="transaction-name">{transaction.name}</span>
-                        <span>£{Math.abs(transaction.amount)}</span>
+                        <span className="transaction-price">£{Math.abs(transaction.amount)}</span>
                     </div>
                 ))
             }
