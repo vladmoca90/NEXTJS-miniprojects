@@ -109,13 +109,17 @@ export default function FoodList() {
     }, []);
 
     const filteredFood = useCallback(() => {
-        return foods.filter(foods =>
-            foods.name.toLowerCase().includes(query) ||
-            foods.name.toUpperCase().includes(query) ||
-            foods.unit.toLowerCase().includes(query) ||
-            foods.unit.toUpperCase().includes(query) ||
-            foods.price.toString().toLowerCase().includes(query) ||
-            foods.quantity.toString().toUpperCase().includes(query));
+        if (query.length === 0) {
+            return foods;
+        } else {
+            return foods.filter(foods =>
+                foods.name.toLowerCase().includes(query) ||
+                foods.name.toUpperCase().includes(query) ||
+                foods.unit.toLowerCase().includes(query) ||
+                foods.unit.toUpperCase().includes(query) ||
+                foods.price.toString().toLowerCase().includes(query) ||
+                foods.quantity.toString().toUpperCase().includes(query));
+        }
     }, [foods, query]);
 
     useEffect(() => {
