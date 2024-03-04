@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 export default function ProductWidgets() {
     let widgetsUrl = "https://api.mocki.io/v2/016d11e8/product-widgets";
 
-    const [widgets, setWidgets] = useState<[]>([]);
+    const [widgets, setWidgets] = useState([]);
 
     const getWidgets = useCallback(async () => {
         const res = await fetch(widgetsUrl);
@@ -36,7 +36,7 @@ export default function ProductWidgets() {
             </div>
             <div className="productWidgets-content">
             {
-                widgets.map((widget, index) => {
+                widgets.map((widget: any, index) => {
                     return (
                         <div className="widget widget--blue" key={index}>
                             <div className="widget-top">
