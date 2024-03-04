@@ -10,6 +10,34 @@ body {
     width: 600px;
 }
 
+/* Colors */
+
+.widget-top {
+    padding: .5rem;
+}
+
+.widget--green {
+    background: #3b755f;
+}
+
+.widget--blue {
+    background: #2e3a8c;
+}
+
+.widget--black {
+    background: #212121;
+}
+
+.widget--white {
+    background: #fff;
+}
+
+.widget--beige {
+    background: #f2ebdb;
+}
+
+/* Widget styling */
+
 .productWidgets-top {
     border-bottom: 2px solid #b0b0b0;
     width: 100%;
@@ -38,20 +66,4 @@ body {
 .widget-title,
 .widget-subtitle {
     color: #fff;
-}
-
-.widget-top {
-    padding: .5rem;
-}
-
-.widget--green {
-    background: green;
-}
-
-.widget--blue {
-    background: blue;
-}
-
-.widget--black {
-    background: black;
 }

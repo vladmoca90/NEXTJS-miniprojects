@@ -7,6 +7,11 @@ export type WidgetsProps = {
     widgets: Widget[];
 }
 
+export enum Colors {
+    White = "white",
+    Beige = "beige",
+}
+
 export default function ProductWidgets(props: WidgetsProps) {
     let widgetsUrl = "https://api.mocki.io/v2/016d11e8/product-widgets";
 
