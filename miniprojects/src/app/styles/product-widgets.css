@@ -12,10 +12,6 @@ body {
 
 /* Colors */
 
-.widget-top {
-    padding: .5rem;
-}
-
 .widget--green {
     background: #3b755f;
 }
@@ -60,10 +56,16 @@ body {
     border-radius: 4px;
     font-size: 14px;
     font-weight: 400;
-    width: 30%;
+    width: 31.5%;
 }
 
 .widget-title,
 .widget-subtitle {
     color: #fff;
+}
+
+.widget-top {
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem;
 }

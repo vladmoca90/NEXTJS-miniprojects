@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import "./styles/product-widgets.css";
 import { Widget } from "../../lib/product-widgets/Widget";
@@ -54,8 +55,13 @@ export default function ProductWidgets(props: WidgetsProps) {
                         return (
                             <div className={addWidgetsColors(widget)} key={index}>
                                 <div className="widget-top">
-                                    <p className="widget-title">This product {widget.action}</p>
-                                    <p className="widget-subtitle">{widget.amount} {widget.type}</p>
+                                    <div className="widget-top-logo">
+                                        <img alt={widget.type} className="logo" src="/images/widgets/logo-white.png" />
+                                    </div>
+                                    <div className="widget-top-text">
+                                        <p className="widget-title">This product {widget.action}</p>
+                                        <p className="widget-subtitle">{widget.amount} {widget.type}</p>
+                                    </div>
                                 </div>
                                 <div className="widget-content">
 
