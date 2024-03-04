@@ -41,7 +41,7 @@ export default function ProductWidgets(props: WidgetsProps) {
     console.log(widgets);
 
     const addWidgetsColors = useCallback((widget: Widget) => {
-        return `widget widget--${widget.selectedColor}`;
+        return `widget-top widget--${widget.selectedColor}`;
     }, []);
 
     return (
@@ -53,8 +53,8 @@ export default function ProductWidgets(props: WidgetsProps) {
                 {
                     widgets.map((widget, index) => {
                         return (
-                            <div className={addWidgetsColors(widget)} key={index}>
-                                <div className="widget-top">
+                            <div className="widget" key={index}>
+                                <div className={addWidgetsColors(widget)}>
                                     <div className="widget-top-logo">
                                         <img alt={widget.type} className="logo" src="/images/widgets/logo-white.png" />
                                     </div>
@@ -64,7 +64,16 @@ export default function ProductWidgets(props: WidgetsProps) {
                                     </div>
                                 </div>
                                 <div className="widget-content">
-
+                                    <div>
+                                        <p>Link to Public Profile</p>
+                                        <input className="widget-checkbox" type="checkbox" />
+                                    </div>
+                                    <div>
+                                        <p>Badge color</p>
+                                    </div>
+                                    <div>
+                                        <p>Activate badge</p>
+                                    </div>
                                 </div>
                             </div>
                         );
