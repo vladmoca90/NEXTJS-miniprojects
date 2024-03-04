@@ -3,9 +3,16 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.shop-dropdown,
 .shop-search {
     margin: 1.5em auto 1em;
     max-width: 320px;
+}
+
+.shop-dropdown select,
+.shop-dropdown select>option {
+    border-color: #bbb;
+    color: #333;
 }
 
 .shop-search-title {
