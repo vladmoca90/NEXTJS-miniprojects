@@ -9,10 +9,16 @@ body {
     max-width: 320px;
 }
 
+.shop-dropdown select {
+    width: 315px;
+}
+
 .shop-dropdown select,
 .shop-dropdown select>option {
     border-color: #bbb;
     color: #333;
+    font-size: 1em;
+    padding: .3em;
 }
 
 .shop-search-title {
@@ -83,4 +89,10 @@ body {
 
 .shop-buttons button:hover {
     background: #c04600;
+}
+
+.shop-product-number {
+    color: #333;
+    font-size: 1em;
+    font-weight: 600;
 }

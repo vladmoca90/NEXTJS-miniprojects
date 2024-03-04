@@ -66,6 +66,7 @@ export default function ShopProducts() {
                                         <p className="shop-price">£{shop.price}</p>
                                         <div className="shop-buttons">
                                             <button>+</button>
+                                            <span className="shop-product-number"></span>
                                             <button>-</button>
                                         </div>
                                     </div>
