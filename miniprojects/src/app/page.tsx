@@ -7,7 +7,7 @@ export type WidgetsProps = {
     widgets: Widget[];
 }
 
-export default function ProductWidgets() {
+export default function ProductWidgets(props: WidgetsProps) {
     let widgetsUrl = "https://api.mocki.io/v2/016d11e8/product-widgets";
 
     const [widgets, setWidgets] = useState<Widget[]>([]);
@@ -28,7 +28,11 @@ export default function ProductWidgets() {
         setWidgets(data);
     }, [widgetsUrl]);
 
-    console.log(widgets);
+    // const addColors = useCallback(() => {
+    //     const color: string = props.widgets[0].selectedColor;
+
+    //     console.log(color);
+    // }, [props.widgets]);
 
     useEffect(() => {
         getWidgets();
