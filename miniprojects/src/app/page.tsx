@@ -34,17 +34,9 @@ export default function ProductWidgets(props: WidgetsProps) {
 
     console.log(widgets);
 
-    // const addWidgetsColors = useCallback((widgets: Widget[]) => {
-    //     let color: any = `widget widget--${props.widgets[0].selectedColor}`;
-
-    //     for (let i in widgets) {
-    //         color = props.widgets[i].selectedColor;
-    //     }
-
-    //     console.log(color);
-
-    //     return color;
-    // }, [props.widgets]);
+    const addWidgetsColors = useCallback((widget: Widget) => {
+        return `widget widget--${widget.selectedColor}`;
+    }, []);
 
     return (
         <div id="productWidgets">
@@ -55,7 +47,7 @@ export default function ProductWidgets(props: WidgetsProps) {
                 {
                     widgets.map((widget, index) => {
                         return (
-                            <div className="widget widget--green" key={index}>
+                            <div className={addWidgetsColors(widget)} key={index}>
                                 <div className="widget-top">
                                     <p className="widget-title">This product {widget.action}</p>
                                     <p className="widget-subtitle">{widget.amount} {widget.type}</p>
