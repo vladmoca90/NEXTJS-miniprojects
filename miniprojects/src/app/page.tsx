@@ -1,4 +1,5 @@
 "use client";
+import "./styles/product-widgets.css";
 import { useCallback, useEffect, useState } from "react";
 
 export default function ProductWidgets() {
@@ -22,20 +23,28 @@ export default function ProductWidgets() {
         setWidgets(data);
     }, [widgetsUrl]);
 
+    console.log(widgets);
+
     useEffect(() => {
         getWidgets();
     }, [getWidgets]);
 
     return (
         <div id="productWidgets">
-            <div className="widget widget--green">
-                <div className="widget-top">
+            {
+                widgets.map((widget, index) => {
+                    return (
+                        <div className="widget widget--green" key={index}>
+                            <div className="widget-top">
 
-                </div>
-                <div className="widget-content">
+                            </div>
+                            <div className="widget-content">
 
-                </div>
-            </div>
+                            </div>
+                        </div>
+                    );
+                })
+            }
         </div>
     );
 }
