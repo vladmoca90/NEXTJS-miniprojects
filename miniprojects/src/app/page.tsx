@@ -28,11 +28,17 @@ export default function ProductWidgets(props: WidgetsProps) {
         setWidgets(data);
     }, [widgetsUrl]);
 
-    // const addColors = useCallback(() => {
-    //     const color: string = props.widgets[0].selectedColor;
+    const addWidgetsColors = useCallback((widgets: Widget[]) => {
+        let color: any = `widget widget--${props.widgets[0].selectedColor}`;
 
-    //     console.log(color);
-    // }, [props.widgets]);
+        for(let i = 0; i<widgets.length; i++) {
+            color = props.widgets[i].selectedColor;
+        }
+
+        console.log(color);
+
+        return color;
+    }, [props.widgets]);
 
     useEffect(() => {
         getWidgets();
@@ -47,7 +53,7 @@ export default function ProductWidgets(props: WidgetsProps) {
             {
                 widgets.map((widget, index) => {
                     return (
-                        <div className="widget widget--blue" key={index}>
+                        <div className={addWidgetsColors(props.widgets)} key={index}>
                             <div className="widget-top">
                                 <p className="widget-title">This product {widget.action}</p>
                                 <p className="widget-subtitle">{widget.amount} {widget.type}</p>
