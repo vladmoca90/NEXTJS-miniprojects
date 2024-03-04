@@ -41,7 +41,7 @@ export default function ProductWidgets() {
             </div>
             <div className="productWidgets-content">
             {
-                widgets.map((widget: any, index) => {
+                widgets.map((widget, index) => {
                     return (
                         <div className="widget widget--blue" key={index}>
                             <div className="widget-top">
