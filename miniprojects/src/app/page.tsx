@@ -8,7 +8,7 @@ export type WidgetsProps = {
     widgets: Widget[];
 }
 
-export enum Colors {
+export enum extraColors {
     White = "white",
     Beige = "beige",
 }
@@ -64,15 +64,15 @@ export default function ProductWidgets(props: WidgetsProps) {
                                     </div>
                                 </div>
                                 <div className="widget-content">
-                                    <div>
-                                        <p>Link to Public Profile</p>
+                                    <div className="widget-content-section">
+                                        <p className="widget-content-text">Link to Public Profile</p>
                                         <input className="widget-checkbox" type="checkbox" />
                                     </div>
-                                    <div>
-                                        <p>Badge color</p>
+                                    <div className="widget-content-section">
+                                        <p className="widget-content-text">Badge color</p>
                                     </div>
-                                    <div>
-                                        <p>Activate badge</p>
+                                    <div className="widget-content-section">
+                                        <p className="widget-content-text">Activate badge</p>
                                     </div>
                                 </div>
                             </div>

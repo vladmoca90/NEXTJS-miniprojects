@@ -58,7 +58,7 @@ body {
     width: 31.5%;
 }
 
-.widget-title, 
+.widget-title,
 .widget-subtitle {
     color: #fff;
 }
@@ -70,18 +70,18 @@ body {
     padding: 1rem .75rem;
 }
 
-.widget-content div {
+.widget-content .widget-content-section {
     display: flex;
     justify-content: space-between;
     padding: .75rem .5rem .35rem;
 }
 
-.widget-content div>input {
+.widget-content .widget-content-section input[type="checkbox"] {
     border-radius: 2px;
     color: #3b755f;
 }
 
-.widget-content div>p {
+.widget-content .widget-content-text {
     color: #3b755f;
     font-size: 16px;
     font-weight: 400;
