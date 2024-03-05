@@ -73,6 +73,12 @@ export default function ProductWidgets(props: WidgetsProps) {
                                     </div>
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Activate badge</p>
+                                        <div className="widget-badge">
+                                            <label className="switch">
+                                                <input type="checkbox" />
+                                                <span className="slider round"></span>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
