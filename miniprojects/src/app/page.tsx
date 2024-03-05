@@ -29,16 +29,12 @@ export default function ProductWidgets(props: WidgetsProps) {
 
         const data = await res.json();
 
-        console.log(data);
-
         setWidgets(data);
     }, [widgetsUrl]);
 
     useEffect(() => {
         getWidgets();
     }, [getWidgets]);
-
-    console.log(widgets);
 
     const addWidgetsColors = useCallback((widget: Widget) => {
         return `widget-top widget--${widget.selectedColor}`;

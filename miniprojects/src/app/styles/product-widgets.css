@@ -7,7 +7,7 @@ body {
 #productWidgets {
     font-family: "Cabin", sans-serif;
     margin: 2rem auto;
-    width: 95%;
+    width: 85%;
 }
 
 @media all and (min-width: 768px) {
@@ -48,7 +48,14 @@ body {
 
 .productWidgets-top {
     border-bottom: 2px solid #b0b0b0;
-    width: 100%;
+    margin: 0 auto;
+    width: 269px;
+}
+
+@media all and (min-width: 768px) {
+    .productWidgets-top {
+        width: 100%;
+    }
 }
 
 .productWidgets-top h3 {
@@ -59,28 +66,45 @@ body {
 }
 
 .productWidgets-content {
+    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 1.85rem;
+    margin-top: 1.35rem;
 }
 
 @media all and (min-width: 768px) {
     .productWidgets-content {
         flex-direction: column;
         justify-content: space-between;
+        margin-top: 1.65rem;
+    }
+}
+
+@media all and (min-width: 992px) {
+    .productWidgets-content {
+        margin-top: 2rem;
     }
 }
 
 .widget {
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 400;
-    width: 90%;
+    margin: 0 0 2.5rem;
+    width: 250px;
 }
 
 @media all and (min-width: 768px) {
     .widget {
-        width: 32%;
+        font-size: 16px;
+        margin: 0;
+        width: 320px;
+    }
+}
+
+@media all and (min-width: 992px) {
+    .widget {
+        width: 31.5%;
     }
 }
 
@@ -89,11 +113,32 @@ body {
     color: #fff;
 }
 
+.widget-title {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.widget-subtitle {
+    font-size: 18px;
+}
+
 .widget-top {
     border-radius: 4px;
     display: flex;
     justify-content: space-around;
-    padding: 1rem .75rem;
+    padding: .5rem;
+}
+
+@media all and (min-width: 768px) {
+    .widget-top {
+        padding: .75rem;
+    }
+}
+
+@media all and (min-width: 992px) {
+    .widget-top {
+        padding: 1rem;
+    }
 }
 
 .widget-content .widget-content-section {
@@ -103,20 +148,27 @@ body {
     padding: 1rem .5rem 0;
 }
 
+.widget-content .widget-content-section input[type="checkbox"],
+.widget-content .widget-content-text {
+    color: #3b755f;
+}
+
 .widget-content .widget-content-section input[type="checkbox"] {
     border-radius: 4px;
-    color: #3b755f;
     font-size: 150%;
     height: 1.25rem;
     width: 1.25rem;
 }
 
 .widget-content .widget-content-text {
-    color: #3b755f;
     font-size: 16px;
     font-weight: 400;
     line-height: 100%;
     margin: 0;
+}
+
+.logo {
+    height: 44px;
 }
 
 .widget-colors {
