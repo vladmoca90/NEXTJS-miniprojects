@@ -70,6 +70,13 @@ export default function ProductWidgets(props: WidgetsProps) {
                                     </div>
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
+                                        <div className="widget-colors">
+                                            <div className="widget-colors--blue"></div>
+                                            <div className="widget-colors--green"></div>
+                                            <div className="widget-colors--beige"></div>
+                                            <div className="widget-colors--white"></div>
+                                            <div className="widget-colors--black"></div>
+                                        </div>
                                     </div>
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Activate badge</p>

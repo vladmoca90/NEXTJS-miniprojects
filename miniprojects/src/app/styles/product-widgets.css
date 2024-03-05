@@ -7,7 +7,19 @@ body {
 #productWidgets {
     font-family: "Cabin", sans-serif;
     margin: 2rem auto;
-    width: 650px;
+    width: 95%;
+}
+
+@media all and (min-width: 768px) {
+    #productWidgets {
+        width: 720px;
+    }
+}
+
+@media all and (min-width: 992px) {
+    #productWidgets {
+        width: 960px;
+    }
 }
 
 /* Colors */
@@ -48,14 +60,28 @@ body {
 
 .productWidgets-content {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     margin-top: 1.85rem;
+}
+
+@media all and (min-width: 768px) {
+    .productWidgets-content {
+        flex-direction: column;
+        justify-content: space-between;
+    }
 }
 
 .widget {
     font-size: 14px;
     font-weight: 400;
-    width: 31.5%;
+    width: 90%;
+}
+
+@media all and (min-width: 768px) {
+    .widget {
+        width: 32%;
+    }
 }
 
 .widget-title,
@@ -91,6 +117,36 @@ body {
     font-weight: 400;
     line-height: 100%;
     margin: 0;
+}
+
+.widget-colors {
+    display: flex;
+}
+
+.widget-colors>div {
+    height: 16px;
+    margin: 0 .15rem;
+    width: 16px;
+}
+
+.widget-colors--blue {
+    background: #2e3a8c;
+}
+
+.widget-colors--green {
+    background: #3b755f;
+}
+
+.widget-colors--beige {
+    background: #f2ebdb;
+}
+
+.widget-colors--white {
+    background: #fff;
+}
+
+.widget-colors--black {
+    background: #000;
 }
 
 .switch {
