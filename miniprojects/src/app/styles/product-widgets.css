@@ -71,19 +71,23 @@ body {
 }
 
 .widget-content .widget-content-section {
+    align-items: center;
     display: flex;
     justify-content: space-between;
-    padding: .75rem .5rem .35rem;
+    padding: 1rem .5rem 0;
 }
 
 .widget-content .widget-content-section input[type="checkbox"] {
-    border-radius: 2px;
+    border-radius: 4px;
     color: #3b755f;
+    font-size: 150%;
+    height: 1.25rem;
+    width: 1.25rem;
 }
 
 .widget-content .widget-content-text {
     color: #3b755f;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 100%;
     margin: 0;
@@ -93,7 +97,7 @@ body {
     position: relative;
     display: inline-block;
     width: 62px;
-    height: 28px;
+    height: 26px;
 }
 
 .switch input {
@@ -103,28 +107,29 @@ body {
 }
 
 .slider {
-    -webkit-transition: .4s;
-    background-color: #ccc;
+    -webkit-transition: .5s;
+    background: #ccc;
     bottom: 0;
     cursor: pointer;
-    left: 0;
+    left: 10px;
     position: absolute;
     right: 0;
     top: 0;
-    transition: .4s;
+    transition: .5s;
 }
 
 .slider:before {
     -webkit-transition: .5s;
     background: #fff;
-    border: 1px solid #AFC6BD;
+    border: 1px solid #afc6bd;
     bottom: 0;
     content: "";
-    height: 27px;
-    left: 0;
+    height: 26px;
+    left: -1px;
     position: absolute;
     transition: .5s;
-    width: 27px;
+    top: -1px;
+    width: 26px;
 }
 
 input:checked+.slider {
@@ -132,7 +137,7 @@ input:checked+.slider {
 }
 
 input:focus+.slider {
-    box-shadow: 0 0 3px #f9f9f9;
+    box-shadow: 0 0 3px #f2ebdb;
 }
 
 input:checked+.slider:before {
@@ -143,7 +148,7 @@ input:checked+.slider:before {
 
 /* Rounded sliders */
 .slider.round {
-    border: 1px solid #3b755f;
+    border: .6px solid #afc6bd;
     border-radius: 34px;
 }
 
