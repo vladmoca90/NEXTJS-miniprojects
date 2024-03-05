@@ -5,9 +5,11 @@ body {
 }
 
 #productWidgets {
+    border-radius: 8px;
+    box-shadow: 0 42px 76px rgba(0, 0, 0, .25);
     font-family: "Cabin", sans-serif;
     margin: 2rem auto;
-    width: 85%;
+    width: 340px;
 }
 
 @media all and (min-width: 768px) {
@@ -18,7 +20,7 @@ body {
 
 @media all and (min-width: 992px) {
     #productWidgets {
-        width: 960px;
+        width: 768px;
     }
 }
 
@@ -49,6 +51,7 @@ body {
 .productWidgets-top {
     border-bottom: 2px solid #b0b0b0;
     margin: 0 auto;
+    padding-top: .85rem;
     width: 269px;
 }
 
@@ -62,7 +65,7 @@ body {
     color: #212121;
     font-size: 30px;
     font-weight: 700;
-    margin: 1rem 0 .65rem;
+    margin: 0 0 .65rem;
 }
 
 .productWidgets-content {
@@ -75,15 +78,9 @@ body {
 
 @media all and (min-width: 768px) {
     .productWidgets-content {
-        flex-direction: column;
+        flex-direction: row;
         justify-content: space-between;
-        margin-top: 1.65rem;
-    }
-}
-
-@media all and (min-width: 992px) {
-    .productWidgets-content {
-        margin-top: 2rem;
+        margin-top: 1.3rem;
     }
 }
 
@@ -98,7 +95,7 @@ body {
     .widget {
         font-size: 16px;
         margin: 0;
-        width: 320px;
+        width: 230px;
     }
 }
 
@@ -125,13 +122,12 @@ body {
 .widget-top {
     border-radius: 4px;
     display: flex;
-    justify-content: space-around;
-    padding: .5rem;
+    padding: .6rem;
 }
 
 @media all and (min-width: 768px) {
     .widget-top {
-        padding: .75rem;
+        padding: .8rem;
     }
 }
 
@@ -161,14 +157,18 @@ body {
 }
 
 .widget-content .widget-content-text {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 100%;
     margin: 0;
 }
 
-.logo {
-    height: 44px;
+.widget-top-logo {
+    margin-right: 1rem;
+}
+
+.widget-top-logo .logo {
+    height: 45px;
 }
 
 .widget-colors {
@@ -216,7 +216,8 @@ body {
 
 .slider {
     -webkit-transition: .5s;
-    background: #ccc;
+    background: #fff;
+    box-shadow: inset 1px 1px 7px rgba(0, 0, 0, .15);
     bottom: 0;
     cursor: pointer;
     left: 10px;
