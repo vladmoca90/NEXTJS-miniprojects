@@ -52,10 +52,6 @@ export default function Transactions() {
         getTransaction();
     }, [getTransaction]);
 
-    useEffect(() => {
-        getTransaction();
-    }, [getTransaction]);
-
     return (
         <div id="transaction-container">
             <span>{"SELECTED_CATEGORY"}</span>
