@@ -226,23 +226,23 @@ body {
     }
 }
 
-.widget-colors--blue {
+.widget-box--blue {
     background: #2e3a8c;
 }
 
-.widget-colors--green {
+.widget-box--green {
     background: #3b755f;
 }
 
-.widget-colors--beige {
+.widget-box--beige {
     background: #f2ebdb;
 }
 
-.widget-colors--white {
+.widget-box--white {
     background: #fff;
 }
 
-.widget-colors--black {
+.widget-box--black {
     background: #000;
 }
 

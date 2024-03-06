@@ -42,10 +42,14 @@ export default function ProductWidgets(props: WidgetsProps) {
     }, []);
 
     const changeColor = useCallback((event: MouseEvent<HTMLDivElement>) => {
-        return ""
+        const color = document.querySelector(".widget-box--blue");
+        const colorValue = event.currentTarget.getAttribute("class");
+        console.log(colorValue);
+
+        return console.log(colorValue);
     }, []);
 
-    const onCheckedWidget = useCallback(async() => {
+    const onCheckedWidget = useCallback(() => {
         let disabled: boolean;
 
         for (let i = 0; i < widgets.length; i++) {
@@ -86,16 +90,17 @@ export default function ProductWidgets(props: WidgetsProps) {
                                             </p>
                                             <a href="##">View Public Profile</a>
                                         </div>
-                                        <input disabled={onCheckedWidget()} className="widget-checkbox" type="checkbox" />
+                                        <input className="widget-checkbox" type="checkbox" />
+                                        {/* disabled={onCheckedWidget()}  */}
                                     </div>
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
                                         <div className="widget-colors">
-                                            <div onClick={changeColor(widget)} className="widget-colors--blue"></div>
-                                            <div className="widget-colors--green"></div>
-                                            <div className="widget-colors--beige"></div>
-                                            <div className="widget-colors--white"></div>
-                                            <div className="widget-colors--black"></div>
+                                            <div onClick={changeColor} className="widget-box--blue"></div>
+                                            <div className="widget-box--green"></div>
+                                            <div className="widget-box--beige"></div>
+                                            <div className="widget-box--white"></div>
+                                            <div className="widget-box--black"></div>
                                         </div>
                                     </div>
                                     <div className="widget-content-section">
