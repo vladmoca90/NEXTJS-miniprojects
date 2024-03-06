@@ -4,16 +4,7 @@ import "./styles/product-widgets.css";
 import { Widget } from "../../lib/product-widgets/Widget";
 import { MouseEvent, useCallback, useEffect, useState } from "react";
 
-export type WidgetsProps = {
-    widgets: Widget[];
-}
-
-export enum extraColors {
-    White = "white",
-    Beige = "beige",
-}
-
-export default function ProductWidgets(props: WidgetsProps) {
+export default function ProductWidgets() {
     let widgetsUrl = "https://api.mocki.io/v2/016d11e8/product-widgets";
 
     const [widgets, setWidgets] = useState<Widget[]>([]);
@@ -86,7 +77,8 @@ export default function ProductWidgets(props: WidgetsProps) {
                                             </p>
                                             <a href="##">View Public Profile</a>
                                         </div>
-                                        <input disabled={onCheckedWidget()} className="widget-checkbox" type="checkbox" />
+                                        <input className="widget-checkbox" type="checkbox" />
+                                        {/* disabled={onCheckedWidget(checkWidget)} */}
                                     </div>
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
