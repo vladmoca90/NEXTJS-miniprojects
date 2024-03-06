@@ -2,7 +2,7 @@
 "use client";
 import "./styles/product-widgets.css";
 import { Widget } from "../../lib/product-widgets/Widget";
-import { MouseEvent, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export type WidgetsProps = {
     widgets: Widget[];
@@ -41,10 +41,17 @@ export default function ProductWidgets(props: WidgetsProps) {
         return `widget-top widget--${widget.selectedColor}`;
     }, []);
 
-    const onCheckedWidget = useCallback((e: MouseEvent<HTMLInputElement>) => {
-        const value = e.currentTarget.checked;
-        isCheckWidget(value);
-    }, []);
+    const onCheckedWidget = useCallback(() => {
+        let disabled: boolean;
+
+        for (let i = 0; i < widgets.length; i++) {
+            if(widgets[i].active === true) {
+                return disabled = true;
+            }
+        }
+
+        return disabled = false;
+    }, [widgets]);
 
     return (
         <div id="productWidgets">
@@ -68,7 +75,14 @@ export default function ProductWidgets(props: WidgetsProps) {
                                 <div className="widget-content">
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Link to Public Profile <span className="profile-link">i</span></p>
-                                        <input onClick={onCheckedWidget} className="widget-checkbox" type="checkbox" />
+                                        <div className="public-profile-card">
+                                            <p>This widget links directly to your public profile so that you can easily share your
+                                                impact with your customers. Turn it off here if you do not want the badge to link 
+                                                to it.
+                                            </p>
+                                            <a href="##">View Public Profile</a>
+                                        </div>
+                                        <input disabled={onCheckedWidget()} className="widget-checkbox" type="checkbox" />
                                     </div>
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>

@@ -9,6 +9,7 @@ body {
     box-shadow: 0 2px 22px rgba(0, 0, 0, .15);
     font-family: "Cabin", sans-serif;
     margin: 2rem auto;
+    position: relative;
     width: 330px;
 }
 
@@ -134,6 +135,7 @@ body {
 }
 
 .widget-content .widget-content-section input[type="checkbox"],
+.widget-content .widget-content-section .public-profile-card a,
 .widget-content .widget-content-text {
     color: #3b755f;
 }
@@ -170,6 +172,31 @@ body {
     width: 12px;
 }
 
+.widget-content .profile-link:hover+.public-profile-card {
+    display: block;
+}
+
+.widget-content .widget-content-section .public-profile-card {
+    background: #fff;
+    display: none;
+    padding: .75rem;
+    position: absolute;
+    text-align: center;
+    z-index: 100;
+}
+
+.widget-content .widget-content-section .public-profile-card p {
+    color: #000;
+    font-size: 10px;
+    margin: 0;
+}
+
+.widget-content .widget-content-section .public-profile-card a {
+    font-size: 14px;
+    margin-top: .5rem;
+    text-transform: capitalize;
+}
+
 .widget-top-logo {
     margin-right: 1rem;
 }
@@ -184,7 +211,7 @@ body {
 
 .widget-colors>div {
     height: 16px;
-    margin: 0 .15rem;
+    margin: 0 .125rem;
     width: 16px;
 }
 
