@@ -44,9 +44,10 @@ export default function ProductWidgets(props: WidgetsProps) {
     const changeColor = useCallback((event: MouseEvent<HTMLDivElement>) => {
         const color = document.querySelector(".widget-box--blue");
         const colorValue = event.currentTarget.getAttribute("class");
+        
         console.log(colorValue);
 
-        return console.log(colorValue);
+        return colorValue;
     }, []);
 
     const onCheckedWidget = useCallback(() => {
@@ -97,10 +98,10 @@ export default function ProductWidgets(props: WidgetsProps) {
                                         <p className="widget-content-text">Badge color</p>
                                         <div className="widget-colors">
                                             <div onClick={changeColor} className="widget-box--blue"></div>
-                                            <div className="widget-box--green"></div>
-                                            <div className="widget-box--beige"></div>
-                                            <div className="widget-box--white"></div>
-                                            <div className="widget-box--black"></div>
+                                            <div onClick={changeColor} className="widget-box--green"></div>
+                                            <div onClick={changeColor} className="widget-box--beige"></div>
+                                            <div onClick={changeColor} className="widget-box--white"></div>
+                                            <div onClick={changeColor} className="widget-box--black"></div>
                                         </div>
                                     </div>
                                     <div className="widget-content-section">
