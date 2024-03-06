@@ -33,7 +33,7 @@ export default function ProductWidgets() {
         return `widget-top widget--${widget.selectedColor}`;
     }, []);
 
-    const changeColor = useCallback((event: MouseEvent<HTMLDivElement>) => {
+    const changeWidgetColor = useCallback((event: MouseEvent<HTMLDivElement>) => {
         const colorClass: string = event.currentTarget.getAttribute("class")!.toString();
         const getColor = colorClass.slice(colorClass.lastIndexOf("--"), colorClass.length);
         const colorValue = getColor.replace("--", "").toString();
@@ -58,7 +58,7 @@ export default function ProductWidgets() {
                     widgets.map((widget, index) => {
                         return (
                             <div className="widget" key={index}>
-                                <div className={addWidgetsColors(widget)}>
+                                <div className={addWidgetsColors(widget)} style={{"backgroundColor": changedColor}}>
                                     <div className="widget-top-logo">
                                         <img alt={widget.type} className="logo" src="/images/widgets/logo-white.png" />
                                     </div>
@@ -83,11 +83,11 @@ export default function ProductWidgets() {
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
                                         <div className="widget-colors">
-                                            <div onClick={changeColor} className="widget-box--blue"></div>
-                                            <div onClick={changeColor} className="widget-box--green"></div>
-                                            <div onClick={changeColor} className="widget-box--beige"></div>
-                                            <div onClick={changeColor} className="widget-box--white"></div>
-                                            <div onClick={changeColor} className="widget-box--black"></div>
+                                            <div onClick={changeWidgetColor} className="widget-box--blue"></div>
+                                            <div onClick={changeWidgetColor} className="widget-box--green"></div>
+                                            <div onClick={changeWidgetColor} className="widget-box--beige"></div>
+                                            <div onClick={changeWidgetColor} className="widget-box--white"></div>
+                                            <div onClick={changeWidgetColor} className="widget-box--black"></div>
                                         </div>
                                     </div>
                                     <div className="widget-content-section">
