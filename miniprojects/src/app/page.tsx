@@ -43,12 +43,8 @@ export default function ProductWidgets(props: WidgetsProps) {
 
     const onCheckedWidget = useCallback((e: MouseEvent<HTMLInputElement>) => {
         const value = e.currentTarget.checked;
-        const activeState: boolean | any = widgets.map((widget) => value === widget.active);
-
-        console.log(activeState);
-
-        isCheckWidget(activeState);
-    }, [widgets]);
+        isCheckWidget(value);
+    }, []);
 
     return (
         <div id="productWidgets">
