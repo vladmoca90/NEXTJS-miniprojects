@@ -150,6 +150,24 @@ body {
     font-weight: 400;
     line-height: 100%;
     margin: 0;
+    position: relative;
+}
+
+.widget-content .profile-link {
+    border: 1px solid #3b755f;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 9px;
+    font-weight: bold;
+    height: 12px;
+    right: -17px;
+    line-height: 9.5px;
+    position: absolute;
+    text-align: center;
+    transition: linear .5s all;
+    top: -10px;
+    width: 12px;
 }
 
 .widget-top-logo {

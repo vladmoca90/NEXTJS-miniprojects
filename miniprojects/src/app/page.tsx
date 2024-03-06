@@ -43,8 +43,14 @@ export default function ProductWidgets(props: WidgetsProps) {
 
     const onCheckedWidget = useCallback((e: MouseEvent<HTMLInputElement>) => {
         const value = e.currentTarget.checked;
-        isCheckWidget(checkWidget);
-    }, [checkWidget]);
+        console.log(value);
+
+        if(value === true) {
+            return ;
+        }
+
+        isCheckWidget(value);
+    }, []);
 
     return (
         <div id="productWidgets">
@@ -67,7 +73,7 @@ export default function ProductWidgets(props: WidgetsProps) {
                                 </div>
                                 <div className="widget-content">
                                     <div className="widget-content-section">
-                                        <p className="widget-content-text">Link to Public Profile</p>
+                                        <p className="widget-content-text">Link to Public Profile <span className="profile-link">i</span></p>
                                         <input onClick={onCheckedWidget} className="widget-checkbox" type="checkbox" />
                                     </div>
                                     <div className="widget-content-section">
