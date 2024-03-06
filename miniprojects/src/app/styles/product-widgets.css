@@ -6,7 +6,7 @@ body {
 
 #productWidgets {
     border-radius: 8px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, .25);
+    box-shadow: 0 2px 22px rgba(0, 0, 0, .15);
     font-family: "Cabin", sans-serif;
     margin: 2rem auto;
     width: 330px;
@@ -15,14 +15,15 @@ body {
 
 @media all and (min-width: 768px) {
     #productWidgets {
-        box-shadow: 0 42px 76px rgba(0, 0, 0, .25);
+        box-shadow: 0 10px 85px rgba(0, 0, 0, .15);
         width: 720px;
     }
 }
 
 @media all and (min-width: 992px) {
     #productWidgets {
-        width: 768px;
+        padding: 0 1rem;
+        width: 800px;
     }
 }
 
@@ -167,6 +168,17 @@ body {
     height: 16px;
     margin: 0 .15rem;
     width: 16px;
+}
+
+@media all and (min-width: 992px) {
+    .widget-colors>div {
+        transition: linear .5s all;
+    }
+
+    .widget-colors>div:hover {
+        cursor: pointer;
+        opacity: .75;
+    }
 }
 
 .widget-colors--blue {

@@ -2,7 +2,7 @@
 "use client";
 import "./styles/product-widgets.css";
 import { Widget } from "../../lib/product-widgets/Widget";
-import { useCallback, useEffect, useState } from "react";
+import { MouseEvent, useCallback, useEffect, useState } from "react";
 
 export type WidgetsProps = {
     widgets: Widget[];
@@ -17,6 +17,7 @@ export default function ProductWidgets(props: WidgetsProps) {
     let widgetsUrl = "https://api.mocki.io/v2/016d11e8/product-widgets";
 
     const [widgets, setWidgets] = useState<Widget[]>([]);
+    const [checkWidget, isCheckWidget] = useState(false);
 
     const getWidgets = useCallback(async () => {
         const res = await fetch(widgetsUrl);
@@ -40,6 +41,11 @@ export default function ProductWidgets(props: WidgetsProps) {
         return `widget-top widget--${widget.selectedColor}`;
     }, []);
 
+    const onCheckedWidget = useCallback((e: MouseEvent<HTMLInputElement>) => {
+        const value = e.currentTarget.checked;
+        isCheckWidget(checkWidget);
+    }, [checkWidget]);
+
     return (
         <div id="productWidgets">
             <div className="productWidgets-top">
@@ -62,7 +68,7 @@ export default function ProductWidgets(props: WidgetsProps) {
                                 <div className="widget-content">
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Link to Public Profile</p>
-                                        <input className="widget-checkbox" type="checkbox" />
+                                        <input onClick={onCheckedWidget} className="widget-checkbox" type="checkbox" />
                                     </div>
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
