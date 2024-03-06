@@ -34,6 +34,7 @@ export default function ProductWidgets() {
     }, []);
 
     const changeWidgetColor = useCallback((event: MouseEvent<HTMLDivElement>) => {
+        // event.currentTarget.parentElement; -> gets the entire div with .widget-colors
         const colorClass: string = event.currentTarget.getAttribute("class")!.toString();
         const getColor = colorClass.slice(colorClass.lastIndexOf("--"), colorClass.length);
         const colorValue = getColor.replace("--", "").toString();
@@ -58,7 +59,7 @@ export default function ProductWidgets() {
                     widgets.map((widget, index) => {
                         return (
                             <div className="widget" key={index}>
-                                <div className={addWidgetsColors(widget)} style={{"backgroundColor": changedColor}}>
+                                <div className={addWidgetsColors(widget)}>
                                     <div className="widget-top-logo">
                                         <img alt={widget.type} className="logo" src="/images/widgets/logo-white.png" />
                                     </div>
