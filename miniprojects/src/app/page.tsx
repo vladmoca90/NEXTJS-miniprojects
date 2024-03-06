@@ -17,6 +17,7 @@ export default function ProductWidgets(props: WidgetsProps) {
     let widgetsUrl = "https://api.mocki.io/v2/016d11e8/product-widgets";
 
     const [widgets, setWidgets] = useState<Widget[]>([]);
+    const [changedColor, setChangedColor] = useState("");
     const [checkWidget, isCheckWidget] = useState(false);
 
     const getWidgets = useCallback(async () => {
@@ -42,26 +43,19 @@ export default function ProductWidgets(props: WidgetsProps) {
     }, []);
 
     const changeColor = useCallback((event: MouseEvent<HTMLDivElement>) => {
-        const colorClass: string | any = event.currentTarget.getAttribute("class")?.toString();
+        const colorClass: string = event.currentTarget.getAttribute("class")!.toString();
         const getColor = colorClass.slice(colorClass.lastIndexOf("--"), colorClass.length);
-        const color = getColor.replace("--", "").toString();
+        const colorValue = getColor.replace("--", "").toString();
 
-        console.log(color);
+        console.log(colorValue);
 
-        return color;
+        return setChangedColor(colorValue);
     }, []);
 
-    const onCheckedWidget = useCallback(() => {
-        let disabled: boolean;
-
-        for (let i = 0; i < widgets.length; i++) {
-            if (widgets[i].active === true) {
-                return disabled = true;
-            }
-        }
-
-        return disabled = false;
-    }, [widgets]);
+    const onCheckedWidget = useCallback((event: { target: { checked: boolean } }) => {
+        const value = event.target.checked;
+        isCheckWidget(value);
+    }, []);
 
     return (
         <div id="productWidgets">
@@ -92,8 +86,7 @@ export default function ProductWidgets(props: WidgetsProps) {
                                             </p>
                                             <a href="##">View Public Profile</a>
                                         </div>
-                                        <input className="widget-checkbox" type="checkbox" />
-                                        {/* disabled={onCheckedWidget()}  */}
+                                        <input disabled={onCheckedWidget()} className="widget-checkbox" type="checkbox" />
                                     </div>
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
