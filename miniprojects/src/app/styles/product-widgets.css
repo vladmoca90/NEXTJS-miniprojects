@@ -220,10 +220,10 @@ body {
 }
 
 .switch {
-    position: relative;
     display: inline-block;
-    width: 62px;
     height: 26px;
+    position: relative;
+    width: 62px;
 }
 
 .switch input {
@@ -286,6 +286,6 @@ input:checked+.slider .switch-round {
 
 @media all and (min-width: 992px) {
     .slider.round .switch-round:hover {
-        box-shadow: 1px 1px 10px #3b755f;
+        box-shadow: 0 0 2px 5px rgb(59, 117, 95, .3);
     }
 }
