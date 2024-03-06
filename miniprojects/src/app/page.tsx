@@ -2,7 +2,7 @@
 "use client";
 import "./styles/product-widgets.css";
 import { Widget } from "../../lib/product-widgets/Widget";
-import { useCallback, useEffect, useState } from "react";
+import { MouseEvent, useCallback, useEffect, useState } from "react";
 
 export type WidgetsProps = {
     widgets: Widget[];
@@ -41,7 +41,11 @@ export default function ProductWidgets(props: WidgetsProps) {
         return `widget-top widget--${widget.selectedColor}`;
     }, []);
 
-    const onCheckedWidget = useCallback(() => {
+    const changeColor = useCallback((event: MouseEvent<HTMLDivElement>) => {
+        return ""
+    }, []);
+
+    const onCheckedWidget = useCallback(async() => {
         let disabled: boolean;
 
         for (let i = 0; i < widgets.length; i++) {
@@ -87,7 +91,7 @@ export default function ProductWidgets(props: WidgetsProps) {
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
                                         <div className="widget-colors">
-                                            <div className="widget-colors--blue"></div>
+                                            <div onClick={changeColor(widget)} className="widget-colors--blue"></div>
                                             <div className="widget-colors--green"></div>
                                             <div className="widget-colors--beige"></div>
                                             <div className="widget-colors--white"></div>
