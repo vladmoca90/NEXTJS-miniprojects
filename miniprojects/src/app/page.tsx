@@ -42,19 +42,20 @@ export default function ProductWidgets(props: WidgetsProps) {
     }, []);
 
     const changeColor = useCallback((event: MouseEvent<HTMLDivElement>) => {
-        const color = document.querySelector(".widget-box--blue");
-        const colorValue = event.currentTarget.getAttribute("class");
-        
-        console.log(colorValue);
+        const colorClass: string | any = event.currentTarget.getAttribute("class")?.toString();
+        const getColor = colorClass.slice(colorClass.lastIndexOf("--"), colorClass.length);
+        const color = getColor.replace("--", "").toString();
 
-        return colorValue;
+        console.log(color);
+
+        return color;
     }, []);
 
     const onCheckedWidget = useCallback(() => {
         let disabled: boolean;
 
         for (let i = 0; i < widgets.length; i++) {
-            if(widgets[i].active === true) {
+            if (widgets[i].active === true) {
                 return disabled = true;
             }
         }
@@ -86,7 +87,7 @@ export default function ProductWidgets(props: WidgetsProps) {
                                         <p className="widget-content-text">Link to Public Profile <span className="profile-link">i</span></p>
                                         <div className="public-profile-card">
                                             <p>This widget links directly to your public profile so that you can easily share your
-                                                impact with your customers. Turn it off here if you do not want the badge to link 
+                                                impact with your customers. Turn it off here if you do not want the badge to link
                                                 to it.
                                             </p>
                                             <a href="##">View Public Profile</a>
