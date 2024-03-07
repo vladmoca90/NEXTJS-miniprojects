@@ -8,7 +8,7 @@ export default function ProductWidgets() {
     let widgetsUrl = "https://api.mocki.io/v2/016d11e8/product-widgets";
 
     const [widgets, setWidgets] = useState<Widget[]>([]);
-    const [changedColor, setChangedColor] = useState({ status: true, from: "", styling: "" });
+    const [changedColor, setChangedColor] = useState("");
     const [activatedState, isActivatedState] = useState(false);
 
     const getWidgets = useCallback(async () => {
@@ -33,10 +33,15 @@ export default function ProductWidgets() {
         return `widget-top widget--${widget.selectedColor}`;
     }, []);
 
-    const changeWidgetColor = useCallback((colorNo: string) => {
-        console.log({ status: true, from: colorNo, styling: `widget-top widget--${changedColor}` });
-        setChangedColor({ status: true, from: colorNo, styling: `widget-top widget--${changedColor}` });
-    }, [changedColor]);
+    const changeWidgetColor = useCallback((event: MouseEvent<HTMLDivElement>) => {
+        const colorClass: string = event.currentTarget.classList!.toString();
+        const getColor = colorClass.slice(colorClass.lastIndexOf("--"), colorClass.length);
+        const colorValue = getColor.replace("--", "").toString();
+
+        console.log(colorValue);
+
+        return setChangedColor(colorValue);
+    }, []);
 
     const getActivatedState = useCallback((event: MouseEvent<HTMLDivElement>) => {
         const value = event.currentTarget.textContent;
@@ -77,11 +82,11 @@ export default function ProductWidgets() {
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
                                         <div className="widget-colors">
-                                            <div onClick={() => changeWidgetColor("color1")} className="widget-box--blue"></div>
-                                            <div onClick={() => changeWidgetColor("color2")} className="widget-box--green"></div>
-                                            <div onClick={() => changeWidgetColor("color3")} className="widget-box--beige"></div>
-                                            <div onClick={() => changeWidgetColor("color4")} className="widget-box--white"></div>
-                                            <div onClick={() => changeWidgetColor("color5")} className="widget-box--black"></div>
+                                            <div onClick={changeWidgetColor} className="widget-box--blue"></div>
+                                            <div onClick={changeWidgetColor} className="widget-box--green"></div>
+                                            <div onClick={changeWidgetColor} className="widget-box--beige"></div>
+                                            <div onClick={changeWidgetColor} className="widget-box--white"></div>
+                                            <div onClick={changeWidgetColor} className="widget-box--black"></div>
                                         </div>
                                     </div>
                                     <div className="widget-content-section">
