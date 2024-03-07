@@ -11,7 +11,7 @@ export default function ProductWidgets() {
     const [changedColor, setChangedColor] = useState("");
     const [activatedState, isActivatedState] = useState(false);
 
-    const getWidgets = useCallback(async () => {
+    const getAllWidgets = useCallback(async () => {
         const res = await fetch(widgetsUrl);
 
         if (!res.ok) {
@@ -29,7 +29,7 @@ export default function ProductWidgets() {
         return `widget-top widget--${widget.selectedColor}`;
     }, []);
 
-    const changeWidgetColor = useCallback(async (e: MouseEvent<HTMLDivElement>) => {
+    const changeWidgetsColor = useCallback(async (e: MouseEvent<HTMLDivElement>) => {
         const colorClass: string = e.currentTarget.classList!.toString();
         const getColor = colorClass.slice(colorClass.lastIndexOf("--"), colorClass.length);
         const colorValue = getColor.replace("--", "").toString();
@@ -45,8 +45,8 @@ export default function ProductWidgets() {
     }, []);
 
     useEffect(() => {
-        getWidgets();
-    }, [getWidgets]);
+        getAllWidgets();
+    }, [getAllWidgets]);
 
     return (
         <div id="productWidgets">
@@ -76,16 +76,16 @@ export default function ProductWidgets() {
                                                 to it.</p>
                                             <a href="##">View Public Profile</a>
                                         </div>
-                                        <input name={widget.type} value={index} checked={widget.active} className="widget-checkbox" type="checkbox" />
+                                        <input name={widget.type} value={index} className="widget-checkbox" type="checkbox" />
                                     </div>
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
                                         <div className="widget-colors">
-                                            <div onClick={changeWidgetColor} className="widget-box--blue"></div>
-                                            <div onClick={changeWidgetColor} className="widget-box--green"></div>
-                                            <div onClick={changeWidgetColor} className="widget-box--beige"></div>
-                                            <div onClick={changeWidgetColor} className="widget-box--white"></div>
-                                            <div onClick={changeWidgetColor} className="widget-box--black"></div>
+                                            <div onClick={changeWidgetsColor} className="widget-box--blue"></div>
+                                            <div onClick={changeWidgetsColor} className="widget-box--green"></div>
+                                            <div onClick={changeWidgetsColor} className="widget-box--beige"></div>
+                                            <div onClick={changeWidgetsColor} className="widget-box--white"></div>
+                                            <div onClick={changeWidgetsColor} className="widget-box--black"></div>
                                         </div>
                                     </div>
                                     <div className="widget-content-section">
@@ -93,7 +93,9 @@ export default function ProductWidgets() {
                                         <div className="widget-badge">
                                             <label className="switch">
                                                 <input type="checkbox" />
-                                                <span className="slider round"><span onClick={getActivatedState} className="switch-round"></span></span>
+                                                <span className="slider round">
+                                                    <span onClick={getActivatedState} className="switch-round"></span>
+                                                </span>
                                             </label>
                                         </div>
                                     </div>
