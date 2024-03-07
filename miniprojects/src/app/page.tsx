@@ -9,7 +9,7 @@ export default function ProductWidgets() {
 
     const [widgets, setWidgets] = useState<Widget[]>([]);
     const [changedColor, setChangedColor] = useState({ status: true, from: "", styling: "" });
-    const [checkWidget, isCheckWidget] = useState(false);
+    const [activatedState, isActivatedState] = useState(false);
 
     const getWidgets = useCallback(async () => {
         const res = await fetch(widgetsUrl);
@@ -38,9 +38,9 @@ export default function ProductWidgets() {
         setChangedColor({ status: true, from: colorNo, styling: `widget-top widget--${changedColor}` });
     }, [changedColor]);
 
-    const onCheckedWidget = useCallback((event: { target: { checked: boolean } }) => {
-        const value = event.target.checked;
-        isCheckWidget(value);
+    const getActivatedState = useCallback((event: MouseEvent<HTMLDivElement>) => {
+        const value = event.currentTarget.textContent;
+        isActivatedState(true);
     }, []);
 
     return (
@@ -73,7 +73,6 @@ export default function ProductWidgets() {
                                             <a href="##">View Public Profile</a>
                                         </div>
                                         <input className="widget-checkbox" type="checkbox" />
-                                        {/* disabled={onCheckedWidget(checkWidget)} */}
                                     </div>
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
@@ -90,7 +89,7 @@ export default function ProductWidgets() {
                                         <div className="widget-badge">
                                             <label className="switch">
                                                 <input type="checkbox" />
-                                                <span className="slider round"><span className="switch-round"></span></span>
+                                                <span className="slider round"><span onClick={getActivatedState} className="switch-round"></span></span>
                                             </label>
                                         </div>
                                     </div>
