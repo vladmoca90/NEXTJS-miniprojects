@@ -13,7 +13,6 @@ body {
     width: 330px;
 }
 
-
 @media all and (min-width: 768px) {
     #productWidgets {
         box-shadow: 0 10px 85px rgba(0, 0, 0, .15);
@@ -168,21 +167,21 @@ body {
     position: absolute;
     text-align: center;
     transition: linear .3s all;
-    top: -10px;
+    top: -5px;
     width: 12px;
 }
 
-.widget-content .profile-link:hover+.public-profile-card {
-    display: block;
-}
-
-.widget-content .widget-content-section .public-profile-card {
+.widget-content .public-profile-card {
     background: #fff;
     display: none;
     padding: .75rem;
     position: absolute;
     text-align: center;
     z-index: 100;
+}
+
+.widget-content .profile-link:hover+.public-profile-card {
+    display: block;
 }
 
 .widget-content .widget-content-section .public-profile-card p {
