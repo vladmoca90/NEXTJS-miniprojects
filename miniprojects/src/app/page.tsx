@@ -70,7 +70,8 @@ export default function ProductWidgets() {
                                                 to it.</p>
                                             <a href="##">View Public Profile</a>
                                         </div>
-                                        <input name={widget.type} value={index} className="widget-checkbox" type="checkbox" />
+                                        <label></label>
+                                        <input title="" placeholder="" name={widget.type} value={index} className="widget-checkbox" type="checkbox" />
                                     </div>
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
@@ -86,7 +87,7 @@ export default function ProductWidgets() {
                                         <p className="widget-content-text">Activate badge</p>
                                         <div className="widget-badge">
                                             <label className="switch">
-                                                <input type="checkbox" />
+                                                <input title="" placeholder="" type="checkbox" />
                                                 <span className="slider round">
                                                     <span className="switch-round"></span>
                                                 </span>
