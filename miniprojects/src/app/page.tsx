@@ -40,10 +40,10 @@ export default function ProductWidgets() {
     }, []);
 
     const getActivatedState = useCallback(async (e: MouseEvent<HTMLDivElement>) => {
-       // const value = e.currentTarget.value;
+        // const value = e.currentTarget.value;
         isActivatedState(true);
     }, []);
-    
+
     useEffect(() => {
         getWidgets();
     }, [getWidgets]);
@@ -76,7 +76,7 @@ export default function ProductWidgets() {
                                                 to it.</p>
                                             <a href="##">View Public Profile</a>
                                         </div>
-                                        <input name={widget.type} value={index} className="widget-checkbox" type="checkbox" />
+                                        <input name={widget.type} value={index} checked={widget.active} className="widget-checkbox" type="checkbox" />
                                     </div>
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
