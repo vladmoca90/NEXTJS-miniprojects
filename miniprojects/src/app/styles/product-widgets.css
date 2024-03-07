@@ -22,7 +22,7 @@ body {
 
 @media all and (min-width: 992px) {
     #productWidgets {
-        padding: 0 1rem;
+        padding: 0 1rem 3.5rem;
         width: 800px;
     }
 }
@@ -45,8 +45,18 @@ body {
     background: #fff;
 }
 
+.widget--white .widget-title,
+.widget--white .widget-subtitle {
+    color: #000;
+}
+
 .widget--beige {
     background: #f2ebdb;
+}
+
+.widget--beige .widget-title,
+.widget--beige .widget-subtitle {
+    color: #000;
 }
 
 /* Widget styling */
@@ -54,7 +64,7 @@ body {
 .productWidgets-top {
     border-bottom: 2px solid #b0b0b0;
     margin: 0 auto;
-    padding-top: .85rem;
+    padding-top: 1rem;
     width: 270px;
 }
 
