@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Wine } from "../../lib/wines/Wine";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
+// https://stackblitz.com/edit/react-ts-1uwfcq?file=App.tsx
+
 export default function WinesSell() {
     const winesUrl = "http://localhost:3000/api/wines";
 
