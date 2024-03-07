@@ -8,7 +8,7 @@ export default function ProductWidgets() {
     let widgetsUrl = "https://api.mocki.io/v2/016d11e8/product-widgets";
 
     const [widgets, setWidgets] = useState<Widget[]>([]);
-    const [changedColor, setChangedColor] = useState("");
+    const [changedColor, setChangedColor] = useState("blue");
     const [checkWidget, isCheckWidget] = useState(false);
 
     const getWidgets = useCallback(async () => {
@@ -35,7 +35,7 @@ export default function ProductWidgets() {
 
     const changeWidgetColor = useCallback((event: MouseEvent<HTMLDivElement>) => {
         // event.currentTarget.parentElement; -> gets the entire div with .widget-colors
-        const colorClass: string = event.currentTarget.className!.toString();
+        const colorClass: string = event.currentTarget.classList!.toString();
         const getColor = colorClass.slice(colorClass.lastIndexOf("--"), colorClass.length);
         const colorValue = getColor.replace("--", "").toString();
 
