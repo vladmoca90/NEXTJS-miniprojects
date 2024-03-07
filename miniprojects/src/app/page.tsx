@@ -2,14 +2,13 @@
 "use client";
 import "./styles/product-widgets.css";
 import { Widget } from "../../lib/product-widgets/Widget";
-import { ChangeEvent, MouseEvent, useCallback, useEffect, useState } from "react";
+import { MouseEvent, useCallback, useEffect, useState } from "react";
 
 export default function ProductWidgets() {
     let widgetsUrl = "https://api.mocki.io/v2/016d11e8/product-widgets";
 
     const [widgets, setWidgets] = useState<Widget[]>([]);
     const [changedColor, setChangedColor] = useState("");
-    const [checked, setChecked] = useState(false);
     const [activatedState, isActivatedState] = useState(false);
 
     const getWidgets = useCallback(async () => {
@@ -26,10 +25,6 @@ export default function ProductWidgets() {
         setWidgets(data);
     }, [widgetsUrl]);
 
-    useEffect(() => {
-        getWidgets();
-    }, [getWidgets]);
-
     const addWidgetsColors = useCallback((widget: Widget) => {
         return `widget-top widget--${widget.selectedColor}`;
     }, []);
@@ -44,15 +39,14 @@ export default function ProductWidgets() {
         return setChangedColor(colorValue);
     }, []);
 
-    const getChecked = useCallback(async (e: { target : { checked: boolean }}) => {
-        console.log(e.target.checked);
-        setChecked(e.target.checked);
-    }, []);
-
     const getActivatedState = useCallback(async (e: MouseEvent<HTMLDivElement>) => {
-        const value = e.currentTarget.textContent;
+       // const value = e.currentTarget.value;
         isActivatedState(true);
     }, []);
+    
+    useEffect(() => {
+        getWidgets();
+    }, [getWidgets]);
 
     return (
         <div id="productWidgets">
@@ -82,7 +76,7 @@ export default function ProductWidgets() {
                                                 to it.</p>
                                             <a href="##">View Public Profile</a>
                                         </div>
-                                        <input onClick={() => getChecked} className="widget-checkbox" type="checkbox" />
+                                        <input name={widget.type} value={index} className="widget-checkbox" type="checkbox" />
                                     </div>
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
