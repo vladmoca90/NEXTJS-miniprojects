@@ -2,13 +2,14 @@
 "use client";
 import "./styles/product-widgets.css";
 import { Widget } from "../../lib/product-widgets/Widget";
-import { MouseEvent, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, MouseEvent, useCallback, useEffect, useState } from "react";
 
 export default function ProductWidgets() {
     let widgetsUrl = "https://api.mocki.io/v2/016d11e8/product-widgets";
 
     const [widgets, setWidgets] = useState<Widget[]>([]);
     const [changedColor, setChangedColor] = useState("");
+    const [checked, setChecked] = useState(false);
     const [activatedState, isActivatedState] = useState(false);
 
     const getWidgets = useCallback(async () => {
@@ -33,8 +34,8 @@ export default function ProductWidgets() {
         return `widget-top widget--${widget.selectedColor}`;
     }, []);
 
-    const changeWidgetColor = useCallback((event: MouseEvent<HTMLDivElement>) => {
-        const colorClass: string = event.currentTarget.classList!.toString();
+    const changeWidgetColor = useCallback(async (e: MouseEvent<HTMLDivElement>) => {
+        const colorClass: string = e.currentTarget.classList!.toString();
         const getColor = colorClass.slice(colorClass.lastIndexOf("--"), colorClass.length);
         const colorValue = getColor.replace("--", "").toString();
 
@@ -43,8 +44,13 @@ export default function ProductWidgets() {
         return setChangedColor(colorValue);
     }, []);
 
-    const getActivatedState = useCallback((event: MouseEvent<HTMLDivElement>) => {
-        const value = event.currentTarget.textContent;
+    const getChecked = useCallback(async (e: { target : { checked: boolean }}) => {
+        console.log(e.target.checked);
+        setChecked(e.target.checked);
+    }, []);
+
+    const getActivatedState = useCallback(async (e: MouseEvent<HTMLDivElement>) => {
+        const value = e.currentTarget.textContent;
         isActivatedState(true);
     }, []);
 
@@ -73,11 +79,10 @@ export default function ProductWidgets() {
                                         <div className="public-profile-card">
                                             <p>This widget links directly to your public profile so that you can easily share your
                                                 impact with your customers. Turn it off here if you do not want the badge to link
-                                                to it.
-                                            </p>
+                                                to it.</p>
                                             <a href="##">View Public Profile</a>
                                         </div>
-                                        <input className="widget-checkbox" type="checkbox" />
+                                        <input onClick={() => getChecked} className="widget-checkbox" type="checkbox" />
                                     </div>
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
