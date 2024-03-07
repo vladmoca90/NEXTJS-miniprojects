@@ -8,7 +8,7 @@ export default function ProductWidgets() {
     let widgetsUrl = "https://api.mocki.io/v2/016d11e8/product-widgets";
 
     const [widgets, setWidgets] = useState<Widget[]>([]);
-    const [changedColor, setChangedColor] = useState("blue");
+    const [changedColor, setChangedColor] = useState("");
     const [checkWidget, isCheckWidget] = useState(false);
 
     const getWidgets = useCallback(async () => {
