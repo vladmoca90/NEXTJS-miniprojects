@@ -9,7 +9,6 @@ export default function ProductWidgets() {
 
     const [widgets, setWidgets] = useState<Widget[]>([]);
     const [changedColor, setChangedColor] = useState("");
-    const [activatedState, isActivatedState] = useState(false);
 
     const getAllWidgets = useCallback(async () => {
         const res = await fetch(widgetsUrl);
@@ -36,12 +35,7 @@ export default function ProductWidgets() {
 
         console.log(colorValue);
 
-        return setChangedColor(colorValue);
-    }, []);
-
-    const getActivatedState = useCallback(async (e: MouseEvent<HTMLDivElement>) => {
-        // const value = e.currentTarget.value;
-        isActivatedState(true);
+        setChangedColor(colorValue);
     }, []);
 
     useEffect(() => {
@@ -94,7 +88,7 @@ export default function ProductWidgets() {
                                             <label className="switch">
                                                 <input type="checkbox" />
                                                 <span className="slider round">
-                                                    <span onClick={getActivatedState} className="switch-round"></span>
+                                                    <span className="switch-round"></span>
                                                 </span>
                                             </label>
                                         </div>
