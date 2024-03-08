@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { allWidgets } from "../../../../lib/product-widgets/allWidgets";
+import { allWidgets } from "../../../../lib/widgets/allWidgets";
 
 export function GET(request: NextRequest) {
     return NextResponse.json(
