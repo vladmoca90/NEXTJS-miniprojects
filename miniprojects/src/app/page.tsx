@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import "./styles/product-widgets.css";
+import "./styles/widgets.css";
 import { Widget } from "../../lib/widgets/Widget";
 import { MouseEvent, useCallback, useEffect, useState } from "react";
 

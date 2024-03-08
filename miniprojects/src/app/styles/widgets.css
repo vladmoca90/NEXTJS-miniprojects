@@ -288,10 +288,10 @@ body {
     bottom: 0;
     content: "";
     height: 26px;
-    left: -1px;
+    left: -0.025rem;
     position: absolute;
     transition: .5s;
-    top: -1px;
+    top: -0.025rem;
     width: 26px;
 }
 
