@@ -9,6 +9,7 @@ export default function ProductWidgets() {
 
     const [widgets, setWidgets] = useState<Widget[]>([]);
     const [changedColor, setChangedColor] = useState("");
+    const [isActive, setIsActive] = useState("");
 
     const getAllWidgets = useCallback(async () => {
         const res = await fetch(widgetsUrl);
@@ -72,7 +73,7 @@ export default function ProductWidgets() {
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
                                         <div className="widget-colors">
-                                            <div id="blue" onClick={changeWidgetsColor} className="widget-box--blue"></div>
+                                            <div onClick={changeWidgetsColor} className="widget-box--blue"></div>
                                             <div onClick={changeWidgetsColor} className="widget-box--green"></div>
                                             <div onClick={changeWidgetsColor} className="widget-box--beige"></div>
                                             <div onClick={changeWidgetsColor} className="widget-box--white"></div>
@@ -83,7 +84,7 @@ export default function ProductWidgets() {
                                         <p className="widget-content-text">Activate badge</p>
                                         <div className="widget-badge">
                                             <label className="switch">
-                                                <input title="" placeholder="" type="checkbox" />
+                                                <input title="" placeholder="" type="checkbox" checked={isActive === widget.selectedColor} onClick={() => setIsActive(widget.selectedColor)} />
                                                 <span className="slider round">
                                                     <span className="switch-round"></span>
                                                 </span>
