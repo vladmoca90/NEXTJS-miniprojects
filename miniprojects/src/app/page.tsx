@@ -2,7 +2,7 @@
 "use client";
 import "./styles/widgets.css";
 import { Widget } from "../../lib/widgets/Widget";
-import { MouseEvent, useCallback, useEffect, useState } from "react";
+import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
 
 export default function ProductWidgets() {
     let widgetsUrl = "https://api.mocki.io/v2/016d11e8/product-widgets";
@@ -48,7 +48,7 @@ export default function ProductWidgets() {
                     widgets.map((widget, index) => {
                         return (
                             <div className="widget" key={index}>
-                                <div id={index.toString()} className={`widget-top widget--${widget.selectedColor}`}>
+                                <div id={index.toString()} className={`widget-top widget--${widget.selectedColor && changedColor}`}>
                                     <div className="widget-top-logo">
                                         <img alt={widget.type} className="logo" src="/images/widgets/logo-white.png" />
                                     </div>
@@ -72,7 +72,7 @@ export default function ProductWidgets() {
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
                                         <div className="widget-colors">
-                                            <div onClick={changeWidgetsColor} className="widget-box--blue"></div>
+                                            <div id="blue" onClick={changeWidgetsColor} className="widget-box--blue"></div>
                                             <div onClick={changeWidgetsColor} className="widget-box--green"></div>
                                             <div onClick={changeWidgetsColor} className="widget-box--beige"></div>
                                             <div onClick={changeWidgetsColor} className="widget-box--white"></div>
