@@ -24,10 +24,6 @@ export default function ProductWidgets() {
         setWidgets(data);
     }, [widgetsUrl]);
 
-    // const addWidgetsColors = useCallback((widget: Widget) => {
-    //     return `widget-top widget--${widget.selectedColor}`;
-    // }, []);
-
     const changeWidgetsColor = useCallback(async (e: MouseEvent<HTMLDivElement>) => {
         const colorClass: string = e.currentTarget.classList!.toString();
         const getColor = colorClass.slice(colorClass.lastIndexOf("--"), colorClass.length);
@@ -52,7 +48,7 @@ export default function ProductWidgets() {
                     widgets.map((widget, index) => {
                         return (
                             <div className="widget" key={index}>
-                                <div className={`widget-top widget--${widget.selectedColor}`}>
+                                <div className={`widget-top widget--${widget.selectedColor} widget--${changedColor}`}>
                                     <div className="widget-top-logo">
                                         <img alt={widget.type} className="logo" src="/images/widgets/logo-white.png" />
                                     </div>
