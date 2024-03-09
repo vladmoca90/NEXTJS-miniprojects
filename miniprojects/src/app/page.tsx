@@ -9,7 +9,8 @@ export default function ProductWidgets() {
 
     const [widgets, setWidgets] = useState<Widget[]>([]);
     const [changedColor, setChangedColor] = useState("");
-    const [isActive, setIsActive] = useState("");
+    const [isActive, setIsActive] = useState(true);
+    const [isChecked, setIsChecked] = useState(true);
 
     const getAllWidgets = useCallback(async () => {
         const res = await fetch(widgetsUrl);
@@ -68,7 +69,7 @@ export default function ProductWidgets() {
                                             <a href="##">View Public Profile</a>
                                         </div>
                                         <label></label>
-                                        <input title="" placeholder="" name={widget.type} value={index} className="widget-checkbox" type="checkbox" />
+                                        <input title="" placeholder="" checked={isChecked === widget.linked} onClick={() => setIsChecked(widget.linked)} name={widget.type} value={index} className="widget-checkbox" type="checkbox" />
                                     </div>
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
@@ -84,7 +85,7 @@ export default function ProductWidgets() {
                                         <p className="widget-content-text">Activate badge</p>
                                         <div className="widget-badge">
                                             <label className="switch">
-                                                <input title="" placeholder="" type="checkbox" checked={isActive === widget.selectedColor} onClick={() => setIsActive(widget.selectedColor)} />
+                                                <input title="" placeholder="" type="checkbox" checked={isActive === widget.active} onClick={() => setIsActive(widget.active)} />
                                                 <span className="slider round">
                                                     <span className="switch-round"></span>
                                                 </span>
