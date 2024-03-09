@@ -48,7 +48,7 @@ export default function ProductWidgets() {
                     widgets.map((widget, index) => {
                         return (
                             <div className="widget" key={index}>
-                                <div className={`widget-top widget--${widget.selectedColor} widget--${changedColor}`}>
+                                <div className={`widget-top widget--${widget.selectedColor}`}>
                                     <div className="widget-top-logo">
                                         <img alt={widget.type} className="logo" src="/images/widgets/logo-white.png" />
                                     </div>

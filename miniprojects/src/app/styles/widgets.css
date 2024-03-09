@@ -46,17 +46,14 @@ body {
 }
 
 .widget--white .widget-title,
-.widget--white .widget-subtitle {
+.widget--white .widget-subtitle,
+.widget--beige .widget-title,
+.widget--beige .widget-subtitle {
     color: #000;
 }
 
 .widget--beige {
     background: #f2ebdb;
-}
-
-.widget--beige .widget-title,
-.widget--beige .widget-subtitle {
-    color: #000;
 }
 
 /* Widget styling */
