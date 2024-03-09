@@ -2,7 +2,7 @@
 "use client";
 import "./styles/widgets.css";
 import { Widget } from "../../lib/widgets/Widget";
-import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
+import { MouseEvent, useCallback, useEffect, useState } from "react";
 
 export default function ProductWidgets() {
     let widgetsUrl = "https://api.mocki.io/v2/016d11e8/product-widgets";
