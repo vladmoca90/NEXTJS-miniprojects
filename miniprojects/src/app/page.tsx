@@ -2,7 +2,7 @@
 "use client";
 import "./styles/widgets.css";
 import { Widget } from "../../lib/widgets/Widget";
-import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
+import { MouseEvent, useCallback, useEffect, useState } from "react";
 
 export default function ProductWidgets() {
     let widgetsUrl = "https://api.mocki.io/v2/016d11e8/product-widgets";
@@ -24,13 +24,15 @@ export default function ProductWidgets() {
         setWidgets(data);
     }, [widgetsUrl]);
 
-    const myRef: null | any = useRef(null);
-
     const changeWidgetsColor = useCallback(async (e: MouseEvent<HTMLDivElement>) => {
-        setChangedColor(changedColor);
+        const colorClass: string = e.currentTarget.classList!.toString();
+        const getColor = colorClass.slice(colorClass.lastIndexOf("--"), colorClass.length);
+        const colorValue = getColor.replace("--", "").toString();
 
-        return <div className={`widget-top widget--${changedColor}`}></div>;
-    }, [changedColor]);
+        console.log(colorValue);
+
+        setChangedColor(colorValue);
+    }, []);
 
     useEffect(() => {
         getAllWidgets();
@@ -46,7 +48,7 @@ export default function ProductWidgets() {
                     widgets.map((widget, index) => {
                         return (
                             <div className="widget" key={index}>
-                                <div className={`widget-top widget--${widget.selectedColor}`}>
+                                <div className={`widget-top widget--${widget.selectedColor} widget--${changedColor}`}>
                                     <div className="widget-top-logo">
                                         <img alt={widget.type} className="logo" src="/images/widgets/logo-white.png" />
                                     </div>
@@ -70,11 +72,11 @@ export default function ProductWidgets() {
                                     <div className="widget-content-section">
                                         <p className="widget-content-text">Badge color</p>
                                         <div className="widget-colors">
-                                            <div onClick={() => myRef.current.changeWidgetsColor("blue")} className="widget-box--blue"></div>
-                                            <div onClick={() => myRef.current.changeWidgetsColor("green")} className="widget-box--green"></div>
-                                            <div onClick={() => myRef.current.changeWidgetsColor("beige")} className="widget-box--beige"></div>
-                                            <div onClick={() => myRef.current.changeWidgetsColor("white")} className="widget-box--white"></div>
-                                            <div onClick={() => myRef.current.changeWidgetsColor("black")} className="widget-box--black"></div>
+                                            <div onClick={changeWidgetsColor} className="widget-box--blue"></div>
+                                            <div onClick={changeWidgetsColor} className="widget-box--green"></div>
+                                            <div onClick={changeWidgetsColor} className="widget-box--beige"></div>
+                                            <div onClick={changeWidgetsColor} className="widget-box--white"></div>
+                                            <div onClick={changeWidgetsColor} className="widget-box--black"></div>
                                         </div>
                                     </div>
                                     <div className="widget-content-section">
