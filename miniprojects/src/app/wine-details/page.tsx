@@ -1,7 +1,7 @@
 "use client";
 import "./../styles/wines.css";
 import Image from "next/image";
-import { Wine } from "../../../lib/wines/Wine";
+import { Wine } from "../../../data/wines/Wine";
 import { useCallback, useEffect, useState } from "react";
 
 export default function WineDetails({ searchParams }: {

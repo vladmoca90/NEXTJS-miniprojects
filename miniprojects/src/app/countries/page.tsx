@@ -1,7 +1,7 @@
 "use client";
 import "./styles/countries.css";
 import Link from "next/link";
-import { Country } from "../../lib/countries/Country";
+import { Country } from "../../data/countries/Country";
 import { useCallback, useEffect, useState } from "react";
 
 export default function CountriesList() {

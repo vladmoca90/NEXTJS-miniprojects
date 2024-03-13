@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import { allFoods } from "../../../../lib/foodList/allFoods";
+import { allFoods } from "../../../../data/foodList/allFoods";
 
 export async function GET(request: NextRequest) {
     return NextResponse.json(

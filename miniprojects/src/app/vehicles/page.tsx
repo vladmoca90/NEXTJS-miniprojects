@@ -2,7 +2,7 @@
 "use client";
 import "./styles/cars.css";
 import Link from "next/link";
-import { Car } from "../../lib/cars/Car";
+import { Car } from "../../data/cars/Car";
 import { useCallback, useEffect, useState } from "react";
 
 export default function CarsShowroom() {

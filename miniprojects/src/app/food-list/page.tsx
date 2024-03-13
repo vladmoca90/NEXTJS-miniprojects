@@ -2,7 +2,7 @@
 import "./styles/food-list.css";
 import Image from "next/image";
 import Link from "next/link";
-import { Food } from "../../lib/foodList/Food";
+import { Food } from "../../data/foodList/Food";
 import { useState, useCallback, useEffect } from "react";
 
 export default function FoodList() {

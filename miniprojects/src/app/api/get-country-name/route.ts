@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import { allCountries } from "../../../../lib/countries/allCountries";
+import { allCountries } from "../../../../data/countries/allCountries";
 
 export async function GET(request: NextRequest) {
     const countryName = request.nextUrl.searchParams.get("countryName");

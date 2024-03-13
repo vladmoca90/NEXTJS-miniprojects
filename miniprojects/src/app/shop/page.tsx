@@ -2,7 +2,7 @@
 import "./styles/shop.css";
 import Image from "next/image";
 import Link from "next/link";
-import { Product } from "../../../lib/shop/Product";
+import { Product } from "../../../data/shop/Product";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 export default function ShopProducts() {

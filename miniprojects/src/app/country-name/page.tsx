@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { Country } from "../../../lib/countries/Country";
+import { Country } from "../../../data/countries/Country";
 
 export default function CountryName({ searchParams }: {
     searchParams: {

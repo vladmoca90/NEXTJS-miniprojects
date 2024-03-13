@@ -1,6 +1,6 @@
 "use client";
 import "./styles/transactions.css";
-import { Transaction } from "./../../lib/transactions/Transaction";
+import { Transaction } from "./../../data/transactions/Transaction";
 import { MouseEvent, useCallback, useEffect, useState } from "react";
 
 export default function Transactions() {
@@ -25,15 +25,15 @@ export default function Transactions() {
 
     const getSelectedTransactions = useCallback(async (event: MouseEvent<HTMLDivElement>) => {
         const value = event.currentTarget.textContent;
-        // let dict: any | {date: string[number], name: string[number], category: string[number] } = {};
+        let dict: any | {date: string[number], name: string[number], category: string[number] } = {};
 
-        // const clearValue = value.innerText.replaceAll("\n", "");
+        const clearValue = value.innerText.replaceAll("\n", "");
 
-        // console.log({
-        //     date: clearValue,
-        //     name: clearValue,
-        //     category: clearValue,
-        // });
+        console.log({
+            date: clearValue,
+            name: clearValue,
+            category: clearValue,
+        });
 
         console.log(value);
 

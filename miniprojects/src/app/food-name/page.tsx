@@ -1,7 +1,7 @@
 "use client";
 import "./../styles/food-list.css";
 import Image from "next/image";
-import { Food } from "../../../lib/foodList/Food";
+import { Food } from "../../../data/foodList/Food";
 import { useCallback, useEffect, useState } from "react";
 
 export default function FoodListDetails({ searchParams }: {

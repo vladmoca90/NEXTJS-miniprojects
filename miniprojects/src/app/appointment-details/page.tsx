@@ -1,7 +1,7 @@
 "use client";
 import "./../styles/appointment-details.css";
 import { useCallback, useEffect, useState } from "react";
-import { Appointment } from "../../../lib/appointment/Appointment";
+import { Appointment } from "../../../data/appointment/Appointment";
 
 const appointmentsUrl = "http://localhost:3000/api/appointment";
 

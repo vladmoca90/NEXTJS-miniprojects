@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { allTransactions } from "../../../../lib/transactions/allTransactions";
+import { allTransactions } from "../../../../data/transactions/allTransactions";
 
 export async function GET(request: NextRequest) {
     return NextResponse.json(

@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
-import { Appointment } from "../../../../lib/appointment/Appointment";
-import { allAppointments } from "../../../../lib/appointment/allAppointments";
+import { Appointment } from "../../../../data/appointment/Appointment";
+import { allAppointments } from "../../../../data/appointment/allAppointments";
 
 export async function POST(request: NextRequest) {
     const data = await request.json();
