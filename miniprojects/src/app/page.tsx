@@ -1,18 +1,16 @@
 "use client";
-import "./styles/wines.css";
-import Image from "next/image";
-import Link from "next/link";
-import { Wine } from "../../data/wines/Wine";
-import { useCallback, useEffect, useState } from "react";
+import "./styles/transactions.css";
+import { Transaction } from "./../../data/transactions/Transaction";
+import { MouseEvent, useCallback, useEffect, useState } from "react";
 
-export default function WinesSell() {
-    const winesUrl = "http://localhost:3000/api/wines";
+export default function Transactions() {
+    let transactionsUrl = "http://localhost:3000/api/transactions";
 
-    const [wines, setWines] = useState<Wine[]>([]);
-    const [checkedWine, setCheckedWine] = useState("");
+    const [transactions, setTransactions] = useState<Transaction[]>([]);
+    const [getTransactions, setGetTransactions] = useState<Transaction[]>([]);
 
-    const getWines = useCallback(async () => {
-        const res = await fetch(winesUrl);
+    const getTransaction = useCallback(async () => {
+        const res = await fetch(transactionsUrl);
 
         if (!res.ok) {
             throw new Error("The data is not valid!");
@@ -22,68 +20,68 @@ export default function WinesSell() {
 
         const data = await res.json();
 
-        setWines(data.body);
-    }, [winesUrl]);
+        setTransactions(data.body);
+    }, [transactionsUrl]);
 
-    const getCheckedWine = useCallback((e: { target: { value: string } }) => {
-        const value = e.target.value;
-        setCheckedWine(value);
-    }, []);
+    const getSelectedTransactions = useCallback(async (event: MouseEvent<HTMLDivElement>) => {
+        const value = event.currentTarget.textContent;
 
-    const filterCheckedWines = useCallback(() => {
-        if (checkedWine.length === 0 || !checkedWine || checkedWine === "All wines") {
-            return wines;
-        } else {
-            return wines.filter((wine) => wine.name.includes(checkedWine));
-        }
-    }, [checkedWine, wines]);
+        console.log({
+            date: value,
+            name: value,
+            category: value,
+        });
+
+        console.log(value);
+
+        let getValue: [] | any = transactions.filter((transaction) => {
+            return transaction.name;
+        });
+
+        console.log([].concat(getValue));
+
+        const selectedTransaction: Transaction[] = [].concat(getValue);
+
+        setGetTransactions(selectedTransaction);
+    }, [transactions]);
 
     useEffect(() => {
-        getWines();
-    }, [getWines]);
+        getTransaction();
+    }, [getTransaction]);
 
     return (
-        <section className="box">
-            <div className="wines-checkboxes flex items-center">
-                <div className="flex items-center px-4 py-0 border border-gray-300 rounded dark:border-gray-700">
-                    <input onChange={getCheckedWine} id="bordered-checkbox-1" type="checkbox" value="All wines" name="bordered-checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                    <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">All wines</label>
-                </div>
+        <div id="transaction-container">
+            <span>{"SELECTED_CATEGORY"}</span>
+            <div className="transactions-results">
                 {
-                    wines.map((wine, index) => {
+                    getTransactions.map((getTransaction, index) => {
                         return (
-                            <div className="flex items-center px-4 py-0 border border-gray-300 rounded dark:border-gray-700" key={index}>
-                                <input onChange={getCheckedWine} id="bordered-checkbox-2" type="checkbox" value={wine.name} name="bordered-checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                                <label htmlFor="bordered-checkbox-2" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{wine.name}</label>
+                            <div key={index}>
+                                <p>{getTransaction.name}</p>
+                                <p>{getTransaction.date}</p>
+                                <p>{getTransaction.category}</p>
                             </div>
                         );
                     })
                 }
             </div>
-            <div className="products-container">
-                {
-                    filterCheckedWines().map((wine, index) => {
-                        return (
-                            <div className="product" key={index}>
-                                <div className="product-description__top">
-                                    <p className="product-title">{wine.name}</p>
-                                </div>
-                                <div className="product-description__bottom">
-                                    <Image alt={wine.name} className="product-img" width={200} height={100} key={index} src={wine.img} />
-                                </div>
-                                <div className="wine-link">
-                                    <Link href={{
-                                        pathname: "/wine-details",
-                                        query: {
-                                            "wineName": wine.name,
-                                        }
-                                    }}>Check details</Link>
-                                </div>
-                            </div>
-                        );
-                    })
-                }
-            </div>
-        </section>
+            <br />
+            {
+                transactions.map((transaction, index) => (
+                    <div onClick={getSelectedTransactions} className="transactions-content" key={index}>
+                        <span className="transaction-date">
+                            {
+                                new Date(transaction.date).toLocaleString([], {
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                })
+                            }
+                        </span>
+                        <span className="transaction-name">{transaction.name}</span>
+                        <span className="transaction-price">£{Math.abs(transaction.amount)}</span>
+                    </div>
+                ))
+            }
+        </div>
     );
 }
