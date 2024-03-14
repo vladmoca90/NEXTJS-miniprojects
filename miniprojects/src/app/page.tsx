@@ -31,7 +31,7 @@ export default function WinesSell() {
     }, []);
 
     const filterCheckedWines = useCallback(() => {
-        if(checkedWine.length === 0 || !checkedWine || checkedWine === "All wines") {
+        if (checkedWine.length === 0 || !checkedWine || checkedWine === "All wines") {
             return wines;
         } else {
             return wines.filter((wine) => wine.name.includes(checkedWine));
