@@ -9,7 +9,7 @@ export default function Transactions() {
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [getTransactions, setGetTransactions] = useState<Transaction[]>([]);
 
-    const getTransaction = useCallback(async () => {
+    const getTransactionsData = useCallback(async () => {
         const res = await fetch(transactionsUrl);
 
         if (!res.ok) {
@@ -24,51 +24,32 @@ export default function Transactions() {
     }, [transactionsUrl]);
 
     const getSelectedTransactions = useCallback(async (event: MouseEvent<HTMLDivElement>) => {
-        const value = event.currentTarget.textContent;
-
-        console.log({
-            date: value,
-            name: value,
-            category: value,
-        });
+        const value = event.currentTarget.getAttribute("data-transaction");
+        const selectedTransaction = transactions.filter((transaction) => value !== transaction.name);
 
         console.log(value);
-
-        let getValue: [] | any = transactions.filter((transaction) => {
-            return transaction.name;
-        });
-
-        console.log([].concat(getValue));
-
-        const selectedTransaction: Transaction[] = [].concat(getValue);
 
         setGetTransactions(selectedTransaction);
     }, [transactions]);
 
     useEffect(() => {
-        getTransaction();
-    }, [getTransaction]);
+        getTransactionsData();
+    }, [getTransactions, getTransactionsData]);
 
     return (
         <div id="transaction-container">
             <span>{"SELECTED_CATEGORY"}</span>
             <div className="transactions-results">
-                {
-                    getTransactions.map((getTransaction, index) => {
-                        return (
-                            <div key={index}>
-                                <p>{getTransaction.name}</p>
-                                <p>{getTransaction.date}</p>
-                                <p>{getTransaction.category}</p>
-                            </div>
-                        );
-                    })
-                }
+                <div>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                </div>
             </div>
             <br />
             {
                 transactions.map((transaction, index) => (
-                    <div onClick={getSelectedTransactions} className="transactions-content" key={index}>
+                    <div onClick={getSelectedTransactions} className="transactions-content" data-transaction={transaction.name} id={index} key={index}>
                         <span className="transaction-date">
                             {
                                 new Date(transaction.date).toLocaleString([], {
