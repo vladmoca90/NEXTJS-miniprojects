@@ -1,3 +1,4 @@
+import "./styles/greet.css";
 import { Greet } from "./Greet";
 
 export default function Greeting(){

@@ -1,26 +1,23 @@
-// import { Transaction } from "../../data/transactions/Transaction";
+import { Transaction } from "../../data/transactions/Transaction";
 
-// export interface TransactionsProps {
-//     transaction: {}
-// }
+export interface TransactionsProps {
+    transaction: Transaction,
+    onUpdate: (transaction: Transaction) => void;
+}
 
-// export default function Transactions(props: TransactionProps) {
-//     return (
-//         {
-//             transactions.map((transaction, index) => (
-//                 <tr className="border-b dark:border-neutral-500" onClick={getSelectedTransactions} key={index} data-transaction={index}>
-//                     <td className="whitespace-nowrap px-6 py-4">
-//                         {
-//                             new Date(transaction.date).toLocaleString([], {
-//                                 hour: "2-digit",
-//                                 minute: "2-digit",
-//                             })
-//                         }
-//                     </td>
-//                     <td className="whitespace-nowrap px-6 py-4">{transaction.name}</td>
-//                     <td className="whitespace-nowrap px-6 py-4">£{Math.abs(transaction.amount)}</td>
-//                 </tr>
-//             ))
-//         }
-//     );
-// }
+export default function Transactions(props: TransactionsProps) {
+    return (
+        <tr className="border-b dark:border-neutral-500" data-transaction={props.transaction.name}>
+        <td className="whitespace-nowrap px-6 py-4">
+            {
+                new Date(props.transaction.date).toLocaleString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                })
+            }
+        </td>
+        <td className="whitespace-nowrap px-6 py-4">{props.transaction.name}</td>
+        <td className="whitespace-nowrap px-6 py-4">£{Math.abs(props.transaction.amount)}</td>
+    </tr>
+    );
+}
