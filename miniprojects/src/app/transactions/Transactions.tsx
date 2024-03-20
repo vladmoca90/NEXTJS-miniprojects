@@ -2,7 +2,6 @@ import { Transaction } from "../../data/transactions/Transaction";
 
 export interface TransactionsProps {
     transaction: Transaction,
-    onUpdate: (transaction: Transaction) => void;
 }
 
 export default function Transactions(props: TransactionsProps) {

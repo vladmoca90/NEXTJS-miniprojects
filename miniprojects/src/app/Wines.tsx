@@ -1,11 +1,11 @@
-import "./styles/greet.css";
+import "./styles/wines.css";
 
-export type GreetProps = {
+export type WinesProps = {
     name: string,
     age: number,
 }
 
-export const Greet = (props: GreetProps) => {
+export const Wines = (props: WinesProps) => {
     return (
         <div>
             <p>My name is {props.name}</p>
