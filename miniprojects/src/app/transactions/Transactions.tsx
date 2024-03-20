@@ -4,7 +4,7 @@
 //     transaction: {}
 // }
 
-// export default function Transactions(TransactionsProps: Transaction) {
+// export default function Transactions(props: TransactionProps) {
 //     return (
 //         {
 //             transactions.map((transaction, index) => (
