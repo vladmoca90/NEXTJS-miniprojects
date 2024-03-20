@@ -1,12 +1,14 @@
+"use client";
 import "./styles/wines.css";
-import { useCallback, useState } from "react";
-import { Wines } from "./Wines";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { Wine } from "../../data/wines/Wine";
+import { Wines } from "./Wines";
 
 export default function WinesSell() {
     const winesUrl = "http://localhost:3000/api/wines";
 
     const [wines, setWines] = useState<Wine[]>([]);
+    //const [query, setQuery] = useState("");
 
     const getWines = useCallback(async () => {
         const res = await fetch(winesUrl);
@@ -22,6 +24,33 @@ export default function WinesSell() {
         setWines(data.body);
     }, [winesUrl]);
 
+    // const getSelectedWine = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
+    //     const value = e.target.value;
+    //     setQuery(value);
+    // }, []);
 
-    return <Wines name={"Vlad Mocanu"} age={33} />
+    // const filterWines = useCallback(() => {
+    //     if (query === "All wines" || query.length === 0) {
+    //         return wines;
+    //     } else {
+    //         return wines.filter(wine => wine.name.includes(query));
+    //     }
+    // }, [query, wines]);
+
+    useEffect(() => {
+        getWines();
+    }, [getWines]);
+
+
+    return (
+        <div>
+            {
+                wines.map((wine, index) => {
+                    return (
+                        <Wines name={wine.name} key={index} index={index} img={wine.img} text={wine.text} />
+                    );
+                })
+            }
+        </div>
+    );
 }
