@@ -40,37 +40,76 @@ export default function Transactions() {
 
     return (
         <div id="transaction-container">
-            <span>{"TRANSACTIONS CATEGORY"}</span>
             <div className="transactions-results">
+                <h3>Selected transaction</h3>
                 {
                     getTransactions.map((getTransaction, index) => {
                         return (
-                            <div key={index}>
-                                <p>{getTransaction.date}</p>
-                                <p>{getTransaction.name}</p>
-                                <p>{getTransaction.amount}</p>
+                            <div className="border-b font-medium dark:border-neutral-500" key={index}>
+                                <table className="min-w-full text-left text-sm font-light">
+                                    <thead className="border-b font-medium dark:border-neutral-500">
+                                        <tr>
+                                            <th scope="col" className="px-6 py-4">Date</th>
+                                            <th scope="col" className="px-6 py-4">Name</th>
+                                            <th scope="col" className="px-6 py-4">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr className="border-b dark:border-neutral-500">
+                                            <td className="whitespace-nowrap px-6 py-4">
+                                                {
+                                                    new Date(getTransaction.date).toLocaleString([], {
+                                                        hour: "2-digit",
+                                                        minute: "2-digit",
+                                                    })
+                                                }
+                                            </td>
+                                            <td className="whitespace-nowrap px-6 py-4">{getTransaction.name}</td>
+                                            <td className="whitespace-nowrap px-6 py-4">£{Math.abs(getTransaction.amount)}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         );
                     })
                 }
             </div>
             <br />
-            {
-                transactions.map((transaction, index) => (
-                    <div onClick={getSelectedTransactions} className="transactions-content" data-transaction={index} key={index}>
-                        <span className="transaction-date">
-                            {
-                                new Date(transaction.date).toLocaleString([], {
-                                    hour: "2-digit",
-                                    minute: "2-digit",
-                                })
-                            }
-                        </span>
-                        <span className="transaction-name">{transaction.name}</span>
-                        <span className="transaction-price">£{Math.abs(transaction.amount)}</span>
+            <div className="flex flex-col transactions-table">
+                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                        <div className="overflow-hidden">
+                            <table className="min-w-full text-left text-sm font-light">
+                                <thead className="border-b font-medium dark:border-neutral-500">
+                                    <tr>
+                                        <th scope="col" className="px-6 py-4">Date</th>
+                                        <th scope="col" className="px-6 py-4">Name</th>
+                                        <th scope="col" className="px-6 py-4">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        transactions.map((transaction, index) => (
+                                            <tr className="border-b dark:border-neutral-500" onClick={getSelectedTransactions} key={index} data-transaction={index}>
+                                                <td className="whitespace-nowrap px-6 py-4">
+                                                    {
+                                                        new Date(transaction.date).toLocaleString([], {
+                                                            hour: "2-digit",
+                                                            minute: "2-digit",
+                                                        })
+                                                    }
+                                                </td>
+                                                <td className="whitespace-nowrap px-6 py-4">{transaction.name}</td>
+                                                <td className="whitespace-nowrap px-6 py-4">£{Math.abs(transaction.amount)}</td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                ))
-            }
+                </div>
+            </div>
         </div>
     );
 }
