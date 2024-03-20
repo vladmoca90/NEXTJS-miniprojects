@@ -25,7 +25,7 @@ export default function Transactions() {
 
     const getSelectedTransactions = useCallback(async (event: MouseEvent<HTMLDivElement>) => {
         const value = event.currentTarget.getAttribute("data-transaction");
-        const selectedTransaction = transactions.filter((transaction) => value !== transaction.name);
+        const selectedTransaction: any = transactions.filter((transaction, index) => value === index.toString());
 
         console.log(value);
 
@@ -34,22 +34,30 @@ export default function Transactions() {
 
     useEffect(() => {
         getTransactionsData();
-    }, [getTransactions, getTransactionsData]);
+    }, [getTransactionsData]);
+
+    console.log(getTransactions);
 
     return (
         <div id="transaction-container">
-            <span>{"SELECTED_CATEGORY"}</span>
+            <span>{"TRANSACTIONS CATEGORY"}</span>
             <div className="transactions-results">
-                <div>
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                </div>
+                {
+                    getTransactions.map((getTransaction, index) => {
+                        return (
+                            <div key={index}>
+                                <p>{getTransaction.date}</p>
+                                <p>{getTransaction.name}</p>
+                                <p>{getTransaction.amount}</p>
+                            </div>
+                        );
+                    })
+                }
             </div>
             <br />
             {
                 transactions.map((transaction, index) => (
-                    <div onClick={getSelectedTransactions} className="transactions-content" data-transaction={transaction.name} id={index} key={index}>
+                    <div onClick={getSelectedTransactions} className="transactions-content" data-transaction={index} key={index}>
                         <span className="transaction-date">
                             {
                                 new Date(transaction.date).toLocaleString([], {
