@@ -2,7 +2,7 @@
 import "./styles/wines.css";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { Wine } from "../../data/wines/Wine";
-import { Wines } from "./WinesComponent";
+import WinesComponent from "./WinesComponent";
 
 export default function WinesSell() {
     const winesUrl = "http://localhost:3000/api/wines";
@@ -61,7 +61,7 @@ export default function WinesSell() {
                     {
                         filteredWines().map((wine, index) => {
                             return (
-                                <Wines name={wine.name} key={index} index={index} img={wine.img} text={wine.text} />
+                                <WinesComponent wine={wine} name={wine.name} key={index} index={index} img={wine.img} text={wine.text} />
                             );
                         })
                     }

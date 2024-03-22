@@ -4,31 +4,44 @@ import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { MouseEvent, useCallback, useState } from "react";
+import { Wine } from "../../data/wines/Wine";
 
-export type WinesProps = {
-    index: number,
-    name: string,
-    img: string,
-    text: string,
+export interface WinesProps {
+    index: number;
+    name: string;
+    img: string;
+    text: string;
+    wine: Wine;
 }
 
 const close = <FontAwesomeIcon icon={faXmark} />
 
-export const Wines = (props: WinesProps) => {
+export default function WinesComponent(props: WinesProps) {
+    const { wine } = props;
+    const [closeWine, setCloseWine] = useState();
+
+    const onCloseWine = useCallback((event: MouseEvent<HTMLDivElement>) => {
+        const value = event.currentTarget.getAttribute("data-product");
+        console.log(value);
+
+        
+    }, []);
+    
     return (
-        <div className="product" key={props.index}>
-            <span className="product-close">{close}</span>
+        <div data-product={wine.name} className="product" key={wine.index}>
+            <span onClick={onCloseWine} className="product-close">{close}</span>
             <div className="product-description__top">
-                <p className="product-title">{props.name}</p>
+                <p className="product-title">{wine.name}</p>
             </div>
             <div className="product-description__bottom">
-                <Image alt={props.name} className="product-img" width={200} height={100} key={props.index} src={props.img} />
+                <Image alt={wine.name} className="product-img" width={200} height={100} key={wine.index} src={wine.img} />
             </div>
             <div className="wine-link">
                 <Link href={{
                     pathname: "/wine-details",
                     query: {
-                        "wineName": props.name,
+                        "wineName": wine.name,
                     }
                 }}>Check details</Link>
             </div>
