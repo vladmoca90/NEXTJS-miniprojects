@@ -1,7 +1,7 @@
 import { Transaction } from "../../data/transactions/Transaction";
 
 export interface TransactionsProps {
-    transaction: Transaction,
+    transaction: Transaction;
 }
 
 export default function Transactions(props: TransactionsProps) {
