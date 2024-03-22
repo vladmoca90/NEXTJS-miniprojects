@@ -1,5 +1,7 @@
-import Link from "next/link";
+"use client";
 import "./styles/wines.css";
+import Link from "next/link";
+import Image from "next/image";
 
 export type WinesProps = {
     index: number,
@@ -15,7 +17,7 @@ export const Wines = (props: WinesProps) => {
                 <p className="product-title">{props.name}</p>
             </div>
             <div className="product-description__bottom">
-                <img alt={props.name} className="product-img" width={200} height={100} key={props.index} src={props.img} />
+                <Image alt={props.name} className="product-img" width={200} height={100} key={props.index} src={props.img} />
             </div>
             <div className="wine-link">
                 <Link href={{
