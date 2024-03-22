@@ -8,10 +8,6 @@ import { MouseEvent, useCallback, useState } from "react";
 import { Wine } from "../../data/wines/Wine";
 
 export interface WinesProps {
-    index: number;
-    name: string;
-    img: string;
-    text: string;
     wine: Wine;
 }
 
@@ -21,13 +17,14 @@ export default function WinesComponent(props: WinesProps) {
     const { wine } = props;
     const [closeWine, setCloseWine] = useState();
 
-    const onCloseWine = useCallback((event: MouseEvent<HTMLDivElement>) => {
-        const value = event.currentTarget.getAttribute("data-product");
+    const onCloseWine = useCallback(async (event: MouseEvent<HTMLSpanElement>) => {
+        const value = event.currentTarget.getAttribute("data-product")!;
+        // const deletedWine: = wine.find((wine: any) => value !== wine.name);
         console.log(value);
 
-        
+        // setCloseWine(deletedWine);
     }, []);
-    
+
     return (
         <div data-product={wine.name} className="product" key={wine.index}>
             <span onClick={onCloseWine} className="product-close">{close}</span>

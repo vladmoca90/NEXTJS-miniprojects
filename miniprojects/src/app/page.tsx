@@ -61,7 +61,7 @@ export default function WinesSell() {
                     {
                         filteredWines().map((wine, index) => {
                             return (
-                                <WinesComponent wine={wine} name={wine.name} key={index} index={index} img={wine.img} text={wine.text} />
+                                <WinesComponent wine={wine} key={index} />
                             );
                         })
                     }
