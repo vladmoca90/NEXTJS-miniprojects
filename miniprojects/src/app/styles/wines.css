@@ -66,7 +66,22 @@ body {
     letter-spacing: 0;
     margin: 0 .45rem 1rem;
     padding: 1rem 0;
+    position: relative;
     width: 250px;
+}
+
+.product-close {
+    color: #cb2000;
+    font-weight: bold;
+    right: 5px;
+    position: absolute;
+    top: 5px;
+}
+
+.product-close>svg {
+    cursor: pointer;
+    height: 1.3rem;
+    width: 1.3rem;
 }
 
 .product-description__top {
@@ -77,6 +92,7 @@ body {
     color: #d38606;
     font-size: 16px;
     font-weight: 600;
+    margin-top: 1rem;
     text-transform: uppercase;
 }
 

@@ -2,6 +2,8 @@
 import "./styles/wines.css";
 import Link from "next/link";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export type WinesProps = {
     index: number,
@@ -10,9 +12,12 @@ export type WinesProps = {
     text: string,
 }
 
+const close = <FontAwesomeIcon icon={faXmark} />
+
 export const Wines = (props: WinesProps) => {
     return (
         <div className="product" key={props.index}>
+            <span className="product-close">{close}</span>
             <div className="product-description__top">
                 <p className="product-title">{props.name}</p>
             </div>
