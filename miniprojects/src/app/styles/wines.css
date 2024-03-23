@@ -71,18 +71,21 @@ body {
 }
 
 .product-close {
-    color: #cb2000;
+    background: #cb2000;
+    color: #fff;
     display: inline-block;
     font-weight: bold;
+    height: 22px;
     right: 5px;
     position: absolute;
     top: 5px;
+    width: 22px;
 }
 
 .product-close>svg {
     cursor: pointer;
-    height: 1.3rem;
-    width: 1.3rem;
+    height: 1.35rem;
+    width: 1.35rem;
 }
 
 .product-description__top {

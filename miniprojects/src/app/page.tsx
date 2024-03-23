@@ -38,12 +38,12 @@ export default function WinesSell() {
         }
     }, [query, wines]);
 
-    const onDeleteSelectedWine = useCallback((wine: Wine) => {
-        const deletedWine = wines.filter((wine) => wine.name !== wine.name); //ignore this!
+    const onDeleteSelectedWine = useCallback((deleteWine: Wine) => {
+        const chosenWine = wines.filter((wine) => deleteWine.name !== wine.name); //ignore this!
 
-        console.log(deletedWine);
+        console.log(chosenWine);
 
-        setDeleteSelectedWine(deletedWine);
+        setDeleteSelectedWine(chosenWine);
     }, [wines]);
 
     useEffect(() => {
