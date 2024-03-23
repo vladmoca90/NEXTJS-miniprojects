@@ -1,9 +1,8 @@
 "use client";
 import "./styles/wines.css";
-import Image from "next/image";
-import Link from "next/link";
-import { Wine } from "../../data/wines/Wine";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { Wine } from "../../data/wines/Wine";
+import WineComponent from "./WineComponent";
 
 export default function WinesSell() {
     const winesUrl = "http://localhost:3000/api/wines";
@@ -30,13 +29,20 @@ export default function WinesSell() {
         setQuery(value);
     }, []);
 
-    const filterWines = useCallback(() => {
+    const filteredWines = useCallback(() => {
         if (query === "All wines" || query.length === 0) {
             return wines;
         } else {
             return wines.filter(wine => wine.name.includes(query));
         }
     }, [query, wines]);
+
+    const onDeleteAWine = useCallback((deleteWine: Wine) => {
+        const chosenWine = wines.filter((wine) => deleteWine.name !== wine.name);
+
+        console.log(chosenWine);
+        setWines(chosenWine);
+    }, [wines]);
 
     useEffect(() => {
         getWines();
@@ -56,29 +62,16 @@ export default function WinesSell() {
                     }
                 </select>
             </div>
-            <div className="products-container">
-                {
-                    filterWines().map((wine, index) => {
-                        return (
-                            <div className="product" key={index}>
-                                <div className="product-description__top">
-                                    <p className="product-title">{wine.name}</p>
-                                </div>
-                                <div className="product-description__bottom">
-                                    <Image alt={wine.name} className="product-img" width={200} height={100} key={index} src={wine.img} />
-                                </div>
-                                <div className="wine-link">
-                                    <Link href={{
-                                        pathname: "/wine-details",
-                                        query: {
-                                            "wineName": wine.name,
-                                        }
-                                    }}>Check details</Link>
-                                </div>
-                            </div>
-                        );
-                    })
-                }
+            <div>
+                <div className="products-container">
+                    {
+                        filteredWines().map((wine, index) => {
+                            return (
+                                <WineComponent wine={wine} key={index} onDeletedWine={() => onDeleteAWine(wine)} />
+                            );
+                        })
+                    }
+                </div>
             </div>
         </section>
     );
