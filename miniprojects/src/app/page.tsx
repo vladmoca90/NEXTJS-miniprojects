@@ -1,17 +1,20 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
-import "./styles/wines.css";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { Wine } from "../../data/wines/Wine";
-import WineComponent from "./WineComponent";
+import "./styles/cars.css";
+import { Car } from "../../data/cars/Car";
+import { useCallback, useEffect, useState } from "react";
+import VehicleComponent from "./VehicleComponent";
 
-export default function WinesSell() {
-    const winesUrl = "http://localhost:3000/api/wines";
+export default function CarsShowroom() {
+    let carsUrl = "http://localhost:3000/api/cars";
 
-    const [wines, setWines] = useState<Wine[]>([]);
-    const [query, setQuery] = useState("");
+    const [cars, setCars] = useState<Car[]>([]);
+    const [modelsFromMake, setModelsFromMake] = useState<Car[]>([]);
+    const [pricesForModels, setPricesForModels] = useState<Car[]>([]);
+    //const [query, setQuery] = useState("");
 
-    const getWines = useCallback(async () => {
-        const res = await fetch(winesUrl);
+    const getCars = useCallback(async () => {
+        const res = await fetch(carsUrl);
 
         if (!res.ok) {
             throw new Error("The data is not valid!");
@@ -21,58 +24,90 @@ export default function WinesSell() {
 
         const data = await res.json();
 
-        setWines(data.body);
-    }, [winesUrl]);
+        setCars(data.body);
+    }, [carsUrl]);
 
-    const getSelectedWine = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
-        const value = e.target.value;
-        setQuery(value);
-    }, []);
+    const removeDuplicatedMakes = useCallback(() => {
+        let carsDictionary: { [make: string[number]]: any } = {};
 
-    const filteredWines = useCallback(() => {
-        if (query === "All wines" || query.length === 0) {
-            return wines;
-        } else {
-            return wines.filter(wine => wine.name.includes(query));
+        for (let i = 0; i < cars.length; i++) {
+            if (carsDictionary[cars[i].make]) {
+                continue;
+            }
+            else {
+                carsDictionary[cars[i].make] = cars;
+            }
         }
-    }, [query, wines]);
 
-    const onDeleteAWine = useCallback((deleteWine: Wine) => {
-        const chosenWine = wines.filter((wine) => deleteWine.name !== wine.name);
-
-        console.log(chosenWine);
-        setWines(chosenWine);
-    }, [wines]);
+        return Object.keys(carsDictionary);
+    }, [cars]);
 
     useEffect(() => {
-        getWines();
-    }, [getWines]);
+        getCars();
+    }, [getCars]);
+
+    const selectMake = useCallback(async (e: { target: { value: string; } }) => {
+        const value = e.target.value;
+        const carModels = cars.filter((car) => value === car.make);
+
+        setModelsFromMake(carModels);
+    }, [cars]);
+
+    const getPriceForModel = useCallback(async (e: { target: { value: string; } }) => {
+        const value = e.target.value;
+        const priceModels = cars.filter((car) => value === car.model);
+
+        setPricesForModels(priceModels);
+    }, [cars]);
 
     return (
-        <section className="box">
-            <div>
-                <select id="productsList" title="wines" onChange={getSelectedWine}>
-                    <option value="All wines">All wines</option>
-                    {
-                        wines.map((wine, index) => {
-                            return (
-                                <option key={index} value={wine.name}>{wine.name}</option>
-                            );
-                        })
-                    }
-                </select>
+        <div className="box">
+            <div className="showroom-search">
+                <form>
+                    <select id="carMake" title="carMake" onChange={selectMake}
+                        className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+                        <option value="make">-- Any Make --</option>
+                        {
+                            removeDuplicatedMakes().map((car, index) => {
+                                return (
+                                    <option value={car} key={index}>{car}</option>
+                                );
+                            })
+                        }
+                    </select>
+                    <select id="carModel" title="carModel" onChange={getPriceForModel}
+                        className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+                        <option value="model">-- Any Model --</option>
+                        {
+                            modelsFromMake.map((car, index) => {
+                                return (
+                                    <option value={car.model} key={index}>{car.model}</option>
+                                );
+                            })
+                        }
+                    </select>
+                    <select id="carPrice" title="carPrice" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+                        <option value="price">-- Any Price --</option>
+                        {
+                            pricesForModels.map((car, index) => {
+                                return (
+                                    <option value={car.price} key={index}>&pound;{car.price}</option>
+                                );
+                            })
+                        }
+                    </select>
+                    <button className="search-btn">Search</button>
+                </form>
             </div>
-            <div>
-                <div className="products-container">
-                    {
-                        filteredWines().map((wine, index) => {
-                            return (
-                                <WineComponent wine={wine} key={index} onDeletedWine={() => onDeleteAWine(wine)} />
-                            );
-                        })
-                    }
-                </div>
+            <div id="showroom">
+                {
+                    cars.map((car, index) => {
+                        return (
+                            <VehicleComponent car={car} key={index} />
+                        );
+                    })
+                }
             </div>
-        </section>
-    );
+        </div>
+    )
 }

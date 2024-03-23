@@ -6,7 +6,7 @@ body {
 
 .box {
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 900px;
     padding: 20px 0;
 }
 
@@ -45,7 +45,7 @@ body {
     align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: left;
+    justify-content: center;
 }
 
 .wine-details .products-container {
@@ -67,7 +67,7 @@ body {
     margin: 0 .45rem 1rem;
     padding: 1rem 0;
     position: relative;
-    width: 250px;
+    width: 265px;
 }
 
 .product-close {
@@ -93,9 +93,9 @@ body {
 }
 
 .product .product-title {
-    color: #d38606;
-    font-size: 16px;
-    font-weight: 600;
+    color: #be7500;
+    font-size: 17px;
+    font-weight: bold;
     margin-top: 1rem;
     text-transform: uppercase;
 }
@@ -117,9 +117,9 @@ body {
     background: #cb2000;
     color: #fff;
     display: inline;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 6px 18px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px 15px;
     transition: linear .5s all;
     width: auto;
 }
