@@ -9,7 +9,6 @@ export default function WinesSell() {
 
     const [wines, setWines] = useState<Wine[]>([]);
     const [query, setQuery] = useState("");
-    const [deleteSelectedWine, setDeleteSelectedWine] = useState<Wine[]>([]);
 
     const getWines = useCallback(async () => {
         const res = await fetch(winesUrl);
@@ -38,12 +37,11 @@ export default function WinesSell() {
         }
     }, [query, wines]);
 
-    const onDeleteSelectedWine = useCallback((deleteWine: Wine) => {
-        const chosenWine = wines.filter((wine) => deleteWine.name !== wine.name); //ignore this!
+    const onDeleteAWine = useCallback((deleteWine: Wine) => {
+        const chosenWine = wines.filter((wine) => deleteWine.name !== wine.name);
 
         console.log(chosenWine);
-
-        setDeleteSelectedWine(chosenWine);
+        setWines(chosenWine);
     }, [wines]);
 
     useEffect(() => {
@@ -69,7 +67,7 @@ export default function WinesSell() {
                     {
                         filteredWines().map((wine, index) => {
                             return (
-                                <WineComponent wine={wine} key={index} onSelectedWine={() => onDeleteSelectedWine(wine)} />
+                                <WineComponent wine={wine} key={index} onDeletedWine={() => onDeleteAWine(wine)} />
                             );
                         })
                     }

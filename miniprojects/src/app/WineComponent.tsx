@@ -9,28 +9,21 @@ import { useCallback } from "react";
 
 export interface WineProps {
     wine: Wine;
-    onSelectedWine: (wine: Wine) => void;
+    onDeletedWine: (wine: Wine) => void;
 }
 
 const close = <FontAwesomeIcon icon={faXmark} />
 
 export default function WineComponent(props: WineProps) {
-    const { wine, onSelectedWine } = props;
+    const { wine, onDeletedWine } = props;
 
-    const getSelectedWine = useCallback(() => {
-        const selectedWine: Wine = {
-            index: wine.index,
-            name: wine.name,
-            img: wine.img,
-            text: wine.text,
-        }
-
-        onSelectedWine(selectedWine);
-    }, [onSelectedWine, wine.img, wine.index, wine.name, wine.text]);
+    const getDeletedWine = useCallback(() => {
+        onDeletedWine(wine);
+    }, [onDeletedWine, wine]);
 
     return (
         <div className="product">
-            <span onClick={getSelectedWine} className="product-close">{close}</span>
+            <span onClick={getDeletedWine} className="product-close">{close}</span>
             <div className="product-description__top">
                 <p className="product-title">{wine.name}</p>
             </div>
