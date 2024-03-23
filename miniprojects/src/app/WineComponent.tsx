@@ -17,7 +17,7 @@ export default function WineComponent(props: WineProps) {
     const { wine, onCloseWine } = props;
 
     return (
-        <div data-product={wine.name} className="product" key={wine.index}>
+        <div className="product">
             <span onClick={onCloseWine} className="product-close">{close}</span>
             <div className="product-description__top">
                 <p className="product-title">{wine.name}</p>

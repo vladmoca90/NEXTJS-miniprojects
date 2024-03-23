@@ -1,6 +1,6 @@
 "use client";
 import "./styles/wines.css";
-import { MouseEvent, ChangeEvent, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { Wine } from "../../data/wines/Wine";
 import WineComponent from "./WineComponent";
 
@@ -38,10 +38,10 @@ export default function WinesSell() {
         }
     }, [query, wines]);
 
-    const onDeleteSelectedWine = useCallback(async (e: MouseEvent<HTMLSpanElement>) => {
-        const value: string = e.currentTarget.getAttribute("data-product")!;
-        const deletedWine = wines.filter((wine) => value !== wine.name);
-        console.log(value);
+    const onDeleteSelectedWine = useCallback((wine: Wine) => {
+        const deletedWine = wines.filter((wine) => wine.name === wine.name);
+
+        console.log(deletedWine);
 
         setDeleteSelectedWine(deletedWine);
     }, [wines]);
@@ -49,7 +49,6 @@ export default function WinesSell() {
     useEffect(() => {
         getWines();
     }, [getWines]);
-
 
     return (
         <section className="box">
