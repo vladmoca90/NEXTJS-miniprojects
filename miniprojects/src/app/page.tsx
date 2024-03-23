@@ -3,7 +3,7 @@
 import "./styles/cars.css";
 import { Car } from "../../data/cars/Car";
 import { useCallback, useEffect, useState } from "react";
-import VehicleComponent from "./VehicleComponent";
+import CarComponent from "./CarComponent";
 
 export default function CarsShowroom() {
     let carsUrl = "http://localhost:3000/api/cars";
@@ -103,7 +103,9 @@ export default function CarsShowroom() {
                 {
                     cars.map((car, index) => {
                         return (
-                            <VehicleComponent car={car} key={index} />
+                            <CarComponent car={car} key={index} onCar={function (car: Car): void {
+                                throw new Error("Function not implemented.");
+                            } } />
                         );
                     })
                 }

@@ -2,12 +2,12 @@
 import Link from "next/link";
 import { Car } from "../../data/cars/Car";
 
-export interface VehicleProps {
+export interface CarProps {
     car: Car;
     onCar: (car: Car) => void;
 }
 
-export default function VehicleComponent(props: VehicleProps) {
+export default function CarComponent(props: CarProps) {
     const { car, onCar } = props;
 
     return (
@@ -26,7 +26,7 @@ export default function VehicleComponent(props: VehicleProps) {
                 <Link href="#">Share</Link>
                 <Link href="#">Brochure</Link>
                 <Link href={{
-                    pathname: "/vehicle-details",
+                    pathname: "/car-details",
                     query: {
                         "carModel": car.model,
                     },

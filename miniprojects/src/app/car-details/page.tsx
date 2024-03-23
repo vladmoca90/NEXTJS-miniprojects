@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Car } from "../../../data/cars/Car";
 import { useCallback, useEffect, useState } from "react";
 
-export default function VehicleDetails({ searchParams }: {
+export default function CarDetails({ searchParams }: {
     searchParams: {
         "carModel": string
     }
