@@ -39,7 +39,7 @@ export default function WinesSell() {
     }, [query, wines]);
 
     const onDeleteSelectedWine = useCallback((wine: Wine) => {
-        const deletedWine = wines.filter((wine) => wine.name === wine.name);
+        const deletedWine = wines.filter((wine) => wine.name !== wine.name); //ignore this!
 
         console.log(deletedWine);
 
@@ -69,7 +69,7 @@ export default function WinesSell() {
                     {
                         filteredWines().map((wine, index) => {
                             return (
-                                <WineComponent wine={wine} key={index} onCloseWine={onDeleteSelectedWine} />
+                                <WineComponent wine={wine} key={index} onSelectedWine={() => onDeleteSelectedWine(wine)} />
                             );
                         })
                     }
