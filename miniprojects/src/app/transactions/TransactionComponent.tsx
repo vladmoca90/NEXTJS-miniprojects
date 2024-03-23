@@ -1,10 +1,10 @@
 import { Transaction } from "../../data/transactions/Transaction";
 
-export interface TransactionsProps {
+export interface TransactionProps {
     transaction: Transaction;
 }
 
-export default function Transactions(props: TransactionsProps) {
+export default function TransactionComponent(props: TransactionProps) {
     return (
         <tr className="border-b dark:border-neutral-500" data-transaction={props.transaction.name}>
         <td className="whitespace-nowrap px-6 py-4">

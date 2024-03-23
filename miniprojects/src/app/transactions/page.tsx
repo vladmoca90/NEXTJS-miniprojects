@@ -2,6 +2,7 @@
 import "./styles/transactions.css";
 import { Transaction } from "./../../data/transactions/Transaction";
 import { MouseEvent, useCallback, useEffect, useState } from "react";
+import TransactionComponent from "./TransactionComponent";
 
 export default function Transactions() {
     let transactionsUrl = "http://localhost:3000/api/transactions";
@@ -90,7 +91,7 @@ export default function Transactions() {
                                 <tbody>
                                     {
                                         transactions.map((transaction, index) => (
-                                            <Transactions transaction={transaction} key={index} />
+                                            <TransactionComponent transaction={transaction} key={index} />
                                         ))
                                     }
                                 </tbody>
