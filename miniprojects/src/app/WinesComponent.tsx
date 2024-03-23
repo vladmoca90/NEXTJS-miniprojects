@@ -4,26 +4,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { MouseEvent, useCallback, useState } from "react";
 import { Wine } from "../../data/wines/Wine";
 
 export interface WinesProps {
     wine: Wine;
+    onCloseWine: () => void;
 }
 
 const close = <FontAwesomeIcon icon={faXmark} />
 
 export default function WinesComponent(props: WinesProps) {
-    const { wine } = props;
-    const [closeWine, setCloseWine] = useState();
-
-    const onCloseWine = useCallback(async (event: MouseEvent<HTMLSpanElement>) => {
-        const value = event.currentTarget.getAttribute("data-product")!;
-        // const deletedWine: = wine.find((wine: any) => value !== wine.name);
-        console.log(value);
-
-        // setCloseWine(deletedWine);
-    }, []);
+    const { wine, onCloseWine } = props;
 
     return (
         <div data-product={wine.name} className="product" key={wine.index}>
