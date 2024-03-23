@@ -8,11 +8,11 @@ import { Wine } from "../../data/wines/Wine";
 
 export interface WineProps {
     wine: Wine;
-    onCloseWine: () => void;
+    onCloseWine: (wine: Wine) => void;
 }
 
 const close = <FontAwesomeIcon icon={faXmark} />
-s
+
 export default function WineComponent(props: WineProps) {
     const { wine, onCloseWine } = props;
 

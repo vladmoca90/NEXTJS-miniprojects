@@ -18,6 +18,9 @@
         "name": "next"
       }
     ],
+    "types": [
+      "vite/client",
+    ],
     "paths": {
       "@/*": ["./src/*"]
     }

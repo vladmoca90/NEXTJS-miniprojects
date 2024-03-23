@@ -37,9 +37,9 @@ export default function WinesSell() {
             return wines.filter(wine => wine.name.includes(query));
         }
     }, [query, wines]);
-    
-    const onDeleteSelectedWine = useCallback(async (event: MouseEvent<HTMLSpanElement>) => {
-        const value = event.currentTarget.getAttribute("data-product");
+
+    const onDeleteSelectedWine = useCallback(async (e: MouseEvent<HTMLSpanElement>) => {
+        const value: string = e.currentTarget.getAttribute("data-product")!;
         const deletedWine = wines.filter((wine) => value !== wine.name);
         console.log(value);
 
@@ -70,7 +70,7 @@ export default function WinesSell() {
                     {
                         filteredWines().map((wine, index) => {
                             return (
-                                <WineComponent wine={wine} key={index} onCloseWine={() => onDeleteSelectedWine} />
+                                <WineComponent wine={wine} key={index} onCloseWine={onDeleteSelectedWine} />
                             );
                         })
                     }
