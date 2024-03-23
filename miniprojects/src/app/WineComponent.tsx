@@ -6,14 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { Wine } from "../../data/wines/Wine";
 
-export interface WinesProps {
+export interface WineProps {
     wine: Wine;
     onCloseWine: () => void;
 }
 
 const close = <FontAwesomeIcon icon={faXmark} />
-
-export default function WinesComponent(props: WinesProps) {
+s
+export default function WineComponent(props: WineProps) {
     const { wine, onCloseWine } = props;
 
     return (

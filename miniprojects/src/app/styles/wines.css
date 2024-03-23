@@ -72,6 +72,7 @@ body {
 
 .product-close {
     color: #cb2000;
+    display: inline-block;
     font-weight: bold;
     right: 5px;
     position: absolute;

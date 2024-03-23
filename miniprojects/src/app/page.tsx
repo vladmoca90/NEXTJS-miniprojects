@@ -2,14 +2,14 @@
 import "./styles/wines.css";
 import { MouseEvent, ChangeEvent, useCallback, useEffect, useState } from "react";
 import { Wine } from "../../data/wines/Wine";
-import WinesComponent from "./WinesComponent";
+import WineComponent from "./WineComponent";
 
 export default function WinesSell() {
     const winesUrl = "http://localhost:3000/api/wines";
 
     const [wines, setWines] = useState<Wine[]>([]);
     const [query, setQuery] = useState("");
-    const [deleteSelectedWine, setDeleteSelectedWine] = useState("");
+    const [deleteSelectedWine, setDeleteSelectedWine] = useState<Wine[]>([]);
 
     const getWines = useCallback(async () => {
         const res = await fetch(winesUrl);
@@ -40,7 +40,7 @@ export default function WinesSell() {
     
     const onDeleteSelectedWine = useCallback(async (event: MouseEvent<HTMLSpanElement>) => {
         const value = event.currentTarget.getAttribute("data-product");
-        const deletedWine: any = wines.filter((wine) => value !== wine.name);
+        const deletedWine = wines.filter((wine) => value !== wine.name);
         console.log(value);
 
         setDeleteSelectedWine(deletedWine);
@@ -70,7 +70,7 @@ export default function WinesSell() {
                     {
                         filteredWines().map((wine, index) => {
                             return (
-                                <WinesComponent wine={wine} key={index} onCloseWine={() => onDeleteSelectedWine} />
+                                <WineComponent wine={wine} key={index} onCloseWine={() => onDeleteSelectedWine} />
                             );
                         })
                     }
