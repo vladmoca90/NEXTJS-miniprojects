@@ -86,17 +86,6 @@ export default function CarsShowroom() {
                             })
                         }
                     </select>
-                    <select id="carPrice" title="carPrice" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
-                        <option value="price">-- Any Price --</option>
-                        {
-                            pricesForModels.map((car, index) => {
-                                return (
-                                    <option value={car.price} key={index}>&pound;{car.price}</option>
-                                );
-                            })
-                        }
-                    </select>
-                    <button className="search-btn">Search</button>
                 </form>
             </div>
             <div id="showroom">
