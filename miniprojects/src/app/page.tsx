@@ -27,11 +27,13 @@ export default function WinesSell() {
 
     const getCheckedWine = useCallback((e: { target: { value: string } }) => {
         const value = e.target.value;
+
+        console.log(value);
         setCheckedWine(value);
     }, []);
 
-    const filterCheckedWines = useCallback(() => {
-        if (checkedWine.length === 0 || !checkedWine || checkedWine === "All wines") {
+    const filterCheckedWine = useCallback(() => {
+        if (checkedWine === "All wines" || checkedWine === null) {
             return wines;
         } else {
             return wines.filter((wine) => wine.name.includes(checkedWine));
@@ -62,7 +64,7 @@ export default function WinesSell() {
             </div>
             <div className="products-container">
                 {
-                    filterCheckedWines().map((wine, index) => {
+                    filterCheckedWine().map((wine, index) => {
                         return (
                             <div className="product" key={index}>
                                 <div className="product-description__top">
