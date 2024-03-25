@@ -10,8 +10,6 @@ export default function CarsShowroom() {
 
     const [cars, setCars] = useState<Car[]>([]);
     const [modelsFromMake, setModelsFromMake] = useState<Car[]>([]);
-    const [pricesForModels, setPricesForModels] = useState<Car[]>([]);
-    //const [query, setQuery] = useState("");
 
     const getCars = useCallback(async () => {
         const res = await fetch(carsUrl);
@@ -53,13 +51,6 @@ export default function CarsShowroom() {
         setModelsFromMake(carModels);
     }, [cars]);
 
-    const getPriceForModel = useCallback(async (e: { target: { value: string; } }) => {
-        const value = e.target.value;
-        const priceModels = cars.filter((car) => value === car.model);
-
-        setPricesForModels(priceModels);
-    }, [cars]);
-
     return (
         <div className="box">
             <div className="showroom-search">
@@ -75,8 +66,7 @@ export default function CarsShowroom() {
                             })
                         }
                     </select>
-                    <select id="carModel" title="carModel" onChange={getPriceForModel}
-                        className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+                    <select id="carModel" title="carModel" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="model">-- Any Model --</option>
                         {
                             modelsFromMake.map((car, index) => {
