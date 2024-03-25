@@ -24,12 +24,8 @@ export default function Transactions() {
         setTransactions(data.body);
     }, [transactionsUrl]);
 
-    const getSelectedTransactions = useCallback(async (event: MouseEvent<HTMLDivElement>) => {
-        const value = event.currentTarget.getAttribute("data-transaction");
-        const selectedTransaction: any = transactions.filter((transaction, index) => value === index.toString());
-
-        console.log(value);
-
+    const onSelectedTransaction = useCallback((clickedTransaction: Transaction) => {
+        const selectedTransaction: any = transactions.filter((transaction, index) => clickedTransaction.id - 1 === index);
         setGetTransactions(selectedTransaction);
     }, [transactions]);
 
@@ -90,8 +86,8 @@ export default function Transactions() {
                                 </thead>
                                 <tbody>
                                     {
-                                        getSelectedTransactions().map((transaction, index) => (
-                                            <TransactionComponent transaction={transaction} key={index} />
+                                        transactions.map((transaction, index) => (
+                                            <TransactionComponent transaction={transaction} key={index} onSelectedTransaction={() => onSelectedTransaction(transaction)} />
                                         ))
                                     }
                                 </tbody>
