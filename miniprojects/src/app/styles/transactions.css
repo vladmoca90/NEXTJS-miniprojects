@@ -9,10 +9,22 @@ body {
     max-width: 600px;
 }
 
+table {
+    border: 1px solid #ccc;
+}
+
+table th {
+    background: #eee;
+}
+
 table th,
 table td {
     padding: .5rem;
     text-align: center;
+}
+
+table td {
+    cursor: pointer;
 }
 
 .transactions-results {
