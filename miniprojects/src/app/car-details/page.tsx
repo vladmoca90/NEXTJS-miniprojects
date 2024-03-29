@@ -32,7 +32,7 @@ export default function CarDetails({ searchParams }: {
     }, [getCarDetails]);
 
     return (
-        <div id="showroom">
+        <div id="showroom" className="car-details">
             <div className="car-container">
                 <div className="car-header">
                     <h3 className="car-title">{carDetails.make} <span>{searchParams.carModel}</span></h3>

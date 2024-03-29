@@ -2,6 +2,7 @@
 
 body {
     font-family: "Montserrat", sans-serif !important;
+    min-height: 100vh;
 }
 
 .box {
@@ -9,9 +10,13 @@ body {
     width: 100%;
 }
 
+.car-details {
+    display: inline-block;
+}
+
 .showroom-search>form,
 .car-container {
-    background-color: #848484;
+    background: #767676;
 }
 
 .showroom-search>form,
@@ -22,27 +27,33 @@ body {
 
 .showroom-search>form {
     justify-content: space-between;
-    margin: 30px auto;
-    max-width: 480px;
+    margin: 2.5rem auto;
+    max-width: 500px;
     padding: 15px 20px;
 }
 
 .search-btn {
-    background-color: #a61900;
+    background: #a61900;
     color: #fff;
     font-weight: bold;
     padding: 5px 30px;
 }
 
 #carMake,
-#carModel,
-#carPrice {
+#carModel {
     color: #333;
     font-size: .8em;
     font-weight: 700;
     height: auto;
     padding-right: 1.75rem;
-    width: 49%;
+}
+
+#carMake {
+    width: 33%;
+}
+
+#carModel {
+    width: 66%;
 }
 
 .showroom-buttons,
@@ -66,6 +77,10 @@ body {
     }
 }
 
+.car-details .car-container {
+    margin: 3rem 0 0;
+}
+
 .car-header {
     padding-top: 5px;
     text-align: center;
@@ -75,9 +90,9 @@ body {
     color: #fff;
     font-size: 1.15em;
     font-weight: 600;
-    height: 55px;
+    height: 60px;
     letter-spacing: 1px;
-    line-height: 25px;
+    line-height: 26px;
 }
 
 @media all and (min-width: 992px) {
@@ -88,7 +103,7 @@ body {
 
 .car-price,
 .showroom-buttons>a {
-    background-color: #a61900;
+    background: #a61900;
 }
 
 .car-price {
@@ -98,7 +113,7 @@ body {
     letter-spacing: 1px;
     line-height: 23px;
     margin: 0;
-    padding: 6px 0 3px;
+    padding: 9px 0 6px;
 }
 
 .car-monthly-price {
@@ -147,6 +162,6 @@ body {
 }
 
 .showroom-buttons>a:hover {
-    background-color: #1a1a1a;
+    background: #1a1a1a;
     cursor: pointer;
 }
