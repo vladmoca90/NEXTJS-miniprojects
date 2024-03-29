@@ -4,11 +4,10 @@ import { Car } from "../../data/cars/Car";
 
 export interface CarProps {
     car: Car;
-    onCar: (car: Car) => void;
 }
 
 export default function CarComponent(props: CarProps) {
-    const { car, onCar } = props;
+    const { car } = props;
 
     return (
         <div className="car-container">
