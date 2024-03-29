@@ -41,7 +41,7 @@ export default function CarsShowroom() {
         return Object.keys(carsDictionary);
     }, [cars]);
 
-    // const selectMakeForModel = useCallback(async (e: { target: { value: string; } }) => {
+    // const getModelsFromMake = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
     //     const value = e.target.value;
     //     const carModels = cars.filter((car) => value === car.make);
     //     setModelsFromMake(carModels);
@@ -49,8 +49,10 @@ export default function CarsShowroom() {
 
     const getSelectedMake = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
+        const carModels = cars.filter((car) => value === car.make);
+        setModelsFromMake(carModels);
         setQuery(value);
-    }, []);
+    }, [cars]);
 
     const filterMakes = useCallback(() => {
         if (query === "make" || query.length === 0) {
