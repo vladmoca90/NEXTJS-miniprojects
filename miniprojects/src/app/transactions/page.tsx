@@ -26,7 +26,8 @@ export default function Transactions() {
     }, [transactionsUrl]);
 
     const onSelectedTransaction = useCallback((clickedTransaction: Transaction) => {
-        const selectedTransaction: any = transactions.filter((transaction, index) => clickedTransaction.id - 1 === index);
+        const selectedTransaction = transactions.filter((transaction, index) => clickedTransaction.id - 1 === index);
+
         setGetTransactions(selectedTransaction);
     }, [transactions]);
 
@@ -43,7 +44,7 @@ export default function Transactions() {
                 {
                     getTransactions.map((getTransaction, index) => {
                         return (
-                           <SelectedTransactionComponent getTransaction={getTransaction} key={index} />
+                            <SelectedTransactionComponent getTransaction={getTransaction} key={index} />
                         );
                     })
                 }
