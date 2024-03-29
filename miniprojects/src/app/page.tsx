@@ -2,7 +2,7 @@
 "use client";
 import "./styles/cars.css";
 import { Car } from "../../data/cars/Car";
-import { useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import CarComponent from "./CarComponent";
 
 export default function CarsShowroom() {
@@ -41,27 +41,24 @@ export default function CarsShowroom() {
         return Object.keys(carsDictionary);
     }, [cars]);
 
-    const selectAMake = useCallback(async (e: { target: { value: string; } }) => {
-        const value = e.target.value;
-        const carModels = cars.filter((car) => value === car.make);
-
-        setModelsFromMake(carModels);
-    }, [cars]);
-
-    // const getSelectedMake = useCallback(async (e: { target: { value: string; } }) => {
+    // const selectMakeForModel = useCallback(async (e: { target: { value: string; } }) => {
     //     const value = e.target.value;
-    //     setQuery(value);
-    // }, []);
+    //     const carModels = cars.filter((car) => value === car.make);
+    //     setModelsFromMake(carModels);
+    // }, [cars]);
 
-    // const filterMakes = useCallback(() => {
-    //     if (query === "make" || query.length === 0) {
-    //         return cars;
-    //     } else {
-    //         cars.filter(car => car.make.includes(query));
-    //     }
+    const getSelectedMake = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
+        const value = e.target.value;
+        setQuery(value);
+    }, []);
 
-    //     console.log(query);
-    // }, [cars, query]);
+    const filterMakes = useCallback(() => {
+        if (query === "make" || query.length === 0) {
+            return cars;
+        } else {
+            return cars.filter(car => car.make.includes(query));
+        }
+    }, [cars, query]);
 
     useEffect(() => {
         getCars();
@@ -71,7 +68,7 @@ export default function CarsShowroom() {
         <div className="box">
             <div className="showroom-search">
                 <form>
-                    <select id="carMake" title="carMake" onChange={selectAMake}
+                    <select id="carMake" title="carMake" onChange={getSelectedMake}
                         className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                         <option value="make">-- Any Make --</option>
                         {
@@ -96,7 +93,7 @@ export default function CarsShowroom() {
             </div>
             <div id="showroom">
                 {
-                    cars.map((car, index) => {
+                    filterMakes().map((car, index) => {
                         return (
                             <CarComponent car={car} key={index} />
                         );
