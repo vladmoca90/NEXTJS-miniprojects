@@ -3,7 +3,7 @@ import "./styles/shop.css";
 import Image from "next/image";
 import Link from "next/link";
 import { Product } from "../../../data/shop/Product";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function ShopProducts() {
     const shopUrl = "http://localhost:3000/api/shop";

@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import "./styles/cars.css";
 import { Car } from "../../data/cars/Car";
