@@ -12,7 +12,7 @@ export interface WineProps {
 
 const close = <FontAwesomeIcon icon={faXmark} />
 
-export default function WineComponent(props: WineProps) {
+export default function FilteredWinesComponent(props: WineProps) {
     const { wine, onDeletedWine } = props;
 
     const getDeletedWine = useCallback(() => {

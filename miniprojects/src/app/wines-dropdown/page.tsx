@@ -67,7 +67,7 @@ export default function WinesSell() {
                     {
                         filteredWines().map((wine, index) => {
                             return (
-                                <WineComponent wine={wine} key={index} onDeletedWine={() => onDeleteAWine(wine)} />
+                                <FilteredWinesComponent wine={wine} key={index} onDeletedWine={() => onDeleteAWine(wine)} />
                             );
                         })
                     }
