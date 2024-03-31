@@ -7,8 +7,6 @@ export interface WinesProps {
 }
 
 export default function FilteredWinesComponent(props: WinesProps) {
-    const { wine } = props;
-
     return (
         <div className="product" key={props.wine.index}>
             <div className="product-description__top">
