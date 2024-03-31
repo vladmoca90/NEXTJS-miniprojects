@@ -1,18 +1,17 @@
 "use client";
-import "./styles/cars.css";
-import { Car } from "../../data/cars/Car";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import CarComponent from "./CarComponent";
+import "./styles/wines.css";
+import { Wine } from "../../data/wines/Wine";
+import { useCallback, useEffect, useState } from "react";
+import FilteredWinesComponent from "./FilteredWinesComponent";
 
-export default function CarsShowroom() {
-    let carsUrl = "http://localhost:3000/api/cars";
+export default function WinesSell() {
+    const winesUrl = "http://localhost:3000/api/wines";
 
-    const [cars, setCars] = useState<Car[]>([]);
-    const [modelsFromMake, setModelsFromMake] = useState<Car[]>([]);
-    const [query, setQuery] = useState("");
+    const [wines, setWines] = useState<Wine[]>([]);
+    const [checkedWine, setCheckedWine] = useState("");
 
-    const getCars = useCallback(async () => {
-        const res = await fetch(carsUrl);
+    const getWines = useCallback(async () => {
+        const res = await fetch(winesUrl);
 
         if (!res.ok) {
             throw new Error("The data is not valid!");
@@ -22,80 +21,55 @@ export default function CarsShowroom() {
 
         const data = await res.json();
 
-        setCars(data.body);
-    }, [carsUrl]);
+        setWines(data.body);
+    }, [winesUrl]);
 
-    const removeDuplicatedMakes = useCallback(() => {
-        let carsDictionary: { [make: string[number]]: any } = {};
-
-        for (let i = 0; i < cars.length; i++) {
-            if (carsDictionary[cars[i].make]) {
-                continue;
-            }
-            else {
-                carsDictionary[cars[i].make] = cars;
-            }
-        }
-
-        return Object.keys(carsDictionary);
-    }, [cars]);
-
-    const getSelectedMake = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
+    const getCheckedWine = useCallback((e: { target: { value: string } }) => {
         const value = e.target.value;
-        const carModels = cars.filter((car) => value === car.make);
 
-        setModelsFromMake(carModels);
-        setQuery(value);
-    }, [cars]);
+        console.log(value);
+        setCheckedWine(value);
+    }, []);
 
-    const filterMakes = useCallback(() => {
-        if (query === "make" || query.length === 0) {
-            return cars;
+    const filterCheckedWine = useCallback(() => {
+        if (checkedWine === "All wines" || checkedWine === null) {
+            return wines;
         } else {
-            return cars.filter(car => car.make.includes(query));
+            return wines.filter((wine) => wine.name.includes(checkedWine));
         }
-    }, [cars, query]);
+    }, [checkedWine, wines]);
 
     useEffect(() => {
-        getCars();
-    }, [getCars]);
+        getWines();
+    }, [getWines]);
 
     return (
-        <div className="box">
-            <div className="showroom-search">
-                <form>
-                    <select id="carMake" title="carMake" onChange={getSelectedMake}
-                        className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
-                        <option value="make">-- Any Make --</option>
-                        {
-                            removeDuplicatedMakes().map((car, index) => {
-                                return (
-                                    <option value={car} key={index}>{car}</option>
-                                );
-                            })
-                        }
-                    </select>
-                    <select id="carModel" title="carModel" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
-                        <option value="model">-- Any Model --</option>
-                        {
-                            modelsFromMake.map((car, index) => {
-                                return (
-                                    <option value={car.model} key={index}>{car.model}</option>
-                                );
-                            })
-                        }
-                    </select>
-                </form>
-            </div>
-            <div id="showroom">
+        <section className="box">
+            <div className="wines-checkboxes flex items-center">
+                <div className="flex items-center px-4 py-0 border border-gray-300 rounded dark:border-gray-700">
+                    <input checked={checkedWine === "All wines"} onChange={getCheckedWine} id="bordered-checkbox-1" type="checkbox" value="All wines" name="bordered-checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                    <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">All wines</label>
+                </div>
                 {
-                    filterMakes().map((car, index) => {
+                    wines.map((wine, index) => {
                         return (
-                            <CarComponent car={car} key={index} />
+                            <div className="flex items-center px-4 py-0 border border-gray-300 rounded dark:border-gray-700" key={index}>
+                                <input checked={checkedWine === wine.name} onChange={getCheckedWine} id="bordered-checkbox-2" type="checkbox" value={wine.name} name="bordered-checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                <label htmlFor="bordered-checkbox-2" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{wine.name}</label>
+                            </div>
                         );
                     })
                 }
             </div>
-        </div>
-    )
+            <div className="products-container">
+                {
+                    filterCheckedWine().map((wine, index) => {
+                        return (
+                            <FilteredWinesComponent wine={wine} key={index} />
+                        );
+                    })
+                }
+            </div>
+        </section>
+    );
 }
