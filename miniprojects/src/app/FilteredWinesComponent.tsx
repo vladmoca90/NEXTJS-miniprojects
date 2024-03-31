@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Wine } from "../../data/wines/Wine";
 
-export interface WinesProps {
+export interface WineProps {
     wine: Wine;
 }
 
-export default function FilteredWinesComponent(props: WinesProps) {
+export default function FilteredWinesComponent(props: WineProps) {
     return (
         <div className="product" key={props.wine.index}>
             <div className="product-description__top">
