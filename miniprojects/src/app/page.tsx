@@ -1,17 +1,18 @@
 "use client";
-import "./styles/wines.css";
-import { Wine } from "../../data/wines/Wine";
+import "./styles/transactions.css";
+import { Transaction } from "./../../data/transactions/Transaction";
 import { useCallback, useEffect, useState } from "react";
-import FilteredWinesComponent from "./FilteredWinesComponent";
+import TransactionComponent from "./TransactionComponent";
+import SelectedTransactionComponent from "./SelectedTransactionComponent";
 
-export default function WinesSell() {
-    const winesUrl = "http://localhost:3000/api/wines";
+export default function Transactions() {
+    let transactionsUrl = "http://localhost:3000/api/transactions";
 
-    const [wines, setWines] = useState<Wine[]>([]);
-    const [checkedWine, setCheckedWine] = useState("");
+    const [transactions, setTransactions] = useState<Transaction[]>([]);
+    const [getTransactions, setGetTransactions] = useState<Transaction[]>([]);
 
-    const getWines = useCallback(async () => {
-        const res = await fetch(winesUrl);
+    const getTransactionsData = useCallback(async () => {
+        const res = await fetch(transactionsUrl);
 
         if (!res.ok) {
             throw new Error("The data is not valid!");
@@ -21,55 +22,58 @@ export default function WinesSell() {
 
         const data = await res.json();
 
-        setWines(data.body);
-    }, [winesUrl]);
+        setTransactions(data.body);
+    }, [transactionsUrl]);
 
-    const getCheckedWine = useCallback((e: { target: { value: string } }) => {
-        const value = e.target.value;
+    const onSelectedTransaction = useCallback((clickedTransaction: Transaction) => {
+        const selectedTransaction = transactions.filter((transaction, index) => clickedTransaction.id - 1 === index);
 
-        console.log(value);
-        setCheckedWine(value);
-    }, []);
-
-    const filterCheckedWine = useCallback(() => {
-        if (checkedWine === "All wines" || checkedWine === null) {
-            return wines;
-        } else {
-            return wines.filter((wine) => wine.name.includes(checkedWine));
-        }
-    }, [checkedWine, wines]);
+        setGetTransactions(selectedTransaction);
+    }, [transactions]);
 
     useEffect(() => {
-        getWines();
-    }, [getWines]);
+        getTransactionsData();
+    }, [getTransactionsData]);
+
+    console.log(getTransactions);
 
     return (
-        <section className="box">
-            <div className="wines-checkboxes flex items-center">
-                <div className="flex items-center px-4 py-0 border border-gray-300 rounded dark:border-gray-700">
-                    <input checked={checkedWine === "All wines"} onChange={getCheckedWine} id="bordered-checkbox-1" type="checkbox" value="All wines" name="bordered-checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                    <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">All wines</label>
+        <div id="transaction-container">
+            <div className="transactions-results">
+                <h3>Selected transaction</h3>
+                {
+                    getTransactions.map((getTransaction, index) => {
+                        return (
+                            <SelectedTransactionComponent getTransaction={getTransaction} key={index} />
+                        );
+                    })
+                }
+            </div>
+            <br />
+            <div className="flex flex-col transactions-table">
+                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                        <div className="overflow-hidden">
+                            <table className="min-w-full text-left text-sm font-light">
+                                <thead className="border-b font-medium dark:border-neutral-500">
+                                    <tr>
+                                        <th scope="col" className="px-6 py-4">Date</th>
+                                        <th scope="col" className="px-6 py-4">Name</th>
+                                        <th scope="col" className="px-6 py-4">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        transactions.map((transaction, index) => (
+                                            <TransactionComponent transaction={transaction} key={index} onSelectedTransaction={() => onSelectedTransaction(transaction)} />
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                {
-                    wines.map((wine, index) => {
-                        return (
-                            <div className="flex items-center px-4 py-0 border border-gray-300 rounded dark:border-gray-700" key={index}>
-                                <input checked={checkedWine === wine.name} onChange={getCheckedWine} id="bordered-checkbox-2" type="checkbox" value={wine.name} name="bordered-checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                                <label htmlFor="bordered-checkbox-2" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{wine.name}</label>
-                            </div>
-                        );
-                    })
-                }
             </div>
-            <div className="products-container">
-                {
-                    filterCheckedWine().map((wine, index) => {
-                        return (
-                            <FilteredWinesComponent wine={wine} key={index} />
-                        );
-                    })
-                }
-            </div>
-        </section>
+        </div>
     );
 }
