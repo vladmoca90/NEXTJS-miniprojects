@@ -2,6 +2,19 @@ body {
     background: #fff;
 }
 
+.product-close {
+    background: #333;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    right: 10px;
+    padding: 0 3px;
+    position: absolute;
+    top: 18px;
+}
+
 .transactions-results,
 .transactions-table {
     color: #333;
@@ -25,6 +38,10 @@ table td {
 
 table td {
     cursor: pointer;
+}
+
+table tr {
+    position: relative;
 }
 
 .transactions-results {
