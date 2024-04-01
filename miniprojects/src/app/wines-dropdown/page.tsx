@@ -2,7 +2,7 @@
 import "./styles/wines.css";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { Wine } from "../../data/wines/Wine";
-import WineComponent from "./WineComponent";
+import FilteredWinesComponent from "../FilteredWinesComponent";
 
 export default function WinesSell() {
     const winesUrl = "http://localhost:3000/api/wines";
