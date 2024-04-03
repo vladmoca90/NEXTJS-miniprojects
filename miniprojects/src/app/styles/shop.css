@@ -50,6 +50,8 @@ body {
 
 .shop-details {
     background: #fff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
     min-height: 120px;
     padding: 1em 0;
 }
@@ -60,19 +62,27 @@ body {
     font-weight: 600;
     margin: 0;
     text-align: center;
+    text-decoration: underline;
+}
+
+.shop-image>img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .shop-price {
     color: #f85b00;
     font-size: 1.5em;
     font-weight: bold;
-    margin: .5em auto;
+    margin: .25em auto 1rem;
     text-align: center;
 }
 
 .shop-buttons {
     display: flex;
     justify-content: space-evenly;
+    margin: 0 auto;
+    max-width: 120px;
 }
 
 .shop-buttons button {
@@ -84,7 +94,7 @@ body {
     padding: .3em 0;
     text-align: center;
     transition: linear .5s all;
-    width: 27%;
+    width: 33%;
 }
 
 .shop-buttons button:hover {

@@ -52,25 +52,26 @@ export default function ShopProducts() {
                     shops.map((shop, index) => {
                         return (
                             <div className="shop-card" key={index}>
-                                <Link href={{
-                                    pathname: "/shop-product-name",
-                                    query: {
-                                        "name": shop.name,
-                                    }
-                                }}>
-                                    <div className="shop-image">
-                                        <Image width={295} height={295} src={shop.image} alt={shop.name} />
-                                    </div>
-                                    <div className="shop-details">
+
+                                <div className="shop-image">
+                                    <Image width={295} height={295} src={shop.image} alt={shop.name} />
+                                </div>
+                                <div className="shop-details">
+                                    <Link href={{
+                                        pathname: "/shop-product-name",
+                                        query: {
+                                            "name": shop.name,
+                                        }
+                                    }}>
                                         <p className="shop-title">{shop.name}</p>
-                                        <p className="shop-price">£{shop.price}</p>
-                                        <div className="shop-buttons">
-                                            <button>+</button>
-                                            <span className="shop-product-number"></span>
-                                            <button>-</button>
-                                        </div>
+                                    </Link>
+                                    <p className="shop-price">£{shop.price}</p>
+                                    <div className="shop-buttons">
+                                        <button>+</button>
+                                        <span className="shop-product-number"></span>
+                                        <button>-</button>
                                     </div>
-                                </Link>
+                                </div>
                             </div>
                         );
                     })
