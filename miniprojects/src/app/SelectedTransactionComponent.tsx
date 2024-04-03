@@ -19,7 +19,7 @@ export default function SelectedTransactionComponent(props: SelectedTransactionP
                 </thead>
                 <tbody>
                     <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-4">
+                        <td className="whitespace-nowrap px-6 py-6">
                             {
                                 new Date(getTransaction.date).toLocaleString([], {
                                     hour: "2-digit",
@@ -27,8 +27,8 @@ export default function SelectedTransactionComponent(props: SelectedTransactionP
                                 })
                             }
                         </td>
-                        <td className="whitespace-nowrap px-6 py-4">{getTransaction.name}</td>
-                        <td className="whitespace-nowrap px-6 py-4">£{Math.abs(getTransaction.amount)}</td>
+                        <td className="whitespace-nowrap px-6 py-6">{getTransaction.name}</td>
+                        <td className="whitespace-nowrap px-6 py-6">£{Math.abs(getTransaction.amount)}</td>
                     </tr>
                 </tbody>
             </table>

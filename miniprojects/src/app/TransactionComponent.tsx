@@ -19,7 +19,7 @@ export default function TransactionComponent(props: TransactionProps) {
 
     return (
         <tr className="border-b dark:border-neutral-500" onClick={getSelectedTransaction} data-transaction={props.transaction.name}>
-            <td className="whitespace-nowrap px-6 py-4">
+            <td className="whitespace-nowrap px-6 py-6">
                 {
                     new Date(props.transaction.date).toLocaleString([], {
                         hour: "2-digit",
@@ -27,8 +27,8 @@ export default function TransactionComponent(props: TransactionProps) {
                     })
                 }
             </td>
-            <td className="whitespace-nowrap px-6 py-4">{props.transaction.name}</td>
-            <td className="whitespace-nowrap px-6 py-4">£{Math.abs(props.transaction.amount)}</td>
+            <td className="whitespace-nowrap px-6 py-6">{props.transaction.name}</td>
+            <td className="whitespace-nowrap px-6 py-6">£{Math.abs(props.transaction.amount)}</td>
             <span className="product-close">{close}</span>
         </tr>
     );
