@@ -31,12 +31,6 @@ export default function Transactions() {
         setGetTransactions(selectedTransaction);
     }, [transactions]);
 
-    const onDeletedTransaction = useCallback((deletedTransaction: Transaction) => {
-        const value = transactions.filter((transaction) => deletedTransaction.name !== transaction.name);
-
-        setTransactions(value);
-    }, [transactions]);
-
     useEffect(() => {
         getTransactionsData();
     }, [getTransactionsData]);
@@ -75,7 +69,6 @@ export default function Transactions() {
                                                 transaction={transaction}
                                                 key={index}
                                                 onSelectedTransaction={() => onSelectedTransaction(transaction)}
-                                                onDeletedTransaction={() => onDeletedTransaction(transaction)}
                                             />
                                         ))
                                     }
