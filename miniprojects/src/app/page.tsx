@@ -2,15 +2,14 @@
 import "./styles/shop.css";
 import Image from "next/image";
 import Link from "next/link";
-import { Product } from "../../../data/shop/Product";
-import { useCallback, useEffect, useState } from "react";
-
-// TEST
+import { Product } from "../../data/shop/Product";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 export default function ShopProducts() {
     const shopUrl = "http://localhost:3000/api/shop";
 
     const [shops, setShops] = useState<Product[]>([]);
+    const [query, setQuery] = useState("");
 
     const getShops = useCallback(async () => {
         const res = await fetch(shopUrl);
@@ -26,6 +25,19 @@ export default function ShopProducts() {
         setShops(data.body);
     }, []);
 
+    const getSelectedProduct = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
+        const value = e.target.value;
+        setQuery(value);
+    }, []);
+
+    const filteredProducts = useCallback(() => {
+        if(query === "Any Product" || query.length === 0) {
+            return shops;
+        } else {
+            return shops.filter((shop) => query.includes(shop.name));
+        }
+    }, [query, shops]);
+
     useEffect(() => {
         getShops();
     }, [getShops]);
@@ -33,9 +45,9 @@ export default function ShopProducts() {
     return (
         <section className="box">
             <div className="shop-dropdown">
-                <select id="shopDropdown" title="Shop"
+                <select id="shopDropdown" title="Shop" onChange={getSelectedProduct}
                     className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
-                    <option value="product">-- Any Product --</option>
+                    <option value="Any Product">Any Product</option>
                     {
                         shops.map((shop, index) => {
                             return (
@@ -51,7 +63,7 @@ export default function ShopProducts() {
             </div>
             <div className="shop-list">
                 {
-                    shops.map((shop, index) => {
+                    filteredProducts().map((shop, index) => {
                         return (
                             <div className="shop-card" key={index}>
 

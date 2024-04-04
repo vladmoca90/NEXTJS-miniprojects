@@ -6,11 +6,12 @@ body {
 .shop-dropdown,
 .shop-search {
     margin: 1.5em auto 1em;
-    max-width: 320px;
 }
 
-.shop-dropdown select {
-    width: 315px;
+.shop-dropdown select,
+.shop-dropdown,
+.shop-search {
+    width: 320px;
 }
 
 .shop-dropdown select,
