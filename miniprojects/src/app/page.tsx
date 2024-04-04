@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Product } from "../../../data/shop/Product";
 import { useCallback, useEffect, useState } from "react";
 
+// TEST
+
 export default function ShopProducts() {
     const shopUrl = "http://localhost:3000/api/shop";
 
