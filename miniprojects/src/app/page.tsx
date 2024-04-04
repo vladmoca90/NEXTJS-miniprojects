@@ -8,10 +8,10 @@ import { ChangeEvent, useCallback, useEffect, useState } from "react";
 export default function ShopProducts() {
     const shopUrl = "http://localhost:3000/api/shop";
 
-    const [shops, setShops] = useState<Product[]>([]);
+    const [products, setProducts] = useState<Product[]>([]);
     const [query, setQuery] = useState("");
 
-    const getShops = useCallback(async () => {
+    const getProducts = useCallback(async () => {
         const res = await fetch(shopUrl);
 
         if (!res.ok) {
@@ -22,7 +22,7 @@ export default function ShopProducts() {
 
         const data = await res.json();
 
-        setShops(data.body);
+        setProducts(data.body);
     }, []);
 
     const getSelectedProduct = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
@@ -32,15 +32,15 @@ export default function ShopProducts() {
 
     const filteredProducts = useCallback(() => {
         if(query === "Any Product" || query.length === 0) {
-            return shops;
+            return products;
         } else {
-            return shops.filter((shop) => query.includes(shop.name));
+            return products.filter((shop) => query.includes(shop.name));
         }
-    }, [query, shops]);
+    }, [query, products]);
 
     useEffect(() => {
-        getShops();
-    }, [getShops]);
+        getProducts();
+    }, [getProducts]);
 
     return (
         <section className="box">
@@ -49,7 +49,7 @@ export default function ShopProducts() {
                     className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                     <option value="Any Product">Any Product</option>
                     {
-                        shops.map((shop, index) => {
+                        products.map((shop, index) => {
                             return (
                                 <option value={shop.name} key={index}>{shop.name}</option>
                             );
