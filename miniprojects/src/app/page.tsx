@@ -10,6 +10,7 @@ export default function ShopProducts() {
 
     const [products, setProducts] = useState<Product[]>([]);
     const [query, setQuery] = useState("");
+    const [counter, setCounter] = useState(0);
 
     const getProducts = useCallback(async () => {
         const res = await fetch(shopUrl);
@@ -31,7 +32,7 @@ export default function ShopProducts() {
     }, []);
 
     const filteredProducts = useCallback(() => {
-        if(query === "Any Product" || query.length === 0) {
+        if (query === "Any Product" || query.length === 0) {
             return products;
         } else {
             return products.filter((shop) => query.includes(shop.name));
