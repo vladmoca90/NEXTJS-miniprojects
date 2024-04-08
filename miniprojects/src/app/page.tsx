@@ -1,11 +1,11 @@
 "use client";
 import "./styles/shop.css";
-import { Product } from "../../data/shop/Product";
+import { Product } from "../../data/shop-products/Product";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import ProductListComponent from "./ProductListComponent";
 
 export default function ShopProducts() {
-    const shopUrl = "http://localhost:3000/api/shop";
+    const shopUrl = "http://localhost:3000/api/shop-products";
 
     const [products, setProducts] = useState<Product[]>([]);
     const [query, setQuery] = useState("");
@@ -61,7 +61,7 @@ export default function ShopProducts() {
                 {
                     filteredProducts().map((shop, index) => {
                         return (
-                            <ProductListComponent key={index} product={shop} />
+                            <ProductListComponent counter={counter} key={index} product={shop} />
                         );
                     })
                 }

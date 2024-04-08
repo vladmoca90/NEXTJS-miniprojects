@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { allProducts } from "../../../../data/shop/allProducts";
+import { allProducts } from "../../../../data/shop-products/allProducts";
 
 export async function GET(request: NextRequest) {
     return NextResponse.json(
@@ -15,4 +15,4 @@ export async function GET(request: NextRequest) {
     );
 }
 
-// http://localhost:3000/api/shops
+// http://localhost:3000/api/shop-products

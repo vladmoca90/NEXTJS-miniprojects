@@ -1,13 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Product } from "../../data/shop/Product";
+import { Product } from "../../data/shop-products/Product";
 
 export interface ProductProps {
+    counter: number;
     product: Product;
 }
 
 export default function ProductListComponent(props: ProductProps) {
     const { product, setProduct } = props;
+    const { counter, onCounter } = props;
 
     return (
         <div className="shop-card">
@@ -26,7 +28,7 @@ export default function ProductListComponent(props: ProductProps) {
                 <p className="shop-price">£{props.product.price}</p>
                 <div className="shop-buttons">
                     <button>+</button>
-                    <span className="shop-product-number"></span>
+                    <span className="shop-product-number">{counter}</span>
                     <button>-</button>
                 </div>
             </div>
