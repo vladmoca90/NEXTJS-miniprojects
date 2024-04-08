@@ -39,6 +39,10 @@ export default function ShopProducts() {
         }
     }, [query, products]);
 
+    const addProductToList = useCallback(() => {
+
+    }, []);
+
     useEffect(() => {
         getProducts();
     }, [getProducts]);
