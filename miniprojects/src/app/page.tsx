@@ -38,10 +38,6 @@ export default function ShopProducts() {
         }
     }, [query, products]);
 
-    const addProductToList = useCallback(() => {
-
-    }, []);
-
     useEffect(() => {
         getProducts();
     }, [getProducts]);
@@ -49,7 +45,7 @@ export default function ShopProducts() {
     return (
         <section className="box">
             <div className="shop-dropdown">
-                <select id="shopDropdown" title="Shop" onChange={getSelectedProduct}
+                <select onChange={getSelectedProduct} id="shopDropdown" title="Shop"
                     className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                     <option value="Any Product">Any Product</option>
                     {
@@ -60,10 +56,6 @@ export default function ShopProducts() {
                         })
                     }
                 </select>
-            </div>
-            <div className="shop-search">
-                <label className="shop-search-title">Search:</label>
-                <input className="shop-search-bar" title="search" name="search" type="text" placeholder="Search..." />
             </div>
             <div className="shop-list">
                 {

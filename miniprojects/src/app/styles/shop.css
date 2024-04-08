@@ -3,14 +3,12 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.shop-dropdown,
-.shop-search {
+.shop-dropdown {
     margin: 1.5em auto 1em;
 }
 
 .shop-dropdown select,
-.shop-dropdown,
-.shop-search {
+.shop-dropdown {
     width: 320px;
 }
 
