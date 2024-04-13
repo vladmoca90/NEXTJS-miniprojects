@@ -2,6 +2,7 @@
 import "./styles/shop.css";
 import { Product } from "../../data/shop-products/Product";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { Provider } from 'react-redux'
 import ShopProductComponent from "./ShopProductComponent";
 import BasketComponent from "./BasketComponent";
 
