@@ -3,6 +3,7 @@ import "./styles/shop.css";
 import { Product } from "../../data/shop-products/Product";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import ShopProductComponent from "./ShopProductComponent";
+import BasketComponent from "./BasketComponent";
 
 export default function ShopList() {
     const shopUrl = "http://localhost:3000/api/shop-products";
@@ -59,7 +60,7 @@ export default function ShopList() {
                         })
                     }
                 </select>
-                <p className="total-products">Total number of products is: {}</p>
+                <BasketComponent total={0} />
             </div>
             <div className="shop-list">
                 {
