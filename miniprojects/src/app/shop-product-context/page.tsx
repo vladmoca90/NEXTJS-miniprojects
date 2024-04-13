@@ -6,7 +6,10 @@ import ShopProductComponent from "./ShopProductComponent";
 import BasketComponent from "./BasketComponent";
 
 // Remake the page with useContext().
+
 // Make it with Redux.
+
+// Add a clear basket button (all is made through context).
 
 // Hint - with useContext, you do not use props, you put the two calculations functions into the context.
 
