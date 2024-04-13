@@ -121,3 +121,7 @@ body {
     font-weight: 600;
     margin: 0 .75rem;
 }
+
+.total-products {
+    text-align: center;
+}
