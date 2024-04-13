@@ -1,7 +1,7 @@
 "use client";
 import "./styles/shop.css";
 import { Product } from "../../data/shop-products/Product";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import ShopProductComponent from "./ShopProductComponent";
 
 export default function ShopList() {
@@ -9,7 +9,6 @@ export default function ShopList() {
 
     const [products, setProducts] = useState<Product[]>([]);
     const [query, setQuery] = useState("");
-    const [counter, onCounter] = useState(0);
 
     const getProducts = useCallback(async () => {
         const res = await fetch(shopUrl);
@@ -61,7 +60,7 @@ export default function ShopList() {
                 {
                     filteredProducts().map((shop, index) => {
                         return (
-                            <ShopProductComponent counter={counter} key={index} product={shop} />
+                            <ShopProductComponent key={index} product={shop} />
                         );
                     })
                 }

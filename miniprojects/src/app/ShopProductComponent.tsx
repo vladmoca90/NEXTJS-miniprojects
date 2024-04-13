@@ -1,24 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Product } from "../../data/shop-products/Product";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 
 export interface ProductProps {
-    counter: number;
     product: Product;
-    onCounter: (counter: number) => void;
 }
 
 export default function ProductListComponent(props: ProductProps) {
-    const { counter, onCounter } = props;
+    const [counter, setCounter] = useState(0);
 
-    const addProduct= useCallback(() => {
-        onCounter(counter + 1);
-    }, [counter, onCounter]);
+    const addProduct = useCallback(() => {
+        setCounter(c => c + 1); // c is a lambda function. c does not mean counter!
+    }, []);
 
-    const removeProduct= useCallback(() => {
-        onCounter(counter - 1);
-    }, [counter, onCounter]);
+    const removeProduct = useCallback(() => {
+        setCounter(c => (c >= 1 ? c - 1 : 0));
+    }, []);
 
     return (
         <div className="shop-card">
