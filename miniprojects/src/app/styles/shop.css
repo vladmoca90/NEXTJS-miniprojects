@@ -4,20 +4,28 @@ body {
 }
 
 .shop-dropdown {
-    margin: 1.5em auto 1em;
+    margin: 1.5em auto;
+}
+
+.shop-dropdown select {
+    margin-bottom: 1em;
+}
+
+.total-products {
+    font-size: 1.1em;
 }
 
 .shop-dropdown select,
 .shop-dropdown {
-    width: 320px;
+    width: 340px;
 }
 
 .shop-dropdown select,
 .shop-dropdown select>option {
     border-color: #bbb;
     color: #333;
-    font-size: 1em;
-    padding: .3em;
+    font-size: 1.1em;
+    padding: .375em;
 }
 
 .shop-search-title {
@@ -44,7 +52,7 @@ body {
 
 .shop-card {
     margin: .75em 0;
-    width: 295px;
+    width: 300px;
 }
 
 .shop-details {
@@ -73,7 +81,7 @@ body {
     color: #f85b00;
     font-size: 1.5em;
     font-weight: bold;
-    margin: .25em auto 1rem;
+    margin: .5em auto 1rem;
     text-align: center;
 }
 

@@ -21,7 +21,7 @@ export default function ProductListComponent(props: ProductProps) {
     return (
         <div className="shop-card">
             <div className="shop-image">
-                <Image width={295} height={295} src={props.product.image} alt={props.product.name} />
+                <Image width={300} height={300} src={props.product.image} alt={props.product.name} />
             </div>
             <div className="shop-details">
                 <Link href={{

@@ -1,7 +1,7 @@
 "use client";
 import "./styles/shop.css";
 import { Product } from "../../data/shop-products/Product";
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import ShopProductComponent from "./ShopProductComponent";
 
 export default function ShopList() {
@@ -37,6 +37,10 @@ export default function ShopList() {
         }
     }, [query, products]);
 
+    const addProductsToBasket = useCallback(() => {
+
+    }, []);
+
     useEffect(() => {
         getProducts();
     }, [getProducts]);
@@ -55,6 +59,7 @@ export default function ShopList() {
                         })
                     }
                 </select>
+                <p className="total-products">Total number of products is: {}</p>
             </div>
             <div className="shop-list">
                 {
