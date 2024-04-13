@@ -39,13 +39,15 @@ export default function ShopList() {
         }
     }, [query, products]);
 
-    const addProductsToBasket = useCallback((count: number) => {
-        setProductTotal(count++);
-    }, []);
+    const addProductsToBasket = useCallback(() => {
+        console.log(productTotal);
+        setProductTotal(p => p + 1);
+    }, [productTotal]);
 
-    const removeProductsFromBasket = useCallback((count: number) => {
-        setProductTotal(count--);
-    }, []);
+    const removeProductsFromBasket = useCallback(() => {
+        console.log(productTotal);
+        setProductTotal(p => p - 1);
+    }, [productTotal]);
 
     useEffect(() => {
         getProducts();
@@ -71,7 +73,10 @@ export default function ShopList() {
                 {
                     filteredProducts().map((shop, index) => {
                         return (
-                            <ShopProductComponent key={index} product={shop} onCountUpdatedAdd={addProductsToBasket} onCountUpdatedRemove={removeProductsFromBasket} />
+                            <ShopProductComponent key={index} product={shop}
+                                onCountUpdatedAdd={addProductsToBasket}
+                                onCountUpdatedRemove={removeProductsFromBasket}
+                            />
                         );
                     })
                 }

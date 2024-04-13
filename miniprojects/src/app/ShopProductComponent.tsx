@@ -5,20 +5,26 @@ import { useCallback, useState } from "react";
 
 export interface ProductProps {
     product: Product;
-    onCountUpdatedRemove: (count: number) => void;
-    onCountUpdatedAdd: (count: number) => void;
+    onCountUpdatedAdd: () => void;
+    onCountUpdatedRemove: () => void;
 }
 
 export default function ProductListComponent(props: ProductProps) {
     const [counter, setCounter] = useState(0);
+    const { onCountUpdatedAdd, onCountUpdatedRemove } = props;
 
     const addProduct = useCallback(() => {
-        setCounter(c => c + 1); // c is a lambda function. c does not mean counter!
-    }, []);
+        setCounter(c => c + 1);
+        onCountUpdatedAdd();
+    }, [onCountUpdatedAdd]);
 
     const removeProduct = useCallback(() => {
         setCounter(c => (c >= 1 ? c - 1 : 0));
-    }, []);
+
+        if (counter > 0) {
+            onCountUpdatedRemove();
+        }
+    }, [counter, onCountUpdatedRemove]);
 
     return (
         <div className="shop-card">
