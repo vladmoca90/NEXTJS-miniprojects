@@ -9,7 +9,7 @@ export default function ShopList() {
 
     const [products, setProducts] = useState<Product[]>([]);
     const [query, setQuery] = useState("");
-    const [counter, setCounter] = useState(0);
+    const [counter, onCounter] = useState(0);
 
     const getProducts = useCallback(async () => {
         const res = await fetch(shopUrl);
