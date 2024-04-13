@@ -27,9 +27,9 @@ export default function ProductListComponent(props: ProductProps) {
                 </Link>
                 <p className="shop-price">£{props.product.price}</p>
                 <div className="shop-buttons">
-                    <button>+</button>
+                    <button id="buttonAdd">+</button>
                     <span className="shop-product-number">{counter}</span>
-                    <button>-</button>
+                    <button id="buttonRemove">-</button>
                 </div>
             </div>
         </div>

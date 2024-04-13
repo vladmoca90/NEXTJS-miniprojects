@@ -85,23 +85,31 @@ body {
 }
 
 .shop-buttons button {
-    background: #f85b00;
     border-radius: 6px;
     color: #fff;
-    font-size: 1em;
+    font-size: 1.1em;
     font-weight: bold;
-    padding: .3em 0;
+    padding: 0;
     text-align: center;
     transition: linear .5s all;
-    width: 33%;
+    width: 28%;
+}
+
+.shop-buttons button#buttonAdd {
+    background: #1c7600;
+}
+
+.shop-buttons button#buttonRemove {
+    background: #dd0700;
 }
 
 .shop-buttons button:hover {
-    background: #c04600;
+    cursor: pointer;
 }
 
 .shop-product-number {
     color: #333;
-    font-size: 1em;
+    font-size: 1.25em;
     font-weight: 600;
+    margin: 0 .75rem;
 }
