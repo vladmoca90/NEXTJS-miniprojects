@@ -5,6 +5,8 @@ import { useCallback, useState } from "react";
 
 export interface ProductProps {
     product: Product;
+    onCountUpdatedRemove: (count: number) => void;
+    onCountUpdatedAdd: (count: number) => void;
 }
 
 export default function ProductListComponent(props: ProductProps) {

@@ -10,6 +10,7 @@ export default function ShopList() {
 
     const [products, setProducts] = useState<Product[]>([]);
     const [query, setQuery] = useState("");
+    const [productTotal, setProductTotal] = useState(0);
 
     const getProducts = useCallback(async () => {
         const res = await fetch(shopUrl);
@@ -38,8 +39,12 @@ export default function ShopList() {
         }
     }, [query, products]);
 
-    const addProductsToBasket = useCallback(() => {
+    const addProductsToBasket = useCallback((count: number) => {
+        setProductTotal(count++);
+    }, []);
 
+    const removeProductsFromBasket = useCallback((count: number) => {
+        setProductTotal(count--);
     }, []);
 
     useEffect(() => {
@@ -60,13 +65,13 @@ export default function ShopList() {
                         })
                     }
                 </select>
-                <BasketComponent total={0} />
+                <BasketComponent total={productTotal} />
             </div>
             <div className="shop-list">
                 {
                     filteredProducts().map((shop, index) => {
                         return (
-                            <ShopProductComponent key={index} product={shop} />
+                            <ShopProductComponent key={index} product={shop} onCountUpdatedAdd={addProductsToBasket} onCountUpdatedRemove={removeProductsFromBasket} />
                         );
                     })
                 }
