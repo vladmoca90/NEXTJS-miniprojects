@@ -4,12 +4,10 @@ import { Product } from "../../data/shop-products/Product";
 import { useCallback, useState } from "react";
 
 export interface ProductProps {
-    product: Product;
-    onCountUpdatedAdd: () => void;
-    onCountUpdatedRemove: () => void;
+    
 }
 
-export default function ProductListComponent(props: ProductProps) {
+export default function ProductListComponent(ProductProps) {
     const [counter, setCounter] = useState(0);
     const { onCountUpdatedAdd, onCountUpdatedRemove } = props;
 

@@ -4,6 +4,7 @@ import { Product } from "../../data/shop-products/Product";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import ShopProductComponent from "./ShopProductComponent";
 import BasketComponent from "./BasketComponent";
+import { ProductContext } from "./shop-product-context/shopContext/ProductContext";
 
 // Remake the page with useContext().
 
@@ -75,16 +76,15 @@ export default function ShopList() {
                         })
                     }
                 </select>
-                <BasketComponent total={productTotal} />
+                <BasketComponent />
             </div>
             <div className="shop-list">
                 {
                     filteredProducts().map((shop, index) => {
                         return (
-                            <ShopProductComponent key={index} product={shop}
-                                onCountUpdatedAdd={addProductsToBasket}
-                                onCountUpdatedRemove={removeProductsFromBasket}
-                            />
+                            <ProductContext.Provider key={index} value={shop}>
+                                <ShopProductComponent key={index} product={shop} />
+                            </ProductContext.Provider>
                         );
                     })
                 }
