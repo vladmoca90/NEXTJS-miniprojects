@@ -1,22 +1,26 @@
 "use client";
 import "./styles/shop-product.css";
 import { Product } from "../../data/shop-products/Product";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, Suspense, useCallback, useEffect, useState } from "react";
 import ShopProductComponent from "./ShopProductComponent";
 import BasketComponent from "./BasketComponent";
 import { ProductContext } from "./shop-product-context/shopContext/ProductContext";
 
 // Remake the page with useContext().
-
 // Make it with Redux.
-
 // Add a clear basket button (all is made through context).
-
 // Hint - with useContext, you do not use props, you put the two calculations functions into the context.
+
+enum ShopStatus {
+    Loading = "Loading",
+    OK = "OK",
+    ErrorLoading = "ErrorLoading"
+}
 
 export default function ShopList() {
     const shopUrl = "http://localhost:3000/api/shop-products";
 
+    const [status, setStatus] = useState<ShopStatus>(ShopStatus.Loading);
     const [products, setProducts] = useState<Product[]>([]);
     const [query, setQuery] = useState("");
     const [productTotal, setProductTotal] = useState(0);
@@ -25,6 +29,7 @@ export default function ShopList() {
         const res = await fetch(shopUrl);
 
         if (!res.ok) {
+            setStatus(ShopStatus.ErrorLoading);
             throw new Error("The data is not valid!");
         } else {
             console.log("The data is valid!");
@@ -33,6 +38,7 @@ export default function ShopList() {
         const data = await res.json();
 
         setProducts(data.body);
+        setStatus(ShopStatus.OK);
     }, []);
 
     const getSelectedProduct = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
@@ -58,6 +64,10 @@ export default function ShopList() {
         setProductTotal(p => p - 1);
     }, [productTotal]);
 
+    const Loading = useCallback(() => {
+        return <span><img className="loading-img" alt="loading" src="./images/loading.gif" /></span>;
+    }, []);
+
     useEffect(() => {
         getProducts();
     }, [getProducts]);
@@ -80,15 +90,24 @@ export default function ShopList() {
             </div>
             <div className="shop-list">
                 {
-                    filteredProducts().map((shop, index) => {
-                        return (
-                            <ProductContext.Provider key={index} value={shop}>
-                                <ShopProductComponent key={index}
-                                    onCountUpdatedAdd={addProductsToBasket}
-                                    onCountUpdatedRemove={removeProductsFromBasket} />
-                            </ProductContext.Provider>
-                        );
-                    })
+                    status === ShopStatus.Loading &&
+                    <Suspense fallback={<Loading />}>
+                        <Loading />
+                    </Suspense>
+                }
+                {
+                    status === ShopStatus.OK &&
+                    <ProductContext.Provider value={product}>
+                        {
+                            filteredProducts().map((shop, index) => {
+                                return (
+                                    <ShopProductComponent key={index}
+                                        onCountUpdatedAdd={addProductsToBasket}
+                                        onCountUpdatedRemove={removeProductsFromBasket} />
+                                );
+                            })
+                        }
+                    </ProductContext.Provider>
                 }
             </div>
         </section>
