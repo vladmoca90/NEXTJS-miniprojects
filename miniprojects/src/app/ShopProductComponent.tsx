@@ -1,13 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Product } from "../../data/shop-products/Product";
 import { useCallback, useState } from "react";
+import { useProductContext } from "./shop-product-context/shopContext/ProductContext";
 
 export interface ProductProps {
-    
+    onCountUpdatedAdd: () => void;
+    onCountUpdatedRemove: () => void;
 }
 
-export default function ProductListComponent(ProductProps) {
+export default function ProductListComponent(props: ProductProps) {
+    const useProduct = useProductContext();
+
     const [counter, setCounter] = useState(0);
     const { onCountUpdatedAdd, onCountUpdatedRemove } = props;
 
@@ -27,18 +30,18 @@ export default function ProductListComponent(ProductProps) {
     return (
         <div className="shop-card">
             <div className="shop-image">
-                <Image width={300} height={300} src={props.product.image} alt={props.product.name} />
+                <Image width={300} height={300} src={useProduct.image} alt={useProduct.name} />
             </div>
             <div className="shop-details">
                 <Link href={{
                     pathname: "/shop-product-name",
                     query: {
-                        "name": props.product.name,
+                        "name": useProduct.name,
                     }
                 }}>
-                    <p className="shop-title">{props.product.name}</p>
+                    <p className="shop-title">{useProduct.name}</p>
                 </Link>
-                <p className="shop-price">£{props.product.price}</p>
+                <p className="shop-price">£{useProduct.price}</p>
                 <div className="shop-buttons">
                     <button id="buttonAdd" onClick={addProduct}>+</button>
                     <span className="shop-product-number">{counter}</span>

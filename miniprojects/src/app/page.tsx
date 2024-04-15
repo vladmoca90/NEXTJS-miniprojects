@@ -76,14 +76,18 @@ export default function ShopList() {
                         })
                     }
                 </select>
-                <BasketComponent />
+                {/* <ProductContext.Provider>
+                    <BasketComponent />
+                </ProductContext.Provider> */}
             </div>
             <div className="shop-list">
                 {
                     filteredProducts().map((shop, index) => {
                         return (
                             <ProductContext.Provider key={index} value={shop}>
-                                <ShopProductComponent key={index} product={shop} />
+                                <ShopProductComponent key={index}
+                                    onCountUpdatedAdd={addProductsToBasket}
+                                    onCountUpdatedRemove={removeProductsFromBasket} />
                             </ProductContext.Provider>
                         );
                     })
