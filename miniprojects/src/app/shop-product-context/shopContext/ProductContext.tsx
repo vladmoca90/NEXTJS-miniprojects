@@ -6,7 +6,7 @@ export const ProductContext = createContext<Product | undefined>(undefined);
 export function useProductContext() {
     const product = useContext(ProductContext);
 
-    if(product === undefined) {
+    if (product === undefined) {
         throw new Error("The product cannot be undefined!");
     }
 
