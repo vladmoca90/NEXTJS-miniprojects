@@ -76,9 +76,7 @@ export default function ShopList() {
                         })
                     }
                 </select>
-                {/* <ProductContext.Provider>
-                    <BasketComponent />
-                </ProductContext.Provider> */}
+                <BasketComponent total={productTotal} />
             </div>
             <div className="shop-list">
                 {
