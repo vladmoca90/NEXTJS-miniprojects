@@ -20,7 +20,7 @@ export default function ProductListComponent(props: ProductProps) {
     }, [onCountUpdatedAdd]);
 
     const removeProduct = useCallback(() => {
-        setCounter(c => (c >= 1 ? c - 1 : 0));
+        setCounter(c => (c >= 1 ? c - 1 : 0)); // lambda function
 
         if (counter > 0) {
             onCountUpdatedRemove();
