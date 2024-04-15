@@ -1,7 +1,7 @@
 "use client";
 import "./styles/shop-product.css";
 import { Product } from "../../data/shop-products/Product";
-import { ChangeEvent, Suspense, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, Suspense, useCallback, useContext, useEffect, useState } from "react";
 import ShopProductComponent from "./ShopProductComponent";
 import BasketComponent from "./BasketComponent";
 import { ProductContext } from "./shop-product-context/shopContext/ProductContext";
@@ -21,6 +21,7 @@ export default function ShopList() {
     const shopUrl = "http://localhost:3000/api/shop-products";
 
     const [status, setStatus] = useState<ShopStatus>(ShopStatus.Loading);
+    const productRepository = useContext(ProductContext);
     const [products, setProducts] = useState<Product[]>([]);
     const [query, setQuery] = useState("");
     const [productTotal, setProductTotal] = useState(0);
@@ -97,7 +98,7 @@ export default function ShopList() {
                 }
                 {
                     status === ShopStatus.OK &&
-                    <ProductContext.Provider value={product}>
+                    <ProductContext.Provider value={productRepository}>
                         {
                             filteredProducts().map((shop, index) => {
                                 return (
