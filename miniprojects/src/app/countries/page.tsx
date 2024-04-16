@@ -3,6 +3,7 @@ import "./styles/countries.css";
 import Link from "next/link";
 import { Country } from "../../data/countries/Country";
 import { useCallback, useEffect, useState } from "react";
+import CountriesListComponent from "./CountriesListComponent";
 
 export default function CountriesList() {
     const countriesUrl = "http://localhost:3000/api/countries";
@@ -30,7 +31,7 @@ export default function CountriesList() {
     }, []);
 
     const searchCountries = useCallback(() => {
-        if(query.length === 0) {
+        if (query.length === 0) {
             return countries;
         } else {
             return countries.filter(
@@ -64,17 +65,7 @@ export default function CountriesList() {
                         {
                             searchCountries().map((country, index) => {
                                 return (
-                                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={index}>
-                                        <td>
-                                            <Link href={{
-                                                pathname: "/country-name",
-                                                query: {
-                                                    "countryName": country.name,
-                                                },
-                                            }}>{country.name}</Link>
-                                        </td>
-                                        <td>{country.code}</td>
-                                    </tr>
+                                    <CountriesListComponent country={country} key={index} />
                                 );
                             })
                         }
