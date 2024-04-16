@@ -1,12 +1,7 @@
 import Link from "next/link";
-import { Country } from "../../data/countries/Country";
 import { useCountryContext } from "./countries/countriesContext/CountryContext";
 
-export interface CountriesProps {
-    country: Country;
-}
-
-export default function CountriesListComponent(props: CountriesProps) {
+export default function CountriesListComponent() {
     const useCountry = useCountryContext();
 
     return (
