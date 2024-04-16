@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Country } from "../../data/countries/Country";
-import { useCountryContext } from "./countries/countriesContext/CountriesContext";
+import { useCountryContext } from "./countries/countriesContext/CountryContext";
 
 export interface CountriesProps {
     country: Country;

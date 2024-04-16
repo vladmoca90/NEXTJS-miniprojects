@@ -3,6 +3,7 @@ import "./styles/countries.css";
 import { Country } from "../../data/countries/Country";
 import { useCallback, useEffect, useState } from "react";
 import CountriesListComponent from "./CountriesListComponent";
+import { CountryContext } from "./countries/countriesContext/CountryContext";
 
 export default function CountriesList() {
     const countriesUrl = "http://localhost:3000/api/countries";
@@ -64,7 +65,9 @@ export default function CountriesList() {
                         {
                             searchCountries().map((country, index) => {
                                 return (
-                                    <CountriesListComponent country={country} key={index} />
+                                    <CountryContext.Provider value={country} key={index}>
+                                        <CountriesListComponent country={country} key={index} />
+                                    </CountryContext.Provider>
                                 );
                             })
                         }
