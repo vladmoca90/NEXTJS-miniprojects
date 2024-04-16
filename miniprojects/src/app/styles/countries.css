@@ -25,7 +25,7 @@ body {
 
 .countries-table {
     margin: 2rem auto;
-    max-width: 450px;
+    max-width: 480px;
 }
 
 .countries-table table {
@@ -34,28 +34,28 @@ body {
 
 .countries-table table thead tr>th {
     border-bottom: 1px solid #E5E7EB;
-    font-size: .9rem;
-    width: 60%;
+    font-size: 1rem;
+    width: auto;
 }
 
 .countries-table table thead tr>th,
 .countries-table table tr>td {
     color: #333;
     text-align: center;
+    width: 57%;
 }
 
 .countries-table table thead tr>th,
 .countries-table table tr>td {
-    padding: .85rem;
+    padding: 1rem;
 }
 
 .countries-table table tr>td {
-    font-size: .8rem;
-    width: 40%;
+    font-size: 1rem;
 }
 
 .countries-table table tr>td a {
-    color: #b31b00;
+    color: #c61e00;
     cursor: pointer;
     font-weight: 600;
     text-decoration: underline;

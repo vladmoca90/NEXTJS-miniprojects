@@ -1,6 +1,5 @@
 "use client";
 import "./styles/countries.css";
-import Link from "next/link";
 import { Country } from "../../data/countries/Country";
 import { useCallback, useEffect, useState } from "react";
 import CountriesListComponent from "./CountriesListComponent";
@@ -57,8 +56,8 @@ export default function CountriesList() {
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <th scope="col">Country name</th>
-                            <th scope="col">Country code</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Code</th>
                         </tr>
                     </thead>
                     <tbody>
