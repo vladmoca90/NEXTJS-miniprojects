@@ -8,11 +8,11 @@ export interface ProductProps {
     onCountUpdatedRemove: () => void;
 }
 
-export default function ProductListComponent(props: ProductProps) {
+export default function ProductListComponent() {
     const useProduct = useProductContext();
 
     const [counter, setCounter] = useState(0);
-    const { onCountUpdatedAdd, onCountUpdatedRemove } = props;
+    const { onCountUpdatedAdd, onCountUpdatedRemove } = useProduct;
 
     const addProduct = useCallback(() => {
         setCounter(c => c + 1);
