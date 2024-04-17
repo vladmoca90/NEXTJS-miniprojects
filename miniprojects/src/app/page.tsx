@@ -2,7 +2,7 @@
 import "./styles/cars.css";
 import { Car } from "../../data/cars/Car";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import CarContext from "./cars/carContext/CarContext";
+import { CarContext } from "./cars/carContext/CarContext";
 import CarListComponent from "./CarListComponent";
 
 export default function CarsShowroom() {

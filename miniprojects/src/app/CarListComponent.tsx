@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import useCarContext from "./cars/carContext/CarContext";
+import { useCarContext } from "./cars/carContext/CarContext";
 
 export default function CarListComponent() {
     const useCar = useCarContext();
