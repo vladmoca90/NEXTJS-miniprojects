@@ -4,7 +4,7 @@ import { Product } from "../../data/shop-products/Product";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import ShopProductComponent from "./ShopProductComponent";
 import BasketComponent from "./BasketComponent";
-import { ProductContext, useProductContext } from "./shop-product-context/shopContext/ProductContext";
+import { ProductContext } from "./shop-product-context/shopContext/ProductContext";
 
 export default function ShopList() {
     const shopUrl = "http://localhost:3000/api/shop-products";
@@ -12,7 +12,6 @@ export default function ShopList() {
     const [products, setProducts] = useState<Product[]>([]);
     const [query, setQuery] = useState("");
     const [productTotal, setProductTotal] = useState(0);
-    const shopContext = useProductContext();
 
     const getProducts = useCallback(async () => {
         const res = await fetch(shopUrl);
@@ -72,7 +71,7 @@ export default function ShopList() {
                 <BasketComponent total={productTotal} />
             </div>
             <div className="shop-list">
-                <ProductContext.Provider value={shopContext}>
+                <ProductContext.Provider value={}>
                     {
                         filteredProducts().map((shop, index) => {
                             return (

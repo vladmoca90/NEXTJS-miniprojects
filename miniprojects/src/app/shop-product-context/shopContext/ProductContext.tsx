@@ -3,11 +3,6 @@ import { Product } from "../../../../data/shop-products/Product";
 
 export const ProductContext = createContext<Product | undefined>(undefined);
 
-export interface ProductFunctions {
-    onCountUpdatedAdd: () => void;
-    onCountUpdatedRemove: () => void;
-}
-
 export function useProductContext() {
     const product = useContext(ProductContext);
 
