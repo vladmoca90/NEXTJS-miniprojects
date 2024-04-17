@@ -2,8 +2,8 @@
 import "./styles/wines.css";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { Wine } from "../../data/wines/Wine";
-import FilteredWinesComponent from "./FilteredWinesComponent";
 import { WineContext } from "./wines-dropdown/wineContext/WineContext";
+import FilteredWinesComponent from "./FilteredWinesComponent";
 
 export default function WinesSell() {
     const winesUrl = "http://localhost:3000/api/wines";
@@ -65,7 +65,7 @@ export default function WinesSell() {
             </div>
             <div>
                 <div className="products-container">
-                    <WineContext.Provider value={WineContext}>
+                    <WineContext.Provider value={wines}>
                         {
                             filteredWines().map((wine, index) => {
                                 return (
