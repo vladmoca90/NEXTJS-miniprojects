@@ -1,6 +1,6 @@
 "use client";
 import "./styles/wines.css";
-import { ChangeEvent, useCallback, useContext, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { Wine } from "../../data/wines/Wine";
 import FilteredWinesComponent from "./FilteredWinesComponent";
 import { WineContext } from "./wines-dropdown/wineContext/WineContext";
@@ -10,7 +10,6 @@ export default function WinesSell() {
 
     const [wines, setWines] = useState<Wine[]>([]);
     const [query, setQuery] = useState("");
-    const wineRepository = useContext(WineContext);
 
     const getWines = useCallback(async () => {
         const res = await fetch(winesUrl);
@@ -66,7 +65,7 @@ export default function WinesSell() {
             </div>
             <div>
                 <div className="products-container">
-                    <WineContext.Provider value={wineRepository}>
+                    <WineContext.Provider value={WineContext}>
                         {
                             filteredWines().map((wine, index) => {
                                 return (
