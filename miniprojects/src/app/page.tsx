@@ -4,6 +4,7 @@ import { Transaction } from "./../../data/transactions/Transaction";
 import { useCallback, useEffect, useState } from "react";
 import TransactionComponent from "./TransactionComponent";
 import SelectedTransactionComponent from "./SelectedTransactionComponent";
+import { TransactionContext, useTransactionContext } from "./transactions/transactionContext/TransactionContext";
 
 export default function Transactions() {
     let transactionsUrl = "http://localhost:3000/api/transactions";
@@ -41,13 +42,15 @@ export default function Transactions() {
         <div id="transaction-container">
             <div className="transactions-results">
                 <h3>Selected transaction</h3>
+                <TransactionContext.Provider value={useTransactionContext()}>
                 {
                     getTransactions.map((getTransaction, index) => {
                         return (
-                            <SelectedTransactionComponent getTransaction={getTransaction} key={index} />
+                            <SelectedTransactionComponent key={index} />
                         );
                     })
                 }
+                </TransactionContext.Provider>
             </div>
             <br />
             <div className="flex flex-col transactions-table">
