@@ -1,19 +1,17 @@
 "use client";
-import "./styles/cars.css";
-import { Car } from "../../data/cars/Car";
+import "./styles/wines.css";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { CarContext } from "./cars/carContext/CarContext";
-import CarListComponent from "./CarListComponent";
+import { Wine } from "../../data/wines/Wine";
+import FilteredWinesComponent from "../FilteredWinesComponent";
 
-export default function CarsShowroom() {
-    let carsUrl = "http://localhost:3000/api/cars";
+export default function WinesSell() {
+    const winesUrl = "http://localhost:3000/api/wines";
 
-    const [cars, setCars] = useState<Car[]>([]);
-    const [modelsFromMake, setModelsFromMake] = useState<Car[]>([]);
+    const [wines, setWines] = useState<Wine[]>([]);
     const [query, setQuery] = useState("");
 
-    const getCars = useCallback(async () => {
-        const res = await fetch(carsUrl);
+    const getWines = useCallback(async () => {
+        const res = await fetch(winesUrl);
 
         if (!res.ok) {
             throw new Error("The data is not valid!");
@@ -23,82 +21,58 @@ export default function CarsShowroom() {
 
         const data = await res.json();
 
-        setCars(data.body);
-    }, [carsUrl]);
+        setWines(data.body);
+    }, [winesUrl]);
 
-    const removeDuplicatedMakes = useCallback(() => {
-        let carsDictionary: { [make: string[number]]: any } = {};
-
-        for (let i = 0; i < cars.length; i++) {
-            if (carsDictionary[cars[i].make]) {
-                continue;
-            }
-            else {
-                carsDictionary[cars[i].make] = cars;
-            }
-        }
-
-        return Object.keys(carsDictionary);
-    }, [cars]);
-
-    const getSelectedMake = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
+    const getSelectedWine = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
-        const carModels = cars.filter((car) => value === car.make);
-
-        setModelsFromMake(carModels);
         setQuery(value);
-    }, [cars]);
+    }, []);
 
-    const filterMakes = useCallback(() => {
-        if (query === "make" || query.length === 0) {
-            return cars;
+    const filteredWines = useCallback(() => {
+        if (query === "All wines" || query.length === 0) {
+            return wines;
         } else {
-            return cars.filter(car => car.make.includes(query));
+            return wines.filter(wine => wine.name.includes(query));
         }
-    }, [cars, query]);
+    }, [query, wines]);
+
+    const onDeleteAWine = useCallback((deleteWine: Wine) => {
+        const chosenWine = wines.filter((wine) => deleteWine.name !== wine.name);
+
+        console.log(chosenWine);
+        setWines(chosenWine);
+    }, [wines]);
 
     useEffect(() => {
-        getCars();
-    }, [getCars]);
+        getWines();
+    }, [getWines]);
 
     return (
-        <div className="box">
-            <div className="showroom-search">
-                <form>
-                    <select id="carMake" title="carMake" onChange={getSelectedMake}
-                        className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
-                        <option value="make">-- Any Make --</option>
-                        {
-                            removeDuplicatedMakes().map((car, index) => {
-                                return (
-                                    <option value={car} key={index}>{car}</option>
-                                );
-                            })
-                        }
-                    </select>
-                    <select id="carModel" title="carModel" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
-                        <option value="model">-- Any Model --</option>
-                        {
-                            modelsFromMake.map((car, index) => {
-                                return (
-                                    <option value={car.model} key={index}>{car.model}</option>
-                                );
-                            })
-                        }
-                    </select>
-                </form>
+        <section className="box">
+            <div>
+                <select id="productsList" title="wines" onChange={getSelectedWine}>
+                    <option value="All wines">All wines</option>
+                    {
+                        wines.map((wine, index) => {
+                            return (
+                                <option key={index} value={wine.name}>{wine.name}</option>
+                            );
+                        })
+                    }
+                </select>
             </div>
-            <div id="showroom">
-                {
-                    filterMakes().map((car, index) => {
-                        return (
-                            <CarContext.Provider value={car} key={index}>
-                                <CarListComponent />
-                            </CarContext.Provider>
-                        );
-                    })
-                }
+            <div>
+                <div className="products-container">
+                    {
+                        filteredWines().map((wine, index) => {
+                            return (
+                                <FilteredWinesComponent wine={wine} key={index} onDeletedWine={() => onDeleteAWine(wine)} />
+                            );
+                        })
+                    }
+                </div>
             </div>
-        </div>
-    )
+        </section>
+    );
 }
