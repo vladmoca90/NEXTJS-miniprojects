@@ -2,7 +2,8 @@
 import "./styles/cars.css";
 import { Car } from "../../data/cars/Car";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import CarComponent from "./CarComponent";
+import CarContext from "./cars/carContext/CarContext";
+import CarListComponent from "./CarListComponent";
 
 export default function CarsShowroom() {
     let carsUrl = "http://localhost:3000/api/cars";
@@ -91,7 +92,9 @@ export default function CarsShowroom() {
                 {
                     filterMakes().map((car, index) => {
                         return (
-                            <CarComponent car={car} key={index} />
+                            <CarContext.Provider value={car} key={index}>
+                                <CarListComponent />
+                            </CarContext.Provider>
                         );
                     })
                 }
