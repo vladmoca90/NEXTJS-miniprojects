@@ -1,15 +1,10 @@
 "use client";
 import "./styles/shop-product.css";
 import { Product } from "../../data/shop-products/Product";
-import { ChangeEvent, Suspense, useCallback, useContext, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import ShopProductComponent from "./ShopProductComponent";
 import BasketComponent from "./BasketComponent";
-import { ProductContext } from "./shop-product-context/shopContext/ProductContext";
-
-// Remake the page with useContext().
-// Make it with Redux.
-// Add a clear basket button (all is made through context).
-// Hint - with useContext, you do not use props, you put the two calculations functions into the context.
+import { ProductContext, useProductContext } from "./shop-product-context/shopContext/ProductContext";
 
 export default function ShopList() {
     const shopUrl = "http://localhost:3000/api/shop-products";
@@ -17,6 +12,7 @@ export default function ShopList() {
     const [products, setProducts] = useState<Product[]>([]);
     const [query, setQuery] = useState("");
     const [productTotal, setProductTotal] = useState(0);
+    const shopContext = useProductContext();
 
     const getProducts = useCallback(async () => {
         const res = await fetch(shopUrl);
@@ -76,19 +72,17 @@ export default function ShopList() {
                 <BasketComponent total={productTotal} />
             </div>
             <div className="shop-list">
-
-                {
-                    filteredProducts().map((shop, index) => {
-                        return (
-                            <ProductContext.Provider key={index} value={shop}>
-                                <ShopProductComponent
+                <ProductContext.Provider value={shopContext}>
+                    {
+                        filteredProducts().map((shop, index) => {
+                            return (
+                                <ShopProductComponent key={index}
                                     onCountUpdatedAdd={addProductsToBasket}
                                     onCountUpdatedRemove={removeProductsFromBasket} />
-                            </ProductContext.Provider>
-                        );
-                    })
-                }
-
+                            );
+                        })
+                    }
+                </ProductContext.Provider>
             </div>
         </section>
     );
