@@ -1,18 +1,18 @@
 "use client";
-import "./styles/countries.css";
-import { Country } from "../../data/countries/Country";
-import { useCallback, useEffect, useState } from "react";
-import CountryListComponent from "./CountryListComponent";
-import { CountryContext } from "./countries/countriesContext/CountryContext";
+import "./styles/cars.css";
+import { Car } from "../../data/cars/Car";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import CarComponent from "./CarComponent";
 
-export default function CountriesList() {
-    const countriesUrl = "http://localhost:3000/api/countries";
+export default function CarsShowroom() {
+    let carsUrl = "http://localhost:3000/api/cars";
 
-    const [countries, setCountries] = useState<Country[]>([]);
+    const [cars, setCars] = useState<Car[]>([]);
+    const [modelsFromMake, setModelsFromMake] = useState<Car[]>([]);
     const [query, setQuery] = useState("");
 
-    const getCountries = useCallback(async () => {
-        const res = await fetch(countriesUrl);
+    const getCars = useCallback(async () => {
+        const res = await fetch(carsUrl);
 
         if (!res.ok) {
             throw new Error("The data is not valid!");
@@ -22,58 +22,80 @@ export default function CountriesList() {
 
         const data = await res.json();
 
-        setCountries(data.body);
-    }, [countriesUrl]);
+        setCars(data.body);
+    }, [carsUrl]);
 
-    const getSelectedCountry = useCallback(async (e: { target: { value: string; } }) => {
-        const value = e.target.value;
-        setQuery(value);
-    }, []);
+    const removeDuplicatedMakes = useCallback(() => {
+        let carsDictionary: { [make: string[number]]: any } = {};
 
-    const searchCountries = useCallback(() => {
-        if (query.length === 0) {
-            return countries;
-        } else {
-            return countries.filter(
-                country => country.name.toLowerCase().includes(query) ||
-                    country.name.toUpperCase().includes(query) ||
-                    country.code.toLowerCase().includes(query) ||
-                    country.code.toUpperCase().includes(query)
-            );
+        for (let i = 0; i < cars.length; i++) {
+            if (carsDictionary[cars[i].make]) {
+                continue;
+            }
+            else {
+                carsDictionary[cars[i].make] = cars;
+            }
         }
-    }, [countries, query]);
+
+        return Object.keys(carsDictionary);
+    }, [cars]);
+
+    const getSelectedMake = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
+        const value = e.target.value;
+        const carModels = cars.filter((car) => value === car.make);
+
+        setModelsFromMake(carModels);
+        setQuery(value);
+    }, [cars]);
+
+    const filterMakes = useCallback(() => {
+        if (query === "make" || query.length === 0) {
+            return cars;
+        } else {
+            return cars.filter(car => car.make.includes(query));
+        }
+    }, [cars, query]);
 
     useEffect(() => {
-        getCountries();
-    }, [getCountries, searchCountries]);
+        getCars();
+    }, [getCars]);
 
     return (
-        <div>
-            <div className="countries-search">
-                <label className="countries-search-title">Search countries:</label>
-                <input onChange={getSelectedCountry} value={query} className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
-            </div>
-            <div className="countries-table">
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Code</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+        <div className="box">
+            <div className="showroom-search">
+                <form>
+                    <select id="carMake" title="carMake" onChange={getSelectedMake}
+                        className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+                        <option value="make">-- Any Make --</option>
                         {
-                            searchCountries().map((country, index) => {
+                            removeDuplicatedMakes().map((car, index) => {
                                 return (
-                                    <CountryContext.Provider value={country} key={index}>
-                                        <CountryListComponent key={index} />
-                                    </CountryContext.Provider>
+                                    <option value={car} key={index}>{car}</option>
                                 );
                             })
                         }
-                    </tbody>
-                </table>
+                    </select>
+                    <select id="carModel" title="carModel" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+                        <option value="model">-- Any Model --</option>
+                        {
+                            modelsFromMake.map((car, index) => {
+                                return (
+                                    <option value={car.model} key={index}>{car.model}</option>
+                                );
+                            })
+                        }
+                    </select>
+                </form>
+            </div>
+            <div id="showroom">
+                {
+                    filterMakes().map((car, index) => {
+                        return (
+                            <CarComponent car={car} key={index} />
+                        );
+                    })
+                }
             </div>
         </div>
-    );
+    )
 }
