@@ -30,7 +30,7 @@ export default function ProductListComponent(props: ProductsProps) {
     return (
         <div className="shop-card">
             <div className="shop-image">
-                <Image width={300} height={300} src={useProduct.image} alt={useProduct.name} />
+                <Image width={300} height={300} src={useProduct.image} alt="Product image" />
             </div>
             <div className="shop-details">
                 <Link href={{
