@@ -3,11 +3,16 @@ import Link from "next/link";
 import { useCallback, useState } from "react";
 import { useProductContext } from "./shop-product-context/shopContext/ProductContext";
 
-export default function ProductListComponent() {
+export interface ProductsProps {
+    onCountUpdatedAdd: () => void;
+    onCountUpdatedRemove: () => void;
+}
+
+export default function ProductListComponent(props: ProductsProps) {
     const useProduct = useProductContext();
 
     const [counter, setCounter] = useState(0);
-    const { onCountUpdatedAdd, onCountUpdatedRemove } = useProduct;
+    const { onCountUpdatedAdd, onCountUpdatedRemove } = props;
 
     const addProduct = useCallback(() => {
         setCounter(c => c + 1);

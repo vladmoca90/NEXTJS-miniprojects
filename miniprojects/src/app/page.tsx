@@ -2,9 +2,9 @@
 import "./styles/shop-product.css";
 import { Product } from "../../data/shop-products/Product";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { ProductContext, useProductContext } from "./shop-product-context/shopContext/ProductContext";
 import ShopProductComponent from "./ShopProductComponent";
 import BasketComponent from "./BasketComponent";
-import { ProductContext } from "./shop-product-context/shopContext/ProductContext";
 
 export default function ShopList() {
     const shopUrl = "http://localhost:3000/api/shop-products";
@@ -71,11 +71,13 @@ export default function ShopList() {
                 <BasketComponent total={productTotal} />
             </div>
             <div className="shop-list">
-                <ProductContext.Provider value={products}>
+                <ProductContext.Provider value={useProductContext()}>
                     {
                         filteredProducts().map((product, index) => {
                             return (
-                                <ShopProductComponent key={index} />
+                                <ShopProductComponent key={index} 
+                                onCountUpdatedAdd={addProductsToBasket} 
+                                onCountUpdatedRemove={removeProductsFromBasket} />
                             );
                         })
                     }
