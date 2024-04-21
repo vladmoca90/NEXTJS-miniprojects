@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
+import { TransactionContext } from "./transactions/transactionContext/TransactionContext";
 import { Transaction } from "../../data/transactions/Transaction";
-import { useTransactionContext } from "./transactions/transactionContext/TransactionContext";
 
 export interface TransactionProps {
     transaction: Transaction;
@@ -11,26 +11,26 @@ export interface TransactionProps {
 
 const close = <FontAwesomeIcon icon={faXmark} />
 
-export default function TransactionComponent(props: TransactionProps) {
-    const useTransaction = useTransactionContext();
-    const { transaction, onSelectedTransaction } = props;
+export default function TransactionComponent() {
+    const { transaction, onSelectedTransaction } = useContext(TransactionContext);
+    //const { transaction, onSelectedTransaction } = props;
 
     const getSelectedTransaction = useCallback(() => {
         onSelectedTransaction(transaction);
     }, [onSelectedTransaction, transaction]);
 
     return (
-        <tr className="border-b dark:border-neutral-500" data-transaction={useTransaction.name}>
+        <tr className="border-b dark:border-neutral-500" data-transaction={transaction.name}>
             <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">
                 {
-                    new Date(useTransaction.date).toLocaleString([], {
+                    new Date(transaction.date).toLocaleString([], {
                         hour: "2-digit",
                         minute: "2-digit",
                     })
                 }
             </td>
-            <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">{useTransaction.name}</td>
-            <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">£{Math.abs(useTransaction.amount)}</td>
+            <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">{transaction.name}</td>
+            <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">£{Math.abs(transaction.amount)}</td>
         </tr>
     );
 }
