@@ -2,7 +2,6 @@
 import "./styles/wines.css";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { Wine } from "../../data/wines/Wine";
-import { WineContext } from "./wines-dropdown/wineContext/WineContext";
 import FilteredWinesComponent from "./FilteredWinesComponent";
 
 export default function WinesSell() {
@@ -65,15 +64,13 @@ export default function WinesSell() {
             </div>
             <div>
                 <div className="products-container">
-                    <WineContext.Provider value={wines}>
-                        {
-                            filteredWines().map((wine, index) => {
-                                return (
-                                    <FilteredWinesComponent wine={wine} key={index} onDeletedWine={() => onDeleteAWine(wine)} />
-                                );
-                            })
-                        }
-                    </WineContext.Provider>
+                    {
+                        filteredWines().map((wine, index) => {
+                            return (
+                                <FilteredWinesComponent wine={wine} key={index} onDeletedWine={() => onDeleteAWine(wine)} />
+                            );
+                        })
+                    }
                 </div>
             </div>
         </section>
