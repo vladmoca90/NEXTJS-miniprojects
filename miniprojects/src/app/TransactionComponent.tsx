@@ -2,15 +2,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useCallback } from "react";
 import { Transaction } from "../../data/transactions/Transaction";
+import { useTransactionContext } from "./transactions/transactionContext/TransactionContext";
 
 export interface TransactionProps {
-    transaction: Transaction;
     onSelectedTransaction: (transaction: Transaction) => void;
 }
 
 const close = <FontAwesomeIcon icon={faXmark} />
 
 export default function TransactionComponent(props: TransactionProps) {
+    const useTransaction = useTransactionContext();
     const { transaction, onSelectedTransaction } = props;
 
     const getSelectedTransaction = useCallback(() => {
@@ -18,17 +19,17 @@ export default function TransactionComponent(props: TransactionProps) {
     }, [onSelectedTransaction, transaction]);
 
     return (
-        <tr className="border-b dark:border-neutral-500" data-transaction={props.transaction.name}>
+        <tr className="border-b dark:border-neutral-500" data-transaction={useTransaction.name}>
             <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">
                 {
-                    new Date(props.transaction.date).toLocaleString([], {
+                    new Date(useTransaction.date).toLocaleString([], {
                         hour: "2-digit",
                         minute: "2-digit",
                     })
                 }
             </td>
-            <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">{props.transaction.name}</td>
-            <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">£{Math.abs(props.transaction.amount)}</td>
+            <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">{useTransaction.name}</td>
+            <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">£{Math.abs(useTransaction.amount)}</td>
         </tr>
     );
 }
