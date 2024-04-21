@@ -1,17 +1,9 @@
 "use client";
-import "./styles/shop.css";
+import "./styles/shop-product.css";
 import { Product } from "../../data/shop-products/Product";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import ShopProductComponent from "./ShopProductComponent";
 import BasketComponent from "./BasketComponent";
-
-// Remake the page with useContext().
-
-// Make it with Redux.
-
-// Add a clear basket button (all is made through context).
-
-// Hint - with useContext, you do not use props, you put the two calculations functions into the context.
 
 export default function ShopList() {
     const shopUrl = "http://localhost:3000/api/shop-products";
