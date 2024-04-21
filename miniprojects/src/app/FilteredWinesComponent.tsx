@@ -5,14 +5,14 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { Wine } from "../../data/wines/Wine";
 import { useCallback } from "react";
 
-export interface WineProps {
+export interface FilterWinesProps {
     wine: Wine;
     onDeletedWine: (wine: Wine) => void;
 }
 
 const close = <FontAwesomeIcon icon={faXmark} />
 
-export default function FilteredWinesComponent(props: WineProps) {
+export default function FilteredWinesComponent(props: FilterWinesProps) {
     const { wine, onDeletedWine } = props;
 
     const getDeletedWine = useCallback(() => {
