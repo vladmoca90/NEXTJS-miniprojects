@@ -1,18 +1,18 @@
 "use client";
-import "./styles/transactions.css";
-import { Transaction } from "./../../data/transactions/Transaction";
-import { useCallback, useEffect, useState } from "react";
-import TransactionComponent from "./TransactionComponent";
-import SelectedTransactionComponent from "./SelectedTransactionComponent";
+import "./styles/cars.css";
+import { Car } from "../../data/cars/Car";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import CarListComponent from "./CarListComponent";
 
-export default function Transactions() {
-    let transactionsUrl = "http://localhost:3000/api/transactions";
+export default function CarsShowroom() {
+    let carsUrl = "http://localhost:3000/api/cars";
 
-    const [transactions, setTransactions] = useState<Transaction[]>([]);
-    const [getTransactions, setGetTransactions] = useState<Transaction[]>([]);
+    const [cars, setCars] = useState<Car[]>([]);
+    const [modelsFromMake, setModelsFromMake] = useState<Car[]>([]);
+    const [query, setQuery] = useState("");
 
-    const getTransactionsData = useCallback(async () => {
-        const res = await fetch(transactionsUrl);
+    const getCars = useCallback(async () => {
+        const res = await fetch(carsUrl);
 
         if (!res.ok) {
             throw new Error("The data is not valid!");
@@ -22,62 +22,80 @@ export default function Transactions() {
 
         const data = await res.json();
 
-        setTransactions(data.body);
-    }, [transactionsUrl]);
+        setCars(data.body);
+    }, [carsUrl]);
 
-    const onSelectedTransaction = useCallback((clickedTransaction: Transaction) => {
-        const selectedTransaction = transactions.filter((transaction, index) => clickedTransaction.id - 1 === index);
+    const removeDuplicatedMakes = useCallback(() => {
+        let carsDictionary: { [make: string[number]]: any } = {};
 
-        setGetTransactions(selectedTransaction);
-    }, [transactions]);
+        for (let i = 0; i < cars.length; i++) {
+            if (carsDictionary[cars[i].make]) {
+                continue;
+            }
+            else {
+                carsDictionary[cars[i].make] = cars;
+            }
+        }
+
+        return Object.keys(carsDictionary);
+    }, [cars]);
+
+    const getSelectedMake = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
+        const value = e.target.value;
+        const carModels = cars.filter((car) => value === car.make);
+
+        setModelsFromMake(carModels);
+        setQuery(value);
+    }, [cars]);
+
+    const filterMakes = useCallback(() => {
+        if (query === "make" || query.length === 0) {
+            return cars;
+        } else {
+            return cars.filter(car => car.make.includes(query));
+        }
+    }, [cars, query]);
 
     useEffect(() => {
-        getTransactionsData();
-    }, [getTransactionsData]);
-
-    console.log(getTransactions);
+        getCars();
+    }, [getCars]);
 
     return (
-        <div id="transaction-container">
-            <div className="transactions-results">
-                <h3>Selected transaction</h3>
+        <div className="box">
+            <div className="showroom-search">
+                <form>
+                    <select id="carMake" title="carMake" onChange={getSelectedMake}
+                        className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+                        <option value="make">-- Any Make --</option>
+                        {
+                            removeDuplicatedMakes().map((car, index) => {
+                                return (
+                                    <option value={car} key={index}>{car}</option>
+                                );
+                            })
+                        }
+                    </select>
+                    <select id="carModel" title="carModel" className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+                        <option value="model">-- Any Model --</option>
+                        {
+                            modelsFromMake.map((car, index) => {
+                                return (
+                                    <option value={car.model} key={index}>{car.model}</option>
+                                );
+                            })
+                        }
+                    </select>
+                </form>
+            </div>
+            <div id="showroom">
                 {
-                    getTransactions.map((getTransaction, index) => {
+                    filterMakes().map((car, index) => {
                         return (
-                            <SelectedTransactionComponent getTransaction={getTransaction} key={index} />
+                            <CarListComponent car={car} key={index} />
                         );
                     })
                 }
             </div>
-            <br />
-            <div className="flex flex-col transactions-table">
-                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                        <div className="overflow-hidden">
-                            <table className="min-w-full text-left text-sm font-light">
-                                <thead className="border-b font-medium dark:border-neutral-500">
-                                    <tr>
-                                        <th scope="col" className="px-6 py-4">Date</th>
-                                        <th scope="col" className="px-6 py-4">Name</th>
-                                        <th scope="col" className="px-6 py-4">Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                        {
-                                            transactions.map((transaction, index) => (
-                                                <TransactionComponent
-                                                    transaction={transaction}
-                                                    key={index}
-                                                    onSelectedTransaction={() => onSelectedTransaction(transaction)}
-                                                />
-                                            ))
-                                        }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-    );
+    )
 }
