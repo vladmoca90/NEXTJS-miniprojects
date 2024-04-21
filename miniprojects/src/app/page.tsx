@@ -71,7 +71,7 @@ export default function ShopList() {
                 <BasketComponent total={productTotal} />
             </div>
             <div className="shop-list">
-                <ProductContext.Provider value={}>
+                <ProductContext.Provider value={shop}>
                     {
                         filteredProducts().map((shop, index) => {
                             return (
