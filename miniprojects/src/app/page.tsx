@@ -36,7 +36,7 @@ export default function ShopList() {
         if (query === "Any Product" || query.length === 0) {
             return products;
         } else {
-            return products.filter((shop) => query.includes(shop.name));
+            return products.filter((product) => query.includes(product.name));
         }
     }, [query, products]);
 
@@ -61,9 +61,9 @@ export default function ShopList() {
                     className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                     <option value="Any Product">Any Product</option>
                     {
-                        products.map((shop, index) => {
+                        products.map((product, index) => {
                             return (
-                                <option value={shop.name} key={index}>{shop.name}</option>
+                                <option value={product.name} key={index}>{product.name}</option>
                             );
                         })
                     }
@@ -71,9 +71,9 @@ export default function ShopList() {
                 <BasketComponent total={productTotal} />
             </div>
             <div className="shop-list">
-                <ProductContext.Provider value={shop}>
+                <ProductContext.Provider value={products}>
                     {
-                        filteredProducts().map((shop, index) => {
+                        filteredProducts().map((product, index) => {
                             return (
                                 <ShopProductComponent key={index} />
                             );
