@@ -1,5 +1,5 @@
 import { Transaction } from "../../data/transactions/Transaction";
-import { useTransactionContext } from "./transactions/transactionContext/TransactionContext";
+import { useTransactionContext } from "./transactions-context/transactionContext/TransactionContext";
 
 export interface SelectedTransactionProps {
     getTransaction: Transaction;
