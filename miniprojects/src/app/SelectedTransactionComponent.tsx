@@ -1,6 +1,11 @@
+import { Transaction } from "../../data/transactions/Transaction";
 import { useTransactionContext } from "./transactions/transactionContext/TransactionContext";
 
-export default function SelectedTransactionComponent() {
+export interface SelectedTransactionProps {
+    getTransaction: Transaction;
+}
+
+export default function SelectedTransactionComponent(props: SelectedTransactionProps) {
     const addTransaction = useTransactionContext();
 
     return (

@@ -5,6 +5,7 @@ import { Transaction } from "../../data/transactions/Transaction";
 import { useTransactionContext } from "./transactions/transactionContext/TransactionContext";
 
 export interface TransactionProps {
+    transaction: Transaction;
     onSelectedTransaction: (transaction: Transaction) => void;
 }
 

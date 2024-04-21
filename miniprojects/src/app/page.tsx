@@ -42,15 +42,13 @@ export default function Transactions() {
         <div id="transaction-container">
             <div className="transactions-results">
                 <h3>Selected transaction</h3>
-                <TransactionContext.Provider value={useTransactionContext()}>
                 {
                     getTransactions.map((getTransaction, index) => {
                         return (
-                            <SelectedTransactionComponent key={index} />
+                            <SelectedTransactionComponent getTransaction={getTransaction} key={index} />
                         );
                     })
                 }
-                </TransactionContext.Provider>
             </div>
             <br />
             <div className="flex flex-col transactions-table">
@@ -66,15 +64,17 @@ export default function Transactions() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {
-                                        transactions.map((transaction, index) => (
-                                            <TransactionComponent
-                                                transaction={transaction}
-                                                key={index}
-                                                onSelectedTransaction={() => onSelectedTransaction(transaction)}
-                                            />
-                                        ))
-                                    }
+                                    <TransactionContext.Provider value={useTransactionContext()}>
+                                        {
+                                            transactions.map((transaction, index) => (
+                                                <TransactionComponent
+                                                    transaction={transaction}
+                                                    key={index}
+                                                    onSelectedTransaction={() => onSelectedTransaction(transaction)}
+                                                />
+                                            ))
+                                        }
+                                    </TransactionContext.Provider>
                                 </tbody>
                             </table>
                         </div>
