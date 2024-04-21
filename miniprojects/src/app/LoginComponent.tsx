@@ -9,8 +9,11 @@ export default function LoginComponent() {
         <div id="loginContainer">
             <div>
                 <input type="text" placeholder="Username..." onChange={(event) => { setUsername(event.target.value); }} />
-                <input type="password" placeholder="Password..." />
-                <button className="login-btn">Login</button>
+                <input type="text" placeholder="Password..." />
+                <button className="login-btn"
+                    onClick={() => {
+                        setShowProfile(true);
+                    }}>Login</button>
             </div>
         </div>
     );
