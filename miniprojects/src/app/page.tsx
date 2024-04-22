@@ -65,7 +65,7 @@ export default function WinesSell() {
             </div>
             <div>
                 <div className="products-container">
-                    <WineContext.Provider value={wines}>
+                    <WineContext.Provider value={{wines, setWines}}>
                         {
                             filteredWines().map((wine, index) => {
                                 return (
