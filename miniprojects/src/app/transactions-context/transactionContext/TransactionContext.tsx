@@ -1,4 +1,11 @@
 import { createContext } from "react";
-import { Transaction } from "../../../../data/transactions/Transaction";
 
-export const TransactionContext = createContext<Transaction | undefined>(undefined);
+export interface TransactionRepository {
+    id?: number;
+    date?: string;
+    amount?: number;
+    name?: string;
+    category?: string;
+}
+
+export const TransactionContext = createContext<TransactionRepository>({});
