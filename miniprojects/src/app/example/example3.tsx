@@ -24,6 +24,7 @@ export const Child1 = () => {
 
 export const Child2 = () => {
   const { setUserName } = useContext(AppContext);
+
   return (
     <div>
       <button
@@ -39,6 +40,7 @@ export const Child2 = () => {
 
 export const Child3 = () => {
   const { count } = useContext(AppContext);
+  
   return <h1>{count}</h1>;
 };
 

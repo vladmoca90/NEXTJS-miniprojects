@@ -21,6 +21,7 @@ export const Child1 = () => {
 
 export const Child2 = () => {
   const { setUserName } = useContext(AppContext);
+  
   return (
     <div>
       <button
