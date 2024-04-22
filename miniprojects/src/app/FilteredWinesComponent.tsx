@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { Wine } from "../../data/wines/Wine";
 import { useCallback } from "react";
-import { useWineContext } from "./wineContext/WineContext";
+import { useWineContext } from "./wines-dropdown-context/wineContext/WineContext";
 
 export interface WineProps {
     wine: Wine;

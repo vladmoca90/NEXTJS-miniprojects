@@ -2,7 +2,7 @@
 import "./styles/wines.css";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { Wine } from "../../data/wines/Wine";
-import { WineContext } from "./wineContext/WineContext";
+import { WineContext } from "./wines-dropdown-context/wineContext/WineContext";
 import FilteredWinesComponent from "./FilteredWinesComponent";
 
 export default function WinesSell() {
