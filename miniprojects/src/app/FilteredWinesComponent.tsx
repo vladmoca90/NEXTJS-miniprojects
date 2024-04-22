@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { Wine } from "../../data/wines/Wine";
 import { useCallback } from "react";
-//import { useWineContext } from "./wines-dropdown-context/wineContext/WineContext";
 
 export interface WineProps {
     wine: Wine;
@@ -14,7 +13,6 @@ export interface WineProps {
 const close = <FontAwesomeIcon icon={faXmark} />
 
 export default function FilteredWinesComponent(props: WineProps) {
-    //const useWine = useWineContext();
     const { wine, onDeletedWine } = props;
 
     const getDeletedWine = useCallback(() => {
