@@ -3,7 +3,7 @@ import "./styles/login-username.css";
 import LoginComponent from "./LoginComponent";
 import ProfileComponent from "./ProfileComponent";
 import { useState } from "react";
-import { LoginContext } from "./login/loginContext/LoginContext";
+import { LoginContext } from "./login-profile/loginContext/LoginContext";
 
 export default function LoginProfile() {
     const [showProfile, setShowProfile] = useState(false);

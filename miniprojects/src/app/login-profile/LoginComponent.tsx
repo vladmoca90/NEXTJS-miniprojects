@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { LoginContext } from "./login/loginContext/LoginContext";
+import { LoginContext } from "./login-profile/loginContext/LoginContext";
 
 export default function LoginComponent() {
     const { setUsername, setShowProfile } = useContext(LoginContext);
