@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useCallback } from "react";
 import { Transaction } from "../../data/transactions/Transaction";
 
@@ -7,8 +5,6 @@ export interface TransactionProps {
     transaction: Transaction;
     onSelectedTransaction: (transaction: Transaction) => void;
 }
-
-const close = <FontAwesomeIcon icon={faXmark} />
 
 export default function TransactionComponent(props: TransactionProps) {
     const { transaction, onSelectedTransaction } = props;
