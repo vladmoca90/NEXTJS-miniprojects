@@ -5,7 +5,7 @@ import { createContext, useCallback, useEffect, useState } from "react";
 import TransactionComponent from "./TransactionComponent";
 import SelectedTransactionComponent from "./SelectedTransactionComponent";
 
-export const TransactionContext = createContext(null);
+export const TransactionContext = createContext(undefined);
 
 export default function Transactions() {
     let transactionsUrl = "http://localhost:3000/api/transactions";

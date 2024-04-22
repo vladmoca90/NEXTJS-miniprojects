@@ -1,8 +1,11 @@
-import { useContext } from "react";
-import { TransactionContext } from "./transactions-context/transactionContext/TransactionContext";
+import { Transaction } from "../../data/transactions/Transaction";
 
-export default function SelectedTransactionComponent() {
-    const { getTransactions, setGetTransactions } = useContext(TransactionContext);
+export interface SelectedTransactionProps {
+    getTransaction: Transaction;
+}
+
+export default function SelectedTransactionComponent(props: SelectedTransactionProps) {
+    const { getTransaction } = props;
 
     return (
         <div className="border-b font-medium dark:border-neutral-500">
@@ -18,14 +21,14 @@ export default function SelectedTransactionComponent() {
                     <tr className="border-b dark:border-neutral-500">
                         <td className="whitespace-nowrap px-6 py-6">
                             {
-                                new Date(getTransactions.date).toLocaleString([], {
+                                new Date(getTransaction.date).toLocaleString([], {
                                     hour: "2-digit",
                                     minute: "2-digit",
                                 })
                             }
                         </td>
-                        <td className="whitespace-nowrap px-6 py-6">{getTransactions.name}</td>
-                        <td className="whitespace-nowrap px-6 py-6">£{Math.abs(getTransactions.amount)}</td>
+                        <td className="whitespace-nowrap px-6 py-6">{getTransaction.name}</td>
+                        <td className="whitespace-nowrap px-6 py-6">£{Math.abs(getTransaction.amount)}</td>
                     </tr>
                 </tbody>
             </table>
