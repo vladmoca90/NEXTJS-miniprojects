@@ -4,7 +4,6 @@ import { Transaction } from "./../../data/transactions/Transaction";
 import { useCallback, useEffect, useState } from "react";
 import TransactionComponent from "./TransactionComponent";
 import SelectedTransactionComponent from "./SelectedTransactionComponent";
-import { TransactionContext } from "./transactions-context/transactionContext/TransactionContext";
 
 export default function Transactions() {
     let transactionsUrl = "http://localhost:3000/api/transactions";
@@ -30,7 +29,7 @@ export default function Transactions() {
         const selectedTransaction = transactions.filter((transaction, index) => clickedTransaction.id - 1 === index);
 
         setGetTransactions(selectedTransaction);
-    }, [setGetTransactions, transactions]);
+    }, [transactions]);
 
     useEffect(() => {
         getTransactionsData();
@@ -64,7 +63,6 @@ export default function Transactions() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <TransactionContext.Provider value={{ transactions, setTransactions}}>
                                         {
                                             transactions.map((transaction, index) => (
                                                 <TransactionComponent
@@ -74,7 +72,6 @@ export default function Transactions() {
                                                 />
                                             ))
                                         }
-                                    </ TransactionContext.Provider>
                                 </tbody>
                             </table>
                         </div>
