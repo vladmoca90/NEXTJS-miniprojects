@@ -5,8 +5,6 @@ import { createContext, useCallback, useEffect, useState } from "react";
 import TransactionComponent from "./TransactionComponent";
 import SelectedTransactionComponent from "./SelectedTransactionComponent";
 
-export const TransactionContext = createContext(undefined);
-
 export default function Transactions() {
     let transactionsUrl = "http://localhost:3000/api/transactions";
 
@@ -43,15 +41,13 @@ export default function Transactions() {
         <div id="transaction-container">
             <div className="transactions-results">
                 <h3>Selected transaction</h3>
-                <TransactionContext.Provider value={{getTransactions, setGetTransactions}}>
                 {
                     getTransactions.map((getTransaction, index) => {
                         return (
                             <SelectedTransactionComponent getTransaction={getTransaction} key={index} />
                         );
-                    })              
+                    })
                 }
-                </TransactionContext.Provider>
             </div>
             <br />
             <div className="flex flex-col transactions-table">
@@ -67,6 +63,7 @@ export default function Transactions() {
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <TransactionContext.Provider value={{ transactions, setTransactions }}>
                                         {
                                             transactions.map((transaction, index) => (
                                                 <TransactionComponent
@@ -76,6 +73,7 @@ export default function Transactions() {
                                                 />
                                             ))
                                         }
+                                    </ TransactionContext.Provider>
                                 </tbody>
                             </table>
                         </div>
