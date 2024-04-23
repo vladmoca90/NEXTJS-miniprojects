@@ -135,3 +135,13 @@ body {
     line-height: 1.7em;
     padding: 12px 15px 0;
 }
+
+.total-wines-context {
+    text-align: center;
+}
+
+.total-wines-context>p {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 1rem 0 0;
+}
