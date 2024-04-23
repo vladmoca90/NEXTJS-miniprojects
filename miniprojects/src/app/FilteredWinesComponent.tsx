@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { Wine } from "../../data/wines/Wine";
 import { useCallback } from "react";
+import FilteredWinesComponentTwo from "./FilteredWinesComponentTwo";
 
 export interface WineProps {
     wine: Wine;
@@ -36,6 +37,7 @@ export default function FilteredWinesComponent(props: WineProps) {
                     }
                 }}>Check details</Link>
             </div>
+            <FilteredWinesComponentTwo />
         </div>
     );
 }
