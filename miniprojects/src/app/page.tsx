@@ -1,18 +1,18 @@
 "use client";
-import "./styles/wines.css";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { Wine } from "../../data/wines/Wine";
-import { WineContext } from "./wines-dropdown-context/wineContext/WineContext";
-import FilteredWinesComponent from "./FilteredWinesComponent";
+import "./styles/transactions.css";
+import { Transaction } from "./../../data/transactions/Transaction";
+import { useCallback, useEffect, useState } from "react";
+import TransactionComponent from "./TransactionComponent";
+import SelectedTransactionComponent from "./SelectedTransactionComponent";
 
-export default function WinesSell() {
-    const winesUrl = "http://localhost:3000/api/wines";
+export default function Transactions() {
+    let transactionsUrl = "http://localhost:3000/api/transactions";
 
-    const [wines, setWines] = useState<Wine[]>([]);
-    const [query, setQuery] = useState("");
+    const [transactions, setTransactions] = useState<Transaction[]>([]);
+    const [getTransactions, setGetTransactions] = useState<Transaction[]>([]);
 
-    const getWines = useCallback(async () => {
-        const res = await fetch(winesUrl);
+    const getTransactionsData = useCallback(async () => {
+        const res = await fetch(transactionsUrl);
 
         if (!res.ok) {
             throw new Error("The data is not valid!");
@@ -22,60 +22,62 @@ export default function WinesSell() {
 
         const data = await res.json();
 
-        setWines(data.body);
-    }, [winesUrl]);
+        setTransactions(data.body);
+    }, [transactionsUrl]);
 
-    const getSelectedWine = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
-        const value = e.target.value;
-        setQuery(value);
-    }, []);
+    const onSelectedTransaction = useCallback((clickedTransaction: Transaction) => {
+        const selectedTransaction = transactions.filter((transaction, index) => clickedTransaction.id - 1 === index);
 
-    const filteredWines = useCallback(() => {
-        if (query === "All wines" || query.length === 0) {
-            return wines;
-        } else {
-            return wines.filter(wine => wine.name.includes(query));
-        }
-    }, [query, wines]);
-
-    const onDeleteAWine = useCallback((deleteWine: Wine) => {
-        const chosenWine = wines.filter((wine) => deleteWine.name !== wine.name);
-
-        console.log(chosenWine);
-        setWines(chosenWine);
-    }, [wines]);
+        setGetTransactions(selectedTransaction);
+    }, [transactions]);
 
     useEffect(() => {
-        getWines();
-    }, [getWines]);
+        getTransactionsData();
+    }, [getTransactionsData]);
+
+    console.log(getTransactions);
 
     return (
-        <section className="box">
-            <div>
-                <select id="productsList" title="wines" onChange={getSelectedWine}>
-                    <option value="All wines">All wines</option>
-                    {
-                        wines.map((wine, index) => {
-                            return (
-                                <option key={index} value={wine.name}>{wine.name}</option>
-                            );
-                        })
-                    }
-                </select>
+        <div id="transaction-container">
+            <div className="transactions-results">
+                <h3>Selected transaction</h3>
+                {
+                    getTransactions.map((getTransaction, index) => {
+                        return (
+                            <SelectedTransactionComponent getTransaction={getTransaction} key={index} />
+                        );
+                    })
+                }
             </div>
-            <div>
-                <div className="products-container">
-                    <WineContext.Provider value={{ wines, setWines }}>
-                        {
-                            filteredWines().map((wine, index) => {
-                                return (
-                                    <FilteredWinesComponent wine={wine} key={index} onDeletedWine={() => onDeleteAWine(wine)} />
-                                );
-                            })
-                        }
-                    </WineContext.Provider>
+            <br />
+            <div className="flex flex-col transactions-table">
+                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                        <div className="overflow-hidden">
+                            <table className="min-w-full text-left text-sm font-light">
+                                <thead className="border-b font-medium dark:border-neutral-500">
+                                    <tr>
+                                        <th scope="col" className="px-6 py-4">Date</th>
+                                        <th scope="col" className="px-6 py-4">Name</th>
+                                        <th scope="col" className="px-6 py-4">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        {
+                                            transactions.map((transaction, index) => (
+                                                <TransactionComponent
+                                                    transaction={transaction}
+                                                    key={index}
+                                                    onSelectedTransaction={() => onSelectedTransaction(transaction)}
+                                                />
+                                            ))
+                                        }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
     );
 }
