@@ -1,11 +1,9 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
-export interface TransactionRepository {
-    id?: number;
-    date?: string;
-    amount?: number;
-    name?: string;
-    category?: string;
+export const TransactionContext = createContext({});
+
+export function useTransactionContext() {
+    const transactionRepository = useContext(TransactionContext);
+
+    return transactionRepository;
 }
-
-export const TransactionContext = createContext<TransactionRepository>({});
