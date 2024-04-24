@@ -1,20 +1,14 @@
-import PersonComponent from "./PersonComponent";
-import { PersonContext } from "./PersonContext";
+"use client";
+import ProfileComponent from "./ProfileComponent";
+import { data, ProfileContext } from "./ProfileContext";
 
-export default function PersonProfile() {
-    const data = {
-        forename: "Johnathan",
-        surname: "McGovern",
-        age: 30,
-        nationality: "American",
-        occupation: "Content Design Producer"
-    }
+export default function ProfileProfile() {
 
     return (
-        <div id="PersonContent">
-            <PersonContext.Provider value={{ data }}>
-                <PersonComponent />
-            </PersonContext.Provider>
+        <div id="ProfileContent">
+            <ProfileContext.Provider value={data}>
+                <ProfileComponent />
+            </ProfileContext.Provider>
         </div>
     );
 }
