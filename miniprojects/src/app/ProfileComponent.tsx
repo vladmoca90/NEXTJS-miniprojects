@@ -1,3 +1,4 @@
+import "./styles/profile.css";
 import { useContext } from "react";
 import { ProfileContext } from "./person-profile/personProfileContext/ProfileContext";
 
