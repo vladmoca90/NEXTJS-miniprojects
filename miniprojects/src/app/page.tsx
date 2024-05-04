@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import ProfileComponent from "./ProfileComponent";
 import { data, ProfileContext } from "./person-profile/personProfileContext/ProfileContext";
 
@@ -7,11 +7,6 @@ import { data, ProfileContext } from "./person-profile/personProfileContext/Prof
 
 export default function ProfileProfile() {
     const [firstName, setFirstName] = useState(data.forename);
-
-    const getNewFirstName = useCallback(() => {
-        const value = data.forename.toUpperCase();
-        setFirstName(value);
-    }, []);
 
     return (
         <div id="ProfileContent">
