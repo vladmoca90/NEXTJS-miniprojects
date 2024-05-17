@@ -5,7 +5,7 @@ export const data = {
     surname: "McGovern",
     age: 33,
     nationality: "British",
-    occupation: "Senior Design Producer"
+    occupation: "Senior Design Producer",
 }
 
 export const ProfileContext = createContext(data);
