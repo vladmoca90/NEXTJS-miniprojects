@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { ProfileContext } from "./person-profile/personProfileContext/ProfileContext";
 
 export default function ProfileComponent() {
-    const profile = useContext(ProfileContext);
+    const [profile] = useContext(ProfileContext);
 
     return (
         <div className="profile-container">

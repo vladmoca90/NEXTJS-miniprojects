@@ -10,7 +10,7 @@ export default function ProfileProfile() {
 
     return (
         <div id="ProfileContent">
-            <ProfileContext.Provider value={data}>
+            <ProfileContext.Provider value={Profile}>
                 <ProfileComponent />
             </ProfileContext.Provider>
         </div>
