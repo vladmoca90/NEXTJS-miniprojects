@@ -1,17 +1,17 @@
 export interface profileData {
-    forename: string,
-    surname: string,
     age: number,
+    forename: string,
     nationality: string,
     occupation: string,
+    surname: string,
 }
 
 export const Profile: profileData[] = [
     {
-        forename: "Jack",
-        surname: "McGovern",
         age: 33,
+        forename: "Jack",
         nationality: "British",
         occupation: "Senior Design Producer",
+        surname: "McGovern",
     },
 ];
