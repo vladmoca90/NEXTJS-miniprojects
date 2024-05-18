@@ -2,7 +2,7 @@
 import "./styles/shop-product.css";
 import { Product } from "../../data/shop-products/Product";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { ProductContext, useProductContext } from "./shop-product-context/shopContext/ProductContext";
+import { ProductContext, useProductContext } from "./shop-product-context/productContext/ProductContext";
 import ShopProductComponent from "./ShopProductComponent";
 import BasketComponent from "./BasketComponent";
 
