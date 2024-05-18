@@ -75,9 +75,9 @@ export default function ShopList() {
                     {
                         filteredProducts().map((product, index) => {
                             return (
-                                <ShopProductComponent key={index} 
-                                onCountUpdatedAdd={addProductsToBasket} 
-                                onCountUpdatedRemove={removeProductsFromBasket} />
+                                <ShopProductComponent key={index}
+                                    onCountUpdatedAdd={addProductsToBasket}
+                                    onCountUpdatedRemove={removeProductsFromBasket} />
                             );
                         })
                     }
