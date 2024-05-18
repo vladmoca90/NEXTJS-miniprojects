@@ -9,7 +9,7 @@ export interface ProductsProps {
 }
 
 export default function ProductListComponent(props: ProductsProps) {
-    const useProduct = useProductContext();
+    const [useProduct] = useProductContext();
 
     const [counter, setCounter] = useState(0);
     const { onCountUpdatedAdd, onCountUpdatedRemove } = props;
