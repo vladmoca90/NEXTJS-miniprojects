@@ -2,8 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useState } from "react";
 import { UsedProductContext } from "./shop-product-context/productContext/ProductContext";
+import { Product } from "../../data/shop-products/Product";
 
 export interface ProductsProps {
+    product: Product;
     onCountUpdatedAdd: () => void;
     onCountUpdatedRemove: () => void;
 }
