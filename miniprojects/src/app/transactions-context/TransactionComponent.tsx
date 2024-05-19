@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useCallback } from "react";
 import { Transaction } from "../../data/transactions/Transaction";
+import { useTransactionContext } from "./transactions-context/transactionContext/TransactionContext";
 
 export interface TransactionProps {
     transaction: Transaction;
@@ -11,6 +12,7 @@ export interface TransactionProps {
 const close = <FontAwesomeIcon icon={faXmark} />
 
 export default function TransactionComponent(props: TransactionProps) {
+    const { usedTransaction } = useTransactionContext();
     const { transaction, onSelectedTransaction } = props;
 
     const getSelectedTransaction = useCallback(() => {
@@ -18,17 +20,17 @@ export default function TransactionComponent(props: TransactionProps) {
     }, [onSelectedTransaction, transaction]);
 
     return (
-        <tr className="border-b dark:border-neutral-500" data-transaction={transaction.name}>
+        <tr className="border-b dark:border-neutral-500" data-transaction={usedTransaction.name}>
             <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">
                 {
-                    new Date(transaction.date).toLocaleString([], {
+                    new Date(usedTransaction.date).toLocaleString([], {
                         hour: "2-digit",
                         minute: "2-digit",
                     })
                 }
             </td>
-            <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">{transaction.name}</td>
-            <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">£{Math.abs(transaction.amount)}</td>
+            <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">{usedTransaction.name}</td>
+            <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">£{Math.abs(usedTransaction.amount)}</td>
         </tr>
     );
 }

@@ -64,7 +64,7 @@ export default function Transactions() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <TransactionContext.Provider value={{ transactions, setTransactions, getTransactions, setGetTransactions }}>
+                                    <TransactionContext.Provider value={transactions}>
                                         {
                                             transactions.map((transaction, index) => (
                                                 <TransactionComponent
