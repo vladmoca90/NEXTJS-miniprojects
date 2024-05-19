@@ -3,12 +3,12 @@ import { Product } from "../../../../data/shop-products/Product";
 
 export const ProductContext = createContext<Product[]>([]);
 
-export function useProductContext() {
-    const product = useContext(ProductContext);
+export function UsedProductContext() {
+    const usedProduct = useContext(ProductContext);
 
-    if (product === undefined) {
+    if (usedProduct === undefined) {
         throw new Error("The product cannot be undefined!");
     }
 
-    return product;
+    return usedProduct;
 }

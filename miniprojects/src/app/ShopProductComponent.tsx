@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useState } from "react";
-import { useProductContext } from "./shop-product-context/productContext/ProductContext";
+import { UsedProductContext } from "./shop-product-context/productContext/ProductContext";
 
 export interface ProductsProps {
     onCountUpdatedAdd: () => void;
@@ -9,7 +9,7 @@ export interface ProductsProps {
 }
 
 export default function ProductListComponent(props: ProductsProps) {
-    const useProduct = useProductContext();
+    const useProduct = UsedProductContext();
 
     const [counter, setCounter] = useState(0);
     const { onCountUpdatedAdd, onCountUpdatedRemove } = props;
