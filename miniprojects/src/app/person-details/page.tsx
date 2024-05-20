@@ -1,6 +1,6 @@
 "use client";
-import "./../../app/styles/person-details.css";
-import { Person } from "../../../data/personDetails/person";
+import "./styles/person-details.css";
+import { Person } from "../../data/personDetails/person";
 import { useCallback, useEffect, useState } from "react";
 
 const personsUrl = "http://localhost:3000/api/person-details";
