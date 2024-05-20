@@ -6,7 +6,7 @@ export default function BtnComponent() {
 
     return (
         <button onClick={() => setSignIn(!signIn)}>
-            {signIn ? "Sign out" : "Sign in"}
+            {signIn ? "Signed in" : "Signed out"}
         </button>
     );
 }
