@@ -1,7 +1,7 @@
 "use client";
 import "./styles/sign-in-out.css";
 import { useState } from "react";
-import { SignContext } from "./sign-in-out-context/signContext/signContext";
+import { SignContext } from "./sign-in-out-context/signContext/SignContext";
 import NavComponent from "./NavComponent"
 
 export default function SignComponent() {
