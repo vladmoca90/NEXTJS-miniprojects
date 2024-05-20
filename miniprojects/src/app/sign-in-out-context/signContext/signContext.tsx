@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const signContext = createContext({});
+export const SignContext = createContext({});
