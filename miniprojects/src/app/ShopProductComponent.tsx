@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useState } from "react";
-import { UsedProductContext } from "./shop-product-context/productContext/ProductContext";
+import { useCallback, useContext, useState } from "react";
+import { ProductContext } from "./shop-product-context/productContext/ProductContext";
 import { Product } from "../../data/shop-products/Product";
 
 export interface ProductsProps {
@@ -11,7 +11,7 @@ export interface ProductsProps {
 }
 
 export default function ProductListComponent(props: ProductsProps) {
-    const [useProduct] = UsedProductContext();
+    const [useProduct] = useContext(ProductContext);
     const [counter, setCounter] = useState(0);
     const { onCountUpdatedAdd, onCountUpdatedRemove } = props;
 
