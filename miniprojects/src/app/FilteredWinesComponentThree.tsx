@@ -1,7 +1,8 @@
-import { useWineContext } from "./wines-dropdown-context/wineContext/WineContext";
+import { useContext } from "react";
+import { WineContext } from "./wines-dropdown-context/wineContext/WineContext";
 
 export default function FilteredWinesComponentThree() {
-    const { wines } = useWineContext();
+    const { wines } = useContext(WineContext);
 
     return (
         <div className="total-wines-context">

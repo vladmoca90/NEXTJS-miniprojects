@@ -1,14 +1,3 @@
-import { createContext, useContext } from "react";
-import { Wine } from "../../../../data/wines/Wine";
+import { createContext } from "react";
 
-export const WineContext = createContext<Wine[]>([]);
-
-export function UseWineContext() {
-    const wineRepository = useContext(WineContext);
-
-    if(wineRepository === undefined) {
-        throw new Error("The context cannot be undefined");
-    }
-
-    return wineRepository;
-}
+export const WineContext = createContext({});
