@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-export const TransactionContext = createContext({});
+export const TransactionContext = createContext([] as any);
 
 // export function useTransactionContext() {
 //     const transactionRepository = useContext(TransactionContext);

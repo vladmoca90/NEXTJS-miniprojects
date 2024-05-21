@@ -12,7 +12,7 @@ export interface TransactionProps {
 const close = <FontAwesomeIcon icon={faXmark} />
 
 export default function TransactionComponent(props: TransactionProps) {
-    const [ usedTransaction ] = useContext(TransactionContext);
+    const usedTransaction = useContext(TransactionContext);
     const { transaction, onSelectedTransaction } = props;
 
     const getSelectedTransaction = useCallback(() => {
