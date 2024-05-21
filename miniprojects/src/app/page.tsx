@@ -65,8 +65,8 @@ export default function WinesSell() {
             </div>
             <div>
                 <div className="products-container">
-                    <WineContext.Provider value={[wines, setWines]}>
-                        { 
+                    <WineContext.Provider value={{wines, setWines}}>
+                        {
                             filteredWines().map((wine, index) => {
                                 return (
                                     <FilteredWinesComponent wine={wine} key={index} onDeletedWine={() => onDeleteAWine(wine)} />
