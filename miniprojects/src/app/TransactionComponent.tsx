@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
 import { Transaction } from "../../data/transactions/Transaction";
-import { useTransactionContext } from "./transactions-context/transactionContext/TransactionContext";
+import { TransactionContext } from "./transactions-context/transactionContext/TransactionContext";
 
 export interface TransactionProps {
     transaction: Transaction;
@@ -12,7 +12,7 @@ export interface TransactionProps {
 const close = <FontAwesomeIcon icon={faXmark} />
 
 export default function TransactionComponent(props: TransactionProps) {
-    const { usedTransaction } = useTransactionContext();
+    const [ usedTransaction ] = useContext(TransactionContext);
     const { transaction, onSelectedTransaction } = props;
 
     const getSelectedTransaction = useCallback(() => {
