@@ -3,7 +3,7 @@ import "./styles/countries.css";
 import { Country } from "../../data/countries/Country";
 import { useCallback, useEffect, useState } from "react";
 import CountryListComponent from "./CountryListComponent";
-import { CountryContext } from "./countries/countriesContext/CountryContext";
+import { CountryContext } from "./countries/countryContext/CountryContext";
 
 export default function CountriesList() {
     const countriesUrl = "http://localhost:3000/api/countries";

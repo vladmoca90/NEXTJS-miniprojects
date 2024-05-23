@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useCountryContext } from "./countries/countriesContext/CountryContext";
+import { useCountryContext } from "./countries/countryContext/CountryContext";
 
 export default function CountriesListComponent() {
     const useCountry = useCountryContext();
