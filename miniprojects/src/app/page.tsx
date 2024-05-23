@@ -1,9 +1,8 @@
 "use client";
 import "./styles/food-list.css";
-import Image from "next/image";
-import Link from "next/link";
 import { Food } from "../../data/foodList/Food";
 import { useState, useCallback, useEffect } from "react";
+import FoodListComponent from "./FoodListComponent";
 
 export default function FoodList() {
     const foodsUrl = "http://localhost:3000/api/food-list";
@@ -153,24 +152,7 @@ export default function FoodList() {
                                         {
                                             filteredFood().map((food, index) => {
                                                 return (
-                                                    <tr key={index} className="border-r border-b dark:border-neutral-500 whitespace-nowrap px-6 py-4">
-                                                        <td className="food-image border-r border-r whitespace-nowrap px-6 py-4">
-                                                            <Image alt={food.name} className="product-img" width={90} height={90} src={"/images/foodList/" + food.img} />
-                                                        </td>
-                                                        <td className="food-name border-r border-r whitespace-nowrap px-6 py-4">{food.name}</td>
-                                                        <td className="food-price border-r border-r whitespace-nowrap px-6 py-4">{food.price}</td>
-                                                        <td className="food-unit border-r border-r whitespace-nowrap px-6 py-4">{food.unit}</td>
-                                                        <td className="food-quantity border-r whitespace-nowrap px-6 py-4">{food.quantity}</td>
-                                                        <td className="food-total-price border-r whitespace-nowrap px-6 py-4">{(food.price * food.quantity).toFixed(2)}</td>
-                                                        <td className="food-total-price border-r whitespace-nowrap px-6 py-4">
-                                                            <Link className="food-details" href={{
-                                                                pathname: "/food-name",
-                                                                query: {
-                                                                    "foodName": food.name
-                                                                }
-                                                            }}>Check details</Link>
-                                                        </td>
-                                                    </tr>
+                                                    <FoodListComponent food={food} key={index} />
                                                 );
                                             })
                                         }
