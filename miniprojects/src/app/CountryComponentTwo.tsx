@@ -8,7 +8,7 @@ export default function CountryComponentTwo() {
 
     return (
         <>
-            <span className="new-country">{newCountry.length}</span>
+            <span className="new-country">{newCountry[48].name}</span>
             <CountryComponentThree />
         </>
     );
