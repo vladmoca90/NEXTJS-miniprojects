@@ -38,11 +38,19 @@ body {
   color: #333;
 }
 
+.container-table tr>td {
+  font-weight: 400;
+}
+
 .container-table,
 .container-calculus {
   font-family: "Roboto", sans-serif;
   max-width: 1200px;
   margin: 2em auto;
+}
+
+.container-table thead {
+  background: #ddd;
 }
 
 img {
@@ -54,8 +62,9 @@ img {
   background: #a71900;
   border-radius: 6px;
   color: #fff;
-  font-weight: 600;
-  padding: .65em 1.15em;
+  font-weight: 500;
+  font-size: 15px;
+  padding: .55em 1em;
   text-transform: uppercase;
   transition: linear .5s all;
 }

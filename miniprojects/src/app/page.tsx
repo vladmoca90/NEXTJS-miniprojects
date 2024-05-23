@@ -164,7 +164,7 @@ export default function FoodList() {
                 </div>
                 <div className="container-calculus">
                     <table className="min-w-full border text-center text-sm font-medium">
-                        <thead className="border-b font-medium dark:border-neutral-500">
+                        <thead className="border-b font-medium">
                             <tr>
                                 <th scope="col" className="border-r px-6 py-4">Total amount to pay (&pound;)</th>
                                 <th scope="col" className="border-r px-6 py-4">Total number of items</th>
