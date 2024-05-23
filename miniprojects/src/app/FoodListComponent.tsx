@@ -3,11 +3,11 @@ import Link from "next/link";
 import { Food } from "../../data/foodList/Food";
 
 export interface FoodListProps {
-    food: Food,
+    food: Food
 }
 
 export default function FoodListComponent(props: FoodListProps) {
-    const {food} = props;
+    const { food } = props;
 
     return (
         <tr className="border-r border-b dark:border-neutral-500 whitespace-nowrap px-6 py-4">
