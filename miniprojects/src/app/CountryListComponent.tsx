@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Country } from "../../data/countries/Country";
+import CountryComponentTwo from "./CountryComponentTwo";
 
 export interface CountriesProps {
     country: Country;
@@ -19,6 +20,7 @@ export default function CountriesListComponent(props: CountriesProps) {
                 }}>{country.name}</Link>
             </td>
             <td>{country.code}</td>
+            <td><CountryComponentTwo /></td>
         </tr>
     );
 }

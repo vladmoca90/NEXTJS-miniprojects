@@ -23,7 +23,7 @@ body {
 
 .countries-table {
     margin: 2rem auto;
-    max-width: 480px;
+    max-width: 720px;
 }
 
 .countries-table table {
@@ -39,7 +39,7 @@ body {
 .countries-table table tr>td {
     color: #333;
     text-align: center;
-    width: 75%;
+    width: 33%;
 }
 
 .countries-table table thead tr>th,

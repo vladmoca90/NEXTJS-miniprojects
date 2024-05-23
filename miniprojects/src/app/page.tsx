@@ -59,6 +59,7 @@ export default function CountriesList() {
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Code</th>
+                            <th scope="col">Total countries</th>
                         </tr>
                     </thead>
                     <tbody>
