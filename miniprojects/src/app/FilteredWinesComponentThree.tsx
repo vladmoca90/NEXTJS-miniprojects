@@ -7,6 +7,8 @@ export default function FilteredWinesComponentThree() {
     return (
         <div className="total-wines-context">
             <p>Total number of wines is {wines.length}</p>
+            <p>{wines[2].name}</p>
+            <p>{wines[3].name}</p>
         </div>
     )
 }
