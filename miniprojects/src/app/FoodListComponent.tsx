@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Food } from "../../data/foodList/Food";
 
 export interface FoodListProps {
-    food: Food
+    food: Food;
 }
 
 export default function FoodListComponent(props: FoodListProps) {
