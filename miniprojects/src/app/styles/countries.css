@@ -60,3 +60,8 @@ body {
     font-weight: 600;
     text-decoration: underline;
 }
+
+.new-country {
+    display: block;
+    margin-bottom: .5rem;
+}
