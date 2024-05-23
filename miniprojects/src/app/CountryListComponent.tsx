@@ -1,8 +1,12 @@
 import Link from "next/link";
-import { useCountryContext } from "./countries/countryContext/CountryContext";
+import { Country } from "../../data/countries/Country";
 
-export default function CountriesListComponent() {
-    const useCountry = useCountryContext();
+export interface CountriesProps {
+    country: Country;
+}
+
+export default function CountriesListComponent(props: CountriesProps) {
+    const { country } = props;
 
     return (
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -10,11 +14,11 @@ export default function CountriesListComponent() {
                 <Link href={{
                     pathname: "/country-name",
                     query: {
-                        "countryName": useCountry.name,
+                        "countryName": country.name,
                     },
-                }}>{useCountry.name}</Link>
+                }}>{country.name}</Link>
             </td>
-            <td>{useCountry.code}</td>
+            <td>{country.code}</td>
         </tr>
     );
 }

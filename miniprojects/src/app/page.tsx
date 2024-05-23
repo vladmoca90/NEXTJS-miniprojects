@@ -62,15 +62,15 @@ export default function CountriesList() {
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                            searchCountries().map((country, index) => {
-                                return (
-                                    <CountryContext.Provider value={country} key={index}>
-                                        <CountryListComponent key={index} />
-                                    </CountryContext.Provider>
-                                );
-                            })
-                        }
+                        <CountryContext.Provider value={countries}>
+                            {
+                                searchCountries().map((country, index) => {
+                                    return (
+                                        <CountryListComponent country={country} key={index} />
+                                    );
+                                })
+                            }
+                        </CountryContext.Provider>
                     </tbody>
                 </table>
             </div>
