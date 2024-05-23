@@ -22,7 +22,7 @@ export const allCountries: Country[] = [
         code: "AS"
     },
     {
-        name: "AndorrA",
+        name: "Andorra",
         code: "AD"
     },
     {
@@ -198,11 +198,11 @@ export const allCountries: Country[] = [
         code: "KM"
     },
     {
-        name: "Congo",
+        name: "Congo (Brazzaville)",
         code: "CG"
     },
     {
-        name: "Congo, The Democratic Republic of the",
+        name: "Congo (Kinshasa)",
         code: "CD"
     },
     {
@@ -278,7 +278,7 @@ export const allCountries: Country[] = [
         code: "ET"
     },
     {
-        name: "Falkland Islands (Malvinas)",
+        name: "Falkland Islands",
         code: "FK"
     },
     {
@@ -410,7 +410,7 @@ export const allCountries: Country[] = [
         code: "ID"
     },
     {
-        name: "Iran, Islamic Republic Of",
+        name: "Iran",
         code: "IR"
     },
     {
@@ -462,11 +462,11 @@ export const allCountries: Country[] = [
         code: "KI"
     },
     {
-        name: "Korea, Democratic People's Republic of",
+        name: "Korea (North)",
         code: "KP"
     },
     {
-        name: "Korea, Republic of",
+        name: "Korea (South)",
         code: "KR"
     },
     {
@@ -478,7 +478,7 @@ export const allCountries: Country[] = [
         code: "KG"
     },
     {
-        name: "Lao People's Democratic Republic",
+        name: "Laos",
         code: "LA"
     },
     {
@@ -498,7 +498,7 @@ export const allCountries: Country[] = [
         code: "LR"
     },
     {
-        name: "Libyan Arab Jamahiriya",
+        name: "Libya",
         code: "LY"
     },
     {
@@ -570,11 +570,11 @@ export const allCountries: Country[] = [
         code: "MX"
     },
     {
-        name: "Micronesia, Federated States of",
+        name: "Micronesia",
         code: "FM"
     },
     {
-        name: "Moldova, Republic of",
+        name: "Moldova",
         code: "MD"
     },
     {
@@ -674,7 +674,7 @@ export const allCountries: Country[] = [
         code: "PW"
     },
     {
-        name: "Palestinian Territory",
+        name: "Palestinian Authority",
         code: "PS"
     },
     {
@@ -726,7 +726,7 @@ export const allCountries: Country[] = [
         code: "RO"
     },
     {
-        name: "Russian Federation",
+        name: "Russia",
         code: "RU"
     },
     {
@@ -850,7 +850,7 @@ export const allCountries: Country[] = [
         code: "SY"
     },
     {
-        name: "Taiwan, Province of China",
+        name: "Taiwan",
         code: "TW"
     },
     {
@@ -858,7 +858,7 @@ export const allCountries: Country[] = [
         code: "TJ"
     },
     {
-        name: "Tanzania, United Republic of",
+        name: "Tanzania",
         code: "TZ"
     },
     {
@@ -890,7 +890,7 @@ export const allCountries: Country[] = [
         code: "TN"
     },
     {
-        name: "Turkey",
+        name: "Turkiye",
         code: "TR"
     },
     {
@@ -926,10 +926,6 @@ export const allCountries: Country[] = [
         code: "US"
     },
     {
-        name: "United States Minor Outlying Islands",
-        code: "UM"
-    },
-    {
         name: "Uruguay",
         code: "UY"
     },
@@ -946,7 +942,7 @@ export const allCountries: Country[] = [
         code: "VE"
     },
     {
-        name: "Viet Nam",
+        name: "Vietnam",
         code: "VN"
     },
     {
