@@ -4,6 +4,7 @@ import { Car } from "../../data/cars/Car";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { CarContext } from "./cars-context/carContext/CarContext";
 import CarListComponent from "./CarListComponent";
+import CarListComponentTwo from "./CarListComponentTwo";
 
 export default function CarsShowroom() {
     let carsUrl = "http://localhost:3000/api/cars";
@@ -97,6 +98,7 @@ export default function CarsShowroom() {
                             );
                         })
                     }
+                    <CarListComponentTwo />
                 </CarContext.Provider>
             </div>
         </div>

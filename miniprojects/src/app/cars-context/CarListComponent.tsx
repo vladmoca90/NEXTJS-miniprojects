@@ -7,8 +7,6 @@ export interface CarProps {
 }
 
 export default function CarListComponent(props: CarProps) {
-    const { car } = props;
-
     return (
         <div className="car-container">
             <div className="car-header">
