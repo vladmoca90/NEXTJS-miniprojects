@@ -11,7 +11,6 @@ export default function Transactions() {
 
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [getTransactions, setGetTransactions] = useState<Transaction[]>([]);
-    const [deletedTransaction, setDeletedTransaction] = useState<Transaction[]>([]);
 
     const getTransactionsData = useCallback(async () => {
         const res = await fetch(transactionsUrl);
@@ -34,10 +33,10 @@ export default function Transactions() {
     }, [transactions]);
 
     const onDeletedTransaction = useCallback((removedTransaction: Transaction) => {
-        const deletedTransaction = transactions.filter((transaction) => removedTransaction.name !== transaction.name);
+        const chosenTransaction = transactions.filter((transaction) => removedTransaction.name !== transaction.name);
         
-        console.log(deletedTransaction);
-        setDeletedTransaction(deletedTransaction);
+        console.log(chosenTransaction);
+        setTransactions(chosenTransaction);
     }, [transactions]);
 
     useEffect(() => {

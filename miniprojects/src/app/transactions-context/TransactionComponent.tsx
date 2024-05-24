@@ -36,7 +36,7 @@ export default function TransactionComponent(props: TransactionProps) {
             <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">
                 £{Math.abs(transaction.amount)}
             </td>
-            <td><span onClick={getDeletedRow} className="close-btn">{close}</span></td>
+            <td onClick={getDeletedRow}><span className="close-btn">{close}</span></td>
         </tr>
     );
 }
