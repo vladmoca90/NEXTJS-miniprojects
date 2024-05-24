@@ -2,7 +2,7 @@
 import "./styles/cookie-buttons.css";
 import { useCallback } from "react";
 
-export default function ButtonMain() {
+export default function BtnCookieComponent() {
     const btnAddCookieUrl = "http://localhost:3000/api/cookies/buttons/add";
     const deletedCookieUrl = "http://localhost:3000/api/cookies/buttons/remove";
 

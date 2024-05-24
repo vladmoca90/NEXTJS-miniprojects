@@ -5,13 +5,14 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 // https://everythingcs.dev/blog/nextjs-set-get-delete-cookies-server-routes-app-router/#server-components
+
 // https://posthog.com/tutorials/react-cookie-banner 
 
 // router.push() - adds a new entry to the browser's history stack.
 // router.back() - navigates back to the previous route in the browser's history stack.
 // router.forward() - navigates forward to the next page in the browser's history stack.
 
-export default function ClientPage() {
+export default function ClientPageComponent() {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {

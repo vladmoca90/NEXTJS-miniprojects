@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useCallback, useState } from "react";
 
-export default function Banner() {
+export default function BannerCookieComponent() {
     const bannerUrl = "http://localhost:3000/api/cookies/banner";
 
     const [isOpened, setIsOpened] = useState(false);

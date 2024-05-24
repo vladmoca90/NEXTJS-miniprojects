@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 
-export default function Home() {
+export default function FormCookieComponent() {
     const handleLogin = async (formData: FormData) => {
         "use server"; // for Server Side components
         // "use client" at the top is for Client Components.
