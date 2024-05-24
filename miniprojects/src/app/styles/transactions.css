@@ -62,3 +62,7 @@ table tr {
     top: 24px;
     z-index: 120;
 }
+
+.close-row {
+    display: none;
+}
