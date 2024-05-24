@@ -89,7 +89,7 @@ export default function CarsShowroom() {
                 </form>
             </div>
             <div id="showroom">
-                <CarContext.Provider value={[cars, setCars]}>
+                <CarContext.Provider value={cars}>
                     {
                         filterMakes().map((car, index) => {
                             return (

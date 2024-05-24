@@ -1,7 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { CarContext } from "./cars-context/carContext/CarContext";
-import { useContext } from "react";
 import { Car } from "../../data/cars/Car";
 
 export interface CarProps {
@@ -9,18 +7,18 @@ export interface CarProps {
 }
 
 export default function CarListComponent(props: CarProps) {
-    const useCar = useContext(CarContext);
+    const { car } = props;
 
     return (
         <div className="car-container">
             <div className="car-header">
-                <h3 className="car-title">{useCar.make} <span>{useCar.model}</span></h3>
-                <p className="car-price">&pound;{useCar.price}
-                    <span className="car-monthly-price">from &pound;{(parseInt(useCar.price) / 12).toFixed(0)}/monthly</span>
+                <h3 className="car-title">{props.car.make} <span>{props.car.model}</span></h3>
+                <p className="car-price">&pound;{props.car.price}
+                    <span className="car-monthly-price">from &pound;{(parseInt(props.car.price) / 12).toFixed(0)}/monthly</span>
                 </p>
             </div>
             <div className="car-img-container">
-                <img alt={useCar.make} className="car-img" src={useCar.img} />
+                <img alt={props.car.make} className="car-img" src={props.car.img} />
             </div>
             <div className="showroom-buttons">
                 <Link href="#">Enquiry</Link>
@@ -29,7 +27,7 @@ export default function CarListComponent(props: CarProps) {
                 <Link href={{
                     pathname: "/car-details",
                     query: {
-                        "carModel": useCar.model,
+                        "carModel": props.car.model,
                     },
                 }}>Full details</Link>
             </div>
