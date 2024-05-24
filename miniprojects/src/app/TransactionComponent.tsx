@@ -1,8 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useCallback, useContext } from "react";
+import { useCallback } from "react";
 import { Transaction } from "../../data/transactions/Transaction";
-import { TransactionContext } from "./transactions-context/transactionContext/TransactionContext";
 
 export interface TransactionProps {
     transaction: Transaction;
@@ -12,7 +11,6 @@ export interface TransactionProps {
 const close = <FontAwesomeIcon icon={faXmark} />
 
 export default function TransactionComponent(props: TransactionProps) {
-    const usedTransaction = useContext(TransactionContext);
     const { transaction, onSelectedTransaction } = props;
 
     const getSelectedTransaction = useCallback(() => {
@@ -20,17 +18,17 @@ export default function TransactionComponent(props: TransactionProps) {
     }, [onSelectedTransaction, transaction]);
 
     return (
-        <tr className="border-b dark:border-neutral-500" data-transaction={usedTransaction.name}>
+        <tr className="border-b dark:border-neutral-500" data-transaction={transaction.name}>
             <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">
                 {
-                    new Date(usedTransaction.date).toLocaleString([], {
+                    new Date(transaction.date).toLocaleString([], {
                         hour: "2-digit",
                         minute: "2-digit",
                     })
                 }
             </td>
-            <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">{usedTransaction.name}</td>
-            <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">£{Math.abs(usedTransaction.amount)}</td>
+            <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">{transaction.name}</td>
+            <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">£{Math.abs(transaction.amount)}</td>
         </tr>
     );
 }
