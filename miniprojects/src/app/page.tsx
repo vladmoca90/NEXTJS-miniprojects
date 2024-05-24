@@ -2,7 +2,7 @@
 import "./styles/cars.css";
 import { Car } from "../../data/cars/Car";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { CarContext } from "./carContext/CarContext";
+import { CarContext } from "./cars-context/carContext/CarContext";
 import CarListComponent from "./CarListComponent";
 
 export default function CarsShowroom() {
@@ -89,15 +89,15 @@ export default function CarsShowroom() {
                 </form>
             </div>
             <div id="showroom">
-                {
-                    filterMakes().map((car, index) => {
-                        return (
-                            <CarContext.Provider value={car} key={index}>
-                                <CarListComponent />
-                            </CarContext.Provider>
-                        );
-                    })
-                }
+                <CarContext.Provider value={[cars, setCars]}>
+                    {
+                        filterMakes().map((car, index) => {
+                            return (
+                                <CarListComponent car={car} key={index} />
+                            );
+                        })
+                    }
+                </CarContext.Provider>
             </div>
         </div>
     )

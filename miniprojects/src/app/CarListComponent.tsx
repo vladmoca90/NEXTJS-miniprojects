@@ -1,9 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { useCarContext } from "./carContext/CarContext";
+import { CarContext } from "./cars-context/carContext/CarContext";
+import { useContext } from "react";
+import { Car } from "../../data/cars/Car";
 
-export default function CarListComponent() {
-    const useCar = useCarContext();
+export interface CarProps {
+    car: Car;
+}
+
+export default function CarListComponent(props: CarProps) {
+    const useCar = useContext(CarContext);
 
     return (
         <div className="car-container">
