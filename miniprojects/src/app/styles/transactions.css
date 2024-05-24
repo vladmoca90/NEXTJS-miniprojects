@@ -57,12 +57,4 @@ table tr {
 .close-btn {
     cursor: pointer;
     font-size: 16px;
-    position: absolute;
-    right: 13px;
-    top: 24px;
-    z-index: 120;
-}
-
-.close-row {
-    display: none;
 }
