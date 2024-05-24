@@ -29,6 +29,7 @@ export default function TransactionComponent(props: TransactionProps) {
             </td>
             <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">{transaction.name}</td>
             <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">£{Math.abs(transaction.amount)}</td>
+            <span className="close-btn">{close}</span>
         </tr>
     );
 }
