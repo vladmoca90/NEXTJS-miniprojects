@@ -6,21 +6,21 @@ import { Transaction } from "../../data/transactions/Transaction";
 export interface TransactionProps {
     transaction: Transaction;
     onSelectedTransaction: (transaction: Transaction) => void;
+    onDeletedTransaction: (transaction: Transaction) => void;
 }
 
 const close = <FontAwesomeIcon icon={faXmark} />
 
 export default function TransactionComponent(props: TransactionProps) {
-    const { transaction, onSelectedTransaction } = props;
-    const [deleteRow, setDeleteRow] = useState(false);
+    const { transaction, onSelectedTransaction, onDeletedTransaction } = props;
 
     const getSelectedTransaction = useCallback(() => {
         onSelectedTransaction(transaction);
     }, [onSelectedTransaction, transaction]);
 
-    const deleteTableRow = useCallback(() => {
-
-    }, []);
+    const getDeletedRow = useCallback(() => {
+        onDeletedTransaction(transaction);
+    }, [onDeletedTransaction, transaction]);
 
     return (
         <tr className="border-b dark:border-neutral-500" data-transaction={transaction.name}>
@@ -34,7 +34,7 @@ export default function TransactionComponent(props: TransactionProps) {
             </td>
             <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">{transaction.name}</td>
             <td onClick={getSelectedTransaction} className="whitespace-nowrap px-6 py-6">£{Math.abs(transaction.amount)}</td>
-            <span onClick={deleteTableRow} className="close-btn">{close}</span>
+            <span onClick={getDeletedRow} className="close-btn">{close}</span>
         </tr>
     );
 }

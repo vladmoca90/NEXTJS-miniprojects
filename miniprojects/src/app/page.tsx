@@ -11,6 +11,7 @@ export default function Transactions() {
 
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [getTransactions, setGetTransactions] = useState<Transaction[]>([]);
+    const [deletedTransaction, setDeletedTransaction] = useState<Transaction[]>([]);
 
     const getTransactionsData = useCallback(async () => {
         const res = await fetch(transactionsUrl);
@@ -30,6 +31,12 @@ export default function Transactions() {
         const selectedTransaction = transactions.filter((transaction, index) => clickedTransaction.id - 1 === index);
 
         setGetTransactions(selectedTransaction);
+    }, [transactions]);
+
+    const onDeletedTransaction = useCallback((removedTransaction: Transaction) => {
+        const deletedTransaction = transactions.filter((transaction, index) => removedTransaction.id === index);
+        
+        setDeletedTransaction(deletedTransaction);
     }, [transactions]);
 
     useEffect(() => {
@@ -71,6 +78,7 @@ export default function Transactions() {
                                                     transaction={transaction}
                                                     key={index}
                                                     onSelectedTransaction={() => onSelectedTransaction(transaction)}
+                                                    onDeletedTransaction={() => onDeletedTransaction(transaction)}
                                                 />
                                             ))
                                         }
