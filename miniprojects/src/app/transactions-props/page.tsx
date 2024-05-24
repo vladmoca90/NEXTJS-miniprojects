@@ -31,6 +31,13 @@ export default function Transactions() {
         setGetTransactions(selectedTransaction);
     }, [transactions]);
 
+    const onDeletedTransaction = useCallback((removedTransaction: Transaction) => {
+        const chosenTransaction = transactions.filter((transaction) => removedTransaction.name !== transaction.name);
+        
+        console.log(chosenTransaction);
+        setTransactions(chosenTransaction);
+    }, [transactions]);
+
     useEffect(() => {
         getTransactionsData();
     }, [getTransactionsData]);
@@ -60,6 +67,7 @@ export default function Transactions() {
                                         <th scope="col" className="px-6 py-4">Date</th>
                                         <th scope="col" className="px-6 py-4">Name</th>
                                         <th scope="col" className="px-6 py-4">Amount</th>
+                                        <th scope="col" className="px-6 py-4"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,6 +77,7 @@ export default function Transactions() {
                                                     transaction={transaction}
                                                     key={index}
                                                     onSelectedTransaction={() => onSelectedTransaction(transaction)}
+                                                    onDeletedTransaction={() => onDeletedTransaction(transaction)}
                                                 />
                                             ))
                                         }

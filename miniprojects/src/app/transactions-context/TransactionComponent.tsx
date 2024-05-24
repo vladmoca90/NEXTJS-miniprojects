@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { Transaction } from "../../data/transactions/Transaction";
 
 export interface TransactionProps {
