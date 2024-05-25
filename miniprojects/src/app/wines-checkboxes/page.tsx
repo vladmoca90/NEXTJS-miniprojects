@@ -4,7 +4,7 @@ import { Wine } from "../../data/wines/Wine";
 import { useCallback, useEffect, useState } from "react";
 import FilteredWinesComponent from "./FilteredWinesComponent";
 
-export default function WinesSell() {
+export default function WinesSellCheckboxes() {
     const winesUrl = "http://localhost:3000/api/wines";
 
     const [wines, setWines] = useState<Wine[]>([]);
