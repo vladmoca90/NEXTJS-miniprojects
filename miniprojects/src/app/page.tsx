@@ -1,4 +1,7 @@
+"use client";
+import { Provider } from "react-redux";
 import CounterComponent from "./CounterComponent";
+import { store } from "./counter-redux/state/store";
 
 interface CounterState {
     value: number;
@@ -15,8 +18,10 @@ const decrement = { type: "DECREMENT", payload: 1 };
 export default function CounterReduxComponent() {
     return (
         <div>
-            <h2>Redux Counter Tutorial</h2>
-            <CounterComponent />
+            <Provider store={store}>
+                <h2>Redux Counter Tutorial</h2>
+                <CounterComponent />
+            </Provider>
         </div>
     );
 }
