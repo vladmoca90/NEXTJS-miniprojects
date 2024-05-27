@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -17,6 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>{children}</body>
+      <Script src="https://unpkg.com/react@18/umd/react.production.min.js"></Script>
+      <Script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></Script>
     </html>
   )
 }
