@@ -21,6 +21,8 @@ const counterSlice = createSlice({
     },
 });
 
+export const { increment, decrement } = counterSlice.actions; // we will export the actions from the counterSlice({});
+
 export default counterSlice.reducer;
 
 // We get access to a reducer and export it.
