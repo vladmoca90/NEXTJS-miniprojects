@@ -4,7 +4,7 @@ import CounterComponent from "./CounterComponent";
 import { Provider } from "react-redux";
 import { store } from "./counter-redux/state/store";
 
-export default function CounterReduxComponent() {
+export default function CounterMainComponent() {
     return (
         <div className="main">
             <Provider store={store}>
