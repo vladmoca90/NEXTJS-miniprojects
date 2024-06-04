@@ -8,7 +8,7 @@ import ConverterComponent from "./ConverterComponent";
 
 export default function ConverterApp() {
     return (
-        <div id="app">
+        <div id="main">
             <ConverterComponent />
         </div>
     );

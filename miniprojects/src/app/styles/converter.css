@@ -2,10 +2,11 @@ body {
     background: #fff;
 }
 
-#app {
-    border: 1px solid #ccc;
+#main {
+    background: #ededed;
+    border: 1px solid #c0c0c0;
     margin: 2rem auto 0;
-    max-width: 320px;
+    max-width: 290px;
 }
 
 .converter-container {
@@ -30,5 +31,14 @@ body {
 .converter-description,
 .converter-field,
 .converter-result {
+    text-align: center;
+}
+
+.converter-description,
+.converter-field {
     width: 70px;
+}
+
+.converter-result {
+    width: 45px;
 }
