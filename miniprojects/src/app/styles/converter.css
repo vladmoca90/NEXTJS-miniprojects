@@ -1,0 +1,34 @@
+body {
+    background: #fff;
+}
+
+#app {
+    border: 1px solid #ccc;
+    margin: 2rem auto 0;
+    max-width: 320px;
+}
+
+.converter-container {
+    padding: 5px 10px;
+}
+
+.converter-container>div {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.converter-description {
+    font-size: 15px;
+}
+
+.converter-field {
+    padding: 2px 6px;
+}
+
+.converter-description,
+.converter-field,
+.converter-result {
+    width: 70px;
+}
