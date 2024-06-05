@@ -5,9 +5,14 @@ export default function ConverterComponent() {
     const [unitKg, setUnitKg] = useState("");
     const [unitLbs, setUnitLbs] = useState("");
     const [unitStones, setUnitStones] = useState("");
+    const [unitFeet, setUnitFeet] = useState("");
+    const [unitYards, setUnitYards] = useState("");
 
+    const grams = 1000;
     const pounds = 0.45359237;
     const stones = 0.15747;
+    const feet = 30.48;
+    const yards = 1.0936;
 
     const getCelsiusValue = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
         console.log(e.target.value);
@@ -43,7 +48,7 @@ export default function ConverterComponent() {
     }, [unitCelsius]);
 
     const convertKgToGrams = useCallback(() => {
-        let gramsValue = parseInt(unitKg) * 1000;
+        let gramsValue = parseInt(unitKg) * grams;
 
         if (unitKg.length === 0 || !unitKg) {
             return 0;
