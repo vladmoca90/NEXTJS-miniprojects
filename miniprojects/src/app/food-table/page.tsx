@@ -104,8 +104,7 @@ export default function FoodList() {
     }, [foods]);
 
     const getFilteredFood = useCallback(async (e: { target: { value: string } }) => {
-        const value = e.target.value;
-        setQuery(value);
+        setQuery(e.target.value);
     }, []);
 
     const filteredFood = useCallback(() => {

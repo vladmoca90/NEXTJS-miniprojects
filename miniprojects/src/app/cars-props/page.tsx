@@ -45,7 +45,7 @@ export default function CarsShowroom() {
         const carModels = cars.filter((car) => value === car.make);
 
         setModelsFromMake(carModels);
-        setQuery(value);
+        setQuery(e.target.value);
     }, [cars]);
 
     const filterMakes = useCallback(() => {

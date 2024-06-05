@@ -25,10 +25,7 @@ export default function WinesSellCheckboxes() {
     }, [winesUrl]);
 
     const getCheckedWine = useCallback((e: { target: { value: string } }) => {
-        const value = e.target.value;
-
-        console.log(value);
-        setCheckedWine(value);
+        setCheckedWine(e.target.value);
     }, []);
 
     const filterCheckedWine = useCallback(() => {

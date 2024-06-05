@@ -28,8 +28,7 @@ export default function ShopList() {
     }, []);
 
     const getSelectedProduct = useCallback(async (e: ChangeEvent<HTMLSelectElement>) => {
-        const value = e.target.value;
-        setQuery(value);
+        setQuery(e.target.value);
     }, []);
 
     const filteredProducts = useCallback(() => {

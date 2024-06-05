@@ -26,8 +26,7 @@ export default function CountriesList() {
     }, [countriesUrl]);
 
     const getSelectedCountry = useCallback(async (e: { target: { value: string; } }) => {
-        const value = e.target.value;
-        setQuery(value);
+        setQuery(e.target.value);
     }, []);
 
     const searchCountries = useCallback(() => {
