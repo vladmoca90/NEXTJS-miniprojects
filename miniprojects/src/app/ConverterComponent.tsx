@@ -2,10 +2,16 @@ import { ChangeEvent, useCallback, useState } from "react";
 
 export default function ConverterComponent() {
     const [unitCelsius, setUnitCelsius] = useState("");
+    const [unitKg, setUnitKg] = useState("");
 
     const getCelsiusValue = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
         console.log(e.target.value);
         setUnitCelsius(e.target.value);
+    }, []);
+
+    const getKgValue = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.value);
+        setUnitKg(e.target.value);
     }, []);
 
     const convertCelsiusToFehrenheit = useCallback(() => {
@@ -13,13 +19,24 @@ export default function ConverterComponent() {
 
         if (parseInt(unitCelsius) === 0) {
             return 32;
-        } else if (unitCelsius.length || !unitCelsius) {
+        } else if (unitCelsius.length === 0 || !unitCelsius) {
             return 0;
         }
         else {
             return fehrenheitValue;
         }
     }, [unitCelsius]);
+
+    const convertKgToGrams = useCallback(() => {
+        let gramsValue = parseInt(unitKg) * 1000;
+
+        if (unitKg.length === 0 || !unitKg) {
+            return 0;
+        }
+        else {
+            return gramsValue;
+        }
+    }, [unitKg]);
 
     return (
         <div className="converter-container">
@@ -33,8 +50,8 @@ export default function ConverterComponent() {
             </div>
             <div>
                 <label className="converter-description">kg to g</label>
-                <input type="text" className="converter-field" />
-                <span className="converter-result"></span>
+                <input onChange={getKgValue} type="text" className="converter-field" />
+                <span className="converter-result">{convertKgToGrams().toFixed(2)}</span>
                 <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-3 border border-gray-400 rounded shadow">
                     Button
                 </button>
