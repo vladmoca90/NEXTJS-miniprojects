@@ -6,7 +6,7 @@ export default function ConverterComponent() {
     const [unitLbs, setUnitLbs] = useState("");
     const [unitStones, setUnitStones] = useState("");
     const [unitFt, setUnitFt] = useState("");
-    const [unitYd, setUnitYs] = useState("");
+    const [unitYd, setUnitYd] = useState("");
 
     const grams = 1000;
     const pounds = 0.45359237;
