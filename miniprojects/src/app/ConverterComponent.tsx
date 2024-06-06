@@ -86,6 +86,30 @@ export default function ConverterComponent() {
         }
     }, [unitStones]);
 
+    const convertCmToFt = useCallback(() => {
+        let feetValue = parseInt(unitFt) / feet;
+
+        if (parseInt(unitFt) === 0) {
+            return 0;
+        } else if (unitFt.length === 0 || !unitFt) {
+            return 0;
+        } else {
+            return feetValue;
+        }
+    }, [unitFt]);
+
+    const convertMToYd = useCallback(() => {
+        const yardsValue = (parseInt(unitYd)) * yards;
+
+        if (parseInt(unitYd) === 0) {
+            return 0;
+        } else if (unitYd.length === 0 || !unitYd) {
+            return 0;
+        } else {
+            return yardsValue;
+        }
+    }, [unitYd]);
+
     return (
         <div className="converter-container">
             <div>
