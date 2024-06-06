@@ -5,8 +5,8 @@ export default function ConverterComponent() {
     const [unitKg, setUnitKg] = useState("");
     const [unitLbs, setUnitLbs] = useState("");
     const [unitStones, setUnitStones] = useState("");
-    const [unitFeet, setUnitFeet] = useState("");
-    const [unitYards, setUnitYards] = useState("");
+    const [unitFt, setUnitFt] = useState("");
+    const [unitYd, setUnitYs] = useState("");
 
     const grams = 1000;
     const pounds = 0.45359237;
@@ -15,23 +15,27 @@ export default function ConverterComponent() {
     const yards = 1.0936;
 
     const getCelsiusValue = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value);
         setUnitCelsius(e.target.value);
     }, []);
 
     const getKgValue = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value);
         setUnitKg(e.target.value);
     }, []);
 
     const getKgToLbsValue = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value);
         setUnitLbs(e.target.value);
     }, []);
 
     const getKgToStonesValue = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value);
         setUnitStones(e.target.value);
+    }, []);
+
+    const getFtValue = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
+        setUnitFt(e.target.value);
+    }, []);
+
+    const getYdValue = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
+        setUnitYd(e.target.value);
     }, []);
 
     const convertCelsiusToFehrenheit = useCallback(() => {
@@ -118,16 +122,16 @@ export default function ConverterComponent() {
             </div>
             <div>
                 <label className="converter-description">cm to ft</label>
-                <input type="text" className="converter-field" />
-                <span className="converter-result"></span>
+                <input onChange={getFtValue} type="text" className="converter-field" />
+                <span className="converter-result">{convertCmToFt().toFixed(2)}</span>
                 <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-3 border border-gray-400 rounded shadow">
                     Button
                 </button>
             </div>
             <div>
                 <label className="converter-description">m to yd</label>
-                <input type="text" className="converter-field" />
-                <span className="converter-result"></span>
+                <input onChange={getYdValue} type="text" className="converter-field" />
+                <span className="converter-result">{convertMToYd().toFixed(2)}</span>
                 <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-3 border border-gray-400 rounded shadow">
                     Button
                 </button>
