@@ -38,11 +38,14 @@ body {
     text-align: center;
 }
 
-.converter-description,
-.converter-field {
+.converter-description {
     width: 70px;
 }
 
+.converter-field {
+    width: 60px;
+}
+
 .converter-result {
-    width: 45px;
+    width: 50px;
 }
