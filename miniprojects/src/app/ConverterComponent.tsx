@@ -77,9 +77,7 @@ export default function ConverterComponent() {
     const convertKgToStones = useCallback(() => {
         let stonesValue = (parseInt(unitStones) * stones);
 
-        if (parseInt(unitStones) === 0) {
-            return 0;
-        } else if (unitStones.length === 0 || !unitStones) {
+        if (parseInt(unitStones) === 0 || unitStones.length === 0 || !unitStones) {
             return 0;
         } else {
             return stonesValue;
@@ -89,9 +87,7 @@ export default function ConverterComponent() {
     const convertCmToFt = useCallback(() => {
         let feetValue = parseInt(unitFt) / feet;
 
-        if (parseInt(unitFt) === 0) {
-            return 0;
-        } else if (unitFt.length === 0 || !unitFt) {
+        if (parseInt(unitFt) === 0 || unitFt.length === 0 || !unitFt) {
             return 0;
         } else {
             return feetValue;
@@ -101,9 +97,7 @@ export default function ConverterComponent() {
     const convertMToYd = useCallback(() => {
         const yardsValue = (parseInt(unitYd)) * yards;
 
-        if (parseInt(unitYd) === 0) {
-            return 0;
-        } else if (unitYd.length === 0 || !unitYd) {
+        if (parseInt(unitYd) === 0 || unitYd.length === 0 || !unitYd) {
             return 0;
         } else {
             return yardsValue;
