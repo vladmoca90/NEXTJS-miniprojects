@@ -39,7 +39,7 @@ export default function ConverterComponent() {
     }, []);
 
     const convertCelsiusToFehrenheit = useCallback(() => {
-        let fehrenheitValue = (parseInt(unitCelsius) * 1.8) + 32;
+        const fehrenheitValue = (parseInt(unitCelsius) * 1.8) + 32;
 
         if (parseInt(unitCelsius) === 0) {
             return 32;
@@ -52,7 +52,7 @@ export default function ConverterComponent() {
     }, [unitCelsius]);
 
     const convertKgToGrams = useCallback(() => {
-        let gramsValue = parseInt(unitKg) * grams;
+        const gramsValue = parseInt(unitKg) * grams;
 
         if (unitKg.length === 0 || !unitKg) {
             return 0;
@@ -63,7 +63,7 @@ export default function ConverterComponent() {
     }, [unitKg]);
 
     const convertKgToLbs = useCallback(() => {
-        let lbsValue = (parseInt(unitLbs) / pounds);
+        const lbsValue = (parseInt(unitLbs) / pounds);
 
         if (parseInt(unitLbs) === pounds) {
             return 1;
@@ -75,7 +75,7 @@ export default function ConverterComponent() {
     }, [unitLbs]);
 
     const convertKgToStones = useCallback(() => {
-        let stonesValue = (parseInt(unitStones) * stones);
+        const stonesValue = (parseInt(unitStones) * stones);
 
         if (parseInt(unitStones) === 0 || unitStones.length === 0 || !unitStones) {
             return 0;
@@ -85,7 +85,7 @@ export default function ConverterComponent() {
     }, [unitStones]);
 
     const convertCmToFt = useCallback(() => {
-        let feetValue = parseInt(unitFt) / feet;
+        const feetValue = parseInt(unitFt) / feet;
 
         if (parseInt(unitFt) === 0 || unitFt.length === 0 || !unitFt) {
             return 0;
