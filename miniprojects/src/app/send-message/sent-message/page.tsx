@@ -1,5 +1,4 @@
 "use client";
-import "./../styles/send-message.css";
 
 export default function MessageDetails({ searchParams }: {
     searchParams: {

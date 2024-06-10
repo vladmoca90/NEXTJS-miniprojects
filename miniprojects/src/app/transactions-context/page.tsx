@@ -2,8 +2,8 @@
 import "./styles/transactions.css";
 import { Transaction } from "./../../data/transactions/Transaction";
 import { useCallback, useEffect, useState } from "react";
-import TransactionComponent from "./TransactionComponent";
-import SelectedTransactionComponent from "./SelectedTransactionComponent";
+import TransactionComponent from "./transactions-context/TransactionComponent";
+import SelectedTransactionComponent from "./transactions-context/SelectedTransactionComponent";
 import { TransactionContext } from "./transactions-context/transactionContext/TransactionContext";
 
 export default function Transactions() {
