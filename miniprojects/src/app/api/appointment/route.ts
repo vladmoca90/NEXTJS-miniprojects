@@ -5,8 +5,7 @@ import { allAppointments } from "../../../../data/appointment/allAppointments";
 export async function POST(request: NextRequest) {
     const data = await request.json();
 
-    const retrieveAppointment = (forename: string, surname: string, password: string,
-        email: string, phone: string, workplace: string): Appointment | null => {
+    const retrieveAppointment = (forename: string, surname: string, password: string, email: string, phone: string, workplace: string): Appointment | null => {
         const appointment = allAppointments.find((appointment) =>
             appointment.forename === forename &&
             appointment.surname === surname &&
