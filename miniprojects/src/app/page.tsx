@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, createContext, useContext } from "react";
 
 const AppContext = createContext(null);
@@ -7,19 +8,19 @@ export const Parent = () => {
 
   return (
     <AppContext.Provider value={{ userName, setUserName }}>
-      <Child1 />
-      <Child2 />
+      <div>
+        {userName}
+        <Child />
+      </div>
     </AppContext.Provider>
   );
 };
 
-export const Child1 = () => {
-  const { userName } = useContext(AppContext);
-
-  return <h1> {userName} </h1>;
+export const Child = () => {
+  return <Grandchild />;
 };
 
-export const Child2 = () => {
+export const Grandchild = () => {
   const { setUserName } = useContext(AppContext);
   
   return (
