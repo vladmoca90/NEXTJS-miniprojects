@@ -10,7 +10,7 @@ export default function CounterComponent() {
         <div>
             <h3>{count}</h3>
             <div className="counter-block">
-                <button onClick={() => dispatch(incrementAsync(10))}>Increment</button>
+                <button onClick={() => dispatch(incrementAsync(1))}>Increment</button>
                 <button onClick={() => dispatch(decrement())}>Decrement</button>
             </div>
         </div>
