@@ -26,6 +26,8 @@ export default function CountriesList() {
     }, [getCountriesList]);
 
     return (
-        <CountriesListComponent country={country} />
+        countries.map((country, index) => {
+            <CountriesListComponent country={country} key={index} />
+        })
     );
 }

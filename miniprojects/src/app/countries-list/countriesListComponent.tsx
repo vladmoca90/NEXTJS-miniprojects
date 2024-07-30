@@ -5,9 +5,11 @@ export interface countriesListProps {
 }
 
 export function CountriesListComponent(props: countriesListProps) {
+    const { country } = props;
+
     return (
         <ul>
-            <li></li>
+            <li key={index}>{props.country.code}</li>
         </ul>
     )
 }
