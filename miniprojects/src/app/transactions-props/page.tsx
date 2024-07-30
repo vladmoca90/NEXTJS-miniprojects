@@ -33,7 +33,7 @@ export default function Transactions() {
 
     const onDeletedTransaction = useCallback((removedTransaction: Transaction) => {
         const chosenTransaction = transactions.filter((transaction) => removedTransaction.name !== transaction.name);
-        
+
         console.log(chosenTransaction);
         setTransactions(chosenTransaction);
     }, [transactions]);
@@ -71,16 +71,16 @@ export default function Transactions() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                        {
-                                            transactions.map((transaction, index) => (
-                                                <TransactionComponent
-                                                    transaction={transaction}
-                                                    key={index}
-                                                    onSelectedTransaction={() => onSelectedTransaction(transaction)}
-                                                    onDeletedTransaction={() => onDeletedTransaction(transaction)}
-                                                />
-                                            ))
-                                        }
+                                    {
+                                        transactions.map((transaction, index) => (
+                                            <TransactionComponent
+                                                transaction={transaction}
+                                                key={index}
+                                                onSelectedTransaction={() => onSelectedTransaction(transaction)}
+                                                onDeletedTransaction={() => onDeletedTransaction(transaction)}
+                                            />
+                                        ))
+                                    }
                                 </tbody>
                             </table>
                         </div>
