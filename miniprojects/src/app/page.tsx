@@ -11,13 +11,15 @@ export default function CountriesList() {
     const getCountriesList = useCallback(async () => {
         const res = await fetch(countriesListUrl);
 
-        if (!res) {
+        if (!res.ok) {
             throw new Error("The data is not valid!");
         } else {
-            console.log("The data is valid!")
+            console.log("The data is valid!");
         }
 
         const data = await res.json();
+
+        console.log(data);
 
         setCountries(data);
     }, []);
@@ -27,8 +29,14 @@ export default function CountriesList() {
     }, [getCountriesList]);
 
     return (
-        countries.map((country, index) => {
-            <CountriesListComponent country={country} key={index} />
-        })
-    );
+        <div>
+            {
+                countries.map((country, index) => {
+                    return (
+                        <CountriesListComponent country={country} key={index} />
+                    );
+                })
+            }
+        </div>
+    )
 }
