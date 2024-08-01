@@ -1,7 +1,7 @@
 import { Key } from "react";
 import { CountryNames } from "./countryNames";
 
-export interface CountryRow {
+export interface Country {
     index: Key | null | undefined;
     id: number;
     cca2: string;
