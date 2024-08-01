@@ -1,11 +1,12 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import CountriesListComponent from "../countries-table/CountryListComponent";
+import { CountriesListComponent } from "./countriesListComponent";
+import { Country } from "../../data/countriesList/countryList";
 
 export default function CountriesList() {
     const countriesListUrl = "https://restcountries.com/v3.1/all?fields=name,flags,languages,currencies,cca2,cca3";
 
-    const [countries, setCountries] = useState<[]>([]);
+    const [countries, setCountries] = useState<Country[]>([]);
 
     const getCountriesList = useCallback(async () => {
         const res = await fetch(countriesListUrl);
@@ -18,7 +19,7 @@ export default function CountriesList() {
 
         const data = await res.json();
 
-        setCountries(data.body);
+        setCountries(data);
     }, []);
 
     useEffect(() => {
