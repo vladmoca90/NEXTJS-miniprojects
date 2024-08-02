@@ -34,10 +34,10 @@ export default function CountriesList() {
             return countries;
         } else {
             return countries.filter(country => 
-                query.includes(country.name.common) ||
-                query.includes(country.name.official) ||
-                query.toLowerCase().includes(country.name.common) ||
-                query.toLowerCase().includes(country.name.official));
+                country.name.common.includes(query) ||
+                country.name.official.includes(query) ||
+                country.name.common.toLowerCase().includes(query) ||
+                country.name.official.toLowerCase().includes(query));
         }
     }, [countries, query]);
 
