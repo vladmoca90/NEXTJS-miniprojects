@@ -29,11 +29,15 @@ export default function CountriesList() {
         setQuery(e.target.value);
     }, []);
 
-    const getFilteredCountries = useCallback(async () => {
-        if(query.length === 0 || !query) {
+    const getFilteredCountries = useCallback(() => {
+        if (query.length === 0 || !query) {
             return countries;
         } else {
-            return countries.filter(country => query.includes(country.name.common) || query.includes(country.name.official));
+            return countries.filter(country => 
+                query.includes(country.name.common) ||
+                query.includes(country.name.official) ||
+                query.toLowerCase().includes(country.name.common) ||
+                query.toLowerCase().includes(country.name.official));
         }
     }, [countries, query]);
 
@@ -46,7 +50,7 @@ export default function CountriesList() {
             <input onChange={getSearchedCountry} value={query} type="text" placeholder="Search here..." />
             <div>
                 {
-                    countries.map((country, index) => {
+                    getFilteredCountries().map((country, index) => {
                         return (
                             <CountriesListComponent country={country} key={index} />
                         );
