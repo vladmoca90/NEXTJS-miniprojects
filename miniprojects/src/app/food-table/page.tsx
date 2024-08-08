@@ -3,7 +3,6 @@ import "./styles/food-list.css";
 import { Food } from "../../data/foodList/Food";
 import { useState, useCallback, useEffect } from "react";
 import FoodListComponent from "./FoodListComponent";
-import FoodCalculusComponent from "./FoodCalculusComponent";
 
 export default function FoodList() {
     const foodsUrl = "http://localhost:3000/api/food-list";
