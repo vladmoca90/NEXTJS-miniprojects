@@ -4,6 +4,6 @@ export interface FinancialProps {
 
 }
 
-export default function FinancialTimesComponent(props: FinancialProps) {
+export function FinancialTimesComponent(props: FinancialProps) {
     
 }
