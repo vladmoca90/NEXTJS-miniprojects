@@ -48,8 +48,8 @@ export default function CountriesList() {
 
     return (
         <div>
-            <input onChange={getSearchedCountry} value={query} type="text" placeholder="Search here..." />
-            <div>
+            <input onChange={getSearchedCountry} value={query} className="countries-search" type="text" placeholder="Search here..." />
+            <div className="main">
                 {
                     getFilteredCountries().map((country, index) => {
                         return (
