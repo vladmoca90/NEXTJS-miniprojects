@@ -34,7 +34,7 @@ export default function CountriesList() {
         if (query.length === 0 || !query) {
             return countries;
         } else {
-            return countries.filter(country => 
+            return countries.filter(country =>
                 country.name.common.includes(query) ||
                 country.name.official.includes(query) ||
                 country.name.common.toLowerCase().includes(query) ||
@@ -50,13 +50,21 @@ export default function CountriesList() {
         <div>
             <input onChange={getSearchedCountry} value={query} className="countries-search" type="text" placeholder="Search here..." />
             <div className="main">
-                {
-                    getFilteredCountries().map((country, index) => {
-                        return (
-                            <CountriesListComponent country={country} key={index} />
-                        );
-                    })
-                }
+                <ul className="countries-list">
+                    <li className="list-title">
+                        <span className="country-name">Name</span>
+                        <span className="country-name">Official name</span>
+                        <span className="country-img">Flag</span>
+                        <span className="country-description">Flag description</span>
+                    </li>
+                    {
+                        getFilteredCountries().map((country, index) => {
+                            return (
+                                <CountriesListComponent country={country} key={index} />
+                            );
+                        })
+                    }
+                </ul>
             </div>
         </div>
     )
