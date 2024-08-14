@@ -1,7 +1,7 @@
 "use client";
 import "./styles/countries-list.css";
 import { useCallback, useEffect, useState } from "react";
-import { CountriesListComponent } from "./countriesListComponent";
+import { CountriesRowComponent } from "./CountriesRowComponent";
 import { Country } from "../../data/countriesList/countryList";
 
 export default function CountriesList() {
@@ -60,7 +60,7 @@ export default function CountriesList() {
                     {
                         getFilteredCountries().map((country, index) => {
                             return (
-                                <CountriesListComponent country={country} key={index} />
+                                <CountriesRowComponent country={country} key={index} />
                             );
                         })
                     }
