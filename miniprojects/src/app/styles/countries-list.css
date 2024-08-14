@@ -22,12 +22,13 @@ body {
   flex-direction: column;
   justify-content: center;
   margin: 1.5rem auto;
+  padding: 5px;
   width: 300px;
 }
 
 .countries-search>label {
   display: inline-block;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
   margin: 0 auto .5rem;
   text-align: center;
@@ -36,7 +37,7 @@ body {
 
 .countries-list {
   align-items: center;
-  box-shadow: 0 2px 10px rgba(0, 67, 115, 0.2);
+  box-shadow: 0 2px 10px rgba(0, 67, 115, 0.35);
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
@@ -73,7 +74,7 @@ body {
 .countries-list>li {
   align-items: center;
   background: #f6f6f6;
-  border: .1rem solid #dcdcdc;
+  border: .1rem solid #c4c4c4;
   display: grid;
   list-style-type: none;
   margin: 0;

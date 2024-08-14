@@ -1,10 +1,10 @@
 import { Country } from "../../data/countriesList/countryList";
 
-export interface countriesListProps {
+export interface countriesRowProps {
     country: Country;
 }
 
-export function CountriesListComponent(props: countriesListProps) {
+export function CountriesRowComponent(props: countriesRowProps) {
     const { country } = props;
 
     return (
