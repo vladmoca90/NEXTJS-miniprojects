@@ -13,7 +13,7 @@ const initialState: PersonState = {
     persons: [],
 }
 
-export const personSlice = createSlice({
+export const PersonSlice = createSlice({
     name: "person",
     initialState,
     reducers: {
@@ -26,6 +26,6 @@ export const personSlice = createSlice({
     }
 });
 
-export default personSlice.reducer;
+export default PersonSlice.reducer;
 
-export const { addPerson } = personSlice.actions;
+export const { addPerson } = PersonSlice.actions;
