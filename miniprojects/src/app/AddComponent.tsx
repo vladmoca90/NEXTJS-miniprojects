@@ -1,7 +1,7 @@
 "use client";
 import { useRef } from "react";
-import { addPerson } from "./list-redux/store/features/personSlice";
-import { useAppDispatch } from "./list-redux/store/store";
+import { addPerson } from "./add-list-redux/store/features/personSlice";
+import { useAppDispatch } from "./add-list-redux/store/store";
 
 export const AddComponent = () => {
     const name = useRef<string>("");

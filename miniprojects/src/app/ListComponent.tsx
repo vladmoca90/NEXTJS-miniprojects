@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useAppSelector } from "./list-redux/store/store";
+import { useAppSelector } from "./add-list-redux/store/store";
 
 export const ListComponent = () => {
     const persons = useAppSelector((state) => state.person.persons);
