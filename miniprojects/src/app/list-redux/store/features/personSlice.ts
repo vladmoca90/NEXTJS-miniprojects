@@ -11,7 +11,7 @@ interface PersonState {
 
 const initialState: PersonState = {
     persons: [],
-}
+};
 
 export const PersonSlice = createSlice({
     name: "person",
@@ -21,11 +21,10 @@ export const PersonSlice = createSlice({
             state.persons.push({
                 id: state.persons.length,
                 name: action.payload.name,
-            })
+            });
         },
-    }
+    },
 });
 
 export default PersonSlice.reducer;
-
 export const { addPerson } = PersonSlice.actions;
