@@ -46,7 +46,6 @@ export const incrementAsync = createAsyncThunk(
 );
 
 export const { increment, decrement, incrementByAmount } = counterSlice.actions; // we will export the actions from the counterSlice({});
-
 export default counterSlice.reducer;
 
 // We get access to a reducer and export it.
