@@ -1,4 +1,5 @@
 "use client";
+import "./../styles/financial-times.css";
 import { FinancialTimesComponent } from "./FinancialTimesComponent";
 
 export default function FinancialTimesMain() {
