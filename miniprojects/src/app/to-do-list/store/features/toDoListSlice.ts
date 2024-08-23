@@ -15,3 +15,5 @@ const listItemSlice = createSlice({
 
     }
 });
+
+export default listItemSlice.reducer;
