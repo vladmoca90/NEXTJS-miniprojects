@@ -2,9 +2,6 @@ import { cookies } from "next/headers";
 
 export default function FormCookieComponent() {
     const handleLogin = async (formData: FormData) => {
-        "use server"; // for Server Side components
-        // "use client" at the top is for Client Components.
-
         const email = String(formData.get("email"));
         const password = String(formData.get("password"));
 
@@ -17,12 +14,6 @@ export default function FormCookieComponent() {
             httpOnly: true,
         });
     };
-
-    // const fetchUserInfo = async () => {
-    //     const authToken = cookies().get("token")?.value;
-
-    //     //perform further action
-    // };
 
     return (
         <main className="flex mx-3 flex-col items-center justify-center">
