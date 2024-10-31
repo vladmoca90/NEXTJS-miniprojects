@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import { CountriesRowComponent } from "./CountriesRowComponent";
 import { Country } from "../../data/countriesList/countryList";
 
+// https://restcountries.com/
+
 export default function CountriesList() {
     const countriesListUrl = "https://restcountries.com/v3.1/all?fields=name,flags,languages,currencies,cca2,cca3";
 
