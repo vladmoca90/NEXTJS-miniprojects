@@ -1,13 +1,15 @@
 "use client";
 
-export default function MessageDetails({ searchParams }: {
+interface MessageDetailsProps {
     searchParams: {
-        "messageText": string
-    }
-}) {
+        messageText?: string; // Make it optional
+    };
+}
+
+export default function MessageDetails({ searchParams }: MessageDetailsProps) {
     return (
-        <div id="sentMessage">
-            <p>{searchParams.messageText}</p>
+        <div id="sentMessage" aria-live="polite">
+            <p>{searchParams.messageText || "No message provided."}</p> {/* Fallback message */}
         </div>
     );
 }
