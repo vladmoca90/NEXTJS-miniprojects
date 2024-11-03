@@ -38,6 +38,7 @@ table td {
 
 table td {
     cursor: pointer;
+    font-size: .9rem;
 }
 
 table tr {
