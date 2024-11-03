@@ -28,7 +28,7 @@ export default function FoodListComponent({ food }: FoodListProps) {
             <td className="whitespace-nowrap px-6 py-4">
                 <Link 
                     className="food-details" 
-                    href={{ pathname: "/food-name", query: { foodName: food.name } }}
+                    href={{ pathname: "/food-table/food-name", query: { foodName: food.name } }}
                 >
                     Check details
                 </Link>
