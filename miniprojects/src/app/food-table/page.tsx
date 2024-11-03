@@ -14,6 +14,7 @@ export default function FoodList() {
 
     const getFoods = useCallback(async () => {
         setLoading(true); // Set loading state to true
+        
         try {
             const res = await fetch(foodsUrl);
             if (!res.ok) {
