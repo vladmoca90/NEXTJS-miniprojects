@@ -1,7 +1,7 @@
 "use client";
 import "./styles/food-list.css";
-import { Food } from "../../data/foodList/Food";
-import { useState, useCallback, useEffect } from "react";
+import { Food } from "../../data/foodList/Food"; // Ensure Food is correctly defined
+import { useState, useCallback, useEffect, useMemo } from "react";
 import FoodListComponent from "./FoodListComponent";
 
 export default function FoodList() {
@@ -9,126 +9,107 @@ export default function FoodList() {
 
     const [foods, setFoods] = useState<Food[]>([]);
     const [query, setQuery] = useState("");
+    const [loading, setLoading] = useState(true); // Track loading state
+    const [error, setError] = useState<string | null>(null); // Track error state
 
     const getFoods = useCallback(async () => {
-        const res = await fetch(foodsUrl);
+        setLoading(true); // Set loading state to true
+        try {
+            const res = await fetch(foodsUrl);
+            if (!res.ok) {
+                throw new Error("The data is not valid!");
+            }
 
-        if (!res.ok) {
-            throw new Error("The data is not valid!");
-        } else {
-            console.log("The data is valid!");
+            const data = await res.json();
+            setFoods(data.body || []); // Safeguard against undefined
+        } catch (error) {
+            console.error("Error fetching foods:", error);
+            setError("Failed to fetch food data."); // Set error message
+        } finally {
+            setLoading(false); // Set loading state to false
         }
-
-        const data = await res.json();
-
-        setFoods(data.body);
     }, [foodsUrl]);
 
-    //A function that calculates the total price
-    const calculateTotalPrice = useCallback(() => {
-        let sum = 0;
+    // Function that calculates the total price
+    const calculateTotalPrice = () => {
+        return foods.reduce((sum, food) => sum + food.price * food.quantity, 0);
+    };
 
-        for (let i in foods) {
-            sum += (foods[i].price) * (foods[i].quantity);
-        }
+    // Function that calculates the average price of all items combined
+    const calculateAveragePrice = () => {
+        if (foods.length === 0) return 0;
+        const total = calculateTotalPrice();
+        return total / foods.length;
+    };
 
-        return sum;
-    }, [foods]);
+    // Function that returns the highest price of an item
+    const getMostExpensiveItem = () => {
+        return Math.max(...foods.map(food => food.price), 0);
+    };
 
-    //A function that calculates the average price of all items combined
-    const calculateAveragePrice = useCallback(() => {
-        let average = 0;
+    // Function that returns the smallest price of an item
+    const getCheapestItem = () => {
+        return Math.min(...foods.map(food => food.price), Infinity);
+    };
 
-        for (let i in foods) {
-            average += (foods[i].price * foods[i].quantity) / (foods.length);
-        }
-
-        return average;
-    }, [foods]);
-
-    //A function that returns the highest price of an item
-    const getMostExpensiveItem = useCallback(() => {
-        let expensive = 0;
-
-        for (let i in foods) {
-            if (foods[i].price > expensive) {
-                expensive = foods[i].price;
-            }
-        }
-
-        return expensive;
-    }, [foods]);
-
-    // A function that returns the smallest price of an item
-    const getCheapestItem = useCallback(() => {
-        const mostExpensive = getMostExpensiveItem();
-        let cheapest = mostExpensive;
-
-        for (let i in foods) {
-            if (foods[i].price < cheapest) {
-                cheapest = foods[i].price;
-            }
-        }
-
-        return cheapest;
-    }, [foods, getMostExpensiveItem]);
-
-    // A function the returns the most common unit of measurement
-    const getMostCommonUnit = useCallback(() => {
-        let unitCount: { [unit: string]: number } = {};
+    // Function that returns the most common unit of measurement
+    const getMostCommonUnit = () => {
+        const unitCount: { [unit: string]: number } = {};
         let maxUnit: string | undefined;
-        let maxCount: number | undefined;
+        let maxCount = 0;
 
-        for (let food of foods) {
-            if (unitCount[food.unit]) {
-                unitCount[food.unit] += 1;
-            } else {
-                unitCount[food.unit] = 1;
-            }
-        }
+        foods.forEach(food => {
+            unitCount[food.unit] = (unitCount[food.unit] || 0) + 1;
+        });
 
         for (const [unit, count] of Object.entries(unitCount)) {
-            if (!maxCount) {
+            if (count > maxCount) {
                 maxCount = count;
                 maxUnit = unit;
-            } else {
-                if (count > maxCount) {
-                    maxCount = count;
-                    maxUnit = unit;
-                }
             }
         }
 
         return maxUnit;
-    }, [foods]);
+    };
 
-    const getFilteredFood = useCallback(async (e: { target: { value: string } }) => {
-        setQuery(e.target.value);
-    }, []);
+    const getFilteredFood = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setQuery(e.target.value.toLowerCase()); // Lowercase for easier comparison
+    };
 
-    const filteredFood = useCallback(() => {
-        if (query.length === 0) {
+    const filteredFood = useMemo(() => {
+        if (!query) {
             return foods;
-        } else {
-            return foods.filter(foods =>
-                foods.name.toLowerCase().includes(query) ||
-                foods.name.toUpperCase().includes(query) ||
-                foods.unit.toLowerCase().includes(query) ||
-                foods.unit.toUpperCase().includes(query) ||
-                foods.price.toString().toLowerCase().includes(query) ||
-                foods.quantity.toString().toUpperCase().includes(query));
         }
-    }, [foods, query]);
+        return foods.filter(food => {
+            return (
+                food.name.toLowerCase().includes(query) ||
+                food.unit.toLowerCase().includes(query) ||
+                food.price.toString().includes(query) ||
+                food.quantity.toString().includes(query)
+            );
+        });
+    }, [query, foods]);
 
     useEffect(() => {
         getFoods();
     }, [getFoods]);
 
+    if (loading) return <div>Loading...</div>; // Show loading state
+    if (error) return <div>{error}</div>; // Show error state
+
     return (
         <main className="main">
             <div id="foodSearch">
                 <label className="food-search-title">Search food:</label>
-                <input onChange={getFilteredFood} value={query} className="food-search-bar" title="search" name="search" type="text" placeholder="Search food..." />
+                <input 
+                    onChange={getFilteredFood} 
+                    value={query} 
+                    className="food-search-bar" 
+                    title="search" 
+                    name="search" 
+                    type="text" 
+                    placeholder="Search food..." 
+                />
             </div>
             <div className="container-table">
                 <div className="flex flex-col">
@@ -149,9 +130,9 @@ export default function FoodList() {
                                     </thead>
                                     <tbody>
                                         {
-                                            filteredFood().map((food, index) => {
+                                            filteredFood.map((food) => {
                                                 return (
-                                                    <FoodListComponent food={food} key={index} />
+                                                    <FoodListComponent food={food} key={food.id} /> // Ensure `id` is unique
                                                 );
                                             })
                                         }
@@ -178,8 +159,8 @@ export default function FoodList() {
                                 <td className="border-r whitespace-nowrap px-6 py-4">&pound;{calculateTotalPrice().toFixed(2)}</td>
                                 <td className="border-r whitespace-nowrap px-6 py-4">{foods.length}</td>
                                 <td className="border-r whitespace-nowrap px-6 py-4">&pound;{calculateAveragePrice().toFixed(2)}</td>
-                                <td className="border-r whitespace-nowrap px-6 py-4">&pound;{getCheapestItem()}</td>
-                                <td className="border-r whitespace-nowrap px-6 py-4">&pound;{getMostExpensiveItem()}</td>
+                                <td className="border-r whitespace-nowrap px-6 py-4">&pound;{getCheapestItem().toFixed(2)}</td>
+                                <td className="border-r whitespace-nowrap px-6 py-4">&pound;{getMostExpensiveItem().toFixed(2)}</td>
                                 <td className="border-r whitespace-nowrap px-6 py-4">{getMostCommonUnit()}</td>
                             </tr>
                         </tbody>
