@@ -10,31 +10,42 @@ export interface FilterWinesProps {
     onDeletedWine: (wine: Wine) => void;
 }
 
-const close = <FontAwesomeIcon icon={faXmark} />
+const closeIcon = <FontAwesomeIcon icon={faXmark} />;
 
 export default function FilteredWinesComponent(props: FilterWinesProps) {
     const { wine, onDeletedWine } = props;
 
-    const getDeletedWine = useCallback(() => {
+    // Callback to handle wine deletion
+    const handleDeleteWine = useCallback(() => {
         onDeletedWine(wine);
     }, [onDeletedWine, wine]);
 
     return (
         <div className="product">
-            <span onClick={getDeletedWine} className="product-close">{close}</span>
+            <span onClick={handleDeleteWine} className="product-close">
+                {closeIcon}
+            </span>
             <div className="product-description__top">
                 <p className="product-title">{wine.name}</p>
             </div>
             <div className="product-description__bottom">
-                <Image alt={wine.name} className="product-img" width={200} height={100} key={wine.index} src={wine.img} />
+                <Image
+                    alt={wine.name}
+                    className="product-img"
+                    width={200}
+                    height={100}
+                    src={wine.img}
+                />
             </div>
             <div className="wine-link">
-                <Link href={{
-                    pathname: "/wine-details",
-                    query: {
-                        "wineName": wine.name,
-                    }
-                }}>Check details</Link>
+                <Link 
+                    href={{
+                        pathname: "/wine-details",
+                        query: { wineName: wine.name },
+                    }}
+                >
+                    Check details
+                </Link>
             </div>
         </div>
     );
