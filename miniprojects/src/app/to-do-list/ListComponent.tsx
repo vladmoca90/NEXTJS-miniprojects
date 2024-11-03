@@ -1,11 +1,11 @@
 import { ListItem } from "./to-do-list/store/features/toDoListSlice";
 
-interface ToDoListComponentProps {
+interface ListComponentProps {
     item: ListItem;
     onRemove: () => void;
 }
 
-export default function ToDoListComponent({ item, onRemove }: ToDoListComponentProps) {
+export const ListComponent = ({ item, onRemove }: ListComponentProps) => {
     return (
         <li>
             {item.item}

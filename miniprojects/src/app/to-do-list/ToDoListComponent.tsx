@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "./to-do-list/store/store";
 import { addItem, removeItem } from "./to-do-list/store/features/toDoListSlice";
-import ToDoListComponent from "./ToDoListComponent";
+import { ListComponent } from "./ListComponent";
 
-export default function ToDoList() {
+export default function ToDoListComponent() {
     const dispatch = useAppDispatch();
     const items = useAppSelector(state => state.item.items);
     const [inputValue, setInputValue] = useState("");
@@ -17,18 +17,18 @@ export default function ToDoList() {
 
     return (
         <div className="main">
-            <input 
-                type="text" 
-                value={inputValue} 
-                onChange={(e) => setInputValue(e.target.value)} 
+            <input
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Add a new task"
             />
             <button onClick={handleAddItem}>Add</button>
             <ul className="main-list">
                 {items.map(item => (
-                    <ToDoListComponent 
-                        key={item.id} 
-                        item={item} 
+                    <ListComponent
+                        key={item.id}
+                        item={item}
                         onRemove={() => dispatch(removeItem(item.id))}
                     />
                 ))}
