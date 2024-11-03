@@ -1,9 +1,10 @@
+// FilteredWinesComponentTwo.tsx
 import FilteredWinesComponentThree from "./FilteredWinesComponentThree";
 
 export default function FilteredWinesComponentTwo() {
     return (
-        <div>
+        <div className="filtered-wines-component-two">
             <FilteredWinesComponentThree />
         </div>
-    )
+    );
 }
