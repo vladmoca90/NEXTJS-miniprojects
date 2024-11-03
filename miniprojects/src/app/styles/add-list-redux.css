@@ -6,3 +6,7 @@ main {
     max-width: 900px;
     margin: 5rem auto 0;
 }
+
+input[type="text"] {
+    color: #333;
+}

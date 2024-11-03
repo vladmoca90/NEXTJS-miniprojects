@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { PersonSlice } from "./features/personSlice";
+import { personSlice } from "./features/personSlice"; // Updated import name to match convention
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
+// Configure the Redux store with the person slice reducer
 export const store = configureStore({
     reducer: {
-        person: PersonSlice.reducer,
+        person: personSlice.reducer, // Ensure the slice name matches your state shape
     }
 });
 
-export const useAppDispatch: () => typeof store.dispatch = useDispatch;
+// Create typed hooks for dispatch and selector
+export const useAppDispatch = () => useDispatch<typeof store.dispatch>(); // Improved typing for clarity
 export const useAppSelector: TypedUseSelectorHook<ReturnType<typeof store.getState>> = useSelector;
