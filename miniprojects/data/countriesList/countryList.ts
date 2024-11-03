@@ -7,9 +7,9 @@ export interface Country {
     cca2: string;
     cca3: string;
     flags: {
-        "png": string,
-        "svg": string,
-        "alt": string,
-    },
+        png: string;
+        svg: string;
+        alt: string;
+    };
     name: CountryNames;
 }
