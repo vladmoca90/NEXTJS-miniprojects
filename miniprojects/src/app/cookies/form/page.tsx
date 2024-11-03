@@ -1,19 +1,26 @@
 import { cookies } from "next/headers";
 
 export default function FormCookieComponent() {
-    const handleLogin = async (formData: FormData) => {
+    const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault(); // Prevent the default form submission
+
+        const formData = new FormData(event.currentTarget); // Get the form data
         const email = String(formData.get("email"));
         const password = String(formData.get("password"));
 
-        // perform database operations
-        // get the auth token
+        // Perform database operations
+        // Get the auth token
+        // For example, let's simulate getting a token after login
+        const authToken = "VladCookie"; // This should be replaced with actual token retrieval logic
 
-        cookies().set("token", "VladCookie", {
+        cookies().set("token", authToken, {
             maxAge: 48 * 60 * 60,
             secure: process.env.NODE_ENV === "production",
             httpOnly: true,
         });
     };
+
+    const token = cookies().get("token");
 
     return (
         <main className="flex mx-3 flex-col items-center justify-center">
@@ -22,18 +29,20 @@ export default function FormCookieComponent() {
             </h1>
             <div>
                 <h2 className="mt-10 text-center text-3xl font-semibold">Set Cookie</h2>
-                <form action={handleLogin}>
+                <form onSubmit={handleLogin}> {/* Use onSubmit instead of action */}
                     <input
                         type="email"
                         className="bg-transparent px-2 py-2 block my-2 border-2 border-slate-800 rounded-md"
                         placeholder="email"
                         name="email"
+                        required // Optional: Use required to ensure field is filled
                     />
                     <input
                         type="password"
                         className="bg-transparent px-2 py-2 block my-2 border-2 border-slate-800 rounded-md"
                         placeholder="password"
                         name="password"
+                        required // Optional: Use required to ensure field is filled
                     />
                     <button className="bg-blue-600 rounded-md px-6 py-2 w-full text-white">
                         Login
@@ -42,14 +51,11 @@ export default function FormCookieComponent() {
             </div>
             <div className="mt-5">
                 <h2 className="mt-10 text-center text-3xl font-semibold">
-                    {" "}
                     Cookie Value
                 </h2>
-                {cookies().get("token")?.name && (
+                {token?.name && (
                     <p className="mt-5 text-xl">
-                        {cookies().get("token")?.name +
-                            ": " +
-                            cookies()?.get("token")?.value}
+                        {token.name + ": " + token.value}
                     </p>
                 )}
             </div>
