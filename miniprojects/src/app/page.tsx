@@ -1,103 +1,73 @@
 "use client";
-import "./../app/styles/person-details.css";
-import Link from "next/link";
-import { passValid } from "./person-main/person-details/validation";
-import { ChangeEvent, useCallback, useState } from "react";
+import "./styles/countries-list.css";
+import { useCallback, useEffect, useState } from "react";
+import { CountriesRowComponent } from "./CountriesRowComponent";
+import { Country } from "../../data/countriesList/countryList";
 
-export default function FormPerson() {
-    const personsUrl = "http://localhost:3000/api/person-details";
+// https://restcountries.com/
 
-    const [nameText, setNameText] = useState("");
-    const [passwordText, setPasswordText] = useState("");
-    const [isChecked, setIsChecked] = useState(false);
+export default function CountriesList() {
+    const countriesListUrl = "https://restcountries.com/v3.1/all?fields=name,flags,languages,currencies,cca2,cca3";
 
-    const getNameText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
-        setNameText(e.target.value);
+    const [countries, setCountries] = useState<Country[]>([]);
+    const [query, setQuery] = useState("");
+
+    const getCountriesList = useCallback(async () => {
+        const res = await fetch(countriesListUrl);
+
+        if (!res.ok) {
+            throw new Error("The data is not valid!");
+        } else {
+            console.log("The data is valid!");
+        }
+
+        const data = await res.json();
+
+        console.log(data);
+
+        setCountries(data);
     }, []);
 
-    const getPasswordText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
-        setPasswordText(e.target.value);
+    const getSearchedCountry = useCallback(async (e: { target: { value: string; } }) => {
+        setQuery(e.target.value);
     }, []);
 
-    const onChecked = useCallback(() => {
-        setIsChecked(!isChecked);
-    }, [isChecked]);
-
-    const getPasswordCheck = useCallback(() => {
-        if (passwordText.length === 0 || passwordText.match(passValid)) {
-            return `validation-match`;
-        } else if (passwordText.length === 0) {
-            return 'validation-match validation-alert';
+    const getFilteredCountries = useCallback(() => {
+        if (query.length === 0 || !query) {
+            return countries;
         } else {
-            return 'validation-match';
+            return countries.filter(country =>
+                country.name.common.includes(query) ||
+                country.name.official.includes(query) ||
+                country.name.common.toLowerCase().includes(query) ||
+                country.name.official.toLowerCase().includes(query));
         }
-    }, [passwordText]);
+    }, [countries, query]);
 
-    const getIfChecked = useCallback(() => {
-        if (!isChecked) {
-            return `validation-match`;
-        } else if (!isChecked) {
-            return 'validation-match validation-alert';
-        } else {
-            return 'validation-match';
-        }
-    }, [isChecked]);
-
-    const personBtnState = useCallback(() => {
-        if (nameText.length === 0 || passwordText.length === 0 || passwordText.match(passValid) || !isChecked) {
-            return `btn btn-submit disabled`;
-        } else {
-            return `btn btn-submit`;
-        }
-    }, [isChecked, nameText, passwordText]);
-
-    const submitPerson = useCallback(async () => {
-        await fetch(personsUrl, {
-            method: "POST",
-            body: JSON.stringify({
-                "name": nameText.trim(),
-                "password": passwordText.trim(),
-            })
-        })
-    }, [personsUrl, nameText, passwordText]);
+    useEffect(() => {
+        getCountriesList();
+    }, [getCountriesList]);
 
     return (
-        <form className="w-full max-w-sm form-container">
-            <div className="md:flex md:items-center mb-6">
-                <div className="md:w-1/3">
-                    <label className="block text-gray-500 font-bold md:text-center mb-1 md:mb-0 pr-4">Full Name</label>
-                </div>
-                <div className="md:w-2/3">
-                    <input onChange={getNameText} value={nameText} className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" placeholder="Your name" />
-                </div>
+        <div>
+            <input onChange={getSearchedCountry} value={query} className="countries-search" type="text" placeholder="Search here..." />
+            <div className="main">
+                <ul className="countries-list">
+                    <li className="list-title">
+                        <span className="country-name">Name</span>
+                        <span className="country-name">Official name</span>
+                        <span className="country-img">Flag</span>
+                        <span className="country-description">Flag description</span>
+                    </li>
+                    {
+                        getFilteredCountries().map((country, index) => {
+                            return (
+                                <CountriesRowComponent country={country} key={index} />
+                            );
+                        })
+                    }
+                </ul>
             </div>
-            <div className="md:flex md:items-center mb-6">
-                <div className="md:w-1/3">
-                    <label className="block text-gray-500 font-bold md:text-center mb-1 md:mb-0 pr-4">Password</label>
-                </div>
-                <div className="md:w-2/3">
-                    <input onChange={getPasswordText} value={passwordText} className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-password" type="password" placeholder="Your password" />
-                    <span className={getPasswordCheck()}>The password is not valid</span>
-                </div>
-            </div>
-            <div className="md:flex md:items-left mb-7">
-                <div className="md:w-1/4"></div>
-                <label className="md:w-2/3 block text-gray-500 font-bold form-checkbox">
-                    <input className="mr-2 leading-tight" type="checkbox" onChange={onChecked} checked={isChecked} />
-                    <span className="text-sm block">Confirm terms and conditions!</span>
-                    <span className={getIfChecked()}>You must agree with the term and conditions</span>
-                </label>
-            </div>
-            <div className="md:flex md:items-center">
-                <div className="btn-container">
-                    <Link href={{
-                        pathname: "person-main/person-details",
-                        query: {
-                            "name": nameText.trim(),
-                        }
-                    }} className={personBtnState()} onClick={submitPerson} type="button">Submit</Link>
-                </div>
-            </div>
-        </form>
-    );
+        </div>
+    )
 }
