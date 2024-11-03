@@ -1,5 +1,5 @@
 "use client";
-import "./styles/add-list-redux.css";
+import "./styles/add-list.css";
 import { Provider } from "react-redux";
 import { AddComponent } from "./AddComponent";
 import { ListComponent } from "./ListComponent";

@@ -1,0 +1,13 @@
+body {
+    background: #fff;
+}
+
+main {
+    max-width: 900px;
+    margin: 5rem auto 0;
+}
+
+input[type="text"],
+tr>td  {
+    color: #333;
+}
