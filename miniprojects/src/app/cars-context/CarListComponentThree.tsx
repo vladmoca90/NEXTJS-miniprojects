@@ -1,10 +1,18 @@
 import { useContext } from "react";
 import { CarContext } from "./cars-context/carContext/CarContext";
+import { Car } from "../../data/cars/Car"; // Make sure the Car type is correctly imported
 
 export default function CarListComponentThree() {
-    const usedCar = useContext(CarContext);
-    
+    const usedCars = useContext(CarContext);
+
+    // Check if usedCars is defined and has at least two items
+    if (!usedCars || usedCars.length < 2) {
+        return <div>No cars available.</div>;
+    }
+
     return (
-        <div>{usedCar[3].price}</div>
+        <div>
+            <p>Price: &pound;{usedCars[1].price}</p>
+        </div>
     );
 }
