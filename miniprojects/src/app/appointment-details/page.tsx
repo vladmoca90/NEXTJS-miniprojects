@@ -1,6 +1,6 @@
 import "./styles/appointment-details.css";
 import { useCallback, useEffect, useState } from "react";
-import { Appointment } from "../../../../data/appointment/Appointment"; // Ensure Appointment type is defined correctly
+import { Appointment } from "../../../data/appointment/Appointment"; // Ensure Appointment type is defined correctly
 
 const appointmentsUrl = "http://localhost:3000/api/appointment";
 
@@ -13,14 +13,14 @@ export default function AppointmentDetails({ searchParams }: {
         workplace: string;
     };
 }) {
-    const [appDetails, setAppDetails] = useState<Appointment | null>(null); // Initialized as null instead of an empty array
+    const [appDetails, setAppDetails] = useState<Appointment | null>(null);
 
     const getAppDetails = useCallback(async () => {
         try {
             const res = await fetch(appointmentsUrl, {
                 method: "POST",
                 headers: {
-                    'Content-Type': 'application/json' // Added headers to specify content type
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     forename: searchParams.forename,

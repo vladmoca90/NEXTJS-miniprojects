@@ -1,7 +1,8 @@
 "use client";
 import "./styles/appointment-details.css";
-import { emailValid, passValid } from "./appointment/appointment-details/validation";
+import { emailValid, passValid } from "./appointment-details/validation";
 import { ChangeEvent, useCallback, useState } from "react";
+import Link from "next/link";
 
 export default function AppointmentForm() {
     const appointmentsUrl = "http://localhost:3000/api/appointment";
@@ -41,7 +42,7 @@ export default function AppointmentForm() {
 
     const submitAppointment = useCallback(async (e: any) => {
         e.preventDefault(); // Prevent default form submission
-        
+
         await fetch(appointmentsUrl, {
             method: "POST",
             headers: {
@@ -95,7 +96,16 @@ export default function AppointmentForm() {
                         <input onChange={handleInputChange(setWorkplaceText)} value={workplaceText} type="text" name="floating_company" id="floating_company" className="block p-2.5 w-full text-sm text-gray-900 bg-transparent border-0 appearance-none dark:text-gray dark:border-gray-300 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                     </div>
                 </div>
-                <button className={appointmentBtnActive()} type="submit">Submit</button>
+                   <Link href={{
+                    pathname: "/appointment-details",
+                    query: {
+                        "forename": forenameText.trim(),
+                        "surname": surnameText.trim(),
+                        "email": emailText.trim(),
+                        "phone": phoneText.trim(),
+                        "workplace": workplaceText.trim(),
+                    }
+                }} className={appointmentBtnActive()} onClick={submitAppointment} type="button">Submit</Link>
             </form>
         </div>
     );
