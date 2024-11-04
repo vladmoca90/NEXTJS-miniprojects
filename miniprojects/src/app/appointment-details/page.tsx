@@ -1,47 +1,43 @@
-import "./styles/appointment-details.css";
+"use client";
+import "./../styles/appointment-details.css";
 import { useCallback, useEffect, useState } from "react";
-import { Appointment } from "../../../data/appointment/Appointment"; // Ensure Appointment type is defined correctly
+import { Appointment } from "../../../data/appointment/Appointment";
 
 const appointmentsUrl = "http://localhost:3000/api/appointment";
 
 export default function AppointmentDetails({ searchParams }: {
     searchParams: {
-        forename: string;
-        surname: string;
-        email: string;
-        phone: string;
-        workplace: string;
-    };
+        forename: string,
+        surname: string,
+        email: string,
+        phone: string,
+        workplace: string,
+    }
 }) {
-    const [appDetails, setAppDetails] = useState<Appointment | null>(null);
+    const [appDetails, setAppDetails] = useState<Appointment>([] as any);
 
     const getAppDetails = useCallback(async () => {
-        try {
-            const res = await fetch(appointmentsUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    forename: searchParams.forename,
-                    surname: searchParams.surname,
-                    email: searchParams.email,
-                    phone: searchParams.phone,
-                    workplace: searchParams.workplace,
-                })
-            });
+        const res = await fetch(appointmentsUrl, {
+            method: "POST",
+            body: JSON.stringify({
+                "forename": searchParams.forename,
+                "surname": searchParams.surname,
+                "email": searchParams.email,
+                "phone": searchParams.phone,
+                "workplace": searchParams.workplace,
+            })
+        });
 
-            if (!res.ok) {
-                throw new Error("The data is not valid!");
-            }
-
-            const data = await res.json();
-            setAppDetails(data.body); // Ensure this is structured correctly
-
-        } catch (error) {
-            console.error(error); // Log errors for easier debugging
+        if (!res.ok) {
+            throw new Error("The data is not valid!");
+        } else {
+            console.log("The data is valid!");
         }
-    }, [searchParams]);
+
+        const data = await res.json();
+
+        setAppDetails(data.body);
+    }, [searchParams.email, searchParams.forename, searchParams.phone, searchParams.surname, searchParams.workplace]);
 
     useEffect(() => {
         getAppDetails();
@@ -51,13 +47,11 @@ export default function AppointmentDetails({ searchParams }: {
         <div id="appointmentTable" className="relative overflow-x-auto">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" className="px-6 py-3">First name</th>
-                        <th scope="col" className="px-6 py-3">Last name</th>
-                        <th scope="col" className="px-6 py-3">Email</th>
-                        <th scope="col" className="px-6 py-3">Phone</th>
-                        <th scope="col" className="px-6 py-3">Workplace</th>
-                    </tr>
+                    <th scope="col" className="px-6 py-3">First name</th>
+                    <th scope="col" className="px-6 py-3">Last name</th>
+                    <th scope="col" className="px-6 py-3">Email</th>
+                    <th scope="col" className="px-6 py-3">Phone</th>
+                    <th scope="col" className="px-6 py-3">Workplace</th>
                 </thead>
                 <tbody>
                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">

@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
             return appointment;
         }
     }
+
     const appDetails = retrieveAppointment(data.forename, data.surname, data.password, data.email, data.phone, data.workplace);
 
     if (appDetails === null) {
