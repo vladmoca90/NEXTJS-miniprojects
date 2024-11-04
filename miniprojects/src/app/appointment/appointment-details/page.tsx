@@ -1,7 +1,6 @@
-"use client"; // Ensure this is necessary based on your framework
 import "./styles/appointment-details.css";
 import { useCallback, useEffect, useState } from "react";
-import { Appointment } from "../../data/appointment/Appointment"; // Ensure Appointment type is defined correctly
+import { Appointment } from "../../../../data/appointment/Appointment"; // Ensure Appointment type is defined correctly
 
 const appointmentsUrl = "http://localhost:3000/api/appointment";
 
