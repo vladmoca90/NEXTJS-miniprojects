@@ -1,4 +1,3 @@
-"use client";
 import "./styles/wines.css";
 import { ChangeEvent, useCallback, useEffect, useState, useMemo } from "react";
 import { Wine } from "./../../data/wines/Wine";
@@ -14,15 +13,8 @@ export default function WinesSell() {
     const getWines = useCallback(async () => {
         try {
             const res = await fetch(winesUrl);
-
-            if (!res.ok) {
-                throw new Error("The data is not valid!");
-            } else {
-                console.log("The data is valid!");
-            }
-
+            if (!res.ok) throw new Error("The data is not valid!");
             const data = await res.json();
-
             setWines(data.body);
         } catch (error) {
             console.error("Error fetching wines:", error);
@@ -43,7 +35,6 @@ export default function WinesSell() {
 
     const onDeleteAWine = useCallback((deleteWine: Wine) => {
         setWines(prevWines => prevWines.filter(wine => wine.name !== deleteWine.name));
-        console.log("Deleted wine:", deleteWine);
     }, []);
 
     useEffect(() => {
@@ -62,7 +53,7 @@ export default function WinesSell() {
             </div>
             <div>
                 <div className="products-container">
-                    <WineContext.Provider value={{wines}}>
+                    <WineContext.Provider value={wines, setWines}>
                         {filteredWines.map((wine, index) => (
                             <FilteredWinesComponent
                                 wine={wine}
