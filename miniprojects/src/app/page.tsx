@@ -1,3 +1,4 @@
+"use client";
 import "./styles/wines.css";
 import { ChangeEvent, useCallback, useEffect, useState, useMemo } from "react";
 import { Wine } from "./../../data/wines/Wine";
@@ -53,7 +54,7 @@ export default function WinesSell() {
             </div>
             <div>
                 <div className="products-container">
-                    <WineContext.Provider value={wines, setWines}>
+                    <WineContext.Provider value={wines}>
                         {filteredWines.map((wine, index) => (
                             <FilteredWinesComponent
                                 wine={wine}
