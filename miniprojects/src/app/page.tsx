@@ -14,8 +14,13 @@ export default function WinesSell() {
     const getWines = useCallback(async () => {
         try {
             const res = await fetch(winesUrl);
-            if (!res.ok) throw new Error("The data is not valid!");
+
+            if (!res.ok) {
+                throw new Error("The data is not valid!");
+            }
+
             const data = await res.json();
+
             setWines(data.body);
         } catch (error) {
             console.error("Error fetching wines:", error);
