@@ -8,7 +8,8 @@ import { WineContext } from "./wines-dropdown-context/wineContext/WineContext";
 export default function WinesSell() {
     const winesUrl = "http://localhost:3000/api/wines";
 
-    const [wines, setWines] = useState<Wine[]>([]);
+    const [allWines, setAllWines] = useState<Wine[]>([]); // Store original list
+    const [filteredWines, setFilteredWines] = useState<Wine[]>([]); // Track filtered wines
     const [query, setQuery] = useState("");
 
     const getWines = useCallback(async () => {
@@ -21,26 +22,26 @@ export default function WinesSell() {
 
             const data = await res.json();
 
-            setWines(data.body);
+            setAllWines(data.body);
+            setFilteredWines(data.body); // Initialize both states
         } catch (error) {
             console.error("Error fetching wines:", error);
         }
     }, [winesUrl]);
 
     const getSelectedWine = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-        setQuery(e.target.value);
-    }, []);
+        const selectedWine = e.target.value;
+        setQuery(selectedWine);
 
-    const filteredWines = useMemo(() => {
-        if (query === "All wines" || query.length === 0) {
-            return wines;
+        if (selectedWine === "All wines") {
+            setFilteredWines(allWines); // Reset to full list when "All wines" is selected
         } else {
-            return wines.filter(wine => wine.name.includes(query));
+            setFilteredWines(allWines.filter(wine => wine.name.includes(selectedWine)));
         }
-    }, [query, wines]);
+    }, [allWines]);
 
     const onDeleteAWine = useCallback((deleteWine: Wine) => {
-        setWines(prevWines => prevWines.filter(wine => wine.name !== deleteWine.name));
+        setFilteredWines(prev => prev.filter(wine => wine.name !== deleteWine.name));
     }, []);
 
     useEffect(() => {
@@ -52,14 +53,14 @@ export default function WinesSell() {
             <div>
                 <select id="productsList" title="wines" onChange={getSelectedWine}>
                     <option value="All wines">All wines</option>
-                    {wines.map((wine, index) => (
+                    {allWines.map((wine, index) => (
                         <option key={index} value={wine.name}>{wine.name}</option>
                     ))}
                 </select>
             </div>
             <div>
                 <div className="products-container">
-                    <WineContext.Provider value={wines}>
+                    <WineContext.Provider value={filteredWines}>
                         {filteredWines.map((wine, index) => (
                             <FilteredWinesComponent
                                 wine={wine}
