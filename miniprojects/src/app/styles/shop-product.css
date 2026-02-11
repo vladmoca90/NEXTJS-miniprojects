@@ -1,0 +1,127 @@
+body {
+    background: #e0e0e0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.shop-dropdown {
+    margin: 1.5em auto;
+}
+
+.shop-dropdown select {
+    margin-bottom: 1em;
+}
+
+.total-products {
+    font-size: 1.1em;
+}
+
+.shop-dropdown select,
+.shop-dropdown {
+    width: 340px;
+}
+
+.shop-dropdown select,
+.shop-dropdown select>option {
+    border-color: #bbb;
+    color: #333;
+    font-size: 1.1em;
+    padding: .375em;
+}
+
+.shop-search-title {
+    color: #333;
+    font-size: .9em;
+    font-weight: 600;
+    letter-spacing: 25%;
+    margin-right: .5em;
+    text-transform: uppercase;
+}
+
+.shop-search-bar {
+    border-color: #bbb;
+    padding: .275em;
+}
+
+.shop-list {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 1em auto 0;
+    max-width: 992px;
+}
+
+.shop-card {
+    margin: .75em 0;
+    width: 300px;
+}
+
+.shop-details {
+    background: #fff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    min-height: 120px;
+    padding: 1em 0;
+}
+
+.shop-title {
+    color: #333;
+    font-size: 1em;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.shop-image>img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.shop-price {
+    color: #f85b00;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: .5em auto 1rem;
+    text-align: center;
+}
+
+.shop-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    max-width: 120px;
+}
+
+.shop-buttons button {
+    border-radius: 6px;
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 0;
+    text-align: center;
+    transition: linear .5s all;
+    width: 28%;
+}
+
+.shop-buttons button#buttonAdd {
+    background: #1c7600;
+}
+
+.shop-buttons button#buttonRemove {
+    background: #dd0700;
+}
+
+.shop-buttons button:hover {
+    cursor: pointer;
+}
+
+.shop-product-number {
+    color: #333;
+    font-size: 1.25em;
+    font-weight: 600;
+    margin: 0 .75rem;
+}
+
+.total-products {
+    text-align: center;
+}

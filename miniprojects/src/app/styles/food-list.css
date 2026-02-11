@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+
+body {
+  background: #fff;
+}
+
+#foodSearch {
+  margin: 1em auto;
+  max-width: 320px;
+}
+
+.food-search {
+  max-width: 285px;
+  margin: 0 auto 2em;
+  position: relative;
+}
+
+.food-search-bar,
+.food-search-title,
+.food-details {
+  font-size: .9em;
+}
+
+.food-search-bar {
+  margin-top: .3em;
+  padding: .33em .5em;
+  width: 100%;
+}
+
+.food-search-title {
+  font-weight: 600;
+}
+
+.food-search-bar,
+.food-search-title,
+.container-table tr>th,
+.container-table tr>td {
+  color: #333;
+}
+
+.container-table tr>td {
+  font-weight: 400;
+}
+
+.container-table,
+.container-calculus {
+  font-family: "Roboto", sans-serif;
+  max-width: 1200px;
+  margin: 2em auto;
+}
+
+.container-table thead {
+  background: #ddd;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+.food-details {
+  background: #a71900;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  padding: .55em 1em;
+  text-transform: uppercase;
+  transition: linear .5s all;
+}
+
+.food-details:hover {
+  background: #333;
+  color: #fff;
+}

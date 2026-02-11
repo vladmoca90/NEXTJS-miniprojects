@@ -1,0 +1,35 @@
+body {
+    background: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+#loginContainer {
+    background: #d74f00;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 4rem auto 0;
+    padding: 1.5rem 1rem 1.25rem;
+    width: 300px;
+}
+
+#loginContainer div>input {
+    border: 0;
+    color: #000;
+    display: block;
+    margin: 0 0 1rem;
+    width: 100%;
+}
+
+.login-btn {
+    background: #e08c5b;
+    border-radius: 6px;
+    color: #000;
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 auto;
+    padding: .5rem 1.5rem;
+}

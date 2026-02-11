@@ -1,0 +1,63 @@
+body {
+    background: #fff;
+}
+
+#appointments {
+    border: 2px solid #ccc;
+    margin: 5rem auto 0;
+    padding: 1.25rem 0;
+    width: 500px;
+}
+
+#appointments input {
+    background: #edf3ff;
+}
+
+#appointments label {
+    color: #353535;
+    display: inline-block;
+    font-size: .9rem;
+    margin-bottom: .25rem;
+}
+
+#appointmentTable {
+    margin: 3rem auto 0;
+    max-width: 992px;
+}
+
+#appointmentTable thead>th,
+#appointmentTable tr>td {
+    text-align: center;
+}
+
+.btn.btn-submit {
+    background: #1441a1;
+    border-radius: 8px;
+    color: #fff;
+    display: block;
+    font-weight: 600;
+    font-size: 18px;
+    margin: 0 auto;
+    padding: .45rem 0 .35rem;
+    text-align: center;
+    width: 120px;
+}
+
+.disabled {
+    opacity: .4;
+    pointer-events: none;
+}
+
+.email-validation,
+.password-match {
+    display: none;
+}
+
+.email-validation.email-alert,
+.password-match.password-alert {
+    color: #cb2000;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+    margin: .5rem 0;
+}

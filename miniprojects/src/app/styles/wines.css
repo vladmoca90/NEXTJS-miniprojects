@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600;700&display=swap");
+
+body {
+    background: #eee;
+}
+
+.box {
+    margin: 0 auto;
+    max-width: 900px;
+    padding: 20px 0;
+}
+
+.wine-details {
+    margin: 2rem auto 0;
+}
+
+.wines-checkboxes {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem auto 2rem;
+}
+
+.wines-checkboxes>div {
+    background: #fff;
+    margin: 0 .65rem .65rem;
+}
+
+#productsList {
+    border: 1px solid #c1c1c1;
+    color: #333;
+    display: block;
+    font-family: "Fira Sans", sans-serif;
+    font-size: 15px;
+    margin: 1.5rem auto 2.5rem;
+    padding: 7px 0 7px 7px;
+    width: 215px;
+}
+
+#productsList option {
+    border-radius: 0;
+    color: #333;
+}
+
+.products-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wine-details .products-container {
+    justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+    .products-container {
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+}
+
+.product {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    font-weight: bold;
+    letter-spacing: 0;
+    margin: 0 .45rem 1rem;
+    padding: 1rem 0;
+    position: relative;
+    width: 265px;
+}
+
+.product-close {
+    background: #cb2000;
+    color: #fff;
+    display: inline-block;
+    font-weight: bold;
+    height: 22px;
+    right: 5px;
+    position: absolute;
+    top: 5px;
+    width: 22px;
+}
+
+.product-close>svg {
+    cursor: pointer;
+    height: 1.35rem;
+    width: 1.35rem;
+}
+
+.product-description__top {
+    text-align: center;
+}
+
+.product .product-title {
+    color: #be7500;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 1rem;
+    text-transform: uppercase;
+}
+
+.product .product-img {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.wine-link {
+    cursor: pointer;
+    margin: 10px auto 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.wine-link a {
+    background: #cb2000;
+    color: #fff;
+    display: inline;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px 15px;
+    transition: linear .5s all;
+    width: auto;
+}
+
+.wine-link>a:hover {
+    background: #851400;
+}
+
+.product-description__text {
+    color: #404040;
+    font-size: .8em;
+    font-weight: 400;
+    line-height: 1.7em;
+    padding: 12px 15px 0;
+}
+
+.total-wines-context {
+    text-align: center;
+}
+
+.total-wines-context>p {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 1rem 0 0;
+}

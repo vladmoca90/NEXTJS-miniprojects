@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+
+body {
+    background: #fff;
+    font-family: "Montserrat", sans-serif !important;
+    min-height: 100vh;
+}
+
+.box {
+    margin: 0 auto 20px;
+    width: 100%;
+}
+
+.car-details {
+    display: inline-block;
+}
+
+.showroom-search>form,
+.car-container {
+    background: #767676;
+}
+
+.showroom-search>form,
+.showroom-buttons,
+#showroom {
+    display: flex;
+}
+
+.showroom-search>form {
+    justify-content: space-between;
+    margin: 2.5rem auto;
+    max-width: 500px;
+    padding: 15px 20px;
+}
+
+.search-btn {
+    background: #a61900;
+    color: #fff;
+    font-weight: bold;
+    padding: 5px 30px;
+}
+
+#carMake,
+#carModel {
+    color: #333;
+    font-size: .8em;
+    font-weight: 700;
+    height: auto;
+    padding-right: 1.75rem;
+}
+
+#carMake {
+    width: 33%;
+}
+
+#carModel {
+    width: 66%;
+}
+
+.showroom-buttons,
+#showroom {
+    flex-wrap: wrap;
+}
+
+#showroom {
+    justify-content: center;
+}
+
+.car-container {
+    margin: 5px;
+    max-width: 365px;
+}
+
+@media all and (min-width: 992px) {
+    .car-container {
+        margin: 10px;
+        max-width: 385px;
+    }
+}
+
+.car-details .car-container {
+    margin: 3rem 0 0;
+}
+
+.car-header {
+    padding-top: 5px;
+    text-align: center;
+}
+
+.car-title {
+    color: #fff;
+    font-size: 1.15em;
+    font-weight: 600;
+    height: 60px;
+    letter-spacing: 1px;
+    line-height: 26px;
+}
+
+@media all and (min-width: 992px) {
+    .car-title {
+        font-size: 1.25em;
+    }
+}
+
+.car-price,
+.showroom-buttons>a {
+    background: #a61900;
+}
+
+.car-price {
+    color: #fff;
+    font-size: 1.25em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 23px;
+    margin: 0;
+    padding: 9px 0 6px;
+}
+
+.car-monthly-price {
+    display: inline-block;
+    font-size: .66em;
+    font-weight: 600;
+    padding: 0;
+    width: 100%;
+}
+
+.car-img {
+    border-bottom: 1px solid #971700;
+    display: block;
+    margin: 0 auto;
+}
+
+.showroom-buttons {
+    justify-content: center;
+    padding: 10px 0;
+}
+
+@media all and (min-width: 768px) {
+    .showroom-buttons {
+        padding: 10px;
+    }
+}
+
+.showroom-buttons>a {
+    color: #fff;
+    font-size: .85em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 5px;
+    padding: 7px 0;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all .5s linear;
+    width: 45%;
+}
+
+@media all and (min-width: 992px) {
+    .showroom-buttons>a {
+        width: 47%;
+    }
+}
+
+.showroom-buttons>a:hover {
+    background: #1a1a1a;
+    cursor: pointer;
+}
