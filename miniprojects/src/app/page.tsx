@@ -60,7 +60,7 @@ export default function WinesSell() {
             </div>
             <div>
                 <div className="products-container">
-                    <WineContext.Provider value={filteredWines}>
+                    <WineContext.Provider value={{ wines: filteredWines, setWines: setFilteredWines }}>
                         {filteredWines.map((wine, index) => (
                             <FilteredWinesComponent
                                 wine={wine}
