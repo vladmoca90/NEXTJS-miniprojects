@@ -1,16 +1,13 @@
 "use client";
-import "./styles/wines.css";
-import { ChangeEvent, useCallback, useEffect, useState, useMemo } from "react";
-import { Wine } from "./../../data/wines/Wine";
-import FilteredWinesComponent from "./FilteredWinesComponent";
-import { WineContext } from "./wines-dropdown-context/wineContext/WineContext";
+import { Wine } from "../../data/wines/Wine";
+import { useCallback, useEffect, useState } from "react";
+import FilteredWinesComponent from "./wines-dropdown-context/FilteredWinesComponent";
 
-export default function WinesSell() {
+export default function WinesSellCheckboxes() {
     const winesUrl = "http://localhost:3000/api/wines";
 
-    const [allWines, setAllWines] = useState<Wine[]>([]); // Store original list
-    const [filteredWines, setFilteredWines] = useState<Wine[]>([]); // Track filtered wines
-    const [query, setQuery] = useState("");
+    const [wines, setWines] = useState<Wine[]>([]);
+    const [checkedWine, setCheckedWine] = useState("");
 
     const getWines = useCallback(async () => {
         try {
@@ -21,27 +18,26 @@ export default function WinesSell() {
             }
 
             const data = await res.json();
-
-            setAllWines(data.body);
-            setFilteredWines(data.body); // Initialize both states
+            setWines(data.body);
         } catch (error) {
-            console.error("Error fetching wines:", error);
+            console.error(`The data is not valid: ${error}`);
         }
     }, [winesUrl]);
 
-    const getSelectedWine = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-        const selectedWine = e.target.value;
-        setQuery(selectedWine);
+    const getCheckedWine = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setCheckedWine(e.target.value);
+    }, []);
 
-        if (selectedWine === "All wines") {
-            setFilteredWines(allWines); // Reset to full list when "All wines" is selected
+    const filterCheckedWine = useCallback(() => {
+        if (checkedWine === "All wines" || checkedWine === "") {
+            return wines;
         } else {
-            setFilteredWines(allWines.filter(wine => wine.name.includes(selectedWine)));
+            return wines.filter((wine) => wine.name.includes(checkedWine));
         }
-    }, [allWines]);
+    }, [checkedWine, wines]);
 
     const onDeleteAWine = useCallback((deleteWine: Wine) => {
-        setFilteredWines(prev => prev.filter(wine => wine.name !== deleteWine.name));
+        setWines(prev => prev.filter(wine => wine.name !== deleteWine.name));
     }, []);
 
     useEffect(() => {
@@ -50,26 +46,55 @@ export default function WinesSell() {
 
     return (
         <section className="box">
-            <div>
-                <select id="productsList" title="wines" onChange={getSelectedWine}>
-                    <option value="All wines">All wines</option>
-                    {allWines.map((wine, index) => (
-                        <option key={index} value={wine.name}>{wine.name}</option>
-                    ))}
-                </select>
-            </div>
-            <div>
-                <div className="products-container">
-                    <WineContext.Provider value={{ wines: filteredWines, setWines: setFilteredWines }}>
-                        {filteredWines.map((wine, index) => (
-                            <FilteredWinesComponent
-                                wine={wine}
-                                key={index}
-                                onDeletedWine={() => onDeleteAWine(wine)}
-                            />
-                        ))}
-                    </WineContext.Provider>
+            <div className="wines-checkboxes flex items-center">
+                {/* All wines option */}
+                <div className="flex items-center px-4 py-0 border border-gray-300 rounded dark:border-gray-700">
+                    <input 
+                        checked={checkedWine === "All wines"} 
+                        onChange={getCheckedWine} 
+                        id="all-wines-checkbox" 
+                        type="radio" 
+                        value="All wines" 
+                        name="wine-selection" 
+                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
+                    />
+                    <label 
+                        htmlFor="all-wines-checkbox" 
+                        className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                        All wines
+                    </label>
                 </div>
+
+                {/* Individual wine options */}
+                {wines.map((wine, index) => (
+                    <div className="flex items-center px-4 py-0 border border-gray-300 rounded dark:border-gray-700" key={wine.name}>
+                        <input 
+                            checked={checkedWine === wine.name} 
+                            onChange={getCheckedWine} 
+                            id={`wine-checkbox-${index}`} 
+                            type="radio" 
+                            value={wine.name} 
+                            name="wine-selection" 
+                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
+                        />
+                        <label 
+                            htmlFor={`wine-checkbox-${index}`} 
+                            className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                            {wine.name}
+                        </label>
+                    </div>
+                ))}
+            </div>
+
+            {/* Filtered Wines Display */}
+            <div className="products-container">
+                {filterCheckedWine().map((wine) => (
+                    <FilteredWinesComponent 
+                        wine={wine} 
+                        key={wine.name} 
+                        onDeletedWine={() => onDeleteAWine(wine)}
+                    />
+                ))}
             </div>
         </section>
     );

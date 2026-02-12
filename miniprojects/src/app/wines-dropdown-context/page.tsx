@@ -1,43 +1,47 @@
 "use client";
 import "./styles/wines.css";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { Wine } from "../../data/wines/Wine";
-import { WineContext } from "./wines-dropdown-context/wineContext/WineContext";
+import { ChangeEvent, useCallback, useEffect, useState, useMemo } from "react";
+import { Wine } from "../../../data/wines/Wine";
 import FilteredWinesComponent from "./FilteredWinesComponent";
+import { WineContext } from "./wineContext/WineContext";
 
 export default function WinesSell() {
     const winesUrl = "http://localhost:3000/api/wines";
 
-    const [wines, setWines] = useState<Wine[]>([]);
-    const [query, setQuery] = useState<string>("");
+    const [allWines, setAllWines] = useState<Wine[]>([]); // Store original list
+    const [filteredWines, setFilteredWines] = useState<Wine[]>([]); // Track filtered wines
+    const [query, setQuery] = useState("");
 
     const getWines = useCallback(async () => {
         try {
             const res = await fetch(winesUrl);
+
             if (!res.ok) {
                 throw new Error("The data is not valid!");
             }
-            console.log("The data is valid!");
 
             const data = await res.json();
-            setWines(data.body);
+
+            setAllWines(data.body);
+            setFilteredWines(data.body); // Initialize both states
         } catch (error) {
-            console.error(error);
+            console.error("Error fetching wines:", error);
         }
     }, [winesUrl]);
 
-    const getSelectedWine = (e: ChangeEvent<HTMLSelectElement>) => {
-        setQuery(e.target.value);
-    };
+    const getSelectedWine = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
+        const selectedWine = e.target.value;
+        setQuery(selectedWine);
 
-    const filteredWines = useCallback(() => {
-        return query === "All wines" || query.length === 0
-            ? wines
-            : wines.filter((wine) => wine.name.includes(query));
-    }, [query, wines]);
+        if (selectedWine === "All wines") {
+            setFilteredWines(allWines); // Reset to full list when "All wines" is selected
+        } else {
+            setFilteredWines(allWines.filter(wine => wine.name.includes(selectedWine)));
+        }
+    }, [allWines]);
 
     const onDeleteAWine = useCallback((deleteWine: Wine) => {
-        setWines((prevWines) => prevWines.filter((wine) => wine.name !== deleteWine.name));
+        setFilteredWines(prev => prev.filter(wine => wine.name !== deleteWine.name));
     }, []);
 
     useEffect(() => {
@@ -49,16 +53,20 @@ export default function WinesSell() {
             <div>
                 <select id="productsList" title="wines" onChange={getSelectedWine}>
                     <option value="All wines">All wines</option>
-                    {wines.map((wine, index) => (
+                    {allWines.map((wine, index) => (
                         <option key={index} value={wine.name}>{wine.name}</option>
                     ))}
                 </select>
             </div>
             <div>
                 <div className="products-container">
-                    <WineContext.Provider value={{ wines, setWines }}>
-                        {filteredWines().map((wine, index) => (
-                            <FilteredWinesComponent wine={wine} key={index} onDeletedWine={() => onDeleteAWine(wine)} />
+                    <WineContext.Provider value={{ wines: filteredWines, setWines: setFilteredWines }}>
+                        {filteredWines.map((wine, index) => (
+                            <FilteredWinesComponent
+                                wine={wine}
+                                key={index}
+                                onDeletedWine={() => onDeleteAWine(wine)}
+                            />
                         ))}
                     </WineContext.Provider>
                 </div>
