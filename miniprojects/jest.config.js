@@ -11,6 +11,8 @@ const customJestConfig = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
+  preset: 'ts-jest',
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
 }
 
 module.exports = createJestConfig(customJestConfig);

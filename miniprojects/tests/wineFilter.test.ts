@@ -33,7 +33,7 @@ describe('Wine Filter Functionality', () => {
   describe('filterCheckedWine', () => {
     
     it('should return all wines when checkedWine is "All wines"', () => {
-      const checkedWine = 'All wines';
+      const checkedWine: string = 'All wines';
       const result = mockWines.filter((wine) => {
         if (checkedWine === 'All wines' || checkedWine === '') {
           return true;
@@ -46,7 +46,7 @@ describe('Wine Filter Functionality', () => {
     });
 
     it('should return all wines when checkedWine is empty string', () => {
-      const checkedWine = '';
+      const checkedWine: string = '';
       const result = mockWines.filter((wine) => {
         if (checkedWine === 'All wines' || checkedWine === '') {
           return true;
@@ -59,7 +59,7 @@ describe('Wine Filter Functionality', () => {
     });
 
     it('should filter wines by name when checkedWine matches', () => {
-      const checkedWine = 'Cabernet';
+      const checkedWine: string = 'Cabernet';
       const result = mockWines.filter((wine) => {
         if (checkedWine === 'All wines' || checkedWine === '') {
           return true;
@@ -72,7 +72,7 @@ describe('Wine Filter Functionality', () => {
     });
 
     it('should return multiple wines when filter matches several names', () => {
-      const checkedWine = 'Sauvignon';
+      const checkedWine: string = 'Sauvignon';
       const result = mockWines.filter((wine) => {
         if (checkedWine === 'All wines' || checkedWine === '') {
           return true;
@@ -85,7 +85,7 @@ describe('Wine Filter Functionality', () => {
     });
 
     it('should return empty array when no wines match the filter', () => {
-      const checkedWine = 'Pinot';
+      const checkedWine: string = 'Pinot';
       const result = mockWines.filter((wine) => {
         if (checkedWine === 'All wines' || checkedWine === '') {
           return true;
@@ -97,7 +97,7 @@ describe('Wine Filter Functionality', () => {
     });
 
     it('should be case-sensitive when filtering', () => {
-      const checkedWine = 'cabernet';
+      const checkedWine: string = 'cabernet';
       const result = mockWines.filter((wine) => {
         if (checkedWine === 'All wines' || checkedWine === '') {
           return true;
