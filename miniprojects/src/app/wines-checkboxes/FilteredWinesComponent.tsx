@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Wine } from '../../data/wines/Wine';
+import { Wine } from '../../../data/wines/Wine';
 
 export interface WineProps {
     wine: Wine;
