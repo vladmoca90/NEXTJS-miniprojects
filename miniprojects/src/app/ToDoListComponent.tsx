@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "./to-do-list/store/store";
 import { addItem, removeItem } from "./to-do-list/store/features/toDoListSlice";
-import { ListComponent } from "./ListComponent";
+import { ListComponent } from "./to-do-list/ListComponent";
 
 export default function ToDoListComponent() {
     const dispatch = useAppDispatch();
