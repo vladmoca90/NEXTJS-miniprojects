@@ -1,6 +1,5 @@
 "use client";
 import "./styles/to-do-list.css";
-import React from "react";
 import { Provider } from "react-redux";
 import { store } from "./to-do-list/store/store";
 import ToDoListComponent from "./ToDoListComponent";
