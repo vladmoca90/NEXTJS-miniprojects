@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Product } from "../../data/shop-products/Product";
+import { Product } from "../../../data/shop-products/Product";
 import { useCallback, useState } from "react";
 
 export interface ProductProps {

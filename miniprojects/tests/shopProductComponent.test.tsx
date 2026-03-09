@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import ProductListComponent from '../src/app/ShopProductComponent';
+import ProductListComponent from '../src/app/shop-product-props/ShopProductComponent';
 import { Product } from '../data/shop-products/Product';
 
 const mockProduct: Product = {
