@@ -1,9 +1,11 @@
 export interface BasketProps {
-    total: number;
+    totalPrice: number;
 }
 
-export default function BasketComponent(props: BasketProps) {
+export default function BasketComponent({ totalPrice }: BasketProps) {
     return (
-        <p className="total-products">Total number of products is: {props.total}</p>
+        <p className="total-products">
+            Total price of products in basket: £{totalPrice.toFixed(2)}
+        </p>
     );
 }

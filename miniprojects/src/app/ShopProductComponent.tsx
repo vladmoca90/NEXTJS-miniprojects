@@ -5,46 +5,50 @@ import { useCallback, useState } from "react";
 
 export interface ProductProps {
     product: Product;
-    onCountUpdatedAdd: () => void;
-    onCountUpdatedRemove: () => void;
+    onAddToBasket: (price: number) => void;
+    onRemoveFromBasket: (price: number) => void;
 }
 
-export default function ProductListComponent(props: ProductProps) {
+export default function ShopProductComponent(props: ProductProps) {
     const [counter, setCounter] = useState(0);
-    const { onCountUpdatedAdd, onCountUpdatedRemove } = props;
+    const { product, onAddToBasket, onRemoveFromBasket } = props;
 
     const addProduct = useCallback(() => {
         setCounter(c => c + 1);
-        onCountUpdatedAdd();
-    }, [onCountUpdatedAdd]);
+        onAddToBasket(product.price);
+    }, [onAddToBasket, product.price]);
 
     const removeProduct = useCallback(() => {
-        setCounter(c => (c >= 1 ? c - 1 : 0));
-
         if (counter > 0) {
-            onCountUpdatedRemove();
+            setCounter(c => c - 1);
+            onRemoveFromBasket(product.price);
         }
-    }, [counter, onCountUpdatedRemove]);
+    }, [counter, onRemoveFromBasket, product.price]);
 
     return (
         <div className="shop-card">
             <div className="shop-image">
-                <Image width={300} height={300} src={props.product.image} alt={props.product.name} />
+                <Image
+                    width={300}
+                    height={300}
+                    src={product.image}
+                    alt={product.name}
+                />
             </div>
             <div className="shop-details">
-                <Link href={{
-                    pathname: "/shop-product-name",
-                    query: {
-                        "name": props.product.name,
-                    }
-                }}>
-                    <p className="shop-title">{props.product.name}</p>
+                <Link
+                    href={{
+                        pathname: "/shop-product-name",
+                        query: { name: product.name },
+                    }}
+                >
+                    <p className="shop-title">{product.name}</p>
                 </Link>
-                <p className="shop-price">£{props.product.price}</p>
+                <p className="shop-price">£{product.price}</p>
                 <div className="shop-buttons">
-                    <button id="buttonAdd" onClick={addProduct}>+</button>
+                    <button onClick={addProduct}>+</button>
                     <span className="shop-product-number">{counter}</span>
-                    <button id="buttonRemove" onClick={removeProduct}>-</button>
+                    <button onClick={removeProduct}>-</button>
                 </div>
             </div>
         </div>
