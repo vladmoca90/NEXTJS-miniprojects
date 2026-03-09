@@ -46,9 +46,19 @@ export default function ShopProductComponent(props: ProductProps) {
                 </Link>
                 <p className="shop-price">£{product.price}</p>
                 <div className="shop-buttons">
-                    <button onClick={addProduct}>+</button>
+                    <button
+                        onClick={addProduct}
+                        className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition"
+                    >
+                        +
+                    </button>
                     <span className="shop-product-number">{counter}</span>
-                    <button onClick={removeProduct}>-</button>
+                    <button
+                        onClick={removeProduct}
+                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+                    >
+                        -
+                    </button>
                 </div>
             </div>
         </div>
