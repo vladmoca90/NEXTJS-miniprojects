@@ -7,6 +7,7 @@ const mockProduct: Product = {
   name: 'Test Product',
   image: '/images/shop/test.jpg',
   price: 9.99,
+  id: 0,
 };
 
 describe('ProductListComponent', () => {
