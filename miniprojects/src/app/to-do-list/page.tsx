@@ -1,7 +1,7 @@
 "use client";
 import "./styles/to-do-list.css";
 import { Provider } from "react-redux";
-import { store } from "./to-do-list/store/store";
+import { store } from "./store/store";
 import ToDoListComponent from "./ToDoListComponent";
 
 export default function Home() {
