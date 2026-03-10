@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import CountriesListComponent from '../src/app/CountryListComponent';
+import CountriesListComponent from '../src/app/countries-table/CountryListComponent';
 import { Country } from '../data/countries/Country';
 
 // Mock Next.js Link and Router to avoid routing issues in tests

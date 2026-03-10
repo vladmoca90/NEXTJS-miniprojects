@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Country } from "../../data/countries/Country";
+import { Country } from "../../../data/countries/Country";
 import CountryComponentTwo from "./CountryComponentTwo";
 
 export interface CountriesProps {

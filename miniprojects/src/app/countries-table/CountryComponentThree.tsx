@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CountryContext } from "./countries-table/countryContext/CountryContext";
+import { CountryContext } from "./countryContext/CountryContext";
 
 export default function CountryComponentThree() {
     const countriesContext = useContext(CountryContext);
