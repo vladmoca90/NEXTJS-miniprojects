@@ -1,110 +1,103 @@
 "use client";
-import "./styles/cars.css";
-import { Car } from "../../data/cars/Car";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import CarListComponent from "./CarListComponent";
+import "./../app/styles/person-details.css";
+import Link from "next/link";
+import { passValid } from "./person-main/person-details/validation";
+import { ChangeEvent, useCallback, useState } from "react";
 
-export default function CarsShowroom() {
-    const carsUrl = "http://localhost:3000/api/cars";
+export default function FormPerson() {
+    const personsUrl = "http://localhost:3000/api/person-details";
 
-    const [cars, setCars] = useState<Car[]>([]);
-    const [modelsFromMake, setModelsFromMake] = useState<Car[]>([]);
-    const [query, setQuery] = useState("");
+    const [nameText, setNameText] = useState("");
+    const [passwordText, setPasswordText] = useState("");
+    const [isChecked, setIsChecked] = useState(false);
 
-    const getCars = useCallback(async () => {
-        try {
-            const res = await fetch(carsUrl);
+    const getNameText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
+        setNameText(e.target.value);
+    }, []);
 
-            if (!res.ok) {
-                throw new Error("The data is not valid!");
-            } else {
-                console.log("The data is valid!");
-            }
+    const getPasswordText = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
+        setPasswordText(e.target.value);
+    }, []);
 
-            const data = await res.json();
-            setCars(data.body);
-        } catch (error) {
-            console.error("Failed to fetch cars:", error);
-        }
-    }, [carsUrl]);
+    const onChecked = useCallback(() => {
+        setIsChecked(!isChecked);
+    }, [isChecked]);
 
-    const removeDuplicatedMakes = useCallback(() => {
-        const carsDictionary: { [make: string]: Car[] } = {};
-
-        for (let car of cars) {
-            if (!carsDictionary[car.make]) {
-                carsDictionary[car.make] = []; // Initialize with an empty array
-            }
-            carsDictionary[car.make].push(car); // Store the car object in the array
-        }
-
-        return Object.keys(carsDictionary);
-    }, [cars]);
-
-    const getSelectedMake = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-        const value = e.target.value;
-        const carModels = cars.filter((car) => value === car.make);
-
-        setModelsFromMake(carModels);
-        setQuery(value);
-    }, [cars]);
-
-    const filterMakes = useCallback(() => {
-        if (query === "" || query === "make") {
-            return cars;
+    const getPasswordCheck = useCallback(() => {
+        if (passwordText.length === 0 || passwordText.match(passValid)) {
+            return `validation-match`;
+        } else if (passwordText.length === 0) {
+            return 'validation-match validation-alert';
         } else {
-            return cars.filter(car => car.make.includes(query));
+            return 'validation-match';
         }
-    }, [cars, query]);
+    }, [passwordText]);
 
-    useEffect(() => {
-        getCars();
-    }, [getCars]);
+    const getIfChecked = useCallback(() => {
+        if (!isChecked) {
+            return `validation-match`;
+        } else if (!isChecked) {
+            return 'validation-match validation-alert';
+        } else {
+            return 'validation-match';
+        }
+    }, [isChecked]);
+
+    const personBtnState = useCallback(() => {
+        if (nameText.length === 0 || passwordText.length === 0 || passwordText.match(passValid) || !isChecked) {
+            return `btn btn-submit disabled`;
+        } else {
+            return `btn btn-submit`;
+        }
+    }, [isChecked, nameText, passwordText]);
+
+    const submitPerson = useCallback(async () => {
+        await fetch(personsUrl, {
+            method: "POST",
+            body: JSON.stringify({
+                "name": nameText.trim(),
+                "password": passwordText.trim(),
+            })
+        })
+    }, [personsUrl, nameText, passwordText]);
 
     return (
-        <div className="box">
-            <div className="showroom-search">
-                <form>
-                    <select 
-                        id="carMake" 
-                        title="carMake" 
-                        onChange={getSelectedMake}
-                        className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                    >
-                        <option value="make">-- Any Make --</option>
-                        {
-                            removeDuplicatedMakes().map((make, index) => {
-                                return (
-                                    <option value={make} key={index}>{make}</option>
-                                );
-                            })
-                        }
-                    </select>
-                    <select 
-                        id="carModel" 
-                        title="carModel" 
-                        className="peer h-full p-2 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                    >
-                        <option value="model">-- Any Model --</option>
-                        {
-                            modelsFromMake.map((car, index) => {
-                                return (
-                                    <option value={car.model} key={index}>{car.model}</option>
-                                );
-                            })
-                        }
-                    </select>
-                </form>
+        <form className="w-full max-w-sm form-container">
+            <div className="md:flex md:items-center mb-6">
+                <div className="md:w-1/3">
+                    <label className="block text-gray-500 font-bold md:text-center mb-1 md:mb-0 pr-4">Full Name</label>
+                </div>
+                <div className="md:w-2/3">
+                    <input onChange={getNameText} value={nameText} className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" placeholder="Your name" />
+                </div>
             </div>
-            <div id="showroom">
-                {
-                    filterMakes().map((car, index) => {
-                        return (
-                            <CarListComponent car={car} key={index} />
-                        );
-                    })
-                }
+            <div className="md:flex md:items-center mb-6">
+                <div className="md:w-1/3">
+                    <label className="block text-gray-500 font-bold md:text-center mb-1 md:mb-0 pr-4">Password</label>
+                </div>
+                <div className="md:w-2/3">
+                    <input onChange={getPasswordText} value={passwordText} className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-password" type="password" placeholder="Your password" />
+                    <span className={getPasswordCheck()}>The password is not valid</span>
+                </div>
             </div>
-        </div>
+            <div className="md:flex md:items-left mb-7">
+                <div className="md:w-1/4"></div>
+                <label className="md:w-2/3 block text-gray-500 font-bold form-checkbox">
+                    <input className="mr-2 leading-tight" type="checkbox" onChange={onChecked} checked={isChecked} />
+                    <span className="text-sm block">Confirm terms and conditions!</span>
+                    <span className={getIfChecked()}>You must agree with the term and conditions</span>
+                </label>
+            </div>
+            <div className="md:flex md:items-center">
+                <div className="btn-container">
+                    <Link href={{
+                        pathname: "person-main/person-details",
+                        query: {
+                            "name": nameText.trim(),
+                        }
+                    }} className={personBtnState()} onClick={submitPerson} type="button">Submit</Link>
+                </div>
+            </div>
+        </form>
     );
 }

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import CarListComponent from '../src/app/CarListComponent';
+import CarListComponent from '../src/app/cars-props/CarListComponent';
 import { Car } from '../data/cars/Car';
 
 const mockCar: Car = {
