@@ -44,7 +44,13 @@ export default function FormPerson() {
     }, [isChecked]);
 
     const personBtnState = useCallback(() => {
-        if (nameText.length === 0 || passwordText.length === 0 || passwordText.match(passValid) || !isChecked) {
+        // disable button when any field is empty, password invalid, or checkbox unchecked
+        if (
+            nameText.length === 0 ||
+            passwordText.length === 0 ||
+            !passwordText.match(passValid) ||
+            !isChecked
+        ) {
             return `btn btn-submit disabled`;
         } else {
             return `btn btn-submit`;
