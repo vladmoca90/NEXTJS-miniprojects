@@ -6,7 +6,6 @@ import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 export default function CarDetails() {
-
     const searchParams = useSearchParams();
     const carModel = searchParams.get("carModel");
 
@@ -15,7 +14,6 @@ export default function CarDetails() {
     const [carDetails, setCarDetails] = useState<Car | null>(null);
 
     const getCarDetails = useCallback(async () => {
-
         if (!carModel) return;
 
         try {
@@ -52,7 +50,6 @@ export default function CarDetails() {
     return (
         <div id="showroom" className="car-details">
             <div className="car-container">
-
                 <div className="car-header">
                     <h3 className="car-title">
                         {carDetails.make} <span>{carModel}</span>
@@ -65,7 +62,6 @@ export default function CarDetails() {
                         </span>
                     </p>
                 </div>
-
                 <div className="car-img-container">
                     <img
                         alt={`${carDetails.make} ${carModel}`}
@@ -73,13 +69,11 @@ export default function CarDetails() {
                         src={carDetails.img}
                     />
                 </div>
-
                 <div className="showroom-buttons">
                     <Link href="/enquiry">Enquiry</Link>
                     <Link href="/share">Share</Link>
                     <Link href="/brochure">Brochure</Link>
                 </div>
-
             </div>
         </div>
     );
