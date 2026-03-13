@@ -12,7 +12,8 @@ body {
     background: #ebebeb;
 }
 
-#person th, #person td {
+#person th,
+#person td {
     text-align: center;
 }
 
@@ -31,7 +32,7 @@ body {
 .form-container input,
 .form-container button,
 .validation-match.validation-alert {
-    font-size: .9em;
+    font-size: 0.9em;
 }
 
 .form-container .form-checkbox {
@@ -41,7 +42,7 @@ body {
 }
 
 .disabled {
-    opacity: .4;
+    opacity: 0.4;
     pointer-events: none;
 }
 
@@ -53,7 +54,7 @@ body {
     color: #cb2000;
     display: inline-block;
     font-weight: 500;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
 }
 
 .btn-container {
@@ -62,12 +63,12 @@ body {
 }
 
 .btn.btn-submit {
-    background: #4F46E5;
+    background: #4f46e5;
     border-radius: 6px;
     color: #eef2ff;
     cursor: pointer;
     font-weight: 600;
     letter-spacing: 1px;
-    padding: .5em 1.2em;
+    padding: 0.5em 1.2em;
     text-transform: uppercase;
 }
