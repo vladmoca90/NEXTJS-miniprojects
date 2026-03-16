@@ -2,14 +2,15 @@
 import "../../styles/food-list.css";
 import Image from "next/image";
 import { Food } from "../../../../data/foodList/Food";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, use } from "react";
 
 export default function FoodListDetails({ searchParams }: {
-    searchParams: {
+    searchParams: Promise<{
         foodName: string;
-    };
+    }>;
 }) {
-    const foodNameUrl = `http://localhost:3000/api/get-food?foodName=${searchParams.foodName}`;
+    const params = use(searchParams);
+    const foodNameUrl = `http://localhost:3000/api/get-food?foodName=${params.foodName}`;
 
     const [foodDetails, setFoodDetails] = useState<Food | null>(null); // Changed to allow null
 
