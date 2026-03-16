@@ -7,6 +7,7 @@ export const allFoods: Food[] = [
         price: 7.99, // per kg
         quantity: 0.4,
         unit: "kg",
+        id: 1,
     },
     {
         img: "chocolate.PNG",
@@ -14,6 +15,7 @@ export const allFoods: Food[] = [
         price: 1.89, // per 100g
         quantity: 2.5, // 250g
         unit: "g",
+        id: 2,
     },
     {
         img: "cucumber.PNG",
@@ -21,6 +23,7 @@ export const allFoods: Food[] = [
         price: 3.49, // per kg
         quantity: 1.5,
         unit: "kg",
+        id: 3,
     },
     {
         img: "milk.PNG",
@@ -28,6 +31,7 @@ export const allFoods: Food[] = [
         price: 0.99, // per pint
         quantity: 3,
         unit: "pint",
+        id: 4,
     },
     {
         img: "onion.PNG",
@@ -35,6 +39,7 @@ export const allFoods: Food[] = [
         price: 0.99, // each
         quantity: 4,
         unit: "piece",
+        id: 5,
     },
     {
         img: "pork-meat.PNG",
@@ -42,6 +47,7 @@ export const allFoods: Food[] = [
         price: 6.99, // per kg
         quantity: 1.5,
         unit: "kg",
+        id: 6,
     },
     {
         img: "tomato.PNG",
@@ -49,6 +55,7 @@ export const allFoods: Food[] = [
         price: 3.99, // per kg
         quantity: 1,
         unit: "kg",
+        id: 7,
     },
     {
         img: "whiskey.PNG",
@@ -56,5 +63,6 @@ export const allFoods: Food[] = [
         price: 19.99, // per bottle
         quantity: 2,
         unit: "piece",
+        id: 8,
     },
 ];
