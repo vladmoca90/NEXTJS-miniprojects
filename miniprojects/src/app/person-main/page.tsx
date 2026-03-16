@@ -1,7 +1,7 @@
 "use client";
 import "./../app/styles/person-details.css";
 import Link from "next/link";
-import { passValid } from "./person-main/person-details/validation";
+import { passValid } from "./person-details/validation";
 import { ChangeEvent, useCallback, useState } from "react";
 
 export default function FormPerson() {

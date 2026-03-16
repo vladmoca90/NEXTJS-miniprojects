@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import FormPerson from '../src/app/page';
+import FormPerson from '../src/app/person-main/page';
 
 describe('FormPerson', () => {
   beforeEach(() => {
