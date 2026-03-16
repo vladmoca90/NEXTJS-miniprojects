@@ -60,3 +60,18 @@ table tr {
     display: inline-block;
     font-size: 16px;
 }
+
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.85);
+    z-index: 999;
+}
+
+.loading-spinner {
+    width: 120px;
+    height: 120px;
+}

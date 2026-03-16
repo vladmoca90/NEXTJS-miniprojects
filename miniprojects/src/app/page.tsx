@@ -10,6 +10,7 @@ export default function Transactions() {
 
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [getTransactions, setGetTransactions] = useState<Transaction[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const getTransactionsData = useCallback(async () => {
         try {
@@ -25,6 +26,8 @@ export default function Transactions() {
             setTransactions(data.body);
         } catch (error) {
             console.error("Failed to fetch transactions:", error);
+        } finally {
+            setIsLoading(false);
         }
     }, []);
 
@@ -46,6 +49,20 @@ export default function Transactions() {
     }, [getTransactionsData]);
 
     console.log(getTransactions);
+
+    if (isLoading) {
+        return (
+            <div className="loading-overlay">
+                <img
+                    src="/loading-buffering.gif"
+                    alt="Loading..."
+                    width={200}
+                    height={200}
+                    className="loading-spinner"
+                />
+            </div>
+        );
+    }
 
     return (
         <div id="transaction-container">
