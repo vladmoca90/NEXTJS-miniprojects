@@ -18,7 +18,7 @@ body {
 .food-search-bar,
 .food-search-title,
 .food-details {
-  font-size: .9em;
+  font-size: 1em;
 }
 
 .food-search-bar {
@@ -62,7 +62,7 @@ img {
   background: #a71900;
   border-radius: 6px;
   color: #fff;
-  font-size: 15px;
+  font-size: .9em;
   font-weight: 500;
   padding: .55em 1em;
   text-transform: uppercase;
