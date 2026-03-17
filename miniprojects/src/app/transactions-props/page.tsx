@@ -1,9 +1,9 @@
 "use client";
 import "./styles/transactions.css";
-import { Transaction } from "./../../data/transactions/Transaction";
+import { Transaction } from "../../../data/transactions/Transaction";
 import { useCallback, useEffect, useState } from "react";
-import TransactionComponent from "./transactions-props/TransactionComponent";
-import SelectedTransactionComponent from "./transactions-props/SelectedTransactionComponent";
+import TransactionComponent from "./TransactionComponent";
+import SelectedTransactionComponent from "./SelectedTransactionComponent";
 
 export default function Transactions() {
     let transactionsUrl = "http://localhost:3000/api/transactions";
