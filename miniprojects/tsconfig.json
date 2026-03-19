@@ -39,7 +39,7 @@
     ".next/types/**/*.ts",
     "__tests__/index.tests.js",
     "tests/**/*.ts",
-    "tests/wineFilterCheckboxes.test.ts",
+    "tests/wineFilterCheckboxes.test.tsx",
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
