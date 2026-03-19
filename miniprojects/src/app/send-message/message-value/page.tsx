@@ -1,15 +1,13 @@
 "use client";
+import { useSearchParams } from "next/navigation";
 
-interface MessageDetailsProps {
-    searchParams: {
-        messageText?: string; // Make it optional
-    };
-}
+export default function MessageDetails() {
+    const searchParams = useSearchParams();
+    const message = searchParams.get("messageText");
 
-export default function MessageDetails({ searchParams }: MessageDetailsProps) {
     return (
         <div id="sentMessage" aria-live="polite">
-            <p>{searchParams.messageText || "No message provided."}</p> {/* Fallback message */}
+            <p>{message || "No message provided."}</p>
         </div>
     );
 }
