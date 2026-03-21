@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "./counter-redux/state/store";
-import { decrement, increment, incrementByAmount, incrementAsync } from "./counter-redux/state/counter/counterState";
+import { AppDispatch, RootState } from "./state/store";
+import { decrement, incrementAsync } from "./state/counter/counterState";
 
 export default function CounterComponent() {
     const count = useSelector((state: RootState) => state.counter.value);
