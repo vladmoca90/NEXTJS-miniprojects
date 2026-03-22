@@ -1,8 +1,8 @@
 "use client";
 import "./styles/counter-redux.css";
-import CounterComponent from "./counter-redux/CounterComponent";
+import CounterComponent from "./CounterComponent";
 import { Provider } from "react-redux";
-import { store } from "./counter-redux/state/store";
+import { store } from "./state/store";
 
 export default function CounterMainComponent() {
     return (
