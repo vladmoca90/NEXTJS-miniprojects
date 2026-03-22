@@ -3,13 +3,15 @@ import "./../styles/wines.css";
 import Image from "next/image";
 import { Wine } from "../../../data/wines/Wine";
 import { useCallback, useEffect, useState } from "react";
+import React from "react";
 
 export default function WineDetails({ searchParams }: {
-    searchParams: {
+    searchParams: Promise<{
         "wineName": string,
-    }
+    }>
 }) {
-    let wineNameUrl = "http://localhost:3000/api/get-wine?wineName=" + searchParams.wineName;
+    const params = React.use(searchParams);
+    let wineNameUrl = "http://localhost:3000/api/get-wine?wineName=" + params.wineName;
 
     const [wineDetails, setWineDetails] = useState<Wine>([] as any);
 
@@ -36,10 +38,14 @@ export default function WineDetails({ searchParams }: {
             <div className="products-container">
                 <div className="product">
                     <div className="product-description__top">
-                        <p className="product-title">{searchParams.wineName}</p>
+                        <p className="product-title">{params.wineName}</p>
                     </div>
                     <div className="product-description__bottom">
-                        <Image alt={searchParams.wineName} className="product-img" width={200} height={100} src={wineDetails.img} />
+                        {wineDetails.img ? (
+                            <Image alt={params.wineName} className="product-img" width={200} height={100} src={wineDetails.img} />
+                        ) : (
+                            <div className="product-img placeholder">Loading image...</div>
+                        )}
                     </div>
                     <div className="product-description__text">
                         <p>{wineDetails.text}</p>

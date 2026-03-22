@@ -1,9 +1,9 @@
 "use client";
 import "./styles/wines.css";
 import { ChangeEvent, useCallback, useEffect, useState, useMemo } from "react";
-import { Wine } from "../../../data/wines/Wine";
-import FilteredWinesComponent from "./FilteredWinesComponent";
-import { WineContext } from "./wineContext/WineContext";
+import { Wine } from "../../data/wines/Wine";
+import FilteredWinesComponent from "./wines-dropdown-context/FilteredWinesComponent";
+import { WineContext } from "./wines-dropdown-context/wineContext/WineContext";
 
 export default function WinesSell() {
     const winesUrl = "http://localhost:3000/api/wines";
