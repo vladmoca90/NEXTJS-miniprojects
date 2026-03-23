@@ -1,6 +1,6 @@
 // FilteredWinesComponentThree.tsx
 import { useContext } from "react";
-import { WineContext } from "./wines-dropdown-context/wineContext/WineContext";
+import { WineContext } from "./wineContext/WineContext";
 
 export default function FilteredWinesComponentThree() {
   const { wines } = useContext(WineContext);
