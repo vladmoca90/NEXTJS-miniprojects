@@ -1,10 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from "react";
-
-export interface Wine {
-  id: number;
-  name: string;
-  img: string;
-}
+import { Wine } from "../../../../data/wines/Wine";
 
 interface WineContextType {
   wines: Wine[];

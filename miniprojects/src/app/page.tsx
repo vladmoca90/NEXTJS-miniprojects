@@ -42,7 +42,7 @@ export default function WinesSell() {
 
     const onDeleteAWine = useCallback((deleteWine: Wine) => {
         setFilteredWines(prev =>
-            prev.filter(wine => wine.id !== deleteWine.id)
+            prev.filter(wine => wine.index !== deleteWine.index)
         );
     }, []);
 
@@ -56,7 +56,7 @@ export default function WinesSell() {
                 <select id="productsList" title="wines" onChange={getSelectedWine}>
                     <option value="All wines">All wines</option>
                     {allWines.map((wine) => (
-                        <option key={wine.id} value={wine.name}>
+                        <option key={wine.index} value={wine.name}>
                             {wine.name}
                         </option>
                     ))}
@@ -68,7 +68,7 @@ export default function WinesSell() {
                     {filteredWines.map((wine) => (
                         <FilteredWinesComponent
                             wine={wine}
-                            key={wine.id}
+                            key={wine.index}
                             onDeletedWine={() => onDeleteAWine(wine)}
                         />
                     ))}
