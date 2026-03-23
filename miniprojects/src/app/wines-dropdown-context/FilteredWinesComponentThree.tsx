@@ -1,4 +1,3 @@
-// FilteredWinesComponentThree.tsx
 import { useContext } from "react";
 import { WineContext } from "./wineContext/WineContext";
 

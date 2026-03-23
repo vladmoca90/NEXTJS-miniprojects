@@ -7,7 +7,7 @@ import { useCallback } from "react";
 
 export interface FilterWinesProps {
     wine: Wine;
-    onDeletedWine: (wine: Wine) => void;
+    onDeletedWine: () => void;
 }
 
 const closeIcon = <FontAwesomeIcon icon={faXmark} />;
@@ -15,19 +15,20 @@ const closeIcon = <FontAwesomeIcon icon={faXmark} />;
 export default function FilteredWinesComponent(props: FilterWinesProps) {
     const { wine, onDeletedWine } = props;
 
-    // Callback to handle wine deletion
     const handleDeleteWine = useCallback(() => {
-        onDeletedWine(wine);
-    }, [onDeletedWine, wine]);
+        onDeletedWine();
+    }, [onDeletedWine]);
 
     return (
         <div className="product">
             <span onClick={handleDeleteWine} className="product-close">
                 {closeIcon}
             </span>
+
             <div className="product-description__top">
                 <p className="product-title">{wine.name}</p>
             </div>
+
             <div className="product-description__bottom">
                 <Image
                     alt={wine.name}
@@ -37,8 +38,9 @@ export default function FilteredWinesComponent(props: FilterWinesProps) {
                     src={wine.img}
                 />
             </div>
+
             <div className="wine-link">
-                <Link 
+                <Link
                     href={{
                         pathname: "/wine-details",
                         query: { wineName: wine.name },

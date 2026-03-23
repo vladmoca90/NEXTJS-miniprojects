@@ -1,4 +1,3 @@
-// FilteredWinesComponentTwo.tsx
 import FilteredWinesComponentThree from "./FilteredWinesComponentThree";
 
 export default function FilteredWinesComponentTwo() {
