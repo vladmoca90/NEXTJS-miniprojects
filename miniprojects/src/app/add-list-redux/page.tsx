@@ -3,7 +3,7 @@ import "./styles/add-list.css";
 import { Provider } from "react-redux";
 import { AddComponent } from "./AddComponent";
 import { ListComponent } from "./ListComponent";
-import { store } from "./add-list-redux/store/store";
+import { store } from "./store/store";
 
 export default function App() {
     return (
