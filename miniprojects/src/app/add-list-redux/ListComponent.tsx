@@ -23,7 +23,7 @@ export const ListComponent = () => {
                         </tr>
                     ) : (
                         persons.map((person) => (
-                            <tr className="even:bg-slate-50" key={person.id}>
+                            <tr className="even:bg-slate-50 text-center" key={person.id}>
                                 <td className="p-2">{person.id}</td>
                                 <td className="p-2">{person.name}</td>
                             </tr>
