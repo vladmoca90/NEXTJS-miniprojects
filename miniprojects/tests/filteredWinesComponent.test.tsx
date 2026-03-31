@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import FilteredWinesComponent, { FilterWinesProps } from '../src/app/wines-dropdown-context/FilteredWinesComponent';
+import FilteredWinesComponent from '../src/app/wines-dropdown-context/FilteredWinesComponent';
 
 const mockWine = {
   id: 99,
