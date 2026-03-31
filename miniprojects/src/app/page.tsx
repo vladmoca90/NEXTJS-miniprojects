@@ -1,9 +1,9 @@
 "use client";
 import "./styles/wines.css";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { Wine } from "../../../data/wines/Wine";
-import FilteredWinesComponent from "./FilteredWinesComponent";
-import { WineContext } from "./wineContext/WineContext";
+import { Wine } from "../../data/wines/Wine";
+import FilteredWinesComponent from "./wines-dropdown-context/FilteredWinesComponent";
+import { WineContext } from "./wines-dropdown-context/wineContext/WineContext";
 
 export default function WinesSell() {
     const winesUrl = "http://localhost:3000/api/wines";
@@ -42,7 +42,7 @@ export default function WinesSell() {
 
     const onDeleteAWine = useCallback((deleteWine: Wine) => {
         setFilteredWines(prev =>
-            prev.filter(wine => wine.index !== deleteWine.index)
+            prev.filter(wine => wine.id !== deleteWine.id)
         );
     }, []);
 
@@ -56,7 +56,7 @@ export default function WinesSell() {
                 <select id="productsList" title="wines" onChange={getSelectedWine}>
                     <option value="All wines">All wines</option>
                     {allWines.map((wine) => (
-                        <option key={wine.index} value={wine.name}>
+                        <option key={wine.id} value={wine.name}>
                             {wine.name}
                         </option>
                     ))}
@@ -68,7 +68,7 @@ export default function WinesSell() {
                     {filteredWines.map((wine) => (
                         <FilteredWinesComponent
                             wine={wine}
-                            key={wine.index}
+                            key={wine.id}
                             onDeletedWine={() => onDeleteAWine(wine)}
                         />
                     ))}
