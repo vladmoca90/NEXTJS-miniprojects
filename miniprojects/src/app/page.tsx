@@ -1,9 +1,9 @@
 "use client";
 import "./styles/countries.css";
-import { Country } from "../../../data/countries/Country";
+import { Country } from "../../data/countries/Country";
 import { useCallback, useEffect, useState } from "react";
-import CountryListComponent from "./CountryListComponent";
-import { CountryContext } from "./countryContext/CountryContext";
+import CountryListComponent from "./countries-table/CountryListComponent";
+import { CountryContext } from "./countries-table/countryContext/CountryContext";
 
 // https://restcountries.com/
 
