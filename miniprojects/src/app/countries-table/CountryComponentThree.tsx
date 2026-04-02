@@ -2,9 +2,7 @@ import { useContext } from "react";
 import { CountryContext } from "./countryContext/CountryContext";
 
 export default function CountryComponentThree() {
-    const countriesContext = useContext(CountryContext);
+    const { countries } = useContext(CountryContext);
 
-    return (
-        <>{countriesContext.countries.length}</>
-    );
+    return <>{countries.length}</>;
 }
