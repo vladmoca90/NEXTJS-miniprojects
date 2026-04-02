@@ -1,15 +1,17 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import { Country } from "../../../../data/countries/Country";
+import React from "react";
 
 // https://restcountries.com/
 
 export default function CountryName({ searchParams }: {
-    searchParams: {
+    searchParams: Promise<{
         "countryName": string,
-    }
+    }>
 }) {
-    let countriesDetailsUrl = "http://localhost:3000/api/get-country-name?countryName=" + searchParams.countryName;
+    const params = React.use(searchParams);
+    let countriesDetailsUrl = "http://localhost:3000/api/get-country-name?countryName=" + params.countryName;
 
     const [countryDetails, setCountryDetails] = useState<Country>([] as any);
 
@@ -43,8 +45,8 @@ export default function CountryName({ searchParams }: {
                     </thead>
                     <tbody>
                         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td>{countryDetails.name}</td>
-                            <td>{countryDetails.code}</td>
+                            <td>{countryDetails.name || "Loading..."}</td>
+                            <td>{countryDetails.code || "Loading..."}</td>
                         </tr>
                     </tbody>
                 </table>

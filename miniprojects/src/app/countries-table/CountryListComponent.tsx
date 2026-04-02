@@ -13,7 +13,7 @@ export default function CountriesListComponent(props: CountriesProps) {
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <td>
                 <Link href={{
-                    pathname: "/country-name",
+                    pathname: "/countries-table/country-name",
                     query: {
                         "countryName": country.name,
                     },
