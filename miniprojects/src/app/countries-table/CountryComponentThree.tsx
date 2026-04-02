@@ -5,6 +5,6 @@ export default function CountryComponentThree() {
     const countriesContext = useContext(CountryContext);
 
     return (
-        <>{countriesContext.length}</>
+        <>{countriesContext.countries.length}</>
     );
 }
