@@ -3,7 +3,6 @@ import "./styles/countries.css";
 import { Country } from "../../data/countries/Country";
 import { useCallback, useEffect, useState } from "react";
 import CountryListComponent from "./countries-table/CountryListComponent";
-import { CountryContext } from "./countries-table/countryContext/CountryContext";
 
 // https://restcountries.com/
 
@@ -14,46 +13,62 @@ export default function CountriesList() {
     const [query, setQuery] = useState("");
 
     const getCountries = useCallback(async () => {
-        const res = await fetch(countriesUrl);
+        try {
+            const res = await fetch(countriesUrl);
 
-        if (!res.ok) {
-            throw new Error("The data is not valid!");
-        } else {
-            console.log("The data is valid!");
+            if (!res.ok) {
+                throw new Error("The data is not valid!");
+            }
+
+            const data = await res.json();
+            setCountries(data.body);
+        } catch (error) {
+            console.error("Error fetching countries:", error);
         }
-
-        const data = await res.json();
-
-        setCountries(data.body);
     }, [countriesUrl]);
 
-    const getSelectedCountry = useCallback(async (e: { target: { value: string; } }) => {
-        setQuery(e.target.value);
-    }, []);
+    const getSelectedCountry = useCallback(
+        (e: React.ChangeEvent<HTMLInputElement>) => {
+            setQuery(e.target.value);
+        },
+        []
+    );
 
     const searchCountries = useCallback(() => {
         if (query.length === 0) {
             return countries;
-        } else {
-            return countries.filter(
-                country => country.name.toLowerCase().includes(query) ||
-                    country.name.toUpperCase().includes(query) ||
-                    country.code.toLowerCase().includes(query) ||
-                    country.code.toUpperCase().includes(query)
-            );
         }
+
+        const lowerQuery = query.toLowerCase();
+
+        return countries.filter(
+            (country) =>
+                country.name.toLowerCase().includes(lowerQuery) ||
+                country.code.toLowerCase().includes(lowerQuery)
+        );
     }, [countries, query]);
 
     useEffect(() => {
         getCountries();
-    }, [getCountries, searchCountries]);
+    }, [getCountries]); // ✅ removed searchCountries (bug fix)
 
     return (
         <div>
             <div className="countries-search">
-                <label className="countries-search-title">Search countries:</label>
-                <input onChange={getSelectedCountry} value={query} className="countries-search-bar" title="search" name="search" type="text" placeholder="Search countries..." />
+                <label className="countries-search-title">
+                    Search countries:
+                </label>
+                <input
+                    onChange={getSelectedCountry}
+                    value={query}
+                    className="countries-search-bar"
+                    title="search"
+                    name="search"
+                    type="text"
+                    placeholder="Search countries..."
+                />
             </div>
+
             <div className="countries-table">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -64,13 +79,12 @@ export default function CountriesList() {
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                            searchCountries().map((country, index) => {
-                                return (
-                                    <CountryListComponent country={country} key={index} />
-                                );
-                            })
-                        }
+                        {searchCountries().map((country, index) => (
+                            <CountryListComponent
+                                country={country}
+                                key={country.code || index} // ✅ better key
+                            />
+                        ))}
                     </tbody>
                 </table>
             </div>
