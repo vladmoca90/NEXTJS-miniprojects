@@ -1,10 +1,10 @@
 "use client";
 import "./styles/transactions.css";
-import { Transaction } from "./../../data/transactions/Transaction";
+import { Transaction } from "../../../data/transactions/Transaction";
 import { useCallback, useEffect, useState } from "react";
 import TransactionComponent from "./TransactionComponent";
 import SelectedTransactionComponent from "./SelectedTransactionComponent";
-import { TransactionContext } from "./transactions-context/transactionContext/TransactionContext";
+import { TransactionContext } from "./transactionContext/TransactionContext";
 
 export default function Transactions() {
     const transactionsUrl = "http://localhost:3000/api/transactions";
@@ -62,7 +62,7 @@ export default function Transactions() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <TransactionContext.Provider value={transactions}>
+                                    <TransactionContext.Provider value={{ transactions, setTransactions }}>
                                         {
                                             transactions.map((transaction, index) => (
                                                 <TransactionComponent
