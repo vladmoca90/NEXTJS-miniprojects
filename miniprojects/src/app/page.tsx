@@ -126,7 +126,7 @@ export default function AppointmentForm() {
                     </div>
                 </div>
                 <Link href={{
-                    pathname: "/appointment-details",
+                    pathname: "/appointment/appointment-details",
                     query: {
                         "forename": forenameText.trim(),
                         "surname": surnameText.trim(),
