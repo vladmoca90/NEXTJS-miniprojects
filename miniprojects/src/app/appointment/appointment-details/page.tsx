@@ -1,30 +1,31 @@
 "use client";
-import "./styles/appointment-details.css";
-import { useCallback, useEffect, useState } from "react";
+import "../../styles/appointment-details.css";
+import { useCallback, useEffect, useState, use } from "react";
 import { Appointment } from "../../../../data/appointment/Appointment";
 
 const appointmentsUrl = "http://localhost:3000/api/appointment";
 
 export default function AppointmentDetails({ searchParams }: {
-    searchParams: {
+    searchParams: Promise<{
         forename: string,
         surname: string,
         email: string,
         phone: string,
         workplace: string,
-    }
+    }>
 }) {
+    const params = use(searchParams);
     const [appDetails, setAppDetails] = useState<Appointment>([] as any);
 
     const getAppDetails = useCallback(async () => {
         const res = await fetch(appointmentsUrl, {
             method: "POST",
             body: JSON.stringify({
-                "forename": searchParams.forename,
-                "surname": searchParams.surname,
-                "email": searchParams.email,
-                "phone": searchParams.phone,
-                "workplace": searchParams.workplace,
+                "forename": params.forename,
+                "surname": params.surname,
+                "email": params.email,
+                "phone": params.phone,
+                "workplace": params.workplace,
             })
         });
 
@@ -37,7 +38,7 @@ export default function AppointmentDetails({ searchParams }: {
         const data = await res.json();
 
         setAppDetails(data.body);
-    }, [searchParams.email, searchParams.forename, searchParams.phone, searchParams.surname, searchParams.workplace]);
+    }, [params.email, params.forename, params.phone, params.surname, params.workplace]);
 
     useEffect(() => {
         getAppDetails();
@@ -55,11 +56,11 @@ export default function AppointmentDetails({ searchParams }: {
                 </thead>
                 <tbody>
                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <td className="px-6 py-4">{searchParams.forename}</td>
-                        <td className="px-6 py-4">{searchParams.surname}</td>
-                        <td className="px-6 py-4">{searchParams.email}</td>
-                        <td className="px-6 py-4">{searchParams.phone}</td>
-                        <td className="px-6 py-4">{searchParams.workplace}</td>
+                        <td className="px-6 py-4">{params.forename}</td>
+                        <td className="px-6 py-4">{params.surname}</td>
+                        <td className="px-6 py-4">{params.email}</td>
+                        <td className="px-6 py-4">{params.phone}</td>
+                        <td className="px-6 py-4">{params.workplace}</td>
                     </tr>
                 </tbody>
             </table>
