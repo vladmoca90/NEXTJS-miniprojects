@@ -1,112 +1,68 @@
 "use client";
-import "./styles/transactions.css";
-import { Transaction } from "../../data/transactions/Transaction";
+import "./../styles/appointment-details.css";
 import { useCallback, useEffect, useState } from "react";
-import TransactionComponent from "./transactions-props/TransactionComponent";
-import SelectedTransactionComponent from "./transactions-props/SelectedTransactionComponent";
+import { Appointment } from "../../../data/appointment/Appointment";
 
-export default function Transactions() {
-    let transactionsUrl = "http://localhost:3000/api/transactions";
+const appointmentsUrl = "http://localhost:3000/api/appointment";
 
-    const [transactions, setTransactions] = useState<Transaction[]>([]);
-    const [getTransactions, setGetTransactions] = useState<Transaction[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+export default function AppointmentDetails({ searchParams }: {
+    searchParams: {
+        forename: string,
+        surname: string,
+        email: string,
+        phone: string,
+        workplace: string,
+    }
+}) {
+    const [appDetails, setAppDetails] = useState<Appointment>([] as any);
 
-    const getTransactionsData = useCallback(async () => {
-        try {
-            const res = await fetch(transactionsUrl);
+    const getAppDetails = useCallback(async () => {
+        const res = await fetch(appointmentsUrl, {
+            method: "POST",
+            body: JSON.stringify({
+                "forename": searchParams.forename,
+                "surname": searchParams.surname,
+                "email": searchParams.email,
+                "phone": searchParams.phone,
+                "workplace": searchParams.workplace,
+            })
+        });
 
-            if (!res.ok) {
-                throw new Error("The data is not valid!");
-            } else {
-                console.log("The data is valid!");
-            }
-
-            const data = await res.json();
-            setTransactions(data.body);
-        } catch (error) {
-            console.error("Failed to fetch transactions:", error);
-        } finally {
-            setIsLoading(false);
+        if (!res.ok) {
+            throw new Error("The data is not valid!");
+        } else {
+            console.log("The data is valid!");
         }
-    }, []);
 
-    const onSelectedTransaction = useCallback((clickedTransaction: Transaction) => {
-        const selectedTransaction = transactions.filter((transaction, index) => clickedTransaction.id - 1 === index);
+        const data = await res.json();
 
-        setGetTransactions(selectedTransaction);
-    }, [transactions]);
-
-    const onDeletedTransaction = useCallback((removedTransaction: Transaction) => {
-        const chosenTransaction = transactions.filter((transaction) => removedTransaction.name !== transaction.name);
-
-        console.log(chosenTransaction);
-        setTransactions(chosenTransaction);
-    }, [transactions]);
+        setAppDetails(data.body);
+    }, [searchParams.email, searchParams.forename, searchParams.phone, searchParams.surname, searchParams.workplace]);
 
     useEffect(() => {
-        getTransactionsData();
-    }, [getTransactionsData]);
-
-    console.log(getTransactions);
-
-    if (isLoading) {
-        return (
-            <div className="loading-overlay">
-                <img
-                    src="/loading-buffering.gif"
-                    alt="Loading..."
-                    width={200}
-                    height={200}
-                    className="loading-spinner"
-                />
-            </div>
-        );
-    }
+        getAppDetails();
+    }, [getAppDetails]);
 
     return (
-        <div id="transaction-container">
-            <div className="transactions-results">
-                <h3>Selected transaction</h3>
-                {
-                    getTransactions.map((getTransaction, index) => {
-                        return (
-                            <SelectedTransactionComponent getTransaction={getTransaction} key={index} />
-                        );
-                    })
-                }
-            </div>
-            <br />
-            <div className="flex flex-col transactions-table">
-                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                        <div className="overflow-hidden">
-                            <table className="min-w-full text-left text-sm font-light">
-                                <thead className="border-b font-medium dark:border-neutral-500">
-                                    <tr>
-                                        <th scope="col" className="px-6 py-4">Date</th>
-                                        <th scope="col" className="px-6 py-4">Name</th>
-                                        <th scope="col" className="px-6 py-4">Amount</th>
-                                        <th scope="col" className="px-6 py-4"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        transactions.map((transaction, index) => (
-                                            <TransactionComponent
-                                                transaction={transaction}
-                                                key={index}
-                                                onSelectedTransaction={() => onSelectedTransaction(transaction)}
-                                                onDeletedTransaction={() => onDeletedTransaction(transaction)}
-                                            />
-                                        ))
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div id="appointmentTable" className="relative overflow-x-auto">
+            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <th scope="col" className="px-6 py-3">First name</th>
+                    <th scope="col" className="px-6 py-3">Last name</th>
+                    <th scope="col" className="px-6 py-3">Email</th>
+                    <th scope="col" className="px-6 py-3">Phone</th>
+                    <th scope="col" className="px-6 py-3">Workplace</th>
+                </thead>
+                <tbody>
+                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td className="px-6 py-4">{searchParams.forename}</td>
+                        <td className="px-6 py-4">{searchParams.surname}</td>
+                        <td className="px-6 py-4">{searchParams.email}</td>
+                        <td className="px-6 py-4">{searchParams.phone}</td>
+                        <td className="px-6 py-4">{searchParams.workplace}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     );
 }
