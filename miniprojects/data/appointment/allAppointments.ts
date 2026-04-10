@@ -25,4 +25,12 @@ export const allAppointments: Appointment[] = [
         phone: "07437098901",
         workplace: "Google",
     },
+    {
+        forename: "Vlad",
+        surname: "Mocanu",
+        email: "vlad1990@gmail.com", // Ensure email format is correct
+        password: "hashed_password_4", // Replace with a hashed version for security
+        phone: "07455404221",
+        workplace: "eBay Motors Group",
+    },
 ];
