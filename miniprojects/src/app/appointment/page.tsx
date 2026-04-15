@@ -1,7 +1,7 @@
 "use client";
 import "./styles/appointment-details.css";
 import Link from "next/link";
-import { emailValid, passValid } from "./appointment/appointment-details/validation";
+import { emailValid, passValid } from "./appointment-details/validation";
 import { ChangeEvent, useCallback, useState } from "react";
 
 export default function AppointmentForm() {
