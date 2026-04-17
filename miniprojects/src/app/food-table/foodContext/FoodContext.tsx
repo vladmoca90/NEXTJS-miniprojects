@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { Food } from "../../../../data/foodList/Food";
+import { Food } from "../../../../data/foodTable/Food";
 
 // Define the shape of the context
 interface FoodContextType {

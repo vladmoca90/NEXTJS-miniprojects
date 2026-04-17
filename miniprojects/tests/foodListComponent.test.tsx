@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import FoodListDetails from '../src/app/food-table/food-name/page';
-import { Food } from '../data/foodList/Food';
+import { Food } from '../data/foodTable/Food';
 
 // Mock React.use to handle Promise resolution in tests
 jest.mock('react', () => {

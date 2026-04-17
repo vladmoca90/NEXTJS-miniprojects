@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import { allFoods } from "../../../../data/foodList/allFoods";
+import { allFoods } from "../../../../data/foodTable/allFoods";
 
 export async function GET(request: NextRequest) {
     const foodName = request.nextUrl.searchParams.get("foodName");

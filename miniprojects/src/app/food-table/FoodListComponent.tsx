@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Food } from "../../../data/foodList/Food";
+import { Food } from "../../../data/foodTable/Food";
 
 export interface FoodListProps {
     food: Food;
