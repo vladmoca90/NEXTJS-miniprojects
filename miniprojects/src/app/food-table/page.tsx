@@ -1,8 +1,8 @@
 "use client";
 import "./styles/food-list.css";
-import { Food } from "../../data/foodTable/Food";
+import { Food } from "../../../data/foodTable/Food";
 import { useState, useCallback, useEffect, useMemo } from "react";
-import FoodListComponent from "./food-table/FoodListComponent";
+import FoodListComponent from "./FoodListComponent";
 
 export default function FoodList() {
   const foodsUrl = "http://localhost:3000/api/food-list";
