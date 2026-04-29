@@ -19,12 +19,12 @@ export const AllActors: Actor[] = [
     },
     {
         img: "",
-        name: "",
-        biography: "",
+        name: "Luke Evans",
+        biography: "Russell Ira Crowe is an actor and film director. His work on screen has earned him various accolades, including an Academy Award, two Golden Globe Awards, and a British Academy Film Award. Crowe was born in New Zealand, moving to Australia at the age of four and residing there permanently by the age of 21.",
     },
     {
         img: "",
-        name: "",
-        biography: "",
+        name: "Orlando Bloom",
+        biography: "Orlando Jonathan Blanchard Copeland Bloom is an English actor. He made his breakthrough as the character Legolas in The Lord of the Rings film series, earning him three Actors Award nominations, winning once. He reprised his role in The Hobbit film series.",
     },
 ];
