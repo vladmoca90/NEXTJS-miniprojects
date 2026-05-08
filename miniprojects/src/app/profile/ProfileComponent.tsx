@@ -1,6 +1,6 @@
 import "../styles/profile.css";
 import { useContext } from "react";
-import { ProfileContext } from "./profile/profileContext/ProfileContext";
+import { ProfileContext } from "./profileContext/ProfileContext";
 
 export default function ProfileComponent() {
     const profile = useContext(ProfileContext);

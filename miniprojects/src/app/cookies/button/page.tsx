@@ -1,5 +1,5 @@
 "use client";
-import "../styles/cookie-buttons.css";
+import "./../styles/cookie-buttons.css";
 import { useCallback, useState } from "react";
 
 export default function BtnCookieComponent() {

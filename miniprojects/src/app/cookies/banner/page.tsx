@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { useCallback, useState } from "react";
 
 export default function BannerCookieComponent() {

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { LoginContext } from "./login-profile/loginContext/LoginContext";
+import { LoginContext } from "./loginContext/LoginContext";
 
 export default function ProfileComponent() {
     const { username } = useContext(LoginContext); // you now have access to the username state.
