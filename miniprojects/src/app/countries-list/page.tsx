@@ -1,5 +1,5 @@
 "use client";
-import "./styles/countries-list.css";
+import "../styles/countries-list.css";
 import { useCallback, useEffect, useState } from "react";
 import { CountriesRowComponent } from "./CountriesRowComponent";
 import { Country } from "../../data/countriesList/countryList"; // Ensure Country type is correctly defined

@@ -1,5 +1,5 @@
 "use client";
-import "./styles/converter.css";
+import "../styles/converter.css";
 import ConverterComponent from "./ConverterComponent";
 
 // Create an app to convert units of measurement: 

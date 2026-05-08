@@ -1,5 +1,5 @@
 "use client";
-import "./styles/cars.css";
+import "../styles/cars.css";
 import { Car } from "../../data/cars/Car";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { CarContext } from "./cars-context/carContext/CarContext";

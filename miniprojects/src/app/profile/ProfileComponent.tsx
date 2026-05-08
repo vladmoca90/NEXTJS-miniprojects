@@ -1,4 +1,4 @@
-import "./styles/profile.css";
+import "../styles/profile.css";
 import { useContext } from "react";
 import { ProfileContext } from "./profile/profileContext/ProfileContext";
 

@@ -1,5 +1,5 @@
 "use client";
-import "./styles/countries.css";
+import "../styles/countries.css";
 import { Country } from "../../../data/countries/Country";
 import { useCallback, useEffect, useState } from "react";
 import CountryListComponent from "./CountryListComponent";

@@ -1,5 +1,5 @@
 "use client";
-import "./styles/appointment-details.css";
+import "../styles/appointment-details.css";
 import Link from "next/link";
 import { emailValid, passValid } from "./appointment-details/validation";
 import { ChangeEvent, useCallback, useState } from "react";

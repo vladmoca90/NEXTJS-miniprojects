@@ -1,5 +1,5 @@
 "use client";
-import "./styles/send-message.css";
+import "../styles/send-message.css";
 import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 

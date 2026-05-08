@@ -1,5 +1,5 @@
 "use client";
-import "./styles/shop-product.css";
+import "../styles/shop-product.css";
 import { Product } from "../../../data/shop-products/Product";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import ShopProductComponent from "./ShopProductComponent";

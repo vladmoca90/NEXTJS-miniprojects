@@ -1,5 +1,5 @@
 "use client";
-import "./styles/login-username.css";
+import "../styles/login-username.css";
 import LoginComponent from "./LoginComponent";
 import ProfileComponent from "./ProfileComponent";
 import { useState } from "react";

@@ -1,5 +1,5 @@
 "use client";
-import "./styles/counter-redux.css";
+import "../styles/counter-redux.css";
 import CounterComponent from "./CounterComponent";
 import { Provider } from "react-redux";
 import { store } from "./state/store";

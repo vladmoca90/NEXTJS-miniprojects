@@ -1,5 +1,5 @@
 "use client";
-import "../../styles/appointment-details.css";
+import "../.../styles/appointment-details.css";
 import { useCallback, useEffect, useState, use } from "react";
 import { Appointment } from "../../../../data/appointment/Appointment";
 
