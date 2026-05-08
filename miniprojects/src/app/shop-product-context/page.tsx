@@ -1,8 +1,8 @@
 "use client";
 import "../styles/shop-product.css";
-import { Product } from "../../data/shop-products/Product";
+import { Product } from "../../../data/shop-products/Product";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { ProductContext } from "./shop-product-context/productContext/ProductContext";
+import { ProductContext } from "./productContext/ProductContext";
 import ProductListComponent from "./ProductListComponent";
 import BasketComponent from "./BasketComponent";
 

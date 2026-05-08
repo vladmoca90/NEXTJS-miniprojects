@@ -1,5 +1,5 @@
 "use client";
-import "./../app/styles/person-details.css";
+import "../styles/person-details.css";
 import Link from "next/link";
 import { passValid } from "./person-details/validation";
 import { ChangeEvent, useCallback, useState } from "react";

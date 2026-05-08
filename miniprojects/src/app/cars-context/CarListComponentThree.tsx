@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CarContext } from "./cars-context/carContext/CarContext";
+import { CarContext } from "./carContext/CarContext";
 import { Car } from "../../data/cars/Car"; // Make sure the Car type is correctly imported
 
 export default function CarListComponentThree() {
