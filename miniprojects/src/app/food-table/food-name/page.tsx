@@ -1,5 +1,5 @@
 "use client";
-import "/../../.../styles/food-list.css";
+import "../../styles/food-list.css";
 import Image from "next/image";
 import { Food } from "../../../../data/foodTable/Food";
 import { useCallback, useEffect, useState, use } from "react";
