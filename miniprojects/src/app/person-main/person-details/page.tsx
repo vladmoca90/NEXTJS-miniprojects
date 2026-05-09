@@ -1,5 +1,5 @@
 "use client";
-import "../.../styles/person-details.css";
+import "../../styles/person-details.css";
 import { Person } from "../../../../data/personDetails/person";
 import { useCallback, useEffect, useState } from "react";
 
