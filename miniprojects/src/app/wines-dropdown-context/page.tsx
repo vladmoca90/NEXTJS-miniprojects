@@ -1,5 +1,5 @@
 "use client";
-import ".../styles/wines.css";
+import "../styles/wines.css";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { Wine } from "../../../data/wines/Wine";
 import FilteredWinesComponent from "./FilteredWinesComponent";

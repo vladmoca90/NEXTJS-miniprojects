@@ -1,5 +1,5 @@
 "use client";
-import "../styles/food-list.css";
+import "./styles/food-list.css";
 import { Food } from "../../data/foodTable/Food";
 import { useState, useCallback, useEffect, useMemo } from "react";
 import FoodListComponent from "./food-table/FoodListComponent";
