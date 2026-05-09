@@ -3,13 +3,13 @@ import "./styles/actors.css";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import Image from "next/image";
-import { store, useAppDispatch, useAppSelector } from "./actors/store/store";
+import { store, useAppDispatch, useAppSelector } from "./store/store";
 import {
   setActors,
   setSearchField,
   setSearchQuery,
   clearSearch,
-} from "./actors/store/features/actorsSlice";
+} from "./store/features/actorsSlice";
 
 export default function GetActors() {
   return (
