@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { Car } from "../../data/cars/Car";
+import { Car } from "../../../data/cars/Car";
 
 export interface CarProps {
     car: Car;
