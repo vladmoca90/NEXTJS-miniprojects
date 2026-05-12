@@ -6,11 +6,12 @@ interface ConverterState {
 
 export const initialConverter: ConverterState = {
     value: 0,
-}
+};
 
 const counterSlice = createSlice({
     name: "converter",
-    initialConverter,
-    reducers: {
-    },
+    initialState: initialConverter,
+    reducers: {},
 });
+
+export default counterSlice.reducer;
