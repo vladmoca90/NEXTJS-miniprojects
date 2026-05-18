@@ -1,4 +1,4 @@
-import { Country } from "../../data/countriesList/countryList";
+import { Country } from "../../../data/countriesList/countryList";
 
 export interface CountriesRowProps {
     country: Country;
