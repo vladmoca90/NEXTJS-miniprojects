@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { Country } from "../../../data/countries/Country";
+import { Country } from "../../../../data/countriesList/countryList";
 
 // https://restcountries.com/
 
@@ -43,8 +43,8 @@ export default function CountryName({ searchParams }: {
                     </thead>
                     <tbody>
                         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td>{countryDetails.name}</td>
-                            <td>{countryDetails.code}</td>
+                            <td>{countryDetails.name.common}</td>
+                            <td>{countryDetails.cca3}</td>
                         </tr>
                     </tbody>
                 </table>
