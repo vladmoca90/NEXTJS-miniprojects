@@ -1,3 +1,18 @@
 import { createContext } from "react";
 
-export const LoginContext = createContext({});
+interface LoginContextType {
+    setUsername: (
+        username: string
+    ) => void;
+
+    setShowProfile: (
+        show: boolean
+    ) => void;
+}
+
+export const LoginContext =
+    createContext<LoginContextType>({
+        setUsername: () => {},
+
+        setShowProfile: () => {},
+    });
