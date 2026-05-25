@@ -1,6 +1,8 @@
 import { createContext } from "react";
 
 interface LoginContextType {
+    username: string;
+
     setUsername: (
         username: string
     ) => void;
@@ -12,7 +14,8 @@ interface LoginContextType {
 
 export const LoginContext =
     createContext<LoginContextType>({
-        setUsername: () => {},
+        username: "",
 
+        setUsername: () => {},
         setShowProfile: () => {},
     });
