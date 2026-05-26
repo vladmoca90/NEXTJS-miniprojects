@@ -9,11 +9,11 @@ export default function CountryName({ searchParams }: {
         "countryName": string,
     }
 }) {
-    let countriesDetailsUrl = "http://localhost:3000/api/get-country-name?countryName=" + searchParams.countryName;
+    const countriesDetailsUrl = "http://localhost:3000/api/get-country-name?countryName=" + searchParams.countryName;
 
-    const [countryDetails, setCountryDetails] = useState<Country>([] as any);
+    const [countryDetails, setCountryDetails] = useState<Country | null>(null);
 
-    const getCountry = useCallback(async() => {
+    const getCountry = useCallback(async () => {
         const res = await fetch(countriesDetailsUrl);
 
         if (!res.ok) {
@@ -30,6 +30,10 @@ export default function CountryName({ searchParams }: {
     useEffect(() => {
         getCountry();
     }, [getCountry]);
+
+    if (!countryDetails) {
+        return <div>Loading country details...</div>;
+    }
 
     return (
         <div>
