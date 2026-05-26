@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useCallback } from "react";
-import { Transaction } from "../../data/transactions/Transaction";
+import { Transaction } from "../../../data/transactions/Transaction";
 
 export interface TransactionProps {
     transaction: Transaction;

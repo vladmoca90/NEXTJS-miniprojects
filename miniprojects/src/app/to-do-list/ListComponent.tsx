@@ -1,4 +1,4 @@
-import { ListItem } from "./to-do-list/store/features/toDoListSlice";
+import { ListItem } from "./store/features/toDoListSlice";
 
 interface ListComponentProps {
     item: ListItem;

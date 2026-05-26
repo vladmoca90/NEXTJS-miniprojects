@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useContext, useState } from "react";
 import { ProductContext } from "./productContext/ProductContext";
-import { Product } from "../../data/shop-products/Product";
+import { Product } from "../../../data/shop-products/Product";
 
 export interface ProductsProps {
     product: Product;

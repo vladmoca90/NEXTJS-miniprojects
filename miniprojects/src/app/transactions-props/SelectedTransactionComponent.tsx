@@ -1,4 +1,4 @@
-import { Transaction } from "../../data/transactions/Transaction";
+import { Transaction } from "../../../data/transactions/Transaction";
 
 export interface SelectedTransactionProps {
     getTransaction: Transaction;
