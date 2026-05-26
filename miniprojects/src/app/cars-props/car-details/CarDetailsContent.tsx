@@ -5,7 +5,7 @@ import { Car } from "../../../../data/cars/Car";
 import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function CarDetails() {
+export default function CarDetailsContent() {
     const searchParams = useSearchParams();
     const carModel = searchParams.get("carModel");
 
