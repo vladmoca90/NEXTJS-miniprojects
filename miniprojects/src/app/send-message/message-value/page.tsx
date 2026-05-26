@@ -1,13 +1,10 @@
-"use client";
-import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import MessageDetailsClient from "./MessageDetailsClient";
 
-export default function MessageDetails() {
-    const searchParams = useSearchParams();
-    const message = searchParams.get("messageText");
-
+export default function MessageValuePage() {
     return (
-        <div id="sentMessage" aria-live="polite">
-            <p>{message || "No message provided."}</p>
-        </div>
+        <Suspense fallback={<div>Loading message...</div>}>
+            <MessageDetailsClient />
+        </Suspense>
     );
 }
