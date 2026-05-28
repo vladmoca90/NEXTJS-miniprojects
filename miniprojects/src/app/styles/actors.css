@@ -26,6 +26,10 @@
     min-width: 220px;
 }
 
+.search-filter {
+    color: #000;
+}
+
 .actors-container {
     display: flex;
     flex-wrap: wrap;
