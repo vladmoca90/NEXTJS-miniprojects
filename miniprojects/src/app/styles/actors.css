@@ -6,6 +6,26 @@
     padding: 0 20px;
 }
 
+.actors-search {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.search-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 720px;
+}
+
+.search-input {
+    flex: 1 1 240px;
+    min-width: 220px;
+}
+
 .actors-container {
     display: flex;
     flex-wrap: wrap;
