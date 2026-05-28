@@ -6,6 +6,12 @@
     padding: 0 20px;
 }
 
+@media (min-width: 1800px) {
+    .actors-section {
+        max-width: 1768px;
+    }
+}
+
 .actors-search {
     display: flex;
     justify-content: center;
