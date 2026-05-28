@@ -123,8 +123,7 @@ function ActorsContent() {
                 <Image
                   src={actor.img}
                   alt={actor.name}
-                  width={200}
-                  height={250}
+                  fill
                   className="actor-img"
                 />
               </div>
