@@ -53,14 +53,14 @@ function ActorsContent() {
     (e: ChangeEvent<HTMLInputElement>) => {
       dispatch(setSearchQuery(e.target.value));
     },
-    [dispatch]
+    [dispatch],
   );
 
   const handleFieldChange = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
       dispatch(setSearchField(e.target.value as "name" | "biography"));
     },
-    [dispatch]
+    [dispatch],
   );
 
   const handleClearSearch = useCallback(() => {
@@ -108,9 +108,7 @@ function ActorsContent() {
             Clear
           </button>
         </div>
-        {searchError ? (
-          <div className="search-error">{searchError}</div>
-        ) : null}
+        {searchError ? <div className="search-error">{searchError}</div> : null}
       </div>
 
       <div className="actors-container">
