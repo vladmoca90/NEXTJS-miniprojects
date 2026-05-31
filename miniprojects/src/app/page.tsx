@@ -1,9 +1,8 @@
 "use client";
-
 import "./styles/finance-widget.css";
 import { Provider } from "react-redux";
-import { FinanceWidget } from "./FinanceWidget";
-import { store } from "./store/store";
+import { FinanceWidget } from "./finance-widget/FinanceWidget";
+import { store } from "./finance-widget/store/store";
 
 export default function Page() {
   return (

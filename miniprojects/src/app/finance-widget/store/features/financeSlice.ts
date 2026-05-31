@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FinanceProduct } from "../../../../data/finance/financeData";
+import { FinanceProduct } from "../../../../../data/finance/financeData";
 
 type FinanceStatus = "idle" | "loading" | "succeeded" | "failed";
 
