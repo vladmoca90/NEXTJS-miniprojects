@@ -25,3 +25,8 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+/* Ensure all visible text is black for improved contrast */
+*, *::before, *::after {
+  color: #000 !important;
+}
