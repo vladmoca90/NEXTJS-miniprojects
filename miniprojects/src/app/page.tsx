@@ -1,8 +1,8 @@
 "use client";
 import "./styles/math-game.css";
 import { Provider } from "react-redux";
-import { MathGame } from "./MathGame";
-import { store } from "./store/store";
+import { MathGame } from "./math-game/MathGame";
+import { store } from "./math-game/store/store";
 
 export default function Page() {
   return (
