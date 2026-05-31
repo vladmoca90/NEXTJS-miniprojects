@@ -1,0 +1,126 @@
+.finance-widget-section {
+  margin: 2rem auto;
+  max-width: 980px;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+}
+
+.finance-widget-header h1 {
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+  color: #111827;
+}
+
+.finance-widget-header p {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.finance-widget-loading,
+.finance-widget-error {
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.finance-widget-loading {
+  background: #f8fafc;
+  color: #1f2937;
+}
+
+.finance-widget-error {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.finance-widget-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.finance-widget-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.finance-widget-card label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: #111827;
+}
+
+.finance-widget-card input,
+.finance-widget-card select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #111827;
+  font-size: 1rem;
+}
+
+.finance-widget-card select {
+  appearance: none;
+}
+
+.finance-widget-summary {
+  background: #111827;
+  color: #f8fafc;
+}
+
+.finance-widget-summary h2 {
+  margin: 0 0 1rem;
+  color: #f8fafc;
+}
+
+.finance-summary-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.finance-summary-list div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.finance-summary-list strong {
+  color: #d1d5db;
+  font-weight: 600;
+}
+
+.finance-summary-list span {
+  color: #f8fafc;
+}
+
+.finance-widget-meta {
+  margin-top: 1.5rem;
+  color: #d1d5db;
+  line-height: 1.75;
+}
+
+.finance-widget-meta code {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.15rem 0.4rem;
+  border-radius: 6px;
+}
+
+@media (min-width: 820px) {
+  .finance-widget-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
