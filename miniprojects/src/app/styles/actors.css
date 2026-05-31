@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600;700&display=swap");
 
 .actors-section {
-    margin: 2rem auto 0;
+    margin: 2rem auto;
     max-width: 1200px;
     padding: 0 20px;
 }
@@ -51,7 +51,7 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     width: 300px;
-    transition: transform 0.3s ease;
+    transition: transform .3s ease;
 }
 
 .actor-card:hover {
@@ -80,7 +80,7 @@
     font-family: "Fira Sans", sans-serif;
     font-size: 1.2rem;
     font-weight: bold;
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 .5rem 0;
     text-align: center;
     text-transform: uppercase;
 }
@@ -88,7 +88,7 @@
 .actor-biography {
     color: #333;
     font-family: "Fira Sans", sans-serif;
-    font-size: 0.9rem;
+    font-size: .9rem;
     line-height: 1.4;
     margin: 0;
     text-align: justify;
