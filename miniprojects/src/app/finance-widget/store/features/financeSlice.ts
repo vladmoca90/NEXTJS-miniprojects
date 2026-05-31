@@ -1,5 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FinanceProduct } from "../../../../../data/finance/financeData";
+import {
+  DEFAULT_AMOUNT,
+  DEFAULT_DOWN_PAYMENT,
+  DEFAULT_SELECTED_PRODUCT_ID,
+  DEFAULT_TERM_MONTHS,
+  EMPTY_CALCULATION,
+} from "../financeConstants";
 
 type FinanceStatus = "idle" | "loading" | "succeeded" | "failed";
 
@@ -23,24 +30,15 @@ interface FinanceState {
   calculation: FinanceCalculation;
 }
 
-const emptyCalculation: FinanceCalculation = {
-  monthlyPayment: 0,
-  totalInterest: 0,
-  totalCost: 0,
-  principal: 0,
-  annualRate: 0,
-  productName: "",
-};
-
 const initialState: FinanceState = {
   products: [],
-  selectedProductId: "auto-loan",
-  amount: 25000,
-  termMonths: 60,
-  downPayment: 2500,
+  selectedProductId: DEFAULT_SELECTED_PRODUCT_ID,
+  amount: DEFAULT_AMOUNT,
+  termMonths: DEFAULT_TERM_MONTHS,
+  downPayment: DEFAULT_DOWN_PAYMENT,
   status: "idle",
   error: null,
-  calculation: emptyCalculation,
+  calculation: EMPTY_CALCULATION,
 };
 
 const calculateFinance = (
