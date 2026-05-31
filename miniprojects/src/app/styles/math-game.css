@@ -1,0 +1,52 @@
+.math-game {
+  margin: 2rem auto;
+  max-width: 720px;
+  padding: 1.25rem;
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+}
+
+.math-game header h1 {
+  margin: 0 0 0.25rem;
+}
+
+.math-q-text {
+  font-size: 1.25rem;
+  margin: 1rem 0;
+}
+
+.math-options {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.opt {
+  padding: 0.65rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  cursor: pointer;
+}
+
+.opt.correct {
+  background: #d1fae5;
+  border-color: #10b981;
+}
+
+.opt.wrong {
+  background: #fee2e2;
+  border-color: #ef4444;
+}
+
+.math-controls {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.math-loading,
+.math-error,
+.math-empty {
+  padding: 1rem;
+}
