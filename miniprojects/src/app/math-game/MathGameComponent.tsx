@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./store/store";
 import { setQuestions, selectOption, nextQuestion, resetGame, setStatus, setError } from "./store/features/mathSlice";
 
-export function MathGame() {
+export function MathGameComponent() {
   const dispatch = useAppDispatch();
   const { questions, currentIndex, selectedIndex, score, status, error } = useAppSelector((state) => state.math);
 
