@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import { mathQuestions } from "../../../../data/math/questions";
+import { mathQuestions } from "../../../../data/math-game/mathQuestions";
 
 export async function GET(request: NextRequest) {
   return NextResponse.json(
