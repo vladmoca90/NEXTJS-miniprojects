@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { MathQuestion } from "../../../../../data/math/questions";
+import { MathQuestion } from "../../../../../data/math-game/questions";
 
 interface MathState {
   questions: MathQuestion[];
@@ -31,19 +31,30 @@ export const mathSlice = createSlice({
       state.status = "succeeded";
       state.error = null;
     },
+
     selectOption(state, action: PayloadAction<number>) {
       if (state.selectedIndex !== null) return;
+
       state.selectedIndex = action.payload;
+
       const question = state.questions[state.currentIndex];
+
       if (!question) return;
+
       if (action.payload === question.correctIndex) {
         state.score += 1;
       }
     },
+
     nextQuestion(state) {
-      state.currentIndex = Math.min(state.currentIndex + 1, state.questions.length - 1);
+      state.currentIndex = Math.min(
+        state.currentIndex + 1,
+        state.questions.length - 1
+      );
+
       state.selectedIndex = null;
     },
+
     resetGame(state) {
       state.currentIndex = 0;
       state.selectedIndex = null;
@@ -51,14 +62,24 @@ export const mathSlice = createSlice({
       state.status = "idle";
       state.error = null;
     },
+
     setStatus(state, action: PayloadAction<MathState["status"]>) {
       state.status = action.payload;
     },
+
     setError(state, action: PayloadAction<string | null>) {
       state.error = action.payload;
     },
   },
 });
 
-export const { setQuestions, selectOption, nextQuestion, resetGame, setStatus, setError } = mathSlice.actions;
+export const {
+  setQuestions,
+  selectOption,
+  nextQuestion,
+  resetGame,
+  setStatus,
+  setError,
+} = mathSlice.actions;
+
 export default mathSlice.reducer;

@@ -52,7 +52,7 @@ export function MathGameComponent() {
       <div className="math-question">
         <p className="math-q-text">{question.question}</p>
         <div className="math-options">
-          {question.options.map((option, index) => {
+          {question.options.map((option: string, index: number) => {
             const answered = selectedIndex !== null;
             const isCorrect = index === question.correctIndex;
             const selected = index === selectedIndex;
