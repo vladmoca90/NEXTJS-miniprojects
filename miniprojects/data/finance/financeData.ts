@@ -1,4 +1,4 @@
-export type FinanceProduct = {
+export interface FinanceProduct {
   id: string;
   name: string;
   category: string;
@@ -7,5 +7,5 @@ export type FinanceProduct = {
   minAmount: number;
   maxAmount: number;
   description: string;
-};
+}
 

@@ -1,6 +1,5 @@
 import { Actor } from "./Actor";
 
-
 export const AllActors: Actor[] = [
     {
         img: "/images/actors/russell-crowe.jpg",
