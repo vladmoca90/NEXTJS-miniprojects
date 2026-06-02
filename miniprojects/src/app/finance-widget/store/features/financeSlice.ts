@@ -48,7 +48,7 @@ const calculateFinance = (
   termMonths: number
 ): FinanceCalculation => {
   if (!product) {
-    return emptyCalculation;
+    return EMPTY_CALCULATION;
   }
 
   const principal = Math.max(amount - downPayment, 0);

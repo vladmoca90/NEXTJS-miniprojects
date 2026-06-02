@@ -1,5 +1,5 @@
 "use client";
-import "./styles/finance-widget.css";
+import "../styles/finance-widget.css";
 import { Provider } from "react-redux";
 import { FinanceWidget } from "./FinanceWidget";
 import { store } from "./store/store";
