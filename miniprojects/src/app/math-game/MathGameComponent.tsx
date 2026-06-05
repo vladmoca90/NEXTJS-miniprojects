@@ -14,7 +14,7 @@ export function MathGameComponent() {
 
     const loadQuestions = async () => {
       try {
-        const response = await fetch("/api/math");
+        const response = await fetch("/api/math-game");
         const data = await response.json();
         dispatch(setQuestions(data.body));
       } catch (err) {
