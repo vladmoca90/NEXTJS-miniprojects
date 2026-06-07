@@ -1,8 +1,7 @@
-"use client"
 import React, { useRef, useState, useEffect } from 'react'
 import styles from '../styles/moving-square.css'
 
-const SQUARE_SIZE = 60
+const squareSize = 60
 
 export default function MovingSquarePage() {
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -13,8 +12,8 @@ export default function MovingSquarePage() {
     if (!c) return
     const { clientWidth, clientHeight } = c
     setPos((p) => ({
-      x: Math.min(p.x, clientWidth - SQUARE_SIZE - 10),
-      y: Math.min(p.y, clientHeight - SQUARE_SIZE - 10)
+      x: Math.min(p.x, clientWidth - squareSize - 10),
+      y: Math.min(p.y, clientHeight - squareSize - 10)
     }))
   }, [])
 
@@ -22,8 +21,8 @@ export default function MovingSquarePage() {
     const rect = containerRef.current!.getBoundingClientRect()
     const clickX = e.clientX - rect.left
     const clickY = e.clientY - rect.top
-    const newX = Math.max(10, Math.min(clickX - SQUARE_SIZE / 2, rect.width - SQUARE_SIZE - 10))
-    const newY = Math.max(10, Math.min(clickY - SQUARE_SIZE / 2, rect.height - SQUARE_SIZE - 10))
+    const newX = Math.max(10, Math.min(clickX - squareSize / 2, rect.width - squareSize - 10))
+    const newY = Math.max(10, Math.min(clickY - squareSize / 2, rect.height - squareSize - 10))
     setPos({ x: newX, y: newY })
   }
 
@@ -31,8 +30,8 @@ export default function MovingSquarePage() {
     const c = containerRef.current
     if (!c) return
     const { clientWidth, clientHeight } = c
-    const newX = Math.floor(Math.random() * (clientWidth - SQUARE_SIZE - 20)) + 10
-    const newY = Math.floor(Math.random() * (clientHeight - SQUARE_SIZE - 20)) + 10
+    const newX = Math.floor(Math.random() * (clientWidth - squareSize - 20)) + 10
+    const newY = Math.floor(Math.random() * (clientHeight - squareSize - 20)) + 10
     setPos({ x: newX, y: newY })
   }
 
