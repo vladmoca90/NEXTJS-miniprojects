@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState, useEffect } from 'react'
-import styles from '../styles/moving-square.module.css'
+import styles from './styles/moving-square.module.css'
 
 const squareSize = 60
 
