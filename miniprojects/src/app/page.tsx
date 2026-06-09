@@ -56,7 +56,7 @@ export default function MovingSquarePage() {
       </div>
 
       <div className={styles.controls}>
-        <button className={styles.btn} onClick={handleRandom}>Random</button>
+        <button className={styles.btn} onClick={handleRandom}>Start</button>
         <button className={styles.btn} onClick={() => setPos({ x: 20, y: 20 })}>Reset</button>
       </div>
     </div>
