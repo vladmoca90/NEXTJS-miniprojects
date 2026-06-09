@@ -1,10 +1,10 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
-import styles from "./styles/moving-square.module.css";
+import styles from "./styles/square-animation.module.css";
 
 const squareSize = 60;
 
-export default function MovingSquarePage() {
+export default function SquareAnimationPage() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [pos, setPos] = useState({ x: 20, y: 20 });
 
@@ -46,7 +46,7 @@ export default function MovingSquarePage() {
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.title}>Moving Square</h1>
+      <h1 className={styles.title}>Square Animation</h1>
 
       <div
         className={styles.container}
