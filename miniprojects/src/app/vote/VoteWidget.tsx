@@ -1,12 +1,6 @@
 "use client";
-
 import React, { useState } from "react";
-
-const bikes = [
-  { id: 1, name: "Yamaha" },
-  { id: 2, name: "Ducati" },
-  { id: 3, name: "Harley" },
-];
+import { Bike } from "../../../data/vote/Bike";
 
 export default function VoteWidget(): JSX.Element {
   const [message, setMessage] = useState("");

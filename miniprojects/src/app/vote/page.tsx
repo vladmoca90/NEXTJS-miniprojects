@@ -1,5 +1,5 @@
 import React from "react";
-import VoteWidget from "../../components/VoteWidget";
+import VoteWidget from "./VoteWidget";
 
 export default function Page() {
   return (
