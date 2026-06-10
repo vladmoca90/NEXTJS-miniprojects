@@ -1,9 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import { Bike } from "../../../data/vote/Bike";
+import { allBikes } from "../../../data/vote/allBikes";
 
 export default function VoteWidget(): JSX.Element {
   const [message, setMessage] = useState("");
+  const bikes: Bike[] = allBikes;
 
   const handleClick = (_name: string) => {
     setMessage("clicked done");
