@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/vote.css";
 import VoteWidget from "./VoteWidget";
 
-export default function Page() {
+export default function Voting() {
   return (
     <main className="vote-page">
       <h1>Motorbike Voting</h1>
