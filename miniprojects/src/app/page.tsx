@@ -1,6 +1,6 @@
 import React from "react";
-import "../styles/vote.css";
-import VoteWidget from "./VoteWidget";
+import "./styles/vote.css";
+import VoteWidget from "./vote/VoteWidget";
 
 export default function Voting() {
   return (
