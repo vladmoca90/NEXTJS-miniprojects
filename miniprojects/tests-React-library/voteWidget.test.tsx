@@ -82,7 +82,7 @@ describe('VoteWidget (React Library)', () => {
     
     const voteButtons = container.querySelector('.vote-buttons');
     expect(voteButtons).toBeInTheDocument();
-    expect(voteWidget).toContainElement(voteButtons);
+    expect(voteWidget?.contains(voteButtons)).toBe(true);
   });
 
   it('should display vote message with correct status role', async () => {
