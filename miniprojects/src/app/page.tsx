@@ -1,12 +1,11 @@
-import React from "react";
-import "./styles/vote-widget.css";
-import VoteWidget from "./vote-widget/VoteWidget";
+import type { Metadata } from "next";
+import Dashboard from "./dashboard/Dashboard";
 
-export default function Voting() {
-  return (
-    <main className="vote-page">
-      <h1>Motorbike Voting</h1>
-      <VoteWidget />
-    </main>
-  );
+export const metadata: Metadata = {
+  title: "Team dashboard | Northstar",
+  description: "A responsive team directory dashboard sample.",
+};
+
+export default function DashboardPage() {
+  return <Dashboard />;
 }
