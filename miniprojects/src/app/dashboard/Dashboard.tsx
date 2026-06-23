@@ -11,7 +11,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import styles from "../styles/dashboard.module.css";
-import type { User, UserStatus, UsersResponse } from "../../../data/User";
+import type { User, UserStatus, UsersResponse } from "../../../data/dashboard/User";
 import UserRow from "./components/UserRow";
 import UserCard from "./components/UserCard";
 import LoadingState from "./components/LoadingState";

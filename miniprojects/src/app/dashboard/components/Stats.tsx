@@ -1,5 +1,5 @@
 import { UsersIcon } from "@heroicons/react/24/outline";
-import type { User } from "../../../../data/User";
+import type { User } from "../../../../data/dashboard/User";
 import styles from "../../styles/dashboard.module.css";
 
 export default function Stats({ users }: { users: User[] }) {

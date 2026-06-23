@@ -1,4 +1,4 @@
-import type { User } from "../../../../data/User";
+import type { User } from "../../../../data/dashboard/User";
 import styles from "../../styles/dashboard.module.css";
 
 export default function UserRow({ user }: { user: User }) {
