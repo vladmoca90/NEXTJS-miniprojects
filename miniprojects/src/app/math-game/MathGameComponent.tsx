@@ -81,10 +81,10 @@ export function MathGameComponent() {
       </div>
 
       <div className="math-controls">
-        <button onClick={() => dispatch(nextQuestion())} disabled={currentIndex >= questions.length - 1}>
+        <button className="btn btn-green" onClick={() => dispatch(nextQuestion())} disabled={currentIndex >= questions.length - 1}>
           Next
         </button>
-        <button onClick={() => dispatch(resetGame())}>Restart</button>
+        <button className="btn btn-red" onClick={() => dispatch(resetGame())}>Restart</button>
       </div>
     </section>
   );
