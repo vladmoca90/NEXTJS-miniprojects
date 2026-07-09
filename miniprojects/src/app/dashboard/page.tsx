@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Dashboard from "./dashboard/Dashboard";
+import Dashboard from "./Dashboard";
 
 export const metadata: Metadata = {
   title: "Team dashboard | Northstar",
