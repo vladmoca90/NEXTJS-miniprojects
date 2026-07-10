@@ -15,6 +15,13 @@
 }
 
 .math-header-text {
+  background: #eaebeb;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: .75rem;
+}
+
+.math-header-text > p {
   font-size: 1.25rem;
 }
 
