@@ -42,9 +42,9 @@ export function MathGameComponent() {
 
   return (
     <section className="math-game">
-      <header>
-        <h1>Math Quiz</h1>
-        <p>
+      <header className="math-header">
+        <h1 className="math-header-title">Math Quiz</h1>
+        <p className="math-header-text">
           Question {currentIndex + 1} of {questions.length} • Score: {score}
         </p>
       </header>

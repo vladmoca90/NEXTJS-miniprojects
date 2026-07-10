@@ -7,11 +7,15 @@
   border-radius: 12px;
 }
 
-.math-game header h1 {
+.math-header-title {
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0 0 0.25rem;
   text-align: center;
+}
+
+.math-header-text {
+  font-size: 1.25rem;
 }
 
 .math-q-text {
