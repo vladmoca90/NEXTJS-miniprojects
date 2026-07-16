@@ -1,32 +1,57 @@
 import Link from "next/link";
-import { ApplicationSummary } from "./application-summary";
-import { IncidentSimulator } from "./incident-simulator";
-import { StatusLookup } from "./status-lookup";
-import { SystemDesign } from "./system-design";
 
-const skills = ["Software design", "Programming", "Testing", "Integration & build", "Data management", "Application support"];
+const projects = [
+  {
+    href: "/interview-tests/application-summary",
+    title: "Application summary",
+    skills: "Programming · Data management",
+    description: "Typed application data, immutable filtering, sorting, and accessible tables.",
+  },
+  {
+    href: "/interview-tests/status-lookup",
+    title: "Status lookup",
+    skills: "Software design · Testing · Security",
+    description: "Validated input, asynchronous states, accessible feedback, and safe errors.",
+  },
+  {
+    href: "/interview-tests/incident-simulator",
+    title: "Incident simulator",
+    skills: "Application support · Integration",
+    description: "A structured response to a production failure after deployment.",
+  },
+  {
+    href: "/interview-tests/system-design",
+    title: "System design",
+    skills: "Software design · Data management",
+    description: "A secure, scalable, reliable, and auditable case-status service.",
+  },
+];
 
-export default function InterviewTestsPage() {
+export default function InterviewProjectsPage() {
   return (
-    <main className="min-h-screen bg-slate-100 px-4 py-10 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-slate-100 px-4 py-10 sm:px-6">
       <div className="mx-auto max-w-6xl">
-        <Link href="/" className="inline-flex rounded-md font-semibold text-blue-700 underline-offset-4 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500">← Back to home</Link>
-
-        <header className="mt-6 rounded-3xl bg-gradient-to-br from-blue-900 via-slate-900 to-cyan-900 p-7 shadow-xl sm:p-10">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] !text-cyan-300">Home Office developer practice</p>
-          <h1 className="mt-3 max-w-4xl text-4xl font-black leading-tight !text-white sm:text-5xl">Technical interview samples built with Next.js, TypeScript and Tailwind</h1>
-          <p className="mt-4 max-w-3xl text-lg leading-8 !text-slate-200">Interactive examples covering the six SFIA Level 3 skills listed for campaign 464434.</p>
-          <ul aria-label="Skills covered" className="mt-6 flex flex-wrap gap-2">
-            {skills.map((skill) => <li key={skill} className="rounded-full border border-cyan-300/40 bg-cyan-200/10 px-3 py-1 text-sm font-medium !text-cyan-100">{skill}</li>)}
-          </ul>
+        <Link href="/" className="font-semibold text-blue-700 hover:underline">← Back to home</Link>
+        <header className="mt-6 rounded-3xl bg-slate-950 p-8 sm:p-10">
+          <p className="font-semibold uppercase tracking-wider !text-cyan-300">Home Office interview practice</p>
+          <h1 className="mt-3 text-4xl font-black !text-white sm:text-5xl">Choose a technical project</h1>
+          <p className="mt-4 max-w-3xl text-lg !text-slate-300">
+            Every sample is now an independent Next.js route with its own page, components, and data.
+          </p>
         </header>
 
-        <div className="mt-8 grid gap-8">
-          <ApplicationSummary />
-          <StatusLookup />
-          <IncidentSimulator />
-          <SystemDesign />
-        </div>
+        <nav aria-label="Interview practice projects" className="mt-8 grid gap-5 md:grid-cols-2">
+          {projects.map((project, index) => (
+            <Link key={project.href} href={project.href}
+              className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-blue-400 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <p className="text-sm font-bold uppercase tracking-wider text-blue-700">Project {index + 1}</p>
+              <h2 className="mt-2 text-2xl font-bold text-slate-950 group-hover:text-blue-800">{project.title}</h2>
+              <p className="mt-2 text-sm font-semibold text-slate-500">{project.skills}</p>
+              <p className="mt-4 leading-6 text-slate-600">{project.description}</p>
+              <span className="mt-5 inline-block font-bold text-blue-700">Open project →</span>
+            </Link>
+          ))}
+        </nav>
       </div>
     </main>
   );
