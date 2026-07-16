@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { ApplicationSummary } from "./ApplicationSummary";
-import { IncidentSimulator } from "./IncidentSimulator";
-import { StatusLookup } from "./StatusLookup";
-import { SystemDesign } from "./SystemDesign";
+import { ApplicationSummary } from "./application-summary";
+import { IncidentSimulator } from "./incident-simulator";
+import { StatusLookup } from "./status-lookup";
+import { SystemDesign } from "./system-design";
 
 const skills = ["Software design", "Programming", "Testing", "Integration & build", "Data management", "Application support"];
 
