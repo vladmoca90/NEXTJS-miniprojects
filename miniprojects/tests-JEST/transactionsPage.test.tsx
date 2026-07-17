@@ -1,6 +1,6 @@
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Transactions from '../src/app/transactions-props/page';
+import Transactions from '../src/app/page';
 
 describe('Transactions Page', () => {
   const mockTransactions = [
