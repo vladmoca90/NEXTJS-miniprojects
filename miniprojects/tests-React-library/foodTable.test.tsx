@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import FoodTablePage from '../src/app/food-table/page';
+import FoodTablePage from '../src/app/page';
 
 describe('Food Table Page', () => {
   beforeEach(() => {

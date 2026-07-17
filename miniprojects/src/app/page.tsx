@@ -1,24 +1,39 @@
 "use client";
-import "./styles/math-game.css";
-import { Provider } from "react-redux";
-import { MathGameComponent } from "./math-game/MathGameComponent";
-import { store } from "./math-game/store/store";
-import Link from "next/link";
+import "../styles/food-list.css";
+import FoodListComponent from "./food-table/FoodListComponent";
+import { allFoods } from "../../data/foodTable/allFoods";
 
-export default function Page() {
-  return (
-    <main>
-      <div className="bg-slate-950 px-4 py-3 text-center">
-        <Link
-          href="/interview-tests"
-          className="inline-flex rounded-lg bg-cyan-300 px-4 py-2 font-bold text-slate-950 hover:bg-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-slate-950"
-        >
-          Open Home Office interview samples
-        </Link>
-      </div>
-      <Provider store={store}>
-        <MathGameComponent  />
-      </Provider>
-    </main>
-  );
+export default function FoodTablePage() {
+    return (
+        <main className="main">
+            <div className="container-table">
+                <div className="flex flex-col">
+                    <div className="overflow-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                            <div className="overflow-hidden">
+                                <table className="min-w-full border text-center text-sm font-medium">
+                                    <thead className="border-b font-medium dark:border-neutral-500">
+                                        <tr>
+                                            <th scope="col" className="border-r px-6 py-4">Image</th>
+                                            <th scope="col" className="border-r px-6 py-4">Name</th>
+                                            <th scope="col" className="border-r px-6 py-4">Price</th>
+                                            <th scope="col" className="border-r px-6 py-4">Unit</th>
+                                            <th scope="col" className="border-r px-6 py-4">Quantity</th>
+                                            <th scope="col" className="border-r px-6 py-4">Total Price</th>
+                                            <th scope="col" className="px-6 py-4">Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {allFoods.map((food) => (
+                                            <FoodListComponent key={food.id} food={food} />
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    );
 }
