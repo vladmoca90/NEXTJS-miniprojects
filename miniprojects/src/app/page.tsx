@@ -1,112 +1,141 @@
 "use client";
-import "./styles/transactions.css";
-import { Transaction } from "../../data/transactions/Transaction";
-import { useCallback, useEffect, useState } from "react";
-import TransactionComponent from "./transactions-props/TransactionComponent";
-import SelectedTransactionComponent from "./transactions-props/SelectedTransactionComponent";
+import "../styles/actors.css";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { Provider } from "react-redux";
+import Image from "next/image";
+import { store, useAppDispatch, useAppSelector } from "./actors/store/store";
+import {
+  setActors,
+  setSearchField,
+  setSearchQuery,
+  clearSearch,
+} from "./actors/store/features/actorsSlice";
 
-export default function Transactions() {
-    let transactionsUrl = "http://localhost:3000/api/transactions";
+export default function GetActors() {
+  return (
+    <Provider store={store}>
+      <ActorsContent />
+    </Provider>
+  );
+}
 
-    const [transactions, setTransactions] = useState<Transaction[]>([]);
-    const [getTransactions, setGetTransactions] = useState<Transaction[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+function ActorsContent() {
+  const actorsUrl = "http://localhost:3000/api/actors";
 
-    const getTransactionsData = useCallback(async () => {
-        try {
-            const res = await fetch(transactionsUrl);
+  const dispatch = useAppDispatch();
 
-            if (!res.ok) {
-                throw new Error("The data is not valid!");
-            } else {
-                console.log("The data is valid!");
-            }
+  const filteredActors = useAppSelector((state) => state.actors.filteredActors);
+  const searchQuery = useAppSelector((state) => state.actors.searchQuery);
+  const searchField = useAppSelector((state) => state.actors.searchField);
+  const searchError = useAppSelector((state) => state.actors.searchError);
+  
+  const [isLoading, setIsLoading] = useState(true);
 
-            const data = await res.json();
-            setTransactions(data.body);
-        } catch (error) {
-            console.error("Failed to fetch transactions:", error);
-        } finally {
-            setIsLoading(false);
-        }
-    }, []);
+  const getActors = useCallback(async () => {
+    try {
+      const res = await fetch(actorsUrl);
 
-    const onSelectedTransaction = useCallback((clickedTransaction: Transaction) => {
-        const selectedTransaction = transactions.filter((transaction, index) => clickedTransaction.id - 1 === index);
+      if (!res.ok) {
+        throw new Error("The data is not valid!");
+      }
 
-        setGetTransactions(selectedTransaction);
-    }, [transactions]);
-
-    const onDeletedTransaction = useCallback((removedTransaction: Transaction) => {
-        const chosenTransaction = transactions.filter((transaction) => removedTransaction.name !== transaction.name);
-
-        console.log(chosenTransaction);
-        setTransactions(chosenTransaction);
-    }, [transactions]);
-
-    useEffect(() => {
-        getTransactionsData();
-    }, [getTransactionsData]);
-
-    console.log(getTransactions);
-
-    if (isLoading) {
-        return (
-            <div className="loading-overlay">
-                <img
-                    src="/loading-buffering.gif"
-                    alt="Loading..."
-                    width={200}
-                    height={200}
-                    className="loading-spinner"
-                />
-            </div>
-        );
+      const data = await res.json();
+      dispatch(setActors(data.body));
+    } catch (error) {
+      console.error("Error fetching actors:", error);
+    } finally {
+      setIsLoading(false);
     }
+  }, [actorsUrl, dispatch]);
 
+  useEffect(() => {
+    getActors();
+  }, [getActors]);
+
+  const handleSearchChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      dispatch(setSearchQuery(e.target.value));
+    },
+    [dispatch],
+  );
+
+  const handleFieldChange = useCallback(
+    (e: ChangeEvent<HTMLSelectElement>) => {
+      dispatch(setSearchField(e.target.value as "name" | "biography"));
+    },
+    [dispatch],
+  );
+
+  const handleClearSearch = useCallback(() => {
+    dispatch(clearSearch());
+  }, [dispatch]);
+
+  if (isLoading) {
     return (
-        <div id="transaction-container">
-            <div className="transactions-results">
-                <h3>Selected transaction</h3>
-                {
-                    getTransactions.map((getTransaction, index) => {
-                        return (
-                            <SelectedTransactionComponent getTransaction={getTransaction} key={index} />
-                        );
-                    })
-                }
-            </div>
-            <br />
-            <div className="flex flex-col transactions-table">
-                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                        <div className="overflow-hidden">
-                            <table className="min-w-full text-left text-sm font-light">
-                                <thead className="border-b font-medium dark:border-neutral-500">
-                                    <tr>
-                                        <th scope="col" className="px-6 py-4">Date</th>
-                                        <th scope="col" className="px-6 py-4">Name</th>
-                                        <th scope="col" className="px-6 py-4">Amount</th>
-                                        <th scope="col" className="px-6 py-4"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        transactions.map((transaction, index) => (
-                                            <TransactionComponent
-                                                transaction={transaction}
-                                                key={index}
-                                                onSelectedTransaction={() => onSelectedTransaction(transaction)}
-                                                onDeletedTransaction={() => onDeletedTransaction(transaction)}
-                                            />
-                                        ))
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div className="loading-overlay">
+        <img
+          src="/loading-buffering.gif"
+          alt="Loading..."
+          width={200}
+          height={200}
+          className="loading-spinner"
+        />
+      </div>
     );
+  }
+
+  return (
+    <section className="actors-section">
+      <div className="actors-search">
+        <div className="search-controls">
+          <input
+            type="text"
+            placeholder={`Search by ${searchField}`}
+            className="search-input"
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+          <select
+            value={searchField}
+            onChange={handleFieldChange}
+            className="search-filter"
+          >
+            <option value="name">Name</option>
+            <option value="biography">Biography</option>
+          </select>
+          <button
+            type="button"
+            className="clear-search-button"
+            onClick={handleClearSearch}
+          >
+            Clear
+          </button>
+        </div>
+        {searchError ? <div className="search-error">{searchError}</div> : null}
+      </div>
+
+      <div className="actors-container">
+        {filteredActors.length === 0 ? (
+          <div className="no-actors-message">No actors found.</div>
+        ) : (
+          filteredActors.map((actor, index) => (
+            <div key={index} className="actor-card">
+              <div className="actor-image">
+                <Image
+                  src={actor.img}
+                  alt={actor.name}
+                  fill
+                  className="actor-img"
+                />
+              </div>
+              <div className="actor-info">
+                <h3 className="actor-name">{actor.name}</h3>
+                <p className="actor-biography">{actor.biography}</p>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+    </section>
+  );
 }

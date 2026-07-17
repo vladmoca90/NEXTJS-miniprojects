@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import GetActors from '../src/app/actors/page';
+import GetActors from '../src/app/page';
 
 // Mock fetch
 global.fetch = jest.fn();
