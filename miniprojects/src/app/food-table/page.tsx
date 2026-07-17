@@ -1,7 +1,7 @@
 "use client";
-import "../styles/food-list.css";
-import FoodListComponent from "./food-table/FoodListComponent";
-import { allFoods } from "../../data/foodTable/allFoods";
+import "./styles/food-list.css";
+import FoodListComponent from "./FoodListComponent";
+import { allFoods } from "../../../data/foodTable/allFoods";
 
 export default function FoodTablePage() {
     return (
