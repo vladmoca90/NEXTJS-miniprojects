@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import financeReducer from '../src/app/finance-widget/store/features/financeSlice';
-import { FinanceWidget } from '../src/app/finance-widget/FinanceWidget';
+import { FinanceWidget } from '../src/app/finance-widget/FinanceWidgetComponent';
 
 const mockProduct = {
   id: 'auto-loan',
