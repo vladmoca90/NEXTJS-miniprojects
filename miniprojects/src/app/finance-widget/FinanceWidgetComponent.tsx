@@ -11,7 +11,7 @@ import {
 } from "./store/features/financeSlice";
 import { useAppDispatch, useAppSelector } from "./store/store";
 
-export function FinanceWidget() {
+export function FinanceWidgetComponent() {
   const dispatch = useAppDispatch();
   const {
     products,

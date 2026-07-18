@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import financeReducer from "../src/app/finance-widget/store/features/financeSlice";
-import { FinanceWidget } from "../src/app/finance-widget/FinanceWidgetComponent";
+import { FinanceWidgetComponent } from "../src/app/finance-widget/FinanceWidgetComponent";
 
 const mockProduct = {
   id: "auto-loan",
@@ -36,7 +36,7 @@ describe("Finance Widget", () => {
   it("renders the finance widget and loads product options", async () => {
     render(
       <Provider store={store}>
-        <FinanceWidget />
+        <FinanceWidgetComponent />
       </Provider>
     );
 
@@ -51,7 +51,7 @@ describe("Finance Widget", () => {
   it("updates the monthly payment when loan amount changes", async () => {
     render(
       <Provider store={store}>
-        <FinanceWidget />
+        <FinanceWidgetComponent />
       </Provider>
     );
 
@@ -75,7 +75,7 @@ describe("Finance Widget", () => {
 
     render(
       <Provider store={store}>
-        <FinanceWidget />
+        <FinanceWidgetComponent />
       </Provider>
     );
 
