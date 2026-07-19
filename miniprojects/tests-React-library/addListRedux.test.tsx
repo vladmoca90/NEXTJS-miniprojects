@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import App from '../src/app/page';
+import App from '../src/app/add-list-redux/page';
 
 describe('Add-List Redux Page', () => {
   it('should render add component and list component', () => {
