@@ -1,12 +1,10 @@
-import React from "react";
-import "./styles/vote-widget.css";
-import VoteWidget from "./vote-widget/VoteWidget";
+"use client";
+import { TennisPlayersComponent } from './tennis/TennisPlayersComponent';
 
-export default function Voting() {
-  return (
-    <main className="vote-page">
-      <h1>Motorbike Voting</h1>
-      <VoteWidget />
-    </main>
-  );
+export default function TennisPage() {
+    return (
+        <div className="tennis-page margin-auto">
+            <TennisPlayersComponent />
+        </div>
+    );
 }
