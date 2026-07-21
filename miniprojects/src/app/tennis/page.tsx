@@ -1,5 +1,5 @@
 "use client";
-import { TennisPlayersComponent } from './tennis/TennisPlayersComponent';
+import { TennisPlayersComponent } from './TennisPlayersComponent';
 
 export default function TennisPage() {
     return (
