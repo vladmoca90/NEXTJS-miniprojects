@@ -1,6 +1,6 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
 import "./styles/tennis-players.css";
+import { useCallback, useEffect, useState } from "react";
 import { TennisPlayersComponent } from "./tennis/TennisPlayersComponent";
 import { Tennis } from "../../data/tennis/Tennis";
 
@@ -16,22 +16,28 @@ export default function TennisPage() {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(PLAYERS_URL);
+      const response = await fetch("/api/tennis-players");
 
       if (!response.ok) {
-        throw new Error("The tennis players data could not be loaded.");
+        throw new Error("The tennis players could not be loaded.");
       }
 
-      const data: Tennis[] = await response.json();
+      const data: {
+        body: Tennis[];
+        path: string;
+        query: string;
+        cookies: unknown[];
+      } = await response.json();
 
-      setPlayers(data);
+      setPlayers(data.body);
     } catch (error: unknown) {
-      const message =
+      setError(
         error instanceof Error
           ? error.message
-          : "An unexpected error occurred.";
+          : "An unexpected error occurred.",
+      );
 
-      setError(message);
+      setPlayers([]);
     } finally {
       setLoading(false);
     }
