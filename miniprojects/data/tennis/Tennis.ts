@@ -1,4 +1,4 @@
-export interface tennisData {
+export interface Tennis {
   id: number;
   player: string;
   country: string;

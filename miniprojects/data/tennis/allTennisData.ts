@@ -1,6 +1,6 @@
-import { tennisData } from "./tennisData";
+import { Tennis } from "./Tennis";
 
-export const allTennisPlayers: tennisData[] = [
+export const allTennisPlayers: Tennis[] = [
   {
     id: 1,
     player: "Carlos Alcaraz",
