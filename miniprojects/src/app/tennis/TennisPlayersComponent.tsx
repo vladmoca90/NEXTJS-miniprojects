@@ -1,5 +1,4 @@
 "use client";
-
 import { Tennis } from "../../../data/tennis/Tennis";
 
 export interface PlayersProps {
