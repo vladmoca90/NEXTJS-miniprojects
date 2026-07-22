@@ -1,4 +1,5 @@
 "use client";
+
 import { Tennis } from "../../../data/tennis/Tennis";
 
 export interface PlayersProps {
@@ -9,7 +10,9 @@ export const TennisPlayersComponent = ({ players }: PlayersProps) => {
   if (players.length === 0) {
     return (
       <section className="tennis-players">
-        <h2 className="text-2xl font-bold mb-4 text-center">Tennis Players</h2>
+        <h2 className="text-2xl font-bold text-center mb-4">
+          Tennis Players
+        </h2>
         <p>No tennis players found.</p>
       </section>
     );
@@ -17,118 +20,59 @@ export const TennisPlayersComponent = ({ players }: PlayersProps) => {
 
   return (
     <section className="tennis-players">
-      <h2 className="text-2xl font-bold mb-4 text-center mt-4">Tennis Players</h2>
+      <h2 className="text-2xl font-bold text-center my-4">
+        Tennis Players
+      </h2>
 
-      <div className="players-grid">
-        {players.map((player) => (
-          <article key={player.id} className="player-card">
-            <h3 className="text-center text-lg font-bold">{player.player}</h3>
+      <article className="player-card">
+        <table className="w-full border-collapse border border-gray-300">
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="border px-3 py-2">Player</th>
+              <th className="border px-3 py-2">Country</th>
+              <th className="border px-3 py-2">Ranking</th>
+              <th className="border px-3 py-2">Tournament</th>
+              <th className="border px-3 py-2">Opponent</th>
+              <th className="border px-3 py-2">Aces</th>
+              <th className="border px-3 py-2">Double Faults</th>
+              <th className="border px-3 py-2">1st Serve %</th>
+              <th className="border px-3 py-2">Winners</th>
+              <th className="border px-3 py-2">Unforced Errors</th>
+              <th className="border px-3 py-2">Duration</th>
+              <th className="border px-3 py-2">Winner</th>
+            </tr>
+          </thead>
 
-            <table className="w-full border-collapse border border-gray-300 mt-3">
-              <tbody>
-                <tr>
-                  <th className="border border-gray-300 px-3 py-2 text-left bg-gray-100">
-                    Country
-                  </th>
-                  <td className="border border-gray-300 px-3 py-2">
-                    {player.country}
-                  </td>
-                </tr>
-
-                <tr>
-                  <th className="border border-gray-300 px-3 py-2 text-left bg-gray-100">
-                    Ranking
-                  </th>
-                  <td className="border border-gray-300 px-3 py-2">
-                    {player.ranking}
-                  </td>
-                </tr>
-
-                <tr>
-                  <th className="border border-gray-300 px-3 py-2 text-left bg-gray-100">
-                    Tournament
-                  </th>
-                  <td className="border border-gray-300 px-3 py-2">
-                    {player.tournament}
-                  </td>
-                </tr>
-
-                <tr>
-                  <th className="border border-gray-300 px-3 py-2 text-left bg-gray-100">
-                    Opponent
-                  </th>
-                  <td className="border border-gray-300 px-3 py-2">
-                    {player.opponent}
-                  </td>
-                </tr>
-
-                <tr>
-                  <th className="border border-gray-300 px-3 py-2 text-left bg-gray-100">
-                    Aces
-                  </th>
-                  <td className="border border-gray-300 px-3 py-2">
-                    {player.aces}
-                  </td>
-                </tr>
-
-                <tr>
-                  <th className="border border-gray-300 px-3 py-2 text-left bg-gray-100">
-                    Double Faults
-                  </th>
-                  <td className="border border-gray-300 px-3 py-2">
-                    {player.doubleFaults}
-                  </td>
-                </tr>
-
-                <tr>
-                  <th className="border border-gray-300 px-3 py-2 text-left bg-gray-100">
-                    First Serve %
-                  </th>
-                  <td className="border border-gray-300 px-3 py-2">
-                    {player.firstServePercentage}%
-                  </td>
-                </tr>
-
-                <tr>
-                  <th className="border border-gray-300 px-3 py-2 text-left bg-gray-100">
-                    Winners
-                  </th>
-                  <td className="border border-gray-300 px-3 py-2">
-                    {player.winners}
-                  </td>
-                </tr>
-
-                <tr>
-                  <th className="border border-gray-300 px-3 py-2 text-left bg-gray-100">
-                    Unforced Errors
-                  </th>
-                  <td className="border border-gray-300 px-3 py-2">
-                    {player.unforcedErrors}
-                  </td>
-                </tr>
-
-                <tr>
-                  <th className="border border-gray-300 px-3 py-2 text-left bg-gray-100">
-                    Match Duration
-                  </th>
-                  <td className="border border-gray-300 px-3 py-2">
-                    {player.matchDuration}
-                  </td>
-                </tr>
-
-                <tr>
-                  <th className="border border-gray-300 px-3 py-2 text-left bg-gray-100">
-                    Winner
-                  </th>
-                  <td className="border border-gray-300 px-3 py-2">
-                    {player.winner ? "Yes" : "No"}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </article>
-        ))}
-      </div>
+          <tbody>
+            {players.map((player) => (
+              <tr key={player.id}>
+                <td className="border px-3 py-2 font-semibold">
+                  {player.player}
+                </td>
+                <td className="border px-3 py-2">{player.country}</td>
+                <td className="border px-3 py-2">{player.ranking}</td>
+                <td className="border px-3 py-2">{player.tournament}</td>
+                <td className="border px-3 py-2">{player.opponent}</td>
+                <td className="border px-3 py-2">{player.aces}</td>
+                <td className="border px-3 py-2">{player.doubleFaults}</td>
+                <td className="border px-3 py-2">
+                  {player.firstServePercentage}%
+                </td>
+                <td className="border px-3 py-2">{player.winners}</td>
+                <td className="border px-3 py-2">
+                  {player.unforcedErrors}
+                </td>
+                <td className="border px-3 py-2">
+                  {player.matchDuration}
+                </td>
+                <td className="border px-3 py-2 text-center">
+                  {player.winner ? "🏆" : ""}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </article>
     </section>
   );
 };
