@@ -9,7 +9,7 @@ export const TennisPlayersComponent = ({ players }: PlayersProps) => {
   if (players.length === 0) {
     return (
       <section className="tennis-players">
-        <h2>Tennis Players</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">Tennis Players</h2>
         <p>No tennis players found.</p>
       </section>
     );
@@ -17,7 +17,7 @@ export const TennisPlayersComponent = ({ players }: PlayersProps) => {
 
   return (
     <section className="tennis-players">
-      <h2>Tennis Players</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center mt-4">Tennis Players</h2>
 
       <div className="players-grid">
         {players.map((player) => (
