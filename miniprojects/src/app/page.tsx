@@ -16,7 +16,7 @@ export default function TennisPage() {
       setLoading(true);
       setError(null);
 
-      const response = await fetch("/api/tennis-players");
+      const response = await fetch(PLAYERS_URL);
 
       if (!response.ok) {
         throw new Error("The tennis players could not be loaded.");
