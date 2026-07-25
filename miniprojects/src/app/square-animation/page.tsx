@@ -84,7 +84,7 @@ export default function SquareAnimationPage() {
 
   return (
     <main className={styles.page}>
-      <h1 className={styles.title}>Square Animation</h1>
+      <h1 className={`${styles.title} text-center`}>Square Animation</h1>
       <div
         ref={containerRef}
         className={styles.container}
