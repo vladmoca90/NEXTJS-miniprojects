@@ -10,6 +10,10 @@
     margin-bottom: 12px;
 }
 
+.text-white {
+    color: rgb(255,255,255);
+}
+
 .container {
     background: #fff;
     border: 2px dashed #ddd;

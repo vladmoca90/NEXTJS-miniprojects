@@ -1,78 +1,138 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
+
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles/square-animation.module.css";
 
-const squareSize = 60;
+const SQUARE_SIZE = 60;
+const CONTAINER_PADDING = 10;
+const INITIAL_POSITION = { x: 20, y: 20 };
 
 export default function SquareAnimationPage() {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [pos, setPos] = useState({ x: 20, y: 20 });
+  const [pos, setPos] = useState(INITIAL_POSITION);
 
-  function handleClick(e: React.MouseEvent) {
-    const rect = containerRef.current!.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const clickY = e.clientY - rect.top;
+  function handleClick(event: React.MouseEvent<HTMLDivElement>) {
+    const container = containerRef.current;
+
+    if (!container) return;
+
+    const rect = container.getBoundingClientRect();
+
+    const clickX = event.clientX - rect.left;
+    const clickY = event.clientY - rect.top;
+
+    const maximumX = rect.width - SQUARE_SIZE - CONTAINER_PADDING;
+    const maximumY = rect.height - SQUARE_SIZE - CONTAINER_PADDING;
+
     const newX = Math.max(
-      10,
-      Math.min(clickX - squareSize / 2, rect.width - squareSize - 10),
+      CONTAINER_PADDING,
+      Math.min(clickX - SQUARE_SIZE / 2, maximumX),
     );
+
     const newY = Math.max(
-      10,
-      Math.min(clickY - squareSize / 2, rect.height - squareSize - 10),
+      CONTAINER_PADDING,
+      Math.min(clickY - SQUARE_SIZE / 2, maximumY),
     );
-    setPos({ x: newX, y: newY });
+
+    setPos({
+      x: newX,
+      y: newY,
+    });
   }
 
   function handleRandom() {
-    const c = containerRef.current;
-    if (!c) return;
-    const { clientWidth, clientHeight } = c;
+    const container = containerRef.current;
+
+    if (!container) return;
+
+    const maximumX =
+      container.clientWidth - SQUARE_SIZE - CONTAINER_PADDING * 2;
+
+    const maximumY =
+      container.clientHeight - SQUARE_SIZE - CONTAINER_PADDING * 2;
+
     const newX =
-      Math.floor(Math.random() * (clientWidth - squareSize - 20)) + 10;
+      Math.floor(Math.random() * Math.max(maximumX, 0)) + CONTAINER_PADDING;
+
     const newY =
-      Math.floor(Math.random() * (clientHeight - squareSize - 20)) + 10;
-    setPos({ x: newX, y: newY });
+      Math.floor(Math.random() * Math.max(maximumY, 0)) + CONTAINER_PADDING;
+
+    setPos({
+      x: newX,
+      y: newY,
+    });
+  }
+
+  function handleReset() {
+    setPos(INITIAL_POSITION);
   }
 
   useEffect(() => {
-    const c = containerRef.current;
-    if (!c) return;
-    const { clientWidth, clientHeight } = c;
-    setPos((p) => ({
-      x: Math.min(p.x, clientWidth - squareSize - 10),
-      y: Math.min(p.y, clientHeight - squareSize - 10),
+    const container = containerRef.current;
+
+    if (!container) return;
+
+    const maximumX =
+      container.clientWidth - SQUARE_SIZE - CONTAINER_PADDING;
+
+    const maximumY =
+      container.clientHeight - SQUARE_SIZE - CONTAINER_PADDING;
+
+    setPos((currentPosition) => ({
+      x: Math.max(
+        CONTAINER_PADDING,
+        Math.min(currentPosition.x, maximumX),
+      ),
+      y: Math.max(
+        CONTAINER_PADDING,
+        Math.min(currentPosition.y, maximumY),
+      ),
     }));
   }, []);
 
   return (
-    <div className={styles.page}>
+    <main className={styles.page}>
       <h1 className={`${styles.title} text-center text-white`}>
         Square Animation
-      </h1>{" "}
+      </h1>
       <div
-        className={styles.container}
         ref={containerRef}
+        className={styles.container}
         onClick={handleClick}
+        onKeyDown={(event) => {
+          if (event.key.toLowerCase() === "r") {
+            handleRandom();
+          }
+        }}
         role="button"
         tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "r") handleRandom();
-        }}
-        aria-label="Click to move square; press R for random"
+        aria-label="Click inside the area to move the square. Press R to move it randomly."
       >
         <div
           className={styles.square}
-          style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
+          style={{
+            transform: `translate(${pos.x}px, ${pos.y}px)`,
+          }}
         />
       </div>
+
       <div className={styles.controls}>
-        <button className={styles.btn} onClick={handleRandom}>
+        <button
+          type="button"
+          className={styles.btn}
+          onClick={handleRandom}
+        >
           Start
         </button>
-        <button className={styles.btn} onClick={() => setPos({ x: 20, y: 20 })}>
+
+        <button
+          type="button"
+          className={styles.btn}
+          onClick={handleReset}
+        >
           Reset
         </button>
       </div>
-    </div>
+    </main>
   );
 }
