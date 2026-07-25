@@ -1,5 +1,5 @@
+"use client";
 import { createContext } from "react";
-import { ProfilePerson } from "../../../../data/profile/ProfilePerson";
+import type { Profile } from "../../../../data/profile/Profile";
 
-// Create the context with the initial value as the Profile object
-export const ProfileContext = createContext(ProfilePerson);
+export const ProfileContext = createContext<Profile | undefined>(undefined);
