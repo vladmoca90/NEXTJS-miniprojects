@@ -1,7 +1,7 @@
 "use client";
-import ProfileComponent from "./profile/ProfileComponent";
-import { ProfileContext } from "./profile/profileContext/ProfileContext";
-import { ProfilePerson } from "../../data/profile/ProfilePerson";
+import ProfileComponent from "./ProfileComponent";
+import { ProfileContext } from "./profileContext/ProfileContext";
+import { ProfilePerson } from "../../../data/profile/ProfilePerson";
 
 export default function ProfilePage() {
   return (
