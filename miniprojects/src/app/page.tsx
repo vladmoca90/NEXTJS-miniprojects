@@ -72,29 +72,19 @@ export default function SquareAnimationPage() {
 
     if (!container) return;
 
-    const maximumX =
-      container.clientWidth - SQUARE_SIZE - CONTAINER_PADDING;
+    const maximumX = container.clientWidth - SQUARE_SIZE - CONTAINER_PADDING;
 
-    const maximumY =
-      container.clientHeight - SQUARE_SIZE - CONTAINER_PADDING;
+    const maximumY = container.clientHeight - SQUARE_SIZE - CONTAINER_PADDING;
 
     setPos((currentPosition) => ({
-      x: Math.max(
-        CONTAINER_PADDING,
-        Math.min(currentPosition.x, maximumX),
-      ),
-      y: Math.max(
-        CONTAINER_PADDING,
-        Math.min(currentPosition.y, maximumY),
-      ),
+      x: Math.max(CONTAINER_PADDING, Math.min(currentPosition.x, maximumX)),
+      y: Math.max(CONTAINER_PADDING, Math.min(currentPosition.y, maximumY)),
     }));
   }, []);
 
   return (
     <main className={styles.page}>
-      <h1 className={`${styles.title} text-center text-white`}>
-        Square Animation
-      </h1>
+      <h1 className={styles.title}>Square Animation</h1>
       <div
         ref={containerRef}
         className={styles.container}
@@ -117,19 +107,11 @@ export default function SquareAnimationPage() {
       </div>
 
       <div className={styles.controls}>
-        <button
-          type="button"
-          className={styles.btn}
-          onClick={handleRandom}
-        >
+        <button type="button" className={styles.btn} onClick={handleRandom}>
           Start
         </button>
 
-        <button
-          type="button"
-          className={styles.btn}
-          onClick={handleReset}
-        >
+        <button type="button" className={styles.btn} onClick={handleReset}>
           Reset
         </button>
       </div>
