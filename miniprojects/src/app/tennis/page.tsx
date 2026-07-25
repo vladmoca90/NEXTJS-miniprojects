@@ -1,8 +1,8 @@
 "use client";
 import "./styles/tennis-players.css";
 import { useCallback, useEffect, useState } from "react";
-import { TennisPlayersComponent } from "./tennis/TennisPlayersComponent";
-import { Tennis } from "../../data/tennis/Tennis";
+import { TennisPlayersComponent } from "./TennisPlayersComponent";
+import { Tennis } from "../../../data/tennis/Tennis";
 
 const PLAYERS_URL = "/api/tennis-players";
 
