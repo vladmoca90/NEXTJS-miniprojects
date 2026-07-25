@@ -46,8 +46,9 @@ export default function SquareAnimationPage() {
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.title}>Square Animation</h1>
-
+      <h1 className={`${styles.title} text-center text-white`}>
+        Square Animation
+      </h1>{" "}
       <div
         className={styles.container}
         ref={containerRef}
@@ -64,7 +65,6 @@ export default function SquareAnimationPage() {
           style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
         />
       </div>
-
       <div className={styles.controls}>
         <button className={styles.btn} onClick={handleRandom}>
           Start
