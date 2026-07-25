@@ -1,4 +1,4 @@
-export interface ProfileData { // Renamed to ProfileData
+export interface Profile { // Renamed to ProfileData
     age: number;
     forename: string;
     nationality: string;

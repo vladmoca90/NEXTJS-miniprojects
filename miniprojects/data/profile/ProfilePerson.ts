@@ -1,6 +1,6 @@
-import { ProfileData } from "./ProfileData"; // Import the interface
+import { Profile } from "./Profile"; // Import the interface
 
-export const Profile: ProfileData = { // Updated to use the new interface name
+export const ProfilePerson: Profile = {
     age: 33,
     forename: "Jack",
     nationality: "British",
