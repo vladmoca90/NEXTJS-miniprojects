@@ -2,10 +2,10 @@
 import { useState } from "react";
 import ProfileComponent from "./profile/ProfileComponent";
 import { ProfileContext } from "./profile/profileContext/ProfileContext";
-import { Profile } from "../../data/profile/Profile";
+import { ProfilePerson } from "../../data/profile/ProfilePerson";
 
 export default function ProfileProfile() {
-    const [profile, setProfile] = useState(Profile);
+    const [profile, setProfile] = useState(ProfilePerson);
 
     return (
         <div id="ProfileContent">
