@@ -4,6 +4,7 @@ body {
     width: 100%;
 }
 
-.tennis-players {
+.tennis-players table {
     margin: 0 auto;
+    max-width: 800px;
 }
