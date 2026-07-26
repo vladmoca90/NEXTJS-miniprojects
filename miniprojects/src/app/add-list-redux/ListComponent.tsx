@@ -6,7 +6,7 @@ export const ListComponent = () => {
 
     return (
         <div className="rounded-md shadow border m-2 p-2">
-            <p>This is the List Component</p>
+            <p className="mb-4 mt-2 text-center">This is the List Component</p>
             <table className="rounded-md w-full">
                 <thead>
                     <tr className="bg-gradient-to-b from-sky-400 to-sky-600 text-white">
