@@ -1,16 +1,16 @@
 "use client";
-import { useRef } from "react";
+import { useState } from "react";
 import { useAppDispatch } from "./store/store";
 import { addPerson } from "./store/features/personSlice";
 
 export const AddComponent = () => {
-    const nameRef = useRef<string>(""); 
+    const [name, setName] = useState("");
     const dispatch = useAppDispatch();
 
     const handleAddPerson = () => {
-        if (nameRef.current.trim()) {
-            dispatch(addPerson({ name: nameRef.current }));
-            nameRef.current = "";
+        if (name.trim()) {
+            dispatch(addPerson({ name }));
+            setName("");
         }
     };
 
@@ -20,8 +20,9 @@ export const AddComponent = () => {
             <input
                 type="text"
                 id="person"
+                value={name}
                 className="border rounded-md p-2 mx-2"
-                onChange={(e) => (nameRef.current = e.target.value)}
+                onChange={(e) => setName(e.target.value)}
             />
             <button
                 onClick={handleAddPerson}

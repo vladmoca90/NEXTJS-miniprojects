@@ -19,4 +19,17 @@ describe('Add-List Redux Page', () => {
     const { container } = render(<App />);
     expect(container.querySelector('main')).toBeInTheDocument();
   });
+
+  it('should clear the person name input after adding a person', () => {
+    render(<App />);
+
+    const input = screen.getByLabelText(/person name/i);
+    fireEvent.change(input, { target: { value: 'Alice' } });
+
+    expect(input).toHaveValue('Alice');
+
+    fireEvent.click(screen.getByRole('button', { name: /add/i }));
+
+    expect(input).toHaveValue('');
+  });
 });
