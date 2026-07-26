@@ -32,4 +32,17 @@ describe('Add-List Redux Page', () => {
 
     expect(input).toHaveValue('');
   });
+
+  it('should show an error message when trying to add a duplicate person', () => {
+    render(<App />);
+
+    const input = screen.getByLabelText(/person name/i);
+    fireEvent.change(input, { target: { value: 'Alice' } });
+    fireEvent.click(screen.getByRole('button', { name: /add/i }));
+
+    fireEvent.change(input, { target: { value: 'Alice' } });
+    fireEvent.click(screen.getByRole('button', { name: /add/i }));
+
+    expect(screen.getByText('The person already exists in the list!')).toBeInTheDocument();
+  });
 });
