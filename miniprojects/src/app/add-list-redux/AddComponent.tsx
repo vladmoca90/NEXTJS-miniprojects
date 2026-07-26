@@ -1,16 +1,29 @@
 "use client";
 import { useState } from "react";
-import { useAppDispatch } from "./store/store";
+import { useAppDispatch, useAppSelector } from "./store/store";
 import { addPerson } from "./store/features/personSlice";
 
 export const AddComponent = () => {
     const [name, setName] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     const dispatch = useAppDispatch();
+    const persons = useAppSelector((state) => state.person.persons);
 
     const handleAddPerson = () => {
-        if (name.trim()) {
-            dispatch(addPerson({ name }));
+        const trimmedName = name.trim();
+        const alreadyExists = persons.some((person) => person.name.toLowerCase() === trimmedName.toLowerCase());
+
+        if (trimmedName && !alreadyExists) {
+            dispatch(addPerson({ name: trimmedName }));
             setName("");
+            setErrorMessage("");
+            return;
+        }
+
+        if (trimmedName && alreadyExists) {
+            setErrorMessage("The person already exists in the list!");
+        } else {
+            setErrorMessage("");
         }
     };
 
@@ -30,6 +43,9 @@ export const AddComponent = () => {
             >
                 Add
             </button>
+            {errorMessage ? (
+                <p className="mt-2 text-sm text-red-600">{errorMessage}</p>
+            ) : null}
         </div>
     );
 };

@@ -22,14 +22,21 @@ export const personSlice = createSlice({
   initialState,
   reducers: {
     addPerson: (state, action: PayloadAction<{ name: string }>) => {
-      const newPerson: Person = {
-        id:
-          state.persons.length > 0
-            ? state.persons[state.persons.length - 1].id + 1
-            : 1, // Ensures unique ID
-        name: action.payload.name,
-      };
-      state.persons.push(newPerson);
+      const trimmedName = action.payload.name.trim();
+      const alreadyExists = state.persons.some(
+        (person) => person.name.toLowerCase() === trimmedName.toLowerCase()
+      );
+
+      if (!alreadyExists && trimmedName) {
+        const newPerson: Person = {
+          id:
+            state.persons.length > 0
+              ? state.persons[state.persons.length - 1].id + 1
+              : 1, // Ensures unique ID
+          name: trimmedName,
+        };
+        state.persons.push(newPerson);
+      }
     },
     // Optionally add more reducers here (e.g., removePerson, updatePerson)
   },
