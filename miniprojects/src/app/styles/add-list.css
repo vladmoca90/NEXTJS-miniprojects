@@ -7,6 +7,10 @@ main {
     margin: 5rem auto 0;
 }
 
+button {
+    color: #fff;
+}
+
 input[type="text"],
 tr>td  {
     color: #333;
