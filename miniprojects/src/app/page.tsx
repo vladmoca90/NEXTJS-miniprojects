@@ -5,7 +5,7 @@ import VoteWidget from "./vote-widget/VoteWidget";
 export default function Voting() {
   return (
     <main className="vote-page">
-      <h1>Motorbike Voting</h1>
+      <h1 className="vote-title">Motorbike Voting</h1>
       <VoteWidget />
     </main>
   );
