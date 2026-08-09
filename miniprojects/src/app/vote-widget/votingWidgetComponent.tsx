@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Bike } from "../../../data/vote/Bike";
 import { allBikes } from "../../../data/vote/allBikes";
 
-export default function VoteWidget(): JSX.Element {
+export default function VotingWidgetComponent(): JSX.Element {
   const [message, setMessage] = useState("");
   const bikes: Bike[] = allBikes;
 
