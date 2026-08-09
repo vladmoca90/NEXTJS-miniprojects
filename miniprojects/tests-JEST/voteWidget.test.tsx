@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import VoteWidget from '../src/app/vote-widget/VoteWidget';
+import VoteWidget from '../src/app/vote-widget/votingWidgetComponent';
 
 describe('VoteWidget (Jest)', () => {
   it('renders all bike buttons', () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import VoteWidget from '../src/app/vote-widget/VoteWidget';
+import VoteWidget from '../src/app/vote-widget/votingWidgetComponent';
 
 describe('VoteWidget (React Library)', () => {
   it('should render vote widget', () => {
