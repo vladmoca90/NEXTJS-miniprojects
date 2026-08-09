@@ -15,7 +15,11 @@ export default function VoteWidget(): JSX.Element {
     <div className="vote-widget">
       <div className="vote-buttons">
         {bikes.map((b) => (
-          <button key={b.id} onClick={() => handleClick(b.name)} className="vote-button">
+          <button
+            key={b.id}
+            onClick={() => handleClick(b.name)}
+            className="vote-button"
+          >
             <div className="bike-emoji">🏍️</div>
             <div className="bike-name">{b.name}</div>
           </button>
