@@ -1,7 +1,8 @@
 "use client";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import { store, useAppDispatch, useAppSelector } from "./store/store";
+import { useAppDispatch, useAppSelector } from "./store/store";
+
 import {
   setActors,
   setSearchField,
@@ -9,56 +10,106 @@ import {
   clearSearch,
 } from "./store/features/actorsSlice";
 
-export default function ActorsContentComponent() {
-  const actorsUrl = "http://localhost:3000/api/actors";
+const ACTORS_URL = "/api/actors";
 
+export default function ActorsContentComponent() {
   const dispatch = useAppDispatch();
 
-  const filteredActors = useAppSelector((state) => state.actors.filteredActors);
-  const searchQuery = useAppSelector((state) => state.actors.searchQuery);
-  const searchField = useAppSelector((state) => state.actors.searchField);
-  const searchError = useAppSelector((state) => state.actors.searchError);
+  const filteredActors = useAppSelector(
+    (state) => state.actors.filteredActors,
+  );
+
+  const searchQuery = useAppSelector(
+    (state) => state.actors.searchQuery,
+  );
+
+  const searchField = useAppSelector(
+    (state) => state.actors.searchField,
+  );
+
+  const searchError = useAppSelector(
+    (state) => state.actors.searchError,
+  );
 
   const [isLoading, setIsLoading] = useState(true);
 
+  /*
+   * Fetch actors from the API.
+   *
+   * Once received, we send them to Redux.
+   * Redux is responsible for storing and filtering them.
+   */
   const getActors = useCallback(async () => {
     try {
-      const res = await fetch(actorsUrl);
+      setIsLoading(true);
+
+      const res = await fetch(ACTORS_URL);
 
       if (!res.ok) {
-        throw new Error("The data is not valid!");
+        throw new Error("Failed to fetch actors.");
       }
 
       const data = await res.json();
+
       dispatch(setActors(data.body));
     } catch (error) {
       console.error("Error fetching actors:", error);
     } finally {
       setIsLoading(false);
     }
-  }, [actorsUrl, dispatch]);
+  }, [dispatch]);
 
+  /*
+   * Load actors when the component first renders.
+   */
   useEffect(() => {
     getActors();
   }, [getActors]);
 
-  const handleSearchChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      dispatch(setSearchQuery(e.target.value));
-    },
-    [dispatch],
-  );
+  /*
+   * When the user types:
+   *
+   * 1. Get the input value.
+   * 2. Send it to Redux.
+   * 3. Redux updates searchQuery.
+   * 4. Redux recalculates filteredActors.
+   */
+  const handleSearchChange = (
+    e: ChangeEvent<HTMLInputElement>,
+  ) => {
+    dispatch(setSearchQuery(e.target.value));
+  };
 
-  const handleFieldChange = useCallback(
-    (e: ChangeEvent<HTMLSelectElement>) => {
-      dispatch(setSearchField(e.target.value as "name" | "biography"));
-    },
-    [dispatch],
-  );
+  /*
+   * Change the property we want to search.
+   *
+   * For example:
+   * name
+   * biography
+   *
+   * Redux then recalculates filteredActors.
+   */
+  const handleFieldChange = (
+    e: ChangeEvent<HTMLSelectElement>,
+  ) => {
+    dispatch(
+      setSearchField(
+        e.target.value as "name" | "biography",
+      ),
+    );
+  };
 
-  const handleClearSearch = useCallback(() => {
+  /*
+   * Clear the search.
+   *
+   * Redux resets:
+   * searchQuery
+   * searchError
+   * filteredActors
+   */
+  const handleClearSearch = () => {
     dispatch(clearSearch());
-  }, [dispatch]);
+  };
 
   if (isLoading) {
     return (
@@ -85,14 +136,18 @@ export default function ActorsContentComponent() {
             value={searchQuery}
             onChange={handleSearchChange}
           />
+
           <select
             value={searchField}
             onChange={handleFieldChange}
             className="search-filter"
           >
             <option value="name">Name</option>
-            <option value="biography">Biography</option>
+            <option value="biography">
+              Biography
+            </option>
           </select>
+
           <button
             type="button"
             className="clear-search-button"
@@ -101,15 +156,25 @@ export default function ActorsContentComponent() {
             Clear
           </button>
         </div>
-        {searchError ? <div className="search-error">{searchError}</div> : null}
+
+        {searchError && (
+          <div className="search-error">
+            {searchError}
+          </div>
+        )}
       </div>
 
       <div className="actors-container">
         {filteredActors.length === 0 ? (
-          <div className="no-actors-message">No actors found.</div>
+          <div className="no-actors-message">
+            No actors found.
+          </div>
         ) : (
           filteredActors.map((actor, index) => (
-            <div key={index} className="actor-card">
+            <div
+              key={index}
+              className="actor-card"
+            >
               <div className="actor-image">
                 <Image
                   src={actor.img}
@@ -118,9 +183,15 @@ export default function ActorsContentComponent() {
                   className="actor-img"
                 />
               </div>
+
               <div className="actor-info">
-                <h3 className="actor-name">{actor.name}</h3>
-                <p className="actor-biography">{actor.biography}</p>
+                <h3 className="actor-name">
+                  {actor.name}
+                </h3>
+
+                <p className="actor-biography">
+                  {actor.biography}
+                </p>
               </div>
             </div>
           ))
