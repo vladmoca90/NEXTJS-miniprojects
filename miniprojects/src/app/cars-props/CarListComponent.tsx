@@ -8,8 +8,7 @@ export interface CarListProps {
 
 export default function CarListComponent({ car }: CarListProps) {
   // Ensure price is treated as a number
-  const price =
-    typeof car.price === "string" ? parseFloat(car.price) : car.price;
+  const price = typeof car.price === "string" ? parseFloat(car.price) : car.price;
   const monthlyPrice = (price / 12).toFixed(0);
 
   return (
