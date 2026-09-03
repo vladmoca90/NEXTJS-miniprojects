@@ -1,4 +1,4 @@
-import { useAuthComponent } from "useAuthComponent";
+import { useAuthComponent } from "./components/useAuthComponent";
 
 const Profile = () => {
   const {
