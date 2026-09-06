@@ -1,5 +1,5 @@
 "use client";
-import { useAuthComponent } from "./components/useAuthComponent";
+import { useAuthComponent } from "../components/useAuthComponent";
 
 export default function Profile() {
   const {
