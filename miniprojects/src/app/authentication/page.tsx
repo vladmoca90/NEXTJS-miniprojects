@@ -1,6 +1,7 @@
+"use client";
 import { useAuthComponent } from "./components/useAuthComponent";
 
-const Profile = () => {
+export default function Profile() {
   const {
     user,
     login,
@@ -20,7 +21,7 @@ const Profile = () => {
 
   return (
     <div>
-      {isAuthenticated ? (
+      {isAuthenticated && user ? (
         <>
           <p>Welcome, {user.name}</p>
           <button onClick={logout}>Logout</button>
