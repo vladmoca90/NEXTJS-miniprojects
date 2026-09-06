@@ -1,17 +1,22 @@
 import { useState } from "react";
 
+type User = {
+  id: number;
+  name: string;
+  email: string;
+};
+
 export const useAuthComponent = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   const login = async (email: string, password: string) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      // Example login logic
-      const loggedInUser = {
+      const loggedInUser: User = {
         id: 1,
         name: "Vlad",
         email,
