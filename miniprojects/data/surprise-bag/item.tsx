@@ -1,3 +1,0 @@
-interface Motorbike {
-  name: string;
-}
