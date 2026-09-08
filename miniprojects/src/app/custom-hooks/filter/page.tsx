@@ -1,7 +1,5 @@
 import { useTextFilter } from "./components/useTextFilterComponent";
 
-const names = ["Honda", "Yamaha", "Ducati", "Kawasaki"];
-
 export default function SearchMotorbikes() {
   const {
     searchText,

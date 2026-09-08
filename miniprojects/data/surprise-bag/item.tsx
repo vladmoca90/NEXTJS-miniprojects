@@ -1,0 +1,3 @@
+interface Motorbike {
+  name: string;
+}
