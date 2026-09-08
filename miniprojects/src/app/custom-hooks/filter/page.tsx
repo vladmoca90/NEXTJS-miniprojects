@@ -1,11 +1,12 @@
 import { useTextFilter } from "./components/useTextFilterComponent";
+import { names } from "../../../../data/custom-hooks/filter/allMotorbikes";
 
 export default function SearchMotorbikes() {
   const {
     searchText,
     setSearchText,
     filteredItems
-  } = useTextFilter(names);
+  } = useTextFilter(names.map((motorbike) => motorbike.name));
 
   return (
     <div>

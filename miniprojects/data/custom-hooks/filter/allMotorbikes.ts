@@ -1,6 +1,6 @@
 import { Motorbike } from "./Motorbike";
 
-const names: Motorbike[] = [
+export const names: Motorbike[] = [
   { name: "Honda" },
   { name: "Yamaha" },
   { name: "Ducati" },
