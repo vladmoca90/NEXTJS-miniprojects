@@ -1,3 +1,3 @@
-interface Motorbike {
+export interface Motorbike {
   name: string;
 }
