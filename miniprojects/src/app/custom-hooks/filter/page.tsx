@@ -1,7 +1,7 @@
 import { useTextFilter } from "./components/useTextFilterComponent";
 import { names } from "../../../../data/custom-hooks/filter/allMotorbikes";
 
-export default function SearchMotorbikes() {
+export default function FilterMotorbikes() {
   const {
     searchText,
     setSearchText,
@@ -14,7 +14,7 @@ export default function SearchMotorbikes() {
         type="text"
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
-        placeholder="Search..."
+        placeholder="Filter..."
       />
 
       {filteredItems.map((item) => (
