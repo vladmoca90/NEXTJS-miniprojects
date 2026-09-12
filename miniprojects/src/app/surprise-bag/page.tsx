@@ -1,6 +1,8 @@
+
+
 export default function SurpriseBag() {
     return (
-        <main>
+        <main className="flex min-h-screen flex-col items-center justify-between p-24">
             <h1>Surprise Bag</h1>
         </main>
     );
