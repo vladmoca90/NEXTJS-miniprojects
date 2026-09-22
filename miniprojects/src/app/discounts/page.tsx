@@ -2,7 +2,7 @@ import { DiscountComponent } from "./components/DiscountComponent";
 
 export default function DiscountsPage() {
     return (
-        <div>
+        <div className="discounts-page">
             <DiscountComponent />
         </div>
     );
