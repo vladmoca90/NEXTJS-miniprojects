@@ -15,18 +15,18 @@ body {
     display: inline-block;
 }
 
-.showroom-search>form,
+.showroom-search > form,
 .car-container {
     background: #767676;
 }
 
-.showroom-search>form,
+.showroom-search > form,
 .showroom-buttons,
 #showroom {
     display: flex;
 }
 
-.showroom-search>form {
+.showroom-search > form {
     justify-content: space-between;
     margin: 2.5rem auto;
     max-width: 500px;
@@ -36,14 +36,14 @@ body {
 .search-btn {
     background: #a61900;
     color: #fff;
-    font-weight: bold;
+    font-weight: 700;
     padding: 5px 30px;
 }
 
 #carMake,
 #carModel {
     color: #333;
-    font-size: .8em;
+    font-size: 0.8em;
     font-weight: 700;
     height: auto;
     padding-right: 1.75rem;
@@ -103,7 +103,7 @@ body {
 }
 
 .car-price,
-.showroom-buttons>a {
+.showroom-buttons > a {
     background: #a61900;
 }
 
@@ -119,7 +119,7 @@ body {
 
 .car-monthly-price {
     display: inline-block;
-    font-size: .66em;
+    font-size: 0.66em;
     font-weight: 600;
     padding: 0;
     width: 100%;
@@ -142,9 +142,9 @@ body {
     }
 }
 
-.showroom-buttons>a {
+.showroom-buttons > a {
     color: #fff;
-    font-size: .85em;
+    font-size: 0.85em;
     font-weight: 600;
     letter-spacing: 1px;
     margin: 5px;
@@ -152,17 +152,17 @@ body {
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    transition: all .5s linear;
+    transition: background-color 0.5s linear;
     width: 45%;
 }
 
 @media all and (min-width: 992px) {
-    .showroom-buttons>a {
+    .showroom-buttons > a {
         width: 47%;
     }
 }
 
-.showroom-buttons>a:hover {
+.showroom-buttons > a:hover {
     background: #1a1a1a;
     cursor: pointer;
 }
