@@ -7,17 +7,17 @@ body {
 }
 
 .vote-page {
-  align-items: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 12px;
   padding: 24px;
 }
 
 .vote-widget {
-  align-items: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 16px;
 }
 
@@ -27,16 +27,16 @@ body {
 }
 
 .vote-button {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  background: white;
+  gap: 8px;
+  width: 120px;
+  padding: 12px;
+  background: #fff;
   border: 1px solid #ccc;
   border-radius: 8px;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 12px;
-  width: 120px;
 }
 
 .bike-emoji {
@@ -48,7 +48,7 @@ body {
 }
 
 .vote-message {
+  margin-top: 12px;
   color: #111;
   font-weight: 700;
-  margin-top: 12px;
 }
