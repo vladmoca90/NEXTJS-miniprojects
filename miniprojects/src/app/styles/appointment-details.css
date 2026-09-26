@@ -3,10 +3,11 @@ body {
 }
 
 #appointments {
-    border: 2px solid #ccc;
+    width: 500px;
+    max-width: calc(100% - 2rem);
     margin: 5rem auto 0;
     padding: 1.25rem 0;
-    width: 500px;
+    border: 2px solid #ccc;
 }
 
 #appointments input {
@@ -14,32 +15,32 @@ body {
 }
 
 #appointments label {
-    color: #353535;
     display: inline-block;
-    font-size: .9rem;
-    margin-bottom: .25rem;
+    margin-bottom: 0.25rem;
+    color: #353535;
+    font-size: 0.9rem;
 }
 
 #appointmentTable {
-    margin: 3rem auto 0;
     max-width: 992px;
+    margin: 3rem auto 0;
 }
 
 .btn.btn-submit {
-    background: #1441a1;
-    border-radius: 8px;
-    color: #fff;
     display: block;
-    font-weight: 600;
-    font-size: 18px;
-    margin: 0 auto;
-    padding: .45rem 0 .35rem;
-    text-align: center;
     width: 120px;
+    margin: 0 auto;
+    padding: 0.45rem 0 0.35rem;
+    border-radius: 8px;
+    background: #1441a1;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
 }
 
 .disabled {
-    opacity: .4;
+    opacity: 0.4;
     pointer-events: none;
 }
 
@@ -50,9 +51,9 @@ body {
 
 .email-validation.email-alert,
 .password-match.password-alert {
-    color: #cb2000;
     display: inline-block;
+    margin: 0.5rem 0;
+    color: #cb2000;
     font-size: 15px;
     font-weight: 500;
-    margin: .5rem 0;
 }
