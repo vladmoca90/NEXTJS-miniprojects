@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { allStatuses } from "../../../data/statuses/allStatuses";
 import { StatusesComponent } from "./components/StatusesComponent";
