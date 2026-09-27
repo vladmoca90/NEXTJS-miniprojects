@@ -1,5 +1,117 @@
-body {
-    background: #fff;
-    margin: 0;
-    padding: 0;
+.statuses-container {
+  box-sizing: border-box;
+  width: calc(100% - 32px);
+  max-width: 680px;
+  margin: 64px auto;
+  padding: 32px;
+  border: 1px solid #dbe2ea;
+  border-radius: 16px;
+  background: #fff;
+  color: #1e293b;
+  box-shadow: 0 12px 32px rgb(15 23 42 / 8%);
+}
+
+.statuses-header h1 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.statuses-container p {
+  margin: 8px 0 0;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.statuses-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 28px 0;
+}
+
+.status-active {
+  --status-color: #166534;
+  --status-background: #f0fdf4;
+}
+
+.status-inactive {
+  --status-color: #475569;
+  --status-background: #f1f5f9;
+}
+
+.status-pending {
+  --status-color: #92400e;
+  --status-background: #fffbeb;
+}
+
+.statuses-container .status-button,
+.statuses-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--status-color);
+  background: var(--status-background);
+  font-weight: 600;
+}
+
+.statuses-container .status-button {
+  flex: 1 1 140px;
+  padding: 12px 16px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.statuses-container .status-button:hover,
+.statuses-container .status-button[aria-pressed="true"] {
+  border-color: var(--status-color);
+}
+
+.statuses-container button:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 4px;
+}
+
+.statuses-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.statuses-details {
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.statuses-details h2 {
+  margin: 0 0 16px;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.statuses-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+}
+
+.statuses-reset {
+  margin-top: 20px;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: #334155;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .statuses-container {
+    margin: 24px auto;
+    padding: 20px;
+  }
 }
