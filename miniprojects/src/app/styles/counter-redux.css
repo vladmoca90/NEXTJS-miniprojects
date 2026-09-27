@@ -1,34 +1,52 @@
-body {
-    background: #fff;
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    background: #fff;
+}
+
 .main {
-    display: block;
-    margin: 4rem auto 0;
     width: 250px;
+    margin: 4rem auto 0;
 }
 
 .main > div h3 {
+    margin: 2rem auto;
+    padding: 0.25rem 0.35rem;
+
     background: #333;
     color: #fff;
-    display: block;
+
     font-size: 21px;
-    margin: 2rem auto;
-    padding: .25rem .35rem;
     text-align: center;
-    width: auto;
 }
 
 .counter-block {
-    display: block;
+    text-align: center;
 }
 
 .counter-block button {
+    margin: 0 0.5rem;
+    padding: 0.5rem 0.75rem;
+
     background: #333;
+    border: 0;
     border-radius: 8px;
     color: #fff;
+
     font-size: 16px;
-    margin: 0 .5rem;
-    padding: .5rem .75rem;
+    cursor: pointer;
+}
+
+.counter-block button:hover {
+    background: #444;
+}
+
+.counter-block button:focus-visible {
+    outline: 2px solid #333;
+    outline-offset: 2px;
 }
