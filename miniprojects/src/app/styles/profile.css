@@ -1,9 +1,13 @@
 body {
-    background: #fff;
+    margin: 0;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
 }
 
 .profile-table {
-    margin: 0 auto;
-    max-width: 480px;
     width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-sizing: border-box;
 }
