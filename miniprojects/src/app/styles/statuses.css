@@ -1,20 +1,20 @@
 .statuses-container {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #dbe2ea;
+  box-shadow: 0 12px 32px rgb(15 23 42 / 8%);
   box-sizing: border-box;
-  width: calc(100% - 32px);
-  max-width: 680px;
+  color: #1e293b;
   margin: 64px auto;
   padding: 32px;
-  border: 1px solid #dbe2ea;
-  border-radius: 16px;
-  background: #fff;
-  color: #1e293b;
-  box-shadow: 0 12px 32px rgb(15 23 42 / 8%);
+  width: min(680px, calc(100% - 32px));
 }
 
 .statuses-header h1 {
-  margin: 0 0 8px;
+  margin: 0;
   font-size: 2rem;
   font-weight: 700;
+  line-height: 1.2;
 }
 
 .statuses-container p {
@@ -27,9 +27,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin: 28px 0;
+  margin-block: 28px;
 }
 
+/* Status themes */
 .status-active {
   --status-color: #166534;
   --status-background: #f0fdf4;
@@ -45,40 +46,61 @@
   --status-background: #fffbeb;
 }
 
-.statuses-container .status-button,
+/* Shared status styling */
+.status-button,
 .statuses-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+
   color: var(--status-color);
-  background: var(--status-background);
+  background-color: var(--status-background);
+
   font-weight: 600;
 }
 
-.statuses-container .status-button {
+.status-button {
   flex: 1 1 140px;
-  padding: 12px 16px;
+  min-height: 44px;
+  padding: 10px 16px;
+
   border: 2px solid transparent;
   border-radius: 8px;
+
+  font: inherit;
   cursor: pointer;
+
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    transform 150ms ease;
 }
 
-.statuses-container .status-button:hover,
-.statuses-container .status-button[aria-pressed="true"] {
+.status-button:hover {
   border-color: var(--status-color);
 }
 
-.statuses-container button:focus-visible {
+.status-button[aria-pressed="true"] {
+  border-color: var(--status-color);
+}
+
+.status-button:active {
+  transform: translateY(1px);
+}
+
+.status-button:focus-visible,
+.statuses-reset:focus-visible {
   outline: 3px solid #2563eb;
-  outline-offset: 4px;
+  outline-offset: 3px;
 }
 
 .statuses-dot {
   width: 8px;
   height: 8px;
+  flex-shrink: 0;
   border-radius: 50%;
-  background: currentColor;
+  background-color: currentColor;
 }
 
 .statuses-details {
@@ -91,27 +113,37 @@
   margin: 0 0 16px;
   font-size: 1.125rem;
   font-weight: 600;
+  line-height: 1.4;
 }
 
 .statuses-badge {
   padding: 6px 12px;
-  border-radius: 20px;
+  border-radius: 999px;
   font-size: 0.875rem;
 }
 
 .statuses-reset {
   margin-top: 20px;
   padding: 8px 0;
+
   border: 0;
   background: transparent;
   color: #334155;
+
+  font: inherit;
   text-decoration: underline;
+  text-underline-offset: 3px;
+
   cursor: pointer;
+}
+
+.statuses-reset:hover {
+  color: #0f172a;
 }
 
 @media (max-width: 480px) {
   .statuses-container {
-    margin: 24px auto;
+    margin-block: 24px;
     padding: 20px;
   }
 }
