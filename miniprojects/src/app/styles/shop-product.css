@@ -1,127 +1,175 @@
+:root {
+    --color-background: #e0e0e0;
+    --color-surface: #fff;
+    --color-text: #333;
+    --color-border: #bbb;
+    --color-price: #f85b00;
+    --color-add: #1c7600;
+    --color-remove: #dd0700;
+
+    --border-radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background: #e0e0e0;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family:
+        "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .shop-dropdown {
-    margin: 1.5em auto;
+    width: min(340px, 90%);
+    margin: 1.5rem auto;
 }
 
 .shop-dropdown select {
-    margin-bottom: 1em;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+
+    color: var(--color-text);
+    font: inherit;
 }
 
-.total-products {
-    font-size: 1.1em;
-}
-
-.shop-dropdown select,
-.shop-dropdown {
-    width: 340px;
-}
-
-.shop-dropdown select,
-.shop-dropdown select>option {
-    border-color: #bbb;
-    color: #333;
-    font-size: 1.1em;
-    padding: .375em;
+.shop-dropdown select option {
+    color: var(--color-text);
 }
 
 .shop-search-title {
-    color: #333;
-    font-size: .9em;
+    margin-right: 0.5rem;
+
+    color: var(--color-text);
+    font-size: 0.9rem;
     font-weight: 600;
-    letter-spacing: 25%;
-    margin-right: .5em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
 }
 
 .shop-search-bar {
-    border-color: #bbb;
-    padding: .275em;
+    padding: 0.5rem;
+
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+
+    font: inherit;
 }
 
 .shop-list {
     display: flex;
-    justify-content: space-evenly;
     flex-wrap: wrap;
-    margin: 1em auto 0;
-    max-width: 992px;
+    justify-content: center;
+    gap: 1.5rem;
+
+    width: min(100% - 2rem, 992px);
+    margin: 1rem auto 0;
 }
 
 .shop-card {
-    margin: .75em 0;
-    width: 300px;
+    width: min(300px, 100%);
+}
+
+.shop-image img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .shop-details {
-    background: #fff;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
     min-height: 120px;
-    padding: 1em 0;
+    padding: 1rem;
+
+    background: var(--color-surface);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 
 .shop-title {
-    color: #333;
-    font-size: 1em;
-    font-weight: 600;
     margin: 0;
+
+    color: var(--color-text);
+    font-size: 1rem;
+    font-weight: 600;
     text-align: center;
     text-decoration: underline;
 }
 
-.shop-image>img {
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-}
-
 .shop-price {
-    color: #f85b00;
-    font-size: 1.5em;
-    font-weight: bold;
-    margin: .5em auto 1rem;
+    margin: 0.5rem auto 1rem;
+
+    color: var(--color-price);
+    font-size: 1.5rem;
+    font-weight: 700;
     text-align: center;
 }
 
 .shop-buttons {
     display: flex;
-    justify-content: space-evenly;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+
     margin: 0 auto;
-    max-width: 120px;
 }
 
 .shop-buttons button {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0.25rem 0.5rem;
+
+    border: 0;
     border-radius: 6px;
+
     color: #fff;
-    font-size: 1.1em;
-    font-weight: bold;
-    padding: 0;
-    text-align: center;
-    transition: linear .5s all;
-    width: 28%;
-}
+    font-size: 1.1rem;
+    font-weight: 700;
 
-.shop-buttons button#buttonAdd {
-    background: #1c7600;
-}
+    cursor: pointer;
 
-.shop-buttons button#buttonRemove {
-    background: #dd0700;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .shop-buttons button:hover {
-    cursor: pointer;
+    transform: translateY(-1px);
+}
+
+.shop-buttons button:active {
+    transform: translateY(0);
+}
+
+.shop-buttons button:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 2px;
+}
+
+.shop-buttons .button-add {
+    background: var(--color-add);
+}
+
+.shop-buttons .button-remove {
+    background: var(--color-remove);
 }
 
 .shop-product-number {
-    color: #333;
-    font-size: 1.25em;
+    margin: 0 0.75rem;
+
+    color: var(--color-text);
+    font-size: 1.25rem;
     font-weight: 600;
-    margin: 0 .75rem;
 }
 
 .total-products {
+    font-size: 1.1rem;
     text-align: center;
 }
