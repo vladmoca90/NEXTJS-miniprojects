@@ -1,25 +1,109 @@
 import { Airline } from "./Airlines";
 
-const flights: Airline[] = [
+const flights = [
   {
     id: 1,
     airline: "British Airways",
     destination: "Madrid",
     price: 220,
-    stops: 0
+    stops: 0,
   },
   {
     id: 2,
     airline: "Ryanair",
     destination: "Madrid",
     price: 95,
-    stops: 1
+    stops: 1,
   },
   {
     id: 3,
     airline: "Iberia",
     destination: "Madrid",
     price: 175,
-    stops: 0
-  }
+    stops: 0,
+  },
+  {
+    id: 4,
+    airline: "Ethiopian Airlines",
+    destination: "Addis Ababa",
+    price: 540,
+    stops: 0,
+  },
+  {
+    id: 5,
+    airline: "Kenya Airways",
+    destination: "Nairobi",
+    price: 510,
+    stops: 1,
+  },
+  {
+    id: 6,
+    airline: "Royal Air Maroc",
+    destination: "Casablanca",
+    price: 280,
+    stops: 0,
+  },
+  {
+    id: 7,
+    airline: "South African Airways",
+    destination: "Johannesburg",
+    price: 690,
+    stops: 1,
+  },
+  {
+    id: 8,
+    airline: "Singapore Airlines",
+    destination: "Singapore",
+    price: 820,
+    stops: 0,
+  },
+  {
+    id: 9,
+    airline: "Emirates",
+    destination: "Dubai",
+    price: 610,
+    stops: 0,
+  },
+  {
+    id: 10,
+    airline: "Qatar Airways",
+    destination: "Doha",
+    price: 590,
+    stops: 0,
+  },
+  {
+    id: 11,
+    airline: "Japan Airlines",
+    destination: "Tokyo",
+    price: 940,
+    stops: 1,
+  },
+  {
+    id: 12,
+    airline: "American Airlines",
+    destination: "New York",
+    price: 620,
+    stops: 0,
+  },
+  {
+    id: 13,
+    airline: "Delta Air Lines",
+    destination: "Atlanta",
+    price: 650,
+    stops: 1,
+  },
+  {
+    id: 14,
+    airline: "Air Canada",
+    destination: "Toronto",
+    price: 580,
+    stops: 0,
+  },
+  {
+    id: 15,
+    airline: "LATAM Airlines",
+    destination: "São Paulo",
+    price: 760,
+    stops: 1,
+  },
 ];
