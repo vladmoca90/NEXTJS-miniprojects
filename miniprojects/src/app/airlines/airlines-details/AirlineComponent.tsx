@@ -25,9 +25,9 @@ export function AirlineComponent() {
 
 
   return (
-    <div className="airline-component">
+    <div className="airline-component border border-gray-300 p-4 rounded-lg shadow-md">
       {flights.map((flight) => (
-        <div key={flight.id} className="flight-card">
+        <div key={flight.id} className="flight-card p-4 mb-4 mt-4">
           <p>{flight.airline}</p>
           <p>
             {flight.origin} ({flight.departureAirport}) → {flight.destination} (
