@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Geist } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import config from "../../tailwind.config";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -19,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={cn("font-sans", geist.variable)}>
       <body className={inter.className} suppressHydrationWarning={true}>{children}</body>
       <Script src="https://unpkg.com/react@18/umd/react.production.min.js"></Script>
       <Script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></Script>
