@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Airline } from "../../../../data/airlines/Airlines";
+
+const airlinesUrl = "http://localhost:3000/api/airlines";
 
 export function AirlineComponent() {
   const [flights, setFlights] = useState<Airline[]>([]);
