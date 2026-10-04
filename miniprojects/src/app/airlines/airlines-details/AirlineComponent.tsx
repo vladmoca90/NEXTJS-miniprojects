@@ -45,6 +45,8 @@ export function AirlineComponent() {
             {flight.origin} ({flight.departureAirport}) → {flight.destination} (
             {flight.arrivalAirport})
           </p>
+          <p>{flight.departureTime} - {flight.arrivalTime}</p>
+          <p>Price: £{flight.price.toFixed(2)}</p>
         </div>
       ))}
       </div>
