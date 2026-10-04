@@ -7,3 +7,20 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.airlines-page {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.airline-component {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin: 20px 0;
+    max-width: 360px;
+    padding: 20px;
+    width: 100%;
+}

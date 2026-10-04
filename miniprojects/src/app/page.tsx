@@ -1,4 +1,5 @@
 import { AirlineComponent } from "./airlines/airlines-details/AirlineComponent";
+import "./styles/airlines.css"
 
 export default function AirlinesPage() {
   return (
