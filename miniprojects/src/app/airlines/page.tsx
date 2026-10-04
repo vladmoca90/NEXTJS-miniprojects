@@ -1,4 +1,4 @@
-import { AirlineComponent } from "./components/airlineComponent";
+import { AirlineComponent } from "./airlines-details/AirlineComponent";
 
 export default function AirlinesPage() {
   return (
