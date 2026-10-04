@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+"use client";
+import { useCallback, useEffect, useState } from "react";
 import { Airline } from "../../../../data/airlines/Airlines";
 
 const airlinesUrl = "http://localhost:3000/api/airlines";
@@ -6,23 +7,25 @@ const airlinesUrl = "http://localhost:3000/api/airlines";
 export function AirlineComponent() {
   const [flights, setFlights] = useState<Airline[]>([]);
 
-  const getFlights = async () => {
+  const getFlights = useCallback(async () => {
     try {
       const response = await fetch(airlinesUrl);
       if (!response.ok) {
         throw new Error("Failed to fetch flights data");
       }
 
-      const data: Airline[] = await response.json();
-      setFlights(data);
+      const data = await response.json();
+      setFlights(data.flights);
+
+      console.log(data);
     } catch (error) {
       console.error("Error fetching flights data:", error);
-    } };
+    }
+  }, []);
 
-    useEffect(() => {
-      getFlights();
-    }, []);
-
+  useEffect(() => {
+    getFlights();
+  }, []);
 
   return (
     <div className="airline-component border border-gray-300 p-4 rounded-lg shadow-md">
