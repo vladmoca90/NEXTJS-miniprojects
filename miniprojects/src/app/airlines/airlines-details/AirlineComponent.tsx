@@ -15,17 +15,17 @@ export function AirlineComponent() {
       }
 
       const data = await response.json();
-      setFlights(data.flights);
+      setFlights(data.body);
 
       console.log(data);
     } catch (error) {
       console.error("Error fetching flights data:", error);
     }
-  }, []);
+  }, [airlinesUrl]);
 
   useEffect(() => {
     getFlights();
-  }, []);
+  }, [getFlights]);
 
   return (
     <div className="airline-component border border-gray-300 p-4 rounded-lg shadow-md">
