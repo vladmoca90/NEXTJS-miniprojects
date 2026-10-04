@@ -1,6 +1,6 @@
 import { Airline } from "./Airlines";
 
-const flights = [
+export const flights: Airline[] = [
   {
     id: 1,
     airline: "British Airways",
