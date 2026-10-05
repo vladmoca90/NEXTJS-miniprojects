@@ -33,3 +33,11 @@ body {
     padding: 10px;
     width: 100%;
 }
+
+.flight-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
