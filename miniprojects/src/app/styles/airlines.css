@@ -1,12 +1,15 @@
 * {
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serifs;
 }
 
 body {
     margin: 0;
     padding: 0;
 }
+
+
+
 
 .airlines-page {
     align-items: center;
@@ -16,7 +19,7 @@ body {
 }
 
 .airline-component {
-    background-color: #f9f9f9;
+    background: #f9f9f9;
     border-radius: 8px;
     border: 1px solid #ccc;
     margin: 20px 0;
@@ -35,7 +38,7 @@ body {
 }
 
 .flight-card {
-    background-color: #fff;
+    background: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
     margin-bottom: 20px;
