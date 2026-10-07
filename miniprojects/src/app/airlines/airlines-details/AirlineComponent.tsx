@@ -10,6 +10,7 @@ export function AirlineComponent() {
   const getFlights = useCallback(async () => {
     try {
       const response = await fetch(airlinesUrl);
+
       if (!response.ok) {
         throw new Error("Failed to fetch flights data");
       }
@@ -27,6 +28,7 @@ export function AirlineComponent() {
     const filteredFlights = flights.filter((flight) =>
       flight.airline.toLowerCase().includes(searchFlight.toLowerCase())
     );
+    
     setFlights(filteredFlights);
   }
 
