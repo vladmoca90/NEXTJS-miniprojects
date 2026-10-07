@@ -28,7 +28,7 @@ export function AirlineComponent() {
     const filteredFlights = flights.filter((flight) =>
       flight.airline.toLowerCase().includes(searchFlight.toLowerCase())
     );
-    
+
     setFlights(filteredFlights);
   }
 
@@ -37,8 +37,8 @@ export function AirlineComponent() {
   }, [getFlights]);
 
   return (
-    <div className="airline-component border border-gray-300 p-4 rounded-lg shadow-md">
-      <input type="text" placeholder="Search flights..." onChange={(e) => filterAirlines(e.target.value)} className="search-input mb-4 p-2 border border-gray-300 rounded" />
+    <div className="airline-component border border-gray-300 p-4">
+      <input type="text" placeholder="Search flights..." onChange={(e) => filterAirlines(e.target.value)} className="search-input mb-4 p-2 border border-gray-300" />
       <div>
       {flights.map((flight) => (
         <div key={flight.id} className="flight-card p-4 mb-4 mt-4">
