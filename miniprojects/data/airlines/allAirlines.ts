@@ -4,6 +4,7 @@ export const allAirlines: Airline[] = [
   {
     id: 1,
     airline: "British Airways",
+    airlineCountry: { name: "United Kingdom", code: "gb" },
     origin: "London",
     destination: "Madrid",
     departureTime: "08:20",
@@ -20,6 +21,7 @@ export const allAirlines: Airline[] = [
   {
     id: 2,
     airline: "Ryanair",
+    airlineCountry: { name: "Ireland", code: "ie" },
     origin: "London",
     destination: "Madrid",
     departureTime: "06:15",
@@ -36,6 +38,7 @@ export const allAirlines: Airline[] = [
   {
     id: 3,
     airline: "Iberia",
+    airlineCountry: { name: "Spain", code: "es" },
     origin: "London",
     destination: "Madrid",
     departureTime: "14:30",
@@ -52,6 +55,7 @@ export const allAirlines: Airline[] = [
   {
     id: 4,
     airline: "Ethiopian Airlines",
+    airlineCountry: { name: "Ethiopia", code: "et" },
     origin: "London",
     destination: "Addis Ababa",
     departureTime: "21:00",
@@ -68,6 +72,7 @@ export const allAirlines: Airline[] = [
   {
     id: 5,
     airline: "Kenya Airways",
+    airlineCountry: { name: "Kenya", code: "ke" },
     origin: "London",
     destination: "Nairobi",
     departureTime: "17:25",
@@ -84,6 +89,7 @@ export const allAirlines: Airline[] = [
   {
     id: 6,
     airline: "Royal Air Maroc",
+    airlineCountry: { name: "Morocco", code: "ma" },
     origin: "London",
     destination: "Casablanca",
     departureTime: "15:10",
@@ -100,6 +106,7 @@ export const allAirlines: Airline[] = [
   {
     id: 7,
     airline: "South African Airways",
+    airlineCountry: { name: "South Africa", code: "za" },
     origin: "London",
     destination: "Johannesburg",
     departureTime: "19:30",
@@ -116,6 +123,7 @@ export const allAirlines: Airline[] = [
   {
     id: 8,
     airline: "Singapore Airlines",
+    airlineCountry: { name: "Singapore", code: "sg" },
     origin: "London",
     destination: "Singapore",
     departureTime: "22:05",
@@ -132,6 +140,7 @@ export const allAirlines: Airline[] = [
   {
     id: 9,
     airline: "Emirates",
+    airlineCountry: { name: "United Arab Emirates", code: "ae" },
     origin: "London",
     destination: "Dubai",
     departureTime: "09:40",
@@ -148,6 +157,7 @@ export const allAirlines: Airline[] = [
   {
     id: 10,
     airline: "Qatar Airways",
+    airlineCountry: { name: "Qatar", code: "qa" },
     origin: "London",
     destination: "Doha",
     departureTime: "14:15",
@@ -164,6 +174,7 @@ export const allAirlines: Airline[] = [
   {
     id: 11,
     airline: "Japan Airlines",
+    airlineCountry: { name: "Japan", code: "jp" },
     origin: "London",
     destination: "Tokyo",
     departureTime: "10:20",
@@ -180,6 +191,7 @@ export const allAirlines: Airline[] = [
   {
     id: 12,
     airline: "American Airlines",
+    airlineCountry: { name: "United States", code: "us" },
     origin: "London",
     destination: "New York",
     departureTime: "11:35",
@@ -196,6 +208,7 @@ export const allAirlines: Airline[] = [
   {
     id: 13,
     airline: "Delta Air Lines",
+    airlineCountry: { name: "United States", code: "us" },
     origin: "London",
     destination: "Atlanta",
     departureTime: "13:20",
@@ -212,6 +225,7 @@ export const allAirlines: Airline[] = [
   {
     id: 14,
     airline: "Air Canada",
+    airlineCountry: { name: "Canada", code: "ca" },
     origin: "London",
     destination: "Toronto",
     departureTime: "12:05",
@@ -228,6 +242,7 @@ export const allAirlines: Airline[] = [
   {
     id: 15,
     airline: "LATAM Airlines",
+    airlineCountry: { name: "Chile", code: "cl" },
     origin: "London",
     destination: "São Paulo",
     departureTime: "20:10",

@@ -1,6 +1,10 @@
 export interface Airline {
   id: number;
   airline: string;
+  airlineCountry: {
+    name: string;
+    code: string;
+  };
   origin: string;
   destination: string;
   departureTime: string;

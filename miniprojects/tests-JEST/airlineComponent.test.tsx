@@ -7,6 +7,7 @@ const mockAirlines: Airline[] = [
   {
     id: 1,
     airline: 'British Airways',
+    airlineCountry: { name: 'United Kingdom', code: 'gb' },
     origin: 'London',
     destination: 'New York',
     departureTime: '10:00',
@@ -23,6 +24,7 @@ const mockAirlines: Airline[] = [
   {
     id: 2,
     airline: 'Emirates',
+    airlineCountry: { name: 'United Arab Emirates', code: 'ae' },
     origin: 'London',
     destination: 'Dubai',
     departureTime: '14:00',
@@ -59,6 +61,13 @@ describe('AirlineComponent', () => {
     expect(screen.getByText('10:00 - 13:00')).toBeInTheDocument();
     expect(screen.getByText('Price: £199.99')).toBeInTheDocument();
     expect(screen.getByText('Emirates')).toBeInTheDocument();
+    const flag = screen.getByRole('img', { name: 'United Kingdom flag' });
+    expect(flag).toHaveAttribute('src', 'https://flagcdn.com/gb.svg');
+    expect(flag).toHaveAttribute('width', '50');
+    expect(flag.closest('a')).toHaveAttribute(
+      'href',
+      'https://en.wikipedia.org/wiki/United_Kingdom',
+    );
   });
 
   it('filters airlines by a case-insensitive search', async () => {

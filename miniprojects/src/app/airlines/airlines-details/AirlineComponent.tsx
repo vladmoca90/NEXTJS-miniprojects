@@ -42,7 +42,20 @@ export function AirlineComponent() {
       <div>
       {flights.map((flight) => (
         <div key={flight.id} className="flight-card p-4 mb-4 mt-4">
-          <p>{flight.airline}</p>
+          <p className="airline-name">
+            <span>{flight.airline}</span>
+            <a
+              href={`https://en.wikipedia.org/wiki/${encodeURIComponent(flight.airlineCountry.name.replaceAll(" ", "_"))}`}
+              aria-label={`Learn about ${flight.airlineCountry.name}`}
+            >
+              <img
+                className="airline-flag"
+                src={`https://flagcdn.com/${flight.airlineCountry.code}.svg`}
+                alt={`${flight.airlineCountry.name} flag`}
+                width={50}
+              />
+            </a>
+          </p>
           <p>
             {flight.origin} ({flight.departureAirport}) → {flight.destination} (
             {flight.arrivalAirport})
