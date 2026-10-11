@@ -56,12 +56,15 @@ export function AirlineComponent() {
               />
             </a>
           </p>
-          <p>
-            {flight.origin} ({flight.departureAirport}) → {flight.destination} (
-            {flight.arrivalAirport})
+          <p className="flight-route mt-4">
+            {flight.origin} ({flight.departureAirport}) → {flight.destination} ({flight.arrivalAirport})
           </p>
-          <p>{flight.departureTime} - {flight.arrivalTime}</p>
-          <p>Price: £{flight.price.toFixed(2)}</p>
+          <p className="flight-time">
+            {flight.departureTime} - {flight.arrivalTime}
+          </p>
+          <p className="flight-price mt-4">
+            Price: £{flight.price.toFixed(2)}
+          </p>
         </div>
       ))}
       </div>
