@@ -242,7 +242,7 @@ export const allAirlines: Airline[] = [
   {
     id: 15,
     airline: "LATAM Airlines",
-    airlineCountry: { name: "Chile", code: "cl" },
+    airlineCountry: { name: "Brazil", code: "br" },
     origin: "London",
     destination: "São Paulo",
     departureTime: "20:10",
