@@ -85,6 +85,7 @@ export function AirlineComponent() {
           onClick={() => setCurrentPage((page) => page - 1)}
           disabled={currentPage === 1}
           aria-label="Previous page"
+          className="rounded-[8px] bg-red-600 px-4 py-2 text-white disabled:cursor-not-allowed disabled:opacity-50"
         >
           Previous
         </button>
@@ -96,6 +97,7 @@ export function AirlineComponent() {
           onClick={() => setCurrentPage((page) => page + 1)}
           disabled={currentPage === pageCount}
           aria-label="Next page"
+          className="rounded-[8px] bg-green-600 px-4 py-2 text-white disabled:cursor-not-allowed disabled:opacity-50"
         >
           Next
         </button>
