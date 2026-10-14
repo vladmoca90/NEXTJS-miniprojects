@@ -40,9 +40,17 @@ const mockAirlines: Airline[] = [
   },
 ];
 
+const paginatedAirlines: Airline[] = Array.from({ length: 25 }, (_, index) => ({
+  ...mockAirlines[0],
+  id: index + 1,
+  airline: `Airline ${index + 1}`,
+}));
+
 describe('AirlineComponent', () => {
+  let fetchMock: jest.SpyInstance;
+
   beforeEach(() => {
-    jest.spyOn(global, 'fetch').mockResolvedValue({
+    fetchMock = jest.spyOn(global, 'fetch').mockResolvedValue({
       ok: true,
       json: async () => ({ body: mockAirlines }),
     } as Response);
@@ -68,6 +76,61 @@ describe('AirlineComponent', () => {
       'href',
       'https://en.wikipedia.org/wiki/United_Kingdom',
     );
+  });
+
+  it('shows 10 airlines per page and navigates between pages', async () => {
+    fetchMock.mockResolvedValue({
+      ok: true,
+      json: async () => ({ body: paginatedAirlines }),
+    } as Response);
+
+    render(<AirlineComponent />);
+
+    expect(await screen.findByText('Airline 1')).toBeInTheDocument();
+    expect(screen.getByText('Airline 10')).toBeInTheDocument();
+    expect(screen.queryByText('Airline 11')).not.toBeInTheDocument();
+    expect(screen.getByText('Page 1 of 3')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Previous page' })).toBeDisabled();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Next page' }));
+
+    expect(screen.getByText('Airline 11')).toBeInTheDocument();
+    expect(screen.getByText('Airline 20')).toBeInTheDocument();
+    expect(screen.queryByText('Airline 10')).not.toBeInTheDocument();
+    expect(screen.getByText('Page 2 of 3')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Next page' }));
+
+    expect(screen.getByText('Airline 21')).toBeInTheDocument();
+    expect(screen.getByText('Airline 25')).toBeInTheDocument();
+    expect(screen.queryByText('Airline 20')).not.toBeInTheDocument();
+    expect(screen.getByText('Page 3 of 3')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Next page' })).toBeDisabled();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Previous page' }));
+
+    expect(screen.getByText('Airline 11')).toBeInTheDocument();
+    expect(screen.getByText('Page 2 of 3')).toBeInTheDocument();
+  });
+
+  it('resets to the first page when searching', async () => {
+    fetchMock.mockResolvedValue({
+      ok: true,
+      json: async () => ({ body: paginatedAirlines }),
+    } as Response);
+
+    render(<AirlineComponent />);
+    await screen.findByText('Airline 1');
+    fireEvent.click(screen.getByRole('button', { name: 'Next page' }));
+
+    fireEvent.change(screen.getByPlaceholderText('Search flights...'), {
+      target: { value: 'Airline 2' },
+    });
+
+    expect(screen.getByText('Airline 2')).toBeInTheDocument();
+    expect(screen.getByText('Page 1 of 1')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Previous page' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Next page' })).toBeDisabled();
   });
 
   it('filters airlines by a case-insensitive search', async () => {
